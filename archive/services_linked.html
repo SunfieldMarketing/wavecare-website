@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthcare Marketing Services | Wavecare</title>
+  <meta name="description" content="Healthcare marketing built for senior care. Brand photography, video production, design & print, and conversion-first web design — all under one roof.">
+
+  <!-- Wavecare brand fonts: DM Serif Display (headlines) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       WAVECARE BRAND SYSTEM
+       Pulled directly from handoff card + live site (wavecare.io)
+       Match exactly when rebuilding in Wix.
+       ============================================================ */
+    :root {
+      /* Primary palette */
+      --teal-primary:   #0E5A50;   /* Nav, primary CTAs, accents */
+      --teal-secondary: #1B7A6E;   /* Secondary surfaces */
+      --teal-accent:    #2A9D8F;   /* Highlights, labels, key headline words */
+      --teal-deep:      #0A4339;   /* Deepest sections */
+      --teal-light:     #E8F5F3;   /* Light backgrounds */
+
+      /* Text */
+      --navy:           #1A2332;   /* Body copy on light surfaces */
+      --white:          #FFFFFF;
+      --text-on-dark:   rgba(255,255,255,0.85);
+      --text-muted:     rgba(255,255,255,0.55);
+      --text-label:     rgba(255,255,255,0.65);
+
+      /* Card / border */
+      --card-bg:        rgba(255,255,255,0.04);
+      --card-bg-light:  #FFFFFF;
+      --border-soft:    rgba(255,255,255,0.10);
+      --border-teal:    rgba(42,157,143,0.35);
+      --border-light:   rgba(14,90,80,0.10);
+
+      /* Typography */
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+
+      /* Spacing rhythm — same scale as Slate template */
+      --section-pad: clamp(80px, 9vw, 130px);
+      --container:   1280px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--navy);
+      background: var(--teal-deep);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 clamp(20px, 4vw, 48px);
+    }
+
+    /* ============================================================
+       SECTION LABEL — short pill with teal bar before text
+       Used at the top of every section
+       ============================================================ */
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal-accent);
+      margin-bottom: 28px;
+    }
+    .label::before {
+      content: "";
+      width: 32px;
+      height: 1px;
+      background: var(--teal-accent);
+    }
+    .label.on-dark { color: var(--teal-accent); }
+    .label.on-light { color: var(--teal-primary); }
+    .label.on-light::before { background: var(--teal-primary); }
+
+    /* ============================================================
+       HEADLINES
+       ============================================================ */
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+    h1 { font-size: clamp(40px, 6.2vw, 84px); }
+    h2 { font-size: clamp(32px, 4.4vw, 56px); }
+    h3 { font-size: clamp(22px, 2.2vw, 28px); }
+    .accent { color: var(--teal-accent); font-style: italic; }
+    .italic-light { font-style: italic; font-weight: 300; }
+
+    p { margin: 0; }
+    .lead {
+      font-size: clamp(16px, 1.2vw, 18px);
+      line-height: 1.7;
+      color: var(--text-on-dark);
+      max-width: 640px;
+    }
+    .lead.on-light { color: rgba(26,35,50,0.78); }
+
+    /* ============================================================
+       CTA BUTTONS — pill, teal, matches live wavecare.io style
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 32px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      background: var(--teal-primary);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: none;
+    }
+    .btn:hover {
+      background: var(--teal-accent);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(14,90,80,0.35);
+    }
+    .btn::after {
+      content: "→";
+      font-size: 16px;
+      transition: transform 0.3s ease;
+    }
+    .btn:hover::after { transform: translateX(4px); }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--white);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.08); border-color: var(--white); }
+
+    /* ============================================================
+       NAV — matches live wavecare.io: white logo on teal
+       ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--teal-primary);
+      backdrop-filter: blur(8px);
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 clamp(20px, 4vw, 48px);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.16em;
+    }
+    .logo-mark {
+      /* Simple wave SVG stand-in — replace with the real Wavecare logo PNG on Wix */
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+    .nav-links a {
+      color: var(--text-on-dark);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links .btn {
+      padding: 12px 24px;
+      font-size: 13px;
+      background: var(--white);
+      color: var(--teal-primary);
+    }
+    .nav-links .btn:hover { background: var(--teal-light); }
+    @media (max-width: 860px) {
+      .nav-links a:not(.btn) { display: none; }
+    }
+
+    /* ============================================================
+       SECTION 1 — HERO
+       Vimeo background video (commercial 1187767005) + teal overlay
+       ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: calc(var(--section-pad) + 60px) 0 var(--section-pad);
+      overflow: hidden;
+      background: var(--teal-deep);
+    }
+    .hero-video-wrap {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .hero-video-wrap iframe {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 177.78vh; /* 16:9 ratio */
+      min-width: 100%;
+      height: 56.25vw;
+      min-height: 100%;
+      transform: translate(-50%, -50%);
+      border: none;
+      pointer-events: none;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(180deg, rgba(10,67,57,0.85) 0%, rgba(10,67,57,0.70) 50%, rgba(10,67,57,0.92) 100%),
+        radial-gradient(ellipse at top right, rgba(42,157,143,0.25), transparent 60%);
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+    .hero h1 {
+      color: var(--white);
+      margin: 16px 0 24px;
+    }
+    .hero-sub {
+      color: var(--text-on-dark);
+      font-size: clamp(16px, 1.3vw, 19px);
+      line-height: 1.6;
+      max-width: 620px;
+      margin-bottom: 40px;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* ============================================================
+       SECTION SHELLS — dark surfaces (teal-primary + teal-deep)
+       Sections alternate to create rhythm
+       ============================================================ */
+    section.dark {
+      background: var(--teal-primary);
+      color: var(--white);
+      padding: var(--section-pad) 0;
+      position: relative;
+    }
+    section.deeper {
+      background: var(--teal-deep);
+      color: var(--white);
+      padding: var(--section-pad) 0;
+      position: relative;
+    }
+    section.light {
+      background: var(--teal-light);
+      color: var(--navy);
+      padding: var(--section-pad) 0;
+      position: relative;
+    }
+
+    /* Subtle decorative top edge on dark sections */
+    section.dark::before,
+    section.deeper::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(42,157,143,0.4), transparent);
+    }
+
+    /* ============================================================
+       SECTION 2 — SERVICES (4-card grid)
+       ============================================================ */
+    .services-head {
+      max-width: 760px;
+      margin-bottom: 72px;
+    }
+    .services-head h2 { color: var(--white); margin-bottom: 24px; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 1100px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
+    .service-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border-soft);
+      border-radius: 16px;
+      padding: 36px 28px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-teal);
+      background: rgba(42,157,143,0.06);
+    }
+    .service-card .num {
+      font-family: var(--font-display);
+      font-size: 28px;
+      color: var(--teal-accent);
+      margin-bottom: 32px;
+      display: block;
+    }
+    .service-card h3 {
+      color: var(--white);
+      margin-bottom: 16px;
+      font-size: 22px;
+    }
+    .service-card p {
+      color: var(--text-on-dark);
+      font-size: 14.5px;
+      line-height: 1.65;
+    }
+    .service-card .card-img {
+      /* [REPLACE] — small icon or detail image in top right corner of card */
+      position: absolute;
+      top: 24px; right: 24px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(42,157,143,0.15);
+      border: 1px solid var(--border-teal);
+    }
+
+    /* ============================================================
+       SPLIT SECTIONS — Service deep-dives (sections 3-6)
+       Alternate text-left/image-right and text-right/image-left
+       ============================================================ */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 96px);
+      align-items: center;
+    }
+    @media (max-width: 860px) {
+      .split { grid-template-columns: 1fr; gap: 48px; }
+      .split.flipped .split-text { order: -1; }
+      .split.flipped .split-image { order: 1; }
+    }
+    .split-text h2 { margin-bottom: 28px; }
+    .split.on-dark .split-text h2 { color: var(--white); }
+    .split-body {
+      font-size: 16.5px;
+      line-height: 1.75;
+      margin-bottom: 32px;
+      max-width: 520px;
+    }
+    .split.on-dark .split-body { color: var(--text-on-dark); }
+    .split.on-light .split-body { color: rgba(26,35,50,0.78); }
+
+    /* Feature bullets inside split sections */
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 32px;
+    }
+    .feature-list li {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--text-on-dark);
+    }
+    .split.on-light .feature-list li {
+      border-bottom-color: var(--border-light);
+      color: rgba(26,35,50,0.85);
+    }
+    .feature-list li::before {
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--teal-accent);
+      flex-shrink: 0;
+    }
+
+    /* Split image — placeholder with teal-tinted overlay */
+    .split-image {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      border-radius: 16px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--teal-secondary) 0%, var(--teal-deep) 100%);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+    }
+    .split-image::after {
+      /* Teal-tinted overlay — ties every image to the brand palette */
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(10,67,57,0.35) 100%);
+      pointer-events: none;
+    }
+    .split-image .placeholder {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: rgba(255,255,255,0.4);
+      font-family: var(--font-body);
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    /* Real photos inside split-image containers */
+    .split-image img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+    }
+    .split-image img.pos-top   { object-position: center top; }
+    .split-image img.pos-right { object-position: right center; }
+
+    /* ============================================================
+       SECTION 7 — BUILT FOR HEALTHCARE (3-feature row)
+       ============================================================ */
+    .healthcare-head {
+      max-width: 760px;
+      margin-bottom: 72px;
+    }
+    .healthcare-head h2 { color: var(--white); margin-bottom: 24px; }
+    .feature-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 860px) {
+      .feature-row { grid-template-columns: 1fr; }
+    }
+    .feature-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-soft);
+      border-top: 2px solid var(--teal-accent);
+      border-radius: 12px;
+      padding: 40px 32px;
+      transition: all 0.4s ease;
+    }
+    .feature-card:hover {
+      background: rgba(42,157,143,0.06);
+      transform: translateY(-4px);
+    }
+    .feature-card h3 {
+      color: var(--white);
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+    .feature-card p {
+      color: var(--text-on-dark);
+      font-size: 14.5px;
+      line-height: 1.65;
+    }
+
+    /* ============================================================
+       SECTION 8 — TRUSTED ACROSS THE COUNTRY (stats + logos)
+       ============================================================ */
+    .trusted-head {
+      max-width: 760px;
+      margin-bottom: 64px;
+    }
+    .trusted-head h2 { color: var(--navy); margin-bottom: 24px; }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 80px;
+      padding: 56px 0;
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+    @media (max-width: 720px) {
+      .stats-row { grid-template-columns: 1fr; gap: 36px; }
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 7vw, 88px);
+      color: var(--teal-primary);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .stat-label {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(26,35,50,0.6);
+    }
+
+    .logos-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: clamp(32px, 5vw, 64px);
+      opacity: 0.7;
+    }
+    .logo-placeholder {
+      width: clamp(100px, 12vw, 140px);
+      height: 50px;
+      background: var(--teal-primary);
+      opacity: 0.25;
+      border-radius: 4px;
+      display: grid;
+      place-items: center;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--white);
+    }
+
+    /* ============================================================
+       SECTION 9 — TESTIMONIALS (3-card grid on dark photo bg)
+       ============================================================ */
+    .testimonial-section {
+      position: relative;
+      overflow: hidden;
+    }
+    .testimonial-bg {
+      /* [REPLACE] — facility/lifestyle photo background */
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(135deg, rgba(10,67,57,0.92), rgba(14,90,80,0.92)),
+        radial-gradient(ellipse at top, rgba(42,157,143,0.20), transparent 70%);
+    }
+    .testimonial-section .container { position: relative; z-index: 1; }
+    .testimonial-head {
+      max-width: 760px;
+      margin-bottom: 64px;
+    }
+    .testimonial-head h2 { color: var(--white); margin-bottom: 24px; }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 860px) {
+      .testimonial-grid { grid-template-columns: 1fr; }
+    }
+    .testimonial-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border-soft);
+      border-radius: 16px;
+      padding: 40px 32px;
+      transition: all 0.4s ease;
+      backdrop-filter: blur(6px);
+    }
+    .testimonial-card:hover {
+      border-color: var(--border-teal);
+      transform: translateY(-4px);
+    }
+    .quote-mark {
+      font-family: var(--font-display);
+      font-size: 56px;
+      line-height: 0.6;
+      color: var(--teal-accent);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .testimonial-card blockquote {
+      margin: 0 0 28px;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-on-dark);
+      font-style: italic;
+    }
+    .testimonial-attribution {
+      padding-top: 24px;
+      border-top: 1px solid var(--border-soft);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: var(--text-label);
+    }
+    .testimonial-attribution strong {
+      display: block;
+      color: var(--white);
+      font-weight: 600;
+      font-style: normal;
+      margin-bottom: 2px;
+      font-size: 14px;
+    }
+
+    /* ============================================================
+       SECTION 10 — FINAL CTA (centered, photo bg, big headline)
+       ============================================================ */
+    .final-cta {
+      position: relative;
+      padding: calc(var(--section-pad) + 20px) 0;
+      text-align: center;
+      overflow: hidden;
+    }
+    .final-cta-bg {
+      /* [REPLACE] — dramatic facility/lifestyle background image */
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(180deg, rgba(10,67,57,0.92), rgba(14,90,80,0.94)),
+        radial-gradient(ellipse at center, rgba(42,157,143,0.25), transparent 70%);
+    }
+    .final-cta .container { position: relative; z-index: 1; }
+    .final-cta .label { justify-content: center; }
+    .final-cta h2 {
+      color: var(--white);
+      max-width: 880px;
+      margin: 0 auto 32px;
+    }
+    .final-cta-sub {
+      color: var(--text-on-dark);
+      font-size: clamp(15px, 1.2vw, 17px);
+      line-height: 1.7;
+      max-width: 580px;
+      margin: 0 auto 40px;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer {
+      background: #061F1B;
+      color: var(--text-on-dark);
+      padding: 80px 0 40px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 56px;
+    }
+    @media (max-width: 860px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 540px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+    .footer-col h4 {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-label);
+      margin: 0 0 20px;
+    }
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-col li { margin-bottom: 10px; }
+    .footer-col a {
+      color: var(--text-on-dark);
+      font-size: 14px;
+      transition: color 0.2s ease;
+    }
+    .footer-col a:hover { color: var(--teal-accent); }
+    .footer-brand p {
+      max-width: 360px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-top: 16px;
+    }
+    .footer-bottom {
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ============================================================
+       SCROLL REVEAL
+       ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal.delay-1 { transition-delay: 0.10s; }
+    .reveal.delay-2 { transition-delay: 0.20s; }
+    .reveal.delay-3 { transition-delay: 0.30s; }
+    .reveal.delay-4 { transition-delay: 0.40s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; }
+    }
+    /* Dropdown */
+  .nav-dropdown { position: relative; display: inline-block; }
+  .dropdown-content { 
+    visibility: hidden; opacity: 0; position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
+    background: rgba(6,42,36,0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); 
+    border-radius: 8px; padding: 12px 0; min-width: 180px; transition: all 0.3s ease; z-index: 1001;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3); display: flex; flex-direction: column; text-align: center;
+  }
+  .nav-dropdown:hover .dropdown-content { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); }
+  .dropdown-content a { padding: 10px 20px !important; color: rgba(255,255,255,0.82) !important; font-size: 13.5px !important; transition: background 0.2s, color 0.2s; white-space: nowrap; border: none !important; }
+  .dropdown-content a:hover { background: rgba(95,208,191,0.15) !important; color: #fff !important; }
+  .dropdown-content a::after { display: none !important; }
+</style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAV — matches live wavecare.io: teal bar, white wordmark
+       Note for Wix rebuild: this is the existing site nav. Reuse it.
+       ============================================================ -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">
+          <!-- Wave mark stand-in. Replace with actual Wavecare logo PNG on Wix. -->
+          <svg viewBox="0 0 32 32" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 18 Q 8 10, 14 18 T 26 18 T 32 16" stroke="white" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+            <path d="M2 24 Q 8 16, 14 24 T 26 24 T 32 22" stroke="white" stroke-width="2.4" fill="none" stroke-linecap="round" opacity="0.6"/>
+          </svg>
+        </span>
+        WAVECARE
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <div class="nav-dropdown">
+          <a href="services.html">Services ▾</a>
+          <div class="dropdown-content">
+            <a href="photoservices.html">Brand & Photoshoots</a>
+            <a href="videoservices.html">Video Production</a>
+            <a href="design-print.html">Design & Print</a>
+            <a href="webdesign.html">Web Design</a>
+          </div>
+        </div>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="btn">Book a Call</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       SECTION 1 — HERO
+       Vimeo commercial 1187767005 as background video.
+       background=1 strips controls and forces autoplay/loop/mute.
+       Teal overlay sits on top to lock the brand mood.
+       ============================================================ -->
+  <section class="hero">
+    <div class="hero-video-wrap">
+      <iframe
+        src="https://player.vimeo.com/video/1187767005?background=1&autoplay=1&loop=1&muted=1&autopause=0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        title="Wavecare Commercial">
+      </iframe>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <span class="label reveal">Services</span>
+        <h1 class="reveal delay-1">
+          Healthcare Marketing<br>
+          That Earns <span class="accent">Trust</span><br>
+          <span class="italic-light">Before the First Tour</span>
+        </h1>
+        <p class="hero-sub reveal delay-2">
+          From branding and photography to video and conversion-first web design,
+          we help senior care facilities and healthcare practices look as professional
+          online as they are in person.
+        </p>
+        <div class="hero-actions reveal delay-3">
+          <a href="contact.html" class="btn">Book a Call</a>
+          <a href="#services" class="btn btn-outline" style="background:transparent;">See Our Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 2 — SERVICES (4-card grid)
+       Maps 1:1 to the four services Wavecare actually sells:
+       01 Brand & Photoshoots
+       02 Video Production
+       03 Design & Print
+       04 Web Design & Management
+       ============================================================ -->
+  <section class="dark" id="services">
+    <div class="container">
+      <div class="services-head reveal">
+        <span class="label on-dark">Services</span>
+        <h2>Everything your healthcare brand<br>needs — under one roof.</h2>
+        <p class="lead">
+          We work with senior living communities, memory care, assisted living, and
+          healthcare practices to handle every piece of your marketing. Photography,
+          video, print, and web — built with HIPAA-conscious workflows and the kind of
+          turnaround healthcare decision-makers actually need.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Card 01 -->
+        <article class="service-card reveal delay-1">
+          <span class="card-img" aria-hidden="true"><!-- [REPLACE] small icon: camera/portrait --></span>
+          <span class="num">01</span>
+          <h3>Brand &amp; Photoshoots</h3>
+          <p>Professional photography that builds instant trust. Facility shots, staff portraits, resident moments, and brand imagery — captured with sensitivity and ready for every channel.</p>
+        </article>
+
+        <!-- Card 02 -->
+        <article class="service-card reveal delay-2">
+          <span class="card-img" aria-hidden="true"><!-- [REPLACE] small icon: video/clapper --></span>
+          <span class="num">02</span>
+          <h3>Video Production</h3>
+          <p>Short-form, explainer, and facility tour videos that turn page views into booked tours and qualified inquiries. Built to perform on every channel.</p>
+        </article>
+
+        <!-- Card 03 -->
+        <article class="service-card reveal delay-3">
+          <span class="card-img" aria-hidden="true"><!-- [REPLACE] small icon: print/brochure --></span>
+          <span class="num">03</span>
+          <h3>Design &amp; Print</h3>
+          <p>Patient-ready materials your team uses every day: brochures, signage, menus, banners, business cards — designed to match your brand and built to last.</p>
+        </article>
+
+        <!-- Card 04 -->
+        <article class="service-card reveal delay-4">
+          <span class="card-img" aria-hidden="true"><!-- [REPLACE] small icon: web/monitor --></span>
+          <span class="num">04</span>
+          <h3>Web Design &amp; Management</h3>
+          <p>Fast, conversion-first websites built for healthcare. SEO-ready, mobile-first, and connected to Google Business so families find you when they search.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 3 — WEB DESIGN & MANAGEMENT (split: text left, image right)
+       Lead with the highest-conversion service. Deep dive #1.
+       ============================================================ -->
+  <section class="deeper">
+    <div class="container">
+      <div class="split on-dark reveal">
+        <div class="split-text">
+          <span class="label on-dark">Websites</span>
+          <h2>Conversion-first websites built for healthcare.</h2>
+          <p class="split-body">
+            Most healthcare websites are stuck in 2015. We build fast, mobile-first
+            sites that load quickly, rank locally, and turn visitors into inquiries —
+            optimized for the Google 3-Pack and integrated with Google Business so
+            families find you the moment they start looking.
+          </p>
+          <ul class="feature-list">
+            <li>Mobile-first, accessibility-conscious build</li>
+            <li>SEO foundations + Google Business optimization</li>
+            <li>Most projects launch in about two weeks</li>
+            <li>Ongoing management — we work with existing sites too</li>
+          </ul>
+          <a href="webdesign.html" class="btn">Learn More</a>
+        </div>
+        <div class="split-image">
+          <!-- Park Gardens full-page website screenshot — Wavecare client work -->
+          <!-- Wix deploy: upload park_garden_website_full_page.jpg to Media Library -->
+          <img src="/images/img_130.jpeg"
+               alt="Park Gardens Rehabilitation & Nursing Center website designed by Wavecare"
+               class="pos-top"
+               loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 4 — VIDEO PRODUCTION (split flipped: text right, image left)
+       Reference the existing Vimeo showcase reel for proof.
+       ============================================================ -->
+  <section class="dark">
+    <div class="container">
+      <div class="split on-dark flipped reveal">
+        <div class="split-image">
+          <!-- [REPLACE] — still frame from a Wavecare video shoot, OR an autoplay/muted/loop Vimeo clip embedded the same way as the hero -->
+          <span class="placeholder">[REPLACE — Video still or short Vimeo loop]</span>
+        </div>
+        <div class="split-text">
+          <span class="label on-dark">Video</span>
+          <h2>Video that turns views into booked tours.</h2>
+          <p class="split-body">
+            Facility tours, commercials, testimonial films, and short-form social cuts —
+            cinematic healthcare video that captures what makes your community feel
+            different. Whether it's a 30-second ad, a 2-minute walkthrough, or a full
+            brand film, every cut is built to perform across YouTube, Instagram, and
+            your website.
+          </p>
+          <ul class="feature-list">
+            <li>Commercials, explainers, and facility tour films</li>
+            <li>Testimonial videos with families and staff</li>
+            <li>Social-ready cuts in every aspect ratio</li>
+            <li>Vimeo-hosted for fast, ad-free playback</li>
+          </ul>
+          <a href="videoservices.html" class="btn">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 5 — BRAND & PHOTOSHOOTS (split: text left, image right)
+       ============================================================ -->
+  <section class="deeper">
+    <div class="container">
+      <div class="split on-dark reveal">
+        <div class="split-text">
+          <span class="label on-dark">Photography</span>
+          <h2>Photography that builds instant trust.</h2>
+          <p class="split-body">
+            Families decide in seconds. Professional photography of your facility,
+            staff, residents, and daily moments tells them everything they need to know
+            long before they ever fill out a form. Every shoot is planned with
+            HIPAA-conscious workflows and produces a full library you can reuse across
+            website, social, print, and ads.
+          </p>
+          <ul class="feature-list">
+            <li>Facility interiors, exteriors, and amenities</li>
+            <li>Staff portraits and resident lifestyle moments</li>
+            <li>HIPAA-conscious release and shoot workflows</li>
+            <li>Edited library delivered ready for every channel</li>
+          </ul>
+          <a href="photoservices.html" class="btn">Learn More</a>
+        </div>
+        <div class="split-image">
+          <!-- Wavecare photoshoot — caregiver with resident, skilled nursing facility -->
+          <!-- Wix deploy: upload services_photo_3.jpg to Media Library -->
+          <img src="/images/img_131.jpeg"
+               alt="Wavecare healthcare photoshoot — caregiver with elderly resident in facility corridor"
+               loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 6 — DESIGN & PRINT (split flipped: text right, image left)
+       ============================================================ -->
+  <section class="dark">
+    <div class="container">
+      <div class="split on-dark flipped reveal">
+        <div class="split-image">
+          <!-- Website-on-monitor mockup — Wavecare client site showcased in lifestyle context -->
+          <!-- Wix deploy: upload design_print_mockup.jpg to Media Library -->
+          <img src="/images/img_132.jpeg"
+               alt="Wavecare client website displayed on desktop monitor — design and brand work"
+               loading="lazy">
+        </div>
+        <div class="split-text">
+          <span class="label on-dark">Print</span>
+          <h2>Patient-ready print<br>that matches the rest of your brand.</h2>
+          <p class="split-body">
+            Brochures, signage, menus, banners, business cards, welcome packets — every
+            printed piece your team hands out is a chance to reinforce trust. We design
+            and produce print collateral that matches your digital brand exactly, so
+            nothing feels disconnected from website to lobby.
+          </p>
+          <ul class="feature-list">
+            <li>Brochures, flyers, and welcome packets</li>
+            <li>Interior signage, banners, and wayfinding</li>
+            <li>Menus, event collateral, and seasonal pieces</li>
+            <li>Business cards and stationery systems</li>
+          </ul>
+          <a href="design-print.html" class="btn">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 7 — BUILT FOR HEALTHCARE (full-width intro + 3-card row)
+       The "why us" voice. Pulled from the live site value props:
+       HIPAA-conscious, fast response, decision-maker focus.
+       ============================================================ -->
+  <section class="deeper">
+    <div class="container">
+      <div class="healthcare-head reveal">
+        <span class="label on-dark">The Healthcare Advantage</span>
+        <h2>Built for the way<br>healthcare actually works.</h2>
+        <p class="lead">
+          Marketing for healthcare isn't the same as marketing for everyone else.
+          We've built our workflows around the realities of senior care and medical
+          practices — sensitivity, compliance, and decision-makers who don't have
+          time for back-and-forth.
+        </p>
+      </div>
+
+      <div class="feature-row">
+        <article class="feature-card reveal delay-1">
+          <h3>HIPAA-Conscious by Default</h3>
+          <p>Every photoshoot, video, and webpage is planned with privacy and resident dignity at the front. No second-guessing what you can and can't publish.</p>
+        </article>
+        <article class="feature-card reveal delay-2">
+          <h3>Fast Response, Real Humans</h3>
+          <p>Customer service from 8 AM to 8 PM daily. Most projects launch in about two weeks. No drawn-out timelines or guess-work.</p>
+        </article>
+        <article class="feature-card reveal delay-3">
+          <h3>Built for Decision-Makers</h3>
+          <p>Whether you're an executive director, marketing manager, or owner — we communicate the way healthcare leaders actually work. Clear scopes, zero filler.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 8 — TRUSTED ACROSS THE COUNTRY (stats + logos)
+       Stats lifted directly from wavecare.io homepage: 95/700/2400.
+       Logo row is placeholder — pull real client logos from existing
+       Wix "Join the Leaders Working with Us" section.
+       ============================================================ -->
+  <section class="light">
+    <div class="container">
+      <div class="trusted-head reveal">
+        <span class="label on-light">Trusted Across the Country</span>
+        <h2>Healthcare brands are growing with Wavecare.</h2>
+        <p class="lead on-light">
+          We've helped senior living communities, memory care facilities, and
+          healthcare practices across the country professionalize their marketing —
+          and it shows in the numbers.
+        </p>
+      </div>
+
+      <div class="stats-row reveal">
+        <div class="stat">
+          <div class="stat-num">95</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">700</div>
+          <div class="stat-label">Assisted Placements</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2,400</div>
+          <div class="stat-label">Smiles Captured</div>
+        </div>
+      </div>
+
+      <div class="logos-row reveal">
+        <!-- [REPLACE] — pull the real client logos from the existing homepage
+             "Join the Leaders Working with Us" section. The logos are already
+             in your Wix Media Library. Recommend 6-8 logos shown in a single
+             row, all rendered in single-color (teal-primary) for consistency. -->
+        <div class="logo-placeholder">LOGO 1</div>
+        <div class="logo-placeholder">LOGO 2</div>
+        <div class="logo-placeholder">LOGO 3</div>
+        <div class="logo-placeholder">LOGO 4</div>
+        <div class="logo-placeholder">LOGO 5</div>
+        <div class="logo-placeholder">LOGO 6</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 9 — TESTIMONIALS (3-card grid on dark photo bg)
+       Real testimonials pulled directly from wavecare.io.
+       Background is a [REPLACE] facility image with teal overlay.
+       ============================================================ -->
+  <section class="testimonial-section" style="padding: var(--section-pad) 0;">
+    <div class="testimonial-bg">
+      <!-- [REPLACE] — wide facility / lifestyle photo as background -->
+    </div>
+    <div class="container">
+      <div class="testimonial-head reveal">
+        <span class="label on-dark">Client Voices</span>
+        <h2>Don't just take our word for it.</h2>
+        <p class="lead">
+          Here's what facility directors, marketing managers, and operations leads
+          have to say about working with Wavecare.
+        </p>
+      </div>
+
+      <div class="testimonial-grid">
+        <!-- Testimonial 1 -->
+        <article class="testimonial-card reveal delay-1">
+          <span class="quote-mark" aria-hidden="true">"</span>
+          <blockquote>
+            From the first call, their team understood our facility, our audience,
+            and the sensitivity required in healthcare. The visuals, website updates,
+            and overall branding helped us look more professional and trustworthy.
+            We started receiving better-quality inquiries within weeks.
+          </blockquote>
+          <div class="testimonial-attribution">
+            <strong>Director</strong>
+            Senior Care Facility
+          </div>
+        </article>
+
+        <!-- Testimonial 2 -->
+        <article class="testimonial-card reveal delay-2">
+          <span class="quote-mark" aria-hidden="true">"</span>
+          <blockquote>
+            What stood out most was their attention to detail and communication.
+            They handled everything from creative direction to execution smoothly.
+            The final results exceeded our expectations, especially the photos and
+            website presentation.
+          </blockquote>
+          <div class="testimonial-attribution">
+            <strong>Marketing Manager</strong>
+            Healthcare Practice
+          </div>
+        </article>
+
+        <!-- Testimonial 3 -->
+        <article class="testimonial-card reveal delay-3">
+          <span class="quote-mark" aria-hidden="true">"</span>
+          <blockquote>
+            Wavecare feels more like a partner than a vendor. They took time to
+            understand our goals and delivered solutions that actually made an impact.
+            Their experience in healthcare marketing really shows.
+          </blockquote>
+          <div class="testimonial-attribution">
+            <strong>Operations Lead</strong>
+            Medical Services Provider
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 10 — FINAL CTA
+       Centered, photo-bg, dramatic headline, single CTA.
+       "Care" in teal accent.
+       ============================================================ -->
+  <section class="final-cta">
+    <div class="final-cta-bg">
+      <!-- [REPLACE] — dramatic facility or aerial image as background -->
+    </div>
+    <div class="container">
+      <span class="label on-dark reveal">Get Started</span>
+      <h2 class="reveal delay-1">
+        Ready to make your facility look<br>
+        as good as the <span class="accent">care</span> you provide?
+      </h2>
+      <p class="final-cta-sub reveal delay-2">
+        Tell us about your facility and we'll show you exactly what we'd build,
+        capture, or design to start bringing in more qualified inquiries.
+      </p>
+      <div class="reveal delay-3">
+        <a href="contact.html" class="btn">Book a Call</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER — matches existing wavecare.io footer
+       ============================================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand">
+          <a href="index.html" class="logo">
+            <span class="logo-mark">
+              <svg viewBox="0 0 32 32" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 18 Q 8 10, 14 18 T 26 18 T 32 16" stroke="white" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+                <path d="M2 24 Q 8 16, 14 24 T 26 24 T 32 22" stroke="white" stroke-width="2.4" fill="none" stroke-linecap="round" opacity="0.6"/>
+              </svg>
+            </span>
+            WAVECARE
+          </a>
+          <p>Healthcare marketing built for senior care and the practices that families trust most.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="photoservices.html">Brand &amp; Photoshoots</a></li>
+            <li><a href="videoservices.html">Video Production</a></li>
+            <li><a href="design-print.html">Design &amp; Print</a></li>
+            <li><a href="webdesign.html">Web Design &amp; Management</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:info@wavecare.io">info@wavecare.io</a></li>
+            <li><a href="tel:+17329301934">+1 732 930 1934</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Wavecare. All rights reserved.</span>
+        <span>Healthcare marketing, done right.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCROLL REVEAL
+       ============================================================ -->
+  <script>
+    (function() {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        els.forEach(function(el){ el.classList.add('in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+      els.forEach(function(el){ io.observe(el); });
+    })();
+  </script>
+</body>
+</html>
+
+
+

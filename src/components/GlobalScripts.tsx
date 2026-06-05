@@ -180,11 +180,14 @@ addEventListener('load',()=>{
 });
 
 // run init logic on mount and path change
-runPreloader(()=>{
-initChrome(); initLenis(); initReveals(); initCount(); initHero();
-initServices(); initMarquee(); initCursor(); initWaveAccent();
-if(window.ScrollTrigger) ScrollTrigger.refresh();
-});
+    if (window.ScrollTrigger) {
+      window.ScrollTrigger.getAll().forEach((t: any) => t.kill());
+    }
+    runPreloader(()=>{
+      initChrome(); initLenis(); initReveals(); initCount(); initHero();
+      initServices(); initMarquee(); initCursor(); initWaveAccent();
+      if(window.ScrollTrigger) window.ScrollTrigger.refresh();
+    });
 // cleanup can be added if needed
   }, [pathname]);
   return null;

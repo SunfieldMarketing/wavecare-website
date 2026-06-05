@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Healthcare Video Production &mdash; Wavecare | Built for Healthcare</title>
+<meta name="description" content="Strategic healthcare video production for senior care facilities and medical practices. Build trust with families before they ever walk through your doors.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+:root{
+  --teal-deep:#0A4339; --teal-primary:#0E5A50; --teal-secondary:#1B7A6E;
+  --teal-accent:#2A9D8F; --teal-bright:#5FD0BF; --teal-light:#E8F5F3;
+  --ink:#062A24; --navy:#1A2332; --white:#FFFFFF;
+  --on-dark:rgba(255,255,255,0.82); --muted:rgba(255,255,255,0.5); --label:rgba(255,255,255,0.62);
+  --soft:rgba(255,255,255,0.10); --border-teal:rgba(42,157,143,0.4);
+  --font-display:'DM Serif Display',Georgia,serif; --font-body:'DM Sans',system-ui,sans-serif;
+  --pad:clamp(80px,9vw,140px); --container:1040px; --container-wide:1240px;
+}
+*,*::before,*::after{box-sizing:border-box;}
+body{margin:0; background:var(--ink); color:var(--white); font-family:var(--font-body);
+  line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden;}
+@media(pointer:fine){body{cursor:none;}}
+img{max-width:100%; display:block;} a{color:inherit; text-decoration:none;}
+::selection{background:var(--teal-accent); color:var(--ink);}
+.container{max-width:var(--container); margin:0 auto; padding:0 clamp(22px,4vw,56px);}
+.container-wide{max-width:var(--container-wide);}
+ 
+.grain{position:fixed; inset:0; z-index:9998; pointer-events:none; opacity:0.04; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.progress{position:fixed; top:0; left:0; height:2px; width:0%; z-index:9999;
+  background:linear-gradient(90deg,var(--teal-accent),var(--teal-bright)); box-shadow:0 0 12px var(--teal-accent);}
+ 
+.preloader{position:fixed; inset:0; z-index:10000; background:var(--ink);
+  display:flex; align-items:center; justify-content:center; flex-direction:column; gap:26px;
+  transition:opacity .7s ease, visibility .7s ease;}
+.preloader.done{opacity:0; visibility:hidden;}
+.preloader img{width:60px; height:auto; animation:floaty 2.4s ease-in-out infinite;}
+@keyframes floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+.pl-bar{width:200px; height:2px; background:rgba(255,255,255,0.12); border-radius:2px; overflow:hidden;}
+.pl-bar span{display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--teal-accent),var(--teal-bright)); transition:width .2s;}
+.pl-num{font-family:var(--font-display); font-size:13px; letter-spacing:0.3em; color:var(--label);}
+ 
+.cdot,.cring{position:fixed; top:0; left:0; z-index:10001; pointer-events:none; border-radius:50%;
+  transform:translate(-50%,-50%); will-change:transform;}
+.cdot{width:9px; height:9px; background:#fff; box-shadow:0 0 0 2px rgba(6,42,36,.65), 0 0 12px rgba(95,208,191,.9); transition:opacity .25s, transform .12s;}
+.cring{width:40px; height:40px; border:1.5px solid rgba(255,255,255,0.9); box-shadow:0 0 0 1.5px rgba(6,42,36,.5); transition:width .3s,height .3s,border-color .3s,background .3s;
+  display:grid; place-items:center;}
+.cring.hot{width:62px; height:62px; border-color:var(--teal-bright);}
+/* Play-head state: over any video card the ring becomes a filled play button */
+.cring.play{width:74px; height:74px; background:rgba(95,208,191,.95); border-color:var(--teal-bright);}
+.cring.play::after{content:"B6"; color:var(--ink); font-size:20px; line-height:1; margin-left:3px;}
+.cdot.hide{opacity:0;}
+/* Badge state: over a filter chip the ring shows a small count */
+.cring .cbadge{opacity:0; font-family:var(--font-body); font-size:11px; font-weight:700; letter-spacing:.04em; color:var(--ink);}
+.cring.badge{width:54px; height:54px; background:var(--teal-bright); border-color:var(--teal-bright);}
+.cring.badge .cbadge{opacity:1;}
+@media (hover:none),(pointer:coarse){ .cdot,.cring{display:none;} }
+ 
+.nav{position:fixed; top:0; left:0; right:0; z-index:1000; padding:22px 0; transition:.4s;}
+.nav.scrolled{background:rgba(6,42,36,0.82); backdrop-filter:blur(14px); padding:13px 0; border-bottom:1px solid rgba(255,255,255,0.06);}
+.nav-inner{display:flex; align-items:center; justify-content:space-between; max-width:var(--container); margin:0 auto; padding:0 clamp(22px,4vw,56px);}
+.logo{display:flex; align-items:center; gap:12px; color:#fff; font-weight:700; font-size:15px; letter-spacing:0.18em;}
+.logo img{height:30px; width:auto;}
+.nav-links{display:flex; align-items:center; gap:38px;}
+.nav-links a:not(.btn){color:var(--on-dark); font-size:14px; font-weight:500; position:relative;}
+.nav-links a:not(.btn):hover{color:#fff;}
+.nav-links a.active{color:#fff;}
+.nav-links a.active::after{content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px; background:var(--teal-bright);}
+@media(max-width:860px){.nav-links a:not(.btn){display:none;}}
+ 
+.btn{position:relative; display:inline-flex; align-items:center; gap:10px; padding:15px 30px; border-radius:50px;
+  font-family:var(--font-body); font-weight:600; font-size:15px; border:none; overflow:hidden;
+  background:var(--teal-primary); color:#fff; transition:color .35s,box-shadow .35s; z-index:1; cursor:none;}
+.btn::before{content:""; position:absolute; inset:0; z-index:-1; transform:scaleX(0); transform-origin:left;
+  background:linear-gradient(90deg,var(--teal-accent),var(--teal-bright)); transition:transform .4s ease;}
+.btn:hover{color:var(--ink); box-shadow:0 12px 40px -10px rgba(95,208,191,.5);}
+.btn:hover::before{transform:scaleX(1);}
+.btn .arr{transition:transform .35s;} .btn:hover .arr{transform:translateX(5px);}
+.btn-ghost{background:transparent; border:1px solid rgba(255,255,255,.4); color:#fff;}
+.btn-ghost::before{background:#fff;} .btn-ghost:hover{color:var(--ink);}
+.btn-light{background:#fff; color:var(--teal-primary);}
+ 
+.label{display:inline-block; font-size:13px; letter-spacing:.22em; text-transform:uppercase; color:var(--teal-bright); font-weight:500; margin-bottom:18px;}
+.label.dark{color:var(--teal-primary);}
+h1{font-family:var(--font-display); font-weight:400; line-height:1.04; font-size:clamp(2.6rem,7vw,5.4rem); color:#fff; letter-spacing:-.01em; margin:0;}
+h2{font-family:var(--font-display); font-weight:400; line-height:1.08; font-size:clamp(2rem,4.6vw,3.4rem); color:#fff; margin:0;}
+h3{font-family:var(--font-display); font-weight:400; margin:0;}
+.panel.light h2,.panel.light h3{color:var(--navy);}
+.accent{color:var(--teal-bright); font-style:italic;}
+.lite{font-style:italic; font-weight:300;}
+.sub{font-size:clamp(1rem,1.4vw,1.18rem); color:var(--on-dark); max-width:620px;}
+.panel.light .sub{color:#4a5a57;}
+.body-lg{font-size:clamp(1.05rem,1.5vw,1.25rem); line-height:1.7; color:var(--on-dark);}
+.panel.light .body-lg{color:#3c4a48;}
+ 
+[data-reveal]{opacity:0; transform:translateY(34px); transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1);}
+[data-reveal].in{opacity:1; transform:none;}
+.stagger>*{opacity:0; transform:translateY(30px); transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+.stagger.in>*{opacity:1; transform:none;}
+.stagger.in>*:nth-child(2){transition-delay:.08s;}
+.stagger.in>*:nth-child(3){transition-delay:.16s;}
+.stagger.in>*:nth-child(4){transition-delay:.24s;}
+.stagger.in>*:nth-child(5){transition-delay:.32s;}
+.stagger.in>*:nth-child(6){transition-delay:.40s;}
+ 
+.panel{position:relative; overflow:hidden;}
+.panel.ink{background:var(--ink);} .panel.deep{background:var(--teal-deep);}
+.panel.primary{background:var(--teal-primary);} .panel.light{background:var(--teal-light);}
+.sec-pad{padding:var(--pad) 0;}
+.sec-head{max-width:620px; margin-bottom:60px;}
+.sec-head.center{margin-left:auto; margin-right:auto; text-align:center;}
+.glow{position:absolute; border-radius:50%; filter:blur(90px); opacity:.4; pointer-events:none; z-index:0;}
+.narrow{max-width:820px;}
+ 
+/* ===== HERO (video-reveal) ===== */
+.hero{position:relative; min-height:100vh; display:flex; align-items:center; overflow:hidden; padding:140px 0 80px; background:var(--ink);}
+ 
+/* full-bleed video layer, starts dimmed + slightly zoomed, opens on scroll via --rv (0..1) */
+.hero-video{position:absolute; inset:0; z-index:0; --rv:0;
+  clip-path:inset(calc(18% - 18% * var(--rv)) round 0px);
+  opacity:calc(.18 + .82 * var(--rv)); transition:opacity .2s linear;}
+.hero-video video{width:100%; height:100%; object-fit:cover; transform:scale(calc(1.12 - .12 * var(--rv))); transition:transform .2s linear;}
+.hero-vfallback{position:absolute; inset:0; z-index:-1;
+  background:radial-gradient(ellipse 90% 70% at 70% 30%,rgba(27,122,110,.6),transparent 60%),
+             radial-gradient(ellipse 80% 80% at 25% 80%,rgba(14,90,80,.65),transparent 65%),
+             linear-gradient(160deg,#0c4b41 0%,var(--ink) 70%);}
+.hero-vfallback::after{content:attr(data-label); position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  color:rgba(255,255,255,.2); font-size:12px; letter-spacing:.22em; text-transform:uppercase; white-space:nowrap;}
+.hero-vtint{position:absolute; inset:0;
+  background:linear-gradient(110deg,rgba(6,42,36,calc(.72 - .25*var(--rv))) 0%,rgba(6,42,36,calc(.4 - .2*var(--rv))) 55%,rgba(6,42,36,.2) 100%),
+             linear-gradient(180deg,transparent 45%,rgba(6,42,36,calc(.55 + .2*var(--rv))) 100%);
+  --rv:0;}
+ 
+.hero-in{position:relative; z-index:2; max-width:var(--container); margin:0 auto; padding:0 clamp(22px,4vw,56px); width:100%;}
+.hero-content{max-width:760px;}
+.wave-line{width:120px; height:18px; margin-bottom:8px;}
+.wave-line path{fill:none; stroke:var(--teal-bright); stroke-width:2; stroke-linecap:round;}
+ 
+/* The headline: each line is a window into the SAME footage via background-clip:text.
+   Falls back to solid white if clip unsupported. */
+.hero-h1{font-family:var(--font-display); font-weight:400; line-height:1.04; font-size:clamp(2.6rem,7vw,5.4rem); letter-spacing:-.01em; margin:8px 0 22px;}
+.hero-h1 .line{display:block;}
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  .hero-h1{color:transparent; -webkit-background-clip:text; background-clip:text;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect width='8' height='8' fill='%235FD0BF'/%3E%3C/svg%3E");
+    /* text shows the video through a fixed-position layer below; see .hero-h1.maskvid */
+  }
+  /* When JS confirms the video can paint, we switch the fill to the live video frame via canvas */
+  .hero-h1.maskvid{background-image:var(--mask-img);}
+  .hero-h1 .accent{-webkit-text-fill-color:initial; color:var(--teal-bright); font-style:italic; background:none;}
+}
+.hero-h1 .accent{color:var(--teal-bright); font-style:italic;}
+ 
+.hero-ctas{display:flex; gap:16px; margin-top:34px; flex-wrap:wrap;}
+ 
+.hero-scrollcue{position:absolute; bottom:30px; left:50%; transform:translateX(-50%); z-index:2;
+  width:26px; height:42px; border:1.5px solid rgba(255,255,255,.4); border-radius:14px; display:grid; place-items:start center; padding-top:7px;}
+.hero-scrollcue span{width:4px; height:8px; border-radius:2px; background:var(--teal-bright); animation:scrollcue 1.6s infinite;}
+@keyframes scrollcue{0%{opacity:0; transform:translateY(0);}30%{opacity:1;}60%{opacity:1; transform:translateY(10px);}100%{opacity:0; transform:translateY(14px);}}
+ 
+/* ===== Trust strip ===== */
+.trust{padding:22px 0; background:rgba(6,42,36,.6); border-top:1px solid var(--soft); border-bottom:1px solid var(--soft);}
+.trust-in{max-width:var(--container); margin:0 auto; padding:0 clamp(22px,4vw,56px);
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:14px 36px;
+  text-align:center; color:var(--on-dark); font-size:13px; letter-spacing:.14em; text-transform:uppercase;}
+.trust-in .dot{display:inline-block; width:4px; height:4px; border-radius:50%; background:var(--teal-bright);}
+@media(max-width:680px){.trust-in .dot{display:none;}}
+ 
+/* ===== Inline featured video ===== */
+.reel-wrap{max-width:1040px; margin:0 auto;}
+.reel-frame{position:relative; aspect-ratio:16/9; border-radius:20px; overflow:hidden;
+  border:1px solid var(--soft); box-shadow:0 50px 100px -40px rgba(0,0,0,.6);
+  background:radial-gradient(circle at 30% 30%,#13695d,transparent 70%),#0a3a32;}
+.reel-frame iframe{position:absolute; inset:0; width:100%; height:100%; border:0;}
+.reel-cap{margin-top:18px; text-align:center; font-size:13px; color:var(--muted); letter-spacing:.04em;}
+ 
+/* ===== Why Video Matters (two-col) ===== */
+.twocol{display:grid; grid-template-columns:.9fr 1.1fr; gap:60px; align-items:start;}
+@media(max-width:860px){.twocol{grid-template-columns:1fr; gap:36px;}}
+ 
+/* ===== What We Produce — service breakdown cards (skim layer) ===== */
+.prod-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:24px;}
+@media(max-width:860px){.prod-grid{grid-template-columns:1fr;}}
+.prod-card{padding:36px 34px; border:1px solid var(--soft); border-radius:20px;
+  background:rgba(255,255,255,.02); transition:.45s cubic-bezier(.16,1,.3,1);}
+.prod-card:hover{border-color:var(--border-teal); transform:translateY(-4px); background:rgba(95,208,191,.04);}
+.prod-card .ic{width:48px; height:48px; border-radius:12px; background:rgba(95,208,191,.12);
+  display:grid; place-items:center; margin-bottom:22px; color:var(--teal-bright);}
+.prod-card .ic svg{width:24px; height:24px;}
+.prod-card h3{font-size:1.55rem; color:#fff; margin-bottom:12px;}
+.prod-card p{color:var(--on-dark); font-size:15px; margin-bottom:22px;}
+.prod-card .sample{display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600;
+  letter-spacing:.04em; color:var(--teal-bright); background:rgba(95,208,191,.08);
+  border:1px solid var(--border-teal); padding:9px 16px; border-radius:50px; cursor:none; transition:.3s;}
+.prod-card .sample:hover{background:var(--teal-bright); color:var(--ink); border-color:var(--teal-bright);}
+.prod-card .sample .arr{transition:transform .3s;}
+.prod-card .sample:hover .arr{transform:translateX(4px);}
+ 
+/* ===== Process — horizontal tabs + detail panel ===== */
+.proc-tabs{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:24px;}
+@media(max-width:760px){.proc-tabs{grid-template-columns:repeat(2,1fr);}}
+.proc-tab{position:relative; text-align:left; padding:22px 22px; border-radius:16px; cursor:none;
+  background:rgba(255,255,255,.02); border:1px solid var(--soft); transition:.4s cubic-bezier(.16,1,.3,1);
+  font-family:var(--font-body);}
+.proc-tab:hover{border-color:var(--border-teal); background:rgba(95,208,191,.04);}
+.proc-tab.on{border-color:var(--teal-bright); background:rgba(95,208,191,.08);}
+.proc-tab .pnum{font-family:var(--font-display); font-size:14px; color:var(--teal-bright); letter-spacing:.1em; display:block; margin-bottom:10px;}
+.proc-tab .pname{font-size:1.12rem; color:#fff; font-weight:600; line-height:1.2;}
+.proc-tab .pbar{position:absolute; left:0; right:0; bottom:0; height:3px; border-radius:0 0 16px 16px; background:var(--teal-bright); transform:scaleX(0); transform-origin:left; transition:transform .4s;}
+.proc-tab.on .pbar{transform:scaleX(1);}
+ 
+.proc-panel-wrap{position:relative; border-radius:22px; overflow:hidden; border:1px solid var(--soft); min-height:360px; background:#0a3a32;}
+.proc-monitor{display:grid; grid-template-columns:1.15fr .85fr; min-height:360px;}
+@media(max-width:760px){.proc-monitor{grid-template-columns:1fr;}}
+.proc-detail{position:relative; padding:clamp(30px,4vw,52px); display:flex; flex-direction:column; justify-content:center;}
+.proc-detail .step{position:absolute; top:0; left:0; right:0; bottom:0; padding:clamp(30px,4vw,52px);
+  display:flex; flex-direction:column; justify-content:center;
+  opacity:0; transform:translateY(16px); transition:opacity .5s,transform .5s; pointer-events:none;}
+.proc-detail .step.on{opacity:1; transform:none; pointer-events:auto;}
+.proc-detail h3{font-size:clamp(1.7rem,3vw,2.3rem); color:#fff; margin-bottom:16px;}
+.proc-detail p{color:var(--on-dark); font-size:15px; margin-bottom:22px; max-width:46ch;}
+.proc-screen{position:relative; overflow:hidden; background:#062a24; border-left:1px solid var(--soft);}
+@media(max-width:760px){.proc-screen{border-left:none; border-top:1px solid var(--soft); min-height:200px;}}
+.proc-screen .scene{position:absolute; inset:0; opacity:0; transition:opacity .6s;
+  background:radial-gradient(circle at 35% 30%,#13695d,transparent 65%),#0a3a32;}
+.proc-screen .scene.on{opacity:1;}
+.proc-screen .scene::after{content:attr(data-label); position:absolute; left:0; right:0; bottom:22px; text-align:center;
+  color:rgba(255,255,255,.35); font-size:11px; letter-spacing:.2em; text-transform:uppercase;}
+.proc-screen .scanline{position:absolute; inset:0; pointer-events:none;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px); z-index:2;}
+ 
+/* Edit-bay grading: scenes progress from raw -> graded across the 4 phases */
+.proc-screen .scene[data-scene="0"]{filter:saturate(.35) brightness(.8) contrast(.9);}
+.proc-screen .scene[data-scene="1"]{filter:saturate(.6) brightness(.9) contrast(1);}
+.proc-screen .scene[data-scene="2"]{filter:saturate(.9) brightness(1) contrast(1.05);}
+.proc-screen .scene[data-scene="3"]{filter:saturate(1.25) brightness(1.05) contrast(1.12);}
+.proc-screen .grade-tag{position:absolute; top:18px; right:18px; z-index:3; font-size:10px; letter-spacing:.16em;
+  text-transform:uppercase; color:rgba(255,255,255,.65); padding:4px 9px; border:1px solid var(--soft); border-radius:5px;}
+.proc-screen .tc{position:absolute; bottom:16px; left:18px; z-index:3; font-family:var(--font-body);
+  font-size:12px; letter-spacing:.08em; color:var(--teal-bright); font-variant-numeric:tabular-nums;}
+.proc-screen .bars{position:absolute; bottom:14px; right:18px; z-index:3; display:flex; gap:3px; align-items:flex-end; height:22px;}
+.proc-screen .bars i{width:3px; background:var(--teal-bright); opacity:.8; animation:eq 1s infinite ease-in-out;}
+.proc-screen .bars i:nth-child(2){animation-delay:.15s;} .proc-screen .bars i:nth-child(3){animation-delay:.3s;}
+.proc-screen .bars i:nth-child(4){animation-delay:.45s;} .proc-screen .bars i:nth-child(5){animation-delay:.6s;}
+@keyframes eq{0%,100%{height:5px;}50%{height:20px;}}
+@media(prefers-reduced-motion:reduce){.proc-screen .bars i,.proc-screen .rec .led{animation:none;}}
+ 
+.proc-screen .rec{position:absolute; top:18px; left:18px; z-index:3; display:flex; align-items:center; gap:7px;
+  font-size:10px; letter-spacing:.18em; color:rgba(255,255,255,.6); text-transform:uppercase;}
+.proc-screen .rec .led{width:8px; height:8px; border-radius:50%; background:#ff5a5a; box-shadow:0 0 8px #ff5a5a; animation:blink 1.4s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.25;}}
+ 
+/* ===== Types of Videos — filterable grid ===== */
+.filter-bar{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:50px;}
+.fchip{font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--on-dark);
+  background:transparent; border:1px solid var(--soft); padding:10px 18px; border-radius:50px;
+  cursor:none; transition:.3s; font-family:var(--font-body); font-weight:500;}
+.fchip:hover{color:#fff; border-color:var(--border-teal);}
+.fchip.on{color:var(--ink); background:var(--teal-bright); border-color:var(--teal-bright);}
+.types-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+@media(max-width:920px){.types-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.types-grid{grid-template-columns:1fr;}}
+.tcard{border-radius:18px; overflow:hidden; border:1px solid var(--soft); background:#0a3a32;
+  transition:transform .5s cubic-bezier(.16,1,.3,1),border-color .4s,opacity .4s;}
+.tcard.hidden{opacity:0; transform:scale(.96); pointer-events:none; height:0; padding:0; margin:0; border:0; overflow:hidden;}
+.tcard:hover{transform:translateY(-4px); border-color:var(--border-teal);}
+.tcard .thumb{position:relative; aspect-ratio:16/10; background:radial-gradient(circle at 30% 30%,#13695d,transparent 65%),#0a3a32; overflow:hidden;}
+.tcard .thumb::after{content:attr(data-label); position:absolute; top:14px; left:50%; transform:translateX(-50%);
+  color:rgba(255,255,255,.2); font-size:10px; letter-spacing:.2em; text-transform:uppercase; white-space:nowrap;}
+.tcard .play{position:absolute; inset:0; display:grid; place-items:center;}
+.tcard .play span{width:54px; height:54px; border-radius:50%; background:rgba(255,255,255,.92); display:grid; place-items:center; color:var(--teal-primary); font-size:18px;}
+.tcard .body{padding:22px 24px 26px;}
+.tcard .body h3{font-size:1.2rem; color:#fff; margin-bottom:8px;}
+.tcard .body p{font-size:14px; color:var(--on-dark); margin-bottom:14px;}
+.tcard .where{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--teal-bright);}
+ 
+/* ===== Featured Work — 1 hero + 2 small ===== */
+.fw-grid{display:grid; grid-template-columns:1.6fr 1fr; gap:24px; align-items:stretch;}
+@media(max-width:860px){.fw-grid{grid-template-columns:1fr;}}
+.fw-side{display:grid; grid-template-rows:1fr 1fr; gap:24px; min-height:420px;}
+.fw-card{position:relative; border-radius:20px; overflow:hidden; border:1px solid var(--soft); background:#0a3a32; transition:transform .5s,border-color .4s; cursor:none;}
+.fw-card:hover{transform:translateY(-3px); border-color:var(--border-teal);}
+.fw-card.hero{min-height:420px;}
+.fw-card.small{aspect-ratio:16/10; min-height:0;}
+.fw-card .ph-bg{position:relative; width:100%; height:100%; background:radial-gradient(circle at 30% 30%,#13695d,transparent 65%),#0a3a32;}
+.fw-card .ph-bg::after{content:attr(data-label); position:absolute; top:14px; left:50%; transform:translateX(-50%);
+  color:rgba(255,255,255,.2); font-size:10px; letter-spacing:.2em; text-transform:uppercase; white-space:nowrap;}
+.fw-card .ph-bg .play{position:absolute; inset:0; display:grid; place-items:center;}
+.fw-card .ph-bg .play span{width:54px; height:54px; border-radius:50%; background:rgba(255,255,255,.92); display:grid; place-items:center; color:var(--teal-primary); font-size:18px;}
+.fw-meta{position:absolute; left:20px; bottom:20px; z-index:2; display:flex; align-items:center; gap:10px;}
+.fw-meta .tag{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#fff; background:rgba(6,42,36,.65); backdrop-filter:blur(6px); padding:6px 12px; border-radius:50px; border:1px solid var(--soft);}
+.fw-meta .title{font-size:14px; color:#fff; font-weight:500;}
+ 
+/* ===== Deliverables strip ===== */
+.deliv{display:grid; grid-template-columns:repeat(4,1fr); gap:24px;}
+@media(max-width:860px){.deliv{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.deliv{grid-template-columns:1fr;}}
+.deliv-item{padding:28px 26px; border:1px solid var(--soft); border-radius:16px; background:rgba(255,255,255,.02);}
+.deliv-item .ic{width:38px; height:38px; border-radius:10px; background:rgba(95,208,191,.12); display:grid; place-items:center; margin-bottom:16px; color:var(--teal-bright); font-size:16px;}
+.deliv-item h4{font-size:15px; color:#fff; margin-bottom:6px; font-weight:600;}
+.deliv-item p{font-size:13px; color:var(--on-dark); line-height:1.5;}
+ 
+/* ===== Stats ===== */
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:30px; text-align:center;}
+.stats.stats-3{grid-template-columns:repeat(3,1fr); max-width:900px; margin:0 auto;}
+@media(max-width:860px){.stats{grid-template-columns:repeat(2,1fr); gap:40px 20px;}}
+.stat .n{font-family:var(--font-display); font-size:clamp(2.6rem,5vw,4rem); color:var(--teal-bright); line-height:1;}
+.stat .t{margin-top:10px; font-size:14px; color:var(--on-dark);}
+ 
+/* ===== Final CTA + wave ===== */
+.final{position:relative; min-height:78vh; display:flex; align-items:center; overflow:hidden; background:var(--teal-deep);}
+#waveCanvas{position:absolute; inset:0; z-index:0; opacity:0.20;}
+.final-fallback{position:absolute; inset:0; z-index:0;
+  background:radial-gradient(ellipse at 30% 40%,rgba(42,157,143,0.30),transparent 60%),
+             radial-gradient(ellipse at 70% 60%,rgba(14,90,80,0.40),transparent 60%);}
+.final-in{position:relative; z-index:2; max-width:900px; margin:0 auto; text-align:center; padding:0 clamp(22px,4vw,56px);}
+.final-in h2{font-size:clamp(2.2rem,5.5vw,4.2rem); margin-bottom:24px;}
+.final-in .sub{margin:0 auto 36px;}
+ 
+footer{background:var(--ink); border-top:1px solid var(--soft); padding:70px 0 40px;}
+.foot-in{max-width:var(--container); margin:0 auto; padding:0 clamp(22px,4vw,56px);
+  display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:50px;}
+@media(max-width:860px){.foot-in{grid-template-columns:1fr; gap:36px;}}
+.foot-logo{display:flex; align-items:center; gap:12px; margin-bottom:20px;}
+.foot-logo img{height:38px;}
+.foot-logo span{font-weight:700; letter-spacing:.04em; color:#fff; font-size:20px;}
+.foot-col h4{font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:var(--teal-bright); margin-bottom:18px; font-weight:600;}
+.foot-col a{display:block; color:var(--on-dark); font-size:15px; margin-bottom:11px; transition:.25s;}
+.foot-col a:hover{color:#fff; transform:translateX(3px);}
+.foot-bottom{max-width:var(--container); margin:50px auto 0; padding:24px clamp(22px,4vw,56px) 0; border-top:1px solid var(--soft);
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px; font-size:13px; color:var(--muted);}
+  /* Dropdown */
+  .nav-dropdown { position: relative; display: inline-block; }
+  .dropdown-content { 
+    visibility: hidden; opacity: 0; position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
+    background: rgba(6,42,36,0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); 
+    border-radius: 8px; padding: 12px 0; min-width: 180px; transition: all 0.3s ease; z-index: 1001;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3); display: flex; flex-direction: column; text-align: center;
+  }
+  .nav-dropdown:hover .dropdown-content { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); }
+  .dropdown-content a { padding: 10px 20px !important; color: rgba(255,255,255,0.82) !important; font-size: 13.5px !important; transition: background 0.2s, color 0.2s; white-space: nowrap; border: none !important; }
+  .dropdown-content a:hover { background: rgba(95,208,191,0.15) !important; color: #fff !important; }
+  .dropdown-content a::after { display: none !important; }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="progress"></div>
+<div class="cdot"></div>
+<div class="cring"><span class="cbadge"></span></div>
+<div class="preloader" id="preloader">
+  <img src="/images/img_133.png" alt="Wavecare">
+  <div class="pl-bar"><span id="plBar"></span></div>
+  <div class="pl-num" id="plNum">0%</div>
+</div>
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo" data-cursor>
+      <img src="/images/img_134.png" alt="Wavecare">WAVECARE
+    </a>
+    <div class="nav-links">
+      <a href="index.html" data-cursor>Home</a>
+            <div class="nav-dropdown">
+        <a href="services.html" data-cursor>Services ▾</a>
+        <div class="dropdown-content">
+          <a href="photoservices.html" data-cursor>Brand & Photoshoots</a>
+          <a href="videoservices.html" data-cursor>Video Production</a>
+          <a href="design-print.html" data-cursor>Design & Print</a>
+          <a href="webdesign.html" data-cursor>Web Design</a>
+        </div>
+      </div>
+      <a href="index.html/case-studies" data-cursor>Case Studies</a>
+      <a href="about.html" data-cursor>About</a>
+      <a href="contact.html" class="btn" data-magnetic data-cursor>Book a Call</a>
+    </div>
+  </div>
+</nav>
+ 
+<!-- ========== HERO (video-reveal) ========== -->
+<header class="hero" id="hero">
+  <!-- Full-bleed video layer (revealed on scroll). [REPLACE] poster + src with real footage. -->
+  <div class="hero-video" id="heroVideo">
+    <video id="heroVid" autoplay muted loop playsinline
+      poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Crect width='16' height='9' fill='%230a3a32'/%3E%3C/svg%3E">
+      <!-- [REPLACE] <source src="your-reel.mp4" type="video/mp4"> -->
+    </video>
+    <div class="hero-vfallback" data-label="hero reel &middot; [REPLACE video src]"></div>
+    <div class="hero-vtint"></div>
+  </div>
+ 
+  <!-- Masked headline: the text is a window into the same footage -->
+  <div class="hero-in">
+    <div class="hero-content">
+      <svg class="wave-line" viewBox="0 0 120 18" aria-hidden="true"><path d="M2 9 Q17 1 32 9 T62 9 T92 9 T118 9"/></svg>
+      <span class="label">Video Production</span>
+      <h1 class="hero-h1">
+        <span class="line">Show families the <span class="accent">heart</span></span>
+        <span class="line">behind your care.</span>
+      </h1>
+      <p class="sub">Strategic healthcare video that highlights your team, facility, services, and resident experience &mdash; built to earn trust before families ever walk through your doors.</p>
+      <div class="hero-ctas">
+        <a href="contact.html" class="btn" data-cursor data-magnetic>Book a Call <span class="arr">&rarr;</span></a>
+        <a href="#reel" class="btn btn-ghost" data-cursor data-magnetic>Watch Our Reel</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scrollcue" aria-hidden="true"><span></span></div>
+</header>
+ 
+<!-- ========== TRUST STRIP ========== -->
+<div class="trust">
+  <div class="trust-in">
+    <span>Senior Care &amp; Skilled Nursing</span><span class="dot"></span>
+    <span>Assisted Living</span><span class="dot"></span>
+    <span>Rehabilitation Centers</span><span class="dot"></span>
+    <span>Memory Care</span><span class="dot"></span>
+    <span>Medical Practices</span>
+  </div>
+</div>
+ 
+<!-- ========== FEATURED REEL ========== -->
+<section class="panel ink sec-pad" id="reel">
+  <div class="container">
+    <div class="sec-head center" data-reveal>
+      <span class="label">Our Commercial</span>
+      <h2>The work, in <span class="lite">motion.</span></h2>
+    </div>
+    <div class="reel-wrap" data-reveal>
+      <div class="reel-frame" data-cursor data-cursor-play>
+        <iframe src="https://player.vimeo.com/video/1187767005?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <p class="reel-cap">A two-minute look at what we mean by &ldquo;Built for Healthcare.&rdquo;</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- ========== WHY VIDEO MATTERS ========== -->
+<section class="panel light sec-pad">
+  <div class="container">
+    <div class="twocol">
+      <div data-reveal>
+        <span class="label dark">Why Video Matters</span>
+        <h2>Families decide <span class="lite">before</span> they ever visit.</h2>
+      </div>
+      <div data-reveal>
+        <p class="body-lg">Most families have already formed an opinion before they pick up the phone. Professional video lets them experience your environment, meet your team, and feel the level of care you provide &mdash; in the same seconds they&rsquo;d otherwise spend scrolling past you.</p>
+        <p class="body-lg" style="margin-top:20px;">Done right, video doesn&rsquo;t just market the facility. It pre-qualifies the inquiry.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ========== WHAT WE PRODUCE (skim layer) ========== -->
+<section class="panel ink sec-pad">
+  <div class="glow" style="width:520px; height:520px; background:var(--teal-secondary); top:-120px; right:-120px;"></div>
+  <div class="container">
+    <div class="sec-head" data-reveal>
+      <span class="label">What We Produce</span>
+      <h2>Four kinds of video, <span class="accent">one standard.</span></h2>
+      <p class="sub" style="margin-top:18px;">Every project is shot, edited, and delivered to the same standard &mdash; whether it&rsquo;s a 90-second hero film or a 15-second cut for Instagram.</p>
+    </div>
+    <div class="prod-grid stagger">
+      <div class="prod-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-7h6v7"/></svg></div>
+        <h3>Facility Films</h3>
+        <p>Hero videos for homepages, virtual tours, and admissions packets &mdash; the kind families watch before booking a visit.</p>
+        <a href="#" class="sample" data-cursor>View Sample <span class="arr">&rarr;</span></a>
+      </div>
+      <div class="prod-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2.2 1.8-4 4-4s2 1 2 1"/></svg></div>
+        <h3>Family-Facing Stories</h3>
+        <p>Welcome videos, resident testimonials, and care journeys that turn the abstract into the personal.</p>
+        <a href="#" class="sample" data-cursor>View Sample <span class="arr">&rarr;</span></a>
+      </div>
+      <div class="prod-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8M16 5l2 2 4-4"/></svg></div>
+        <h3>Recruitment &amp; Culture</h3>
+        <p>Films that attract caregivers and clinical staff by showing the team and culture, not the job description.</p>
+        <a href="#" class="sample" data-cursor>View Sample <span class="arr">&rarr;</span></a>
+      </div>
+      <div class="prod-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></div>
+        <h3>Social &amp; Service Cuts</h3>
+        <p>Vertical edits, service-line spots, and short-form content sized for the platforms your audience actually scrolls.</p>
+        <a href="#" class="sample" data-cursor>View Sample <span class="arr">&rarr;</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ========== PROCESS — accordion ========== -->
+<section class="panel deep sec-pad">
+  <div class="container container-wide">
+    <div class="sec-head" data-reveal>
+      <span class="label">Our Process</span>
+      <h2>From first call to <span class="accent">final cut.</span></h2>
+      <p class="sub" style="margin-top:18px;">Four phases, fully managed. Hover or tap a phase to see what happens inside it.</p>
+    </div>
+    <div class="proc-tabs" data-reveal>
+      <button class="proc-tab on" data-proc="0" data-cursor>
+        <span class="pnum">01</span>
+        <span class="pname">Discovery &amp; Planning</span>
+        <span class="pbar"></span>
+      </button>
+      <button class="proc-tab" data-proc="1" data-cursor>
+        <span class="pnum">02</span>
+        <span class="pname">Pre-Production</span>
+        <span class="pbar"></span>
+      </button>
+      <button class="proc-tab" data-proc="2" data-cursor>
+        <span class="pnum">03</span>
+        <span class="pname">Production Day</span>
+        <span class="pbar"></span>
+      </button>
+      <button class="proc-tab" data-proc="3" data-cursor>
+        <span class="pnum">04</span>
+        <span class="pname">Post &amp; Delivery</span>
+        <span class="pbar"></span>
+      </button>
+    </div>
+    <div class="proc-panel-wrap" data-reveal>
+      <div class="proc-monitor">
+        <div class="proc-detail">
+        <div class="step on" data-step="0">
+          <h3>Discovery &amp; Planning</h3>
+          <p>We start with a strategy session to understand your facility, your audience, and what success looks like &mdash; then build a project plan around it.</p>
+          <div class="chips"><span class="chip">Strategy Session</span><span class="chip">Goals &amp; Messaging</span><span class="chip">Project Timeline</span></div>
+        </div>
+        <div class="step" data-step="1">
+          <h3>Pre-Production</h3>
+          <p>We handle scripts, shot lists, interview prep, and on-site logistics with your team. Your staff focuses on residents; we handle everything else.</p>
+          <div class="chips"><span class="chip">Scripting &amp; Storyboarding</span><span class="chip">Interview Prep</span><span class="chip">On-Site Coordination</span></div>
+        </div>
+        <div class="step" data-step="2">
+          <h3>Production Day</h3>
+          <p>A small, calm crew captures interviews, facility footage, resident lifestyle moments, and aerial coverage &mdash; respectful of residents and routines at every step.</p>
+          <div class="chips"><span class="chip">Leadership &amp; Staff Interviews</span><span class="chip">Facility &amp; Lifestyle Footage</span><span class="chip">Aerial / Drone</span></div>
+        </div>
+        <div class="step" data-step="3">
+          <h3>Post &amp; Delivery</h3>
+          <p>Editing, color, sound, motion graphics, and captioning &mdash; finished in formats sized for every place your video will live.</p>
+          <div class="chips"><span class="chip">Editing &amp; Color</span><span class="chip">Motion Graphics</span><span class="chip">Multi-Platform Exports</span></div>
+        </div>
+        </div>
+        <div class="proc-screen">
+          <div class="rec"><span class="led"></span>REC</div>
+          <div class="grade-tag" id="gradeTag">RAW &middot; UNGRADED</div>
+        <div class="scene on" data-scene="0" data-label="discovery / planning"></div>
+        <div class="scene" data-scene="1" data-label="pre-production / prep"></div>
+        <div class="scene" data-scene="2" data-label="production / film day"></div>
+        <div class="scene" data-scene="3" data-label="post / delivery"></div>
+          <div class="scanline"></div>
+          <div class="tc" id="procTC">00:00:00:00</div>
+          <div class="bars"><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+<!-- ========== TYPES — filterable grid (detail layer) ========== -->
+<section class="panel ink sec-pad">
+  <div class="container container-wide">
+    <div class="sec-head center" data-reveal>
+      <span class="label">Types of Videos</span>
+      <h2>Built for where it <span class="lite">lives.</span></h2>
+      <p class="sub" style="margin:18px auto 0;">Every video is purpose-built for the place it will actually be seen &mdash; the website, the tour, the inbox, the feed.</p>
+    </div>
+    <div class="filter-bar" data-reveal>
+      <button class="fchip on" data-filter="all" data-cursor data-cursor-count="15 videos">All</button>
+      <button class="fchip" data-filter="facility" data-cursor data-cursor-count="3 videos">Facility Tour</button>
+      <button class="fchip" data-filter="family" data-cursor data-cursor-count="3 videos">Family-Facing</button>
+      <button class="fchip" data-filter="recruit" data-cursor data-cursor-count="3 videos">Recruitment</button>
+      <button class="fchip" data-filter="testimonial" data-cursor data-cursor-count="3 videos">Testimonial</button>
+      <button class="fchip" data-filter="social" data-cursor data-cursor-count="3 videos">Social</button>
+    </div>
+    <div class="types-grid stagger">
+      <div class="tcard" data-cursor-play data-cat="facility">
+        <div class="thumb" data-label="facility overview"><div class="play"><span>&#9654;</span></div></div>
+        <div class="body"><h3>Facility Overview</h3><p>The cornerstone film &mdash; spaces, team, and standard of care.</p><div class="where">Homepage hero &middot; YouTube</div></div>
+      </div>
+      <div class="tcard" data-cursor-play data-cat="facility">
+        <div class="thumb" data-label="website hero loop"><div class="play"><span>&#9654;</span></div></div>
+        <div class="body"><h3>Website Hero Loop</h3><p>Short, silent loops that autoplay above the fold without distraction.</p><div class="where">Website hero &middot; Landing pages</div></div>
+      </div>
+      <div class="tcard" data-cursor-play data-cat="facility">
+        <div class="thumb" data-label="amenities walkthrough"><div class="play"><span>&#9654;</span></div></div>
+        <div class="body"><h3>Amenities Walkthrough</h3><p>A guided look at dining, activities, therapy spaces, and grounds.</p><div class="where">Tours page &middot; Admissions packet</div></div>
+      </div>
+      <div class="tcard" data-cursor-play data-cat="family">
+        <div class="thumb" data-label="family welcome"><div class="play"><span>&#9654;</span></div></div>
+        <div class="body"><h3>Family Welcome</h3><p>A warm introduction sent before the first tour. Calms the unknown.</p><div class="where">Email &middot; Admissions packet</div></div>
+      </div>
+      <div class="tcard" data-cursor-play data-cat="family">
+        <div class="thumb" data-label="care journey"><div class="play"><span>&#9654;</span></div></div>
+        <div class="body"><h3>Care Journey</h3><p>Walks a family through what daily life and care really look like.</p><div class="where">Website &middot; Email nurture</div></div>
+      </div>
+      <div class="tcard" data-cursor-play data-cat="family">
+        <div class="thumb" data-label="service line video"><div class="play"><span>&#9654;</span></div></div>
+        <div class="body"><h3>Service Line Spot</h3><p>Focused pieces for memory care, rehab, hospice, or key service lines.</p><div class="where">Service pages &middot; Ads</div></div>
+      </div>
+      <div class="tcard" data-cursor-play data-cat="recruit">
+        <div class="thumb" data-label="recruitment"><div class="play"><span>&#9654;</span></div></div>
+        <div class="body"><h3>Recruitment Film</h3><p>Shows the team and culture &mdash; what the job feels like, not just what it pays.</p><div class="where">Careers page &middot; LinkedIn</div></div>
+      </div>
+      <div class="tcard" data-cursor-play data-cat="recruit">
+        <div class="thumb" data-label="day in the life"><div class="play"><span>&#9654;</span></div></div>
+        <div class="body"><h3>Day in the Life</h3><p>Follows a caregiver through a shift to attract the right candidates.</p><div class="where">Careers page &middot; Indeed</div></div>
+      </div>
+      <div class="tcard" data-cursor-play data-cat="recruit">
+        <div class="thumb" data-label="staff spotlight"><div class="play"><span>&#9654;</span></div></div>
+        <div class="body"><h3>Staff Spotlight</h3><p>Short profiles that put real faces to your employer brand.</p><div class="where">Social &middot; Careers page</div></div>
+      </div>
+      <div class="tcard" data-cursor-play data-cat="testimonial">
+        <div class="thumb" data-label="resident testimonial"><div class="play"><span>&#9654;</span></div></div>
+        <div class="body"><h3>Resident &amp; Family Testimonial</h3><p>Real stories from real families &mdash; the most persuasive video you can publish.</p><div class="where">Website &middot; Sales materials</div></div>
+      </div>
+      <div class="tcard" data-cursor-play data-cat="testimonial">
+        <div class="thumb" data-label="staff testimonial"><div class="play"><span>&#9654;</span></div></div>
+        <div class="body"><h3>Staff Testimonial</h3><p>Team members on why they stay &mdash; trust for families and recruits alike.</p><div class="where">Careers &middot; About page</div></div>
+      </div>
+      <div class="tcard" data-cursor-play data-cat="testimonial">
+        <div class="thumb" data-label="referral partner"><div class="play"><span>&#9654;</span></div></div>
+        <div class="body"><h3>Referral Partner Story</h3><p>Physicians and discharge planners on why they refer to you.</p><div class="where">Sales deck &middot; Outreach</div></div>
+      </div>
+      <div class="tcard" data-cursor-play data-cat="social">
+        <div class="thumb" data-label="social vertical"><div class="play"><span>&#9654;</span></div></div>
+        <div class="body"><h3>Social Vertical Cut</h3><p>9:16 edits of your hero footage, sized for Instagram, TikTok, and Reels.</p><div class="where">Instagram &middot; TikTok</div></div>
+      </div>
+      <div class="tcard" data-cursor-play data-cat="social">
+        <div class="thumb" data-label="event recap"><div class="play"><span>&#9654;</span></div></div>
+        <div class="body"><h3>Event Recap</h3><p>Quick highlight reels from community events and open houses.</p><div class="where">Facebook &middot; Instagram</div></div>
+      </div>
+      <div class="tcard" data-cursor-play data-cat="social">
+        <div class="thumb" data-label="seasonal short"><div class="play"><span>&#9654;</span></div></div>
+        <div class="body"><h3>Seasonal Short</h3><p>Holiday and milestone moments that keep your feed warm and active.</p><div class="where">Social feeds</div></div>
+      </div>
+    </section>
+ 
+<!-- ========== FEATURED WORK ========== -->
+<section class="panel deep sec-pad">
+  <div class="container container-wide">
+    <div class="sec-head" data-reveal>
+      <span class="label">Featured Work</span>
+      <h2>Recent <span class="accent">healthcare</span> films.</h2>
+    </div>
+    <div class="fw-grid stagger">
+      <!-- [REPLACE] set href to the real Vimeo/landing link for each project -->
+      <a href="#" class="fw-card hero" data-cursor data-cursor-play>
+        <div class="ph-bg" data-label="Commercial &middot; [REPLACE link]"><div class="play"><span>&#9654;</span></div></div>
+        <div class="fw-meta"><span class="tag">Commercial</span><span class="title">[REPLACE &mdash; Project name]</span></div>
+      </a>
+      <div class="fw-side">
+        <a href="#" class="fw-card small" data-cursor data-cursor-play>
+          <div class="ph-bg" data-label="Virtual tour &middot; [REPLACE link]"><div class="play"><span>&#9654;</span></div></div>
+          <div class="fw-meta"><span class="tag">Virtual Tour</span><span class="title">[REPLACE &mdash; Facility name]</span></div>
+        </a>
+        <a href="#" class="fw-card small" data-cursor data-cursor-play>
+          <div class="ph-bg" data-label="Testimonial &middot; [REPLACE link]"><div class="play"><span>&#9654;</span></div></div>
+          <div class="fw-meta"><span class="tag">Testimonial</span><span class="title">[REPLACE &mdash; Family name]</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ========== DELIVERABLES ========== -->
+<section class="panel ink sec-pad">
+  <div class="container">
+    <div class="sec-head" data-reveal>
+      <span class="label">What You&rsquo;ll Receive</span>
+      <h2>Finished, formatted, <span class="lite">ready to use.</span></h2>
+      <p class="sub" style="margin-top:18px;">Every project ships with the cuts and formats you actually need &mdash; nothing left for you to figure out in post.</p>
+    </div>
+    <div class="deliv stagger">
+      <div class="deliv-item"><div class="ic">&#9646;</div><h4>Master 16:9 Cuts</h4><p>Web, YouTube, presentations.</p></div>
+      <div class="deliv-item"><div class="ic">&#9647;</div><h4>Vertical Social Cuts</h4><p>9:16 for Reels, TikTok, Stories.</p></div>
+      <div class="deliv-item"><div class="ic">cc</div><h4>Captioned Versions</h4><p>Burned-in and SRT for accessibility.</p></div>
+      <div class="deliv-item"><div class="ic">&#8635;</div><h4>Raw Footage Archive</h4><p>Organized and delivered for future use.</p></div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ========== FINAL CTA + WAVE ========== -->
+<section class="final">
+  <div class="final-fallback"></div>
+  <canvas id="waveCanvas"></canvas>
+  <div class="final-in" data-reveal>
+    <span class="label">Your facility, seen the right way</span>
+    <h2>Let families see the <span class="accent">care</span> behind your facility.</h2>
+    <p class="sub">From planning and scripting to filming and final delivery, we manage the entire production process to create polished videos that build trust and support admissions growth.</p>
+    <a href="contact.html" class="btn btn-light" data-cursor data-magnetic>Book a Call <span class="arr">&rarr;</span></a>
+  </div>
+</section>
+ 
+<footer>
+  <div class="foot-in">
+    <div class="foot-col">
+      <div class="foot-logo"><img src="/images/img_135.png" alt="Wavecare"><span>WAVECARE</span></div>
+      <p class="sub" style="font-size:15px; max-width:340px;">Healthcare marketing that helps facilities look as good as the care they provide. Built for Healthcare.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Explore</h4>
+      <a href="services.html">Services</a>
+      <a href="index.html/case-studies">Case Studies</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="foot-col">
+      <h4>Get in touch</h4>
+      <a href="mailto:info@wavecare.io">info@wavecare.io</a>
+      <a href="tel:+17329301934">+1 732 930 1934</a>
+      <a href="contact.html" style="color:var(--teal-bright); font-weight:600;">Book a Call &rarr;</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>&copy; 2026 Wavecare Marketing &middot; Miami, FL</span>
+    <span>wavecare.io</span>
+  </div>
+</footer>
+<script>
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ 
+/* preloader: CSS fade + 3s hard failsafe */
+(function(){
+  const pre=document.getElementById('preloader'),bar=document.getElementById('plBar'),num=document.getElementById('plNum');
+  let p=0; const t=setInterval(()=>{p=Math.min(100,p+Math.random()*18);bar.style.width=p+'%';num.textContent=Math.floor(p)+'%';
+    if(p>=100){clearInterval(t);setTimeout(()=>pre.classList.add('done'),250);}},120);
+  setTimeout(()=>{clearInterval(t);bar.style.width='100%';num.textContent='100%';pre.classList.add('done');},3000);
+})();
+ 
+/* lenis smooth scroll */
+let lenis;
+if(!reduce && window.Lenis){
+  lenis=new Lenis({lerp:.09,wheelMultiplier:1});
+  function raf(t){lenis.raf(t);requestAnimationFrame(raf);} requestAnimationFrame(raf);
+  if(window.ScrollTrigger){lenis.on('scroll',ScrollTrigger.update);}
+}
+ 
+/* custom cursor */
+(function(){
+  if(window.matchMedia('(pointer:coarse)').matches)return;
+  const dot=document.querySelector('.cdot'),ring=document.querySelector('.cring');
+  let mx=0,my=0,rx=0,ry=0;
+  addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`;});
+  (function loop(){rx+=(mx-rx)*.16;ry+=(my-ry)*.16;ring.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;requestAnimationFrame(loop);})();
+  document.querySelectorAll('[data-cursor]').forEach(el=>{
+    el.addEventListener('mouseenter',()=>ring.classList.add('hot'));
+    el.addEventListener('mouseleave',()=>ring.classList.remove('hot'));
+  });
+  const badge=ring.querySelector('.cbadge');
+  // Play-head over any element flagged as a video target
+  document.querySelectorAll('[data-cursor-play]').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{ring.classList.add('play');dot.classList.add('hide');});
+    el.addEventListener('mouseleave',()=>{ring.classList.remove('play');dot.classList.remove('hide');});
+  });
+  // Count badge over filter chips
+  document.querySelectorAll('[data-cursor-count]').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{badge.textContent=el.dataset.cursorCount||'';ring.classList.add('badge');dot.classList.add('hide');});
+    el.addEventListener('mouseleave',()=>{ring.classList.remove('badge');dot.classList.remove('hide');});
+  });
+})();
+ 
+/* magnetic buttons */
+if(!reduce && window.gsap){
+  document.querySelectorAll('[data-magnetic]').forEach(el=>{
+    el.addEventListener('mousemove',e=>{const r=el.getBoundingClientRect();
+      gsap.to(el,{x:(e.clientX-r.left-r.width/2)*.3,y:(e.clientY-r.top-r.height/2)*.3,duration:.4});});
+    el.addEventListener('mouseleave',()=>gsap.to(el,{x:0,y:0,duration:.6,ease:'elastic.out(1,.4)'}));
+  });
+}
+ 
+/* nav + progress */
+(function(){
+  const nav=document.getElementById('nav'),prog=document.querySelector('.progress');
+  function upd(){const y=scrollY||document.documentElement.scrollTop;
+    nav.classList.toggle('scrolled',y>40);
+    const h=document.documentElement.scrollHeight-innerHeight;
+    if(prog)prog.style.width=(h>0?(y/h*100):0)+'%';}
+  addEventListener('scroll',upd,{passive:true});upd();
+})();
+ 
+/* reveals: IntersectionObserver + 400ms safety */
+(function(){
+  const els=document.querySelectorAll('[data-reveal],.stagger');
+  if(reduce){els.forEach(e=>e.classList.add('in'));return;}
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.15});
+  els.forEach(e=>io.observe(e));
+  setTimeout(()=>els.forEach(e=>{if(e.getBoundingClientRect().top<innerHeight)e.classList.add('in');}),400);
+})();
+ 
+/* count-up: IO, easeOutCubic */
+(function(){
+  const nums=document.querySelectorAll('[data-count]');
+  const ease=t=>1-Math.pow(1-t,3);
+  const run=el=>{const target=+el.dataset.count; if(!target)return;
+    const suf=el.dataset.suffix||'',comma=el.dataset.comma,dur=1500,t0=performance.now();
+    (function step(now){let p=Math.min(1,(now-t0)/dur),v=Math.floor(ease(p)*target);
+      el.textContent=(comma?v.toLocaleString():v)+suf;if(p<1)requestAnimationFrame(step);})(t0);};
+  if(reduce){nums.forEach(el=>{const t=+el.dataset.count;if(t)el.textContent=(el.dataset.comma?t.toLocaleString():t)+(el.dataset.suffix||'');});return;}
+  const io=new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){run(e.target);o.unobserve(e.target);}}),{threshold:.25});
+  nums.forEach(n=>io.observe(n));
+})();
+ 
+/* Process — horizontal tabs drive detail + monitor */
+(function(){
+  const tabs=document.querySelectorAll('.proc-tab');
+  const steps=document.querySelectorAll('.proc-detail .step');
+  const scenes=document.querySelectorAll('.proc-screen .scene');
+  if(!tabs.length)return;
+  const gradeTag=document.getElementById('gradeTag');
+  const tc=document.getElementById('procTC');
+  const GRADES=['RAW · UNGRADED','ROUGH CUT','COLOR PASS','FINAL · GRADED'];
+  const reduceM=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let tcBase=[0,0,0,0]; // each phase shows a different starting timecode
+  tcBase=[0, 18, 47, 92];
+  let tcRAF=null, cur=0, t0=0;
+  function fmt(totSec){
+    const f=Math.floor((totSec*24)%24), s=Math.floor(totSec)%60, m=Math.floor(totSec/60)%60, h=Math.floor(totSec/3600);
+    const p=n=>String(n).padStart(2,'0');
+    return `${p(h)}:${p(m)}:${p(s)}:${p(f)}`;
+  }
+  function runTC(){
+    if(reduceM){ if(tc)tc.textContent=fmt(tcBase[cur]); return; }
+    cancelAnimationFrame(tcRAF); t0=performance.now();
+    (function tick(now){
+      const el=(now-t0)/1000;
+      if(tc)tc.textContent=fmt(tcBase[cur]+el);
+      tcRAF=requestAnimationFrame(tick);
+    })(t0);
+  }
+  function go(i){
+    cur=i;
+    tabs.forEach(t=>t.classList.toggle('on',+t.dataset.proc===i));
+    steps.forEach(s=>s.classList.toggle('on',+s.dataset.step===i));
+    scenes.forEach(s=>s.classList.toggle('on',+s.dataset.scene===i));
+    if(gradeTag)gradeTag.textContent=GRADES[i]||GRADES[0];
+    runTC();
+  }
+  tabs.forEach(t=>{
+    const i=+t.dataset.proc;
+    t.addEventListener('mouseenter',()=>go(i));
+    t.addEventListener('click',()=>go(i));
+    t.addEventListener('focus',()=>go(i));
+  });
+  go(0);
+})();
+ 
+/* Types filter */
+(function(){
+  const chips=document.querySelectorAll('.fchip'); const cards=document.querySelectorAll('.tcard'); if(!chips.length)return;
+  chips.forEach(c=>c.addEventListener('click',()=>{
+    chips.forEach(x=>x.classList.remove('on')); c.classList.add('on');
+    const f=c.dataset.filter;
+    cards.forEach(card=>{
+      const cats=(card.dataset.cat||'').split(' ');
+      if(f==='all'||cats.includes(f))card.classList.remove('hidden');
+      else card.classList.add('hidden');
+    });
+  }));
+})();
+ 
+/* Hero: scroll-driven video reveal + text-as-window-into-footage */
+(function(){
+  const hero=document.getElementById('hero');
+  const vlayer=document.getElementById('heroVideo');
+  const tint=document.querySelector('.hero-vtint');
+  const vid=document.getElementById('heroVid');
+  const h1=document.querySelector('.hero-h1');
+  if(!hero||!vlayer)return;
+ 
+  // 1) scroll reveal: --rv goes 0 -> 1 across the first viewport of scroll
+  function onScroll(){
+    const y=scrollY||document.documentElement.scrollTop;
+    const rv=Math.max(0,Math.min(1, y/(innerHeight*0.85)));
+    vlayer.style.setProperty('--rv',rv.toFixed(3));
+    if(tint)tint.style.setProperty('--rv',rv.toFixed(3));
+  }
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+ 
+  // 2) text-as-window: paint live video frames into the headline fill.
+  // Only engages if a real <source> is present and the video actually has data.
+  const hasSource = vid && vid.querySelector('source');
+  if(!hasSource || reduce){ return; } // placeholder mode: text stays teal-tile, video layer still reveals
+ 
+  const canvas=document.createElement('canvas'); const ctx=canvas.getContext('2d');
+  let painting=false;
+  function paint(){
+    if(vid.readyState>=2 && vid.videoWidth){
+      canvas.width=vid.videoWidth; canvas.height=vid.videoHeight;
+      ctx.drawImage(vid,0,0,canvas.width,canvas.height);
+      try{
+        const url=canvas.toDataURL('image/jpeg',0.6);
+        h1.style.setProperty('--mask-img',`url(${url})`);
+        if(!h1.classList.contains('maskvid'))h1.classList.add('maskvid');
+      }catch(e){ /* cross-origin or unsupported: stay in tile mode */ return; }
+    }
+    requestAnimationFrame(paint);
+  }
+  vid.addEventListener('playing',()=>{ if(!painting){painting=true; paint();} });
+})();
+ 
+/* WebGL wave (final CTA only) */
+(function(){
+  const canvas=document.getElementById('waveCanvas');
+  if(!canvas||!window.THREE){if(canvas)canvas.style.display='none';return;}
+  let renderer; try{renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});}catch(e){canvas.style.display='none';return;}
+  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
+  const sec=canvas.parentElement;
+  const scene=new THREE.Scene(),camera=new THREE.OrthographicCamera(-1,1,1,-1,0,1);
+  const mat=new THREE.ShaderMaterial({
+    uniforms:{u_time:{value:0},u_res:{value:new THREE.Vector2(1,1)},u_mouse:{value:new THREE.Vector2(.5,.5)}},
+    vertexShader:`void main(){gl_Position=vec4(position,1.0);}`,
+    fragmentShader:`
+      precision highp float;
+      uniform float u_time; uniform vec2 u_res; uniform vec2 u_mouse;
+      vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}
+      vec2 mod289(vec2 x){return x-floor(x*(1.0/289.0))*289.0;}
+      vec3 permute(vec3 x){return mod289(((x*34.0)+1.0)*x);}
+      float snoise(vec2 v){const vec4 C=vec4(0.211324865,0.366025403,-0.577350269,0.024390243);
+        vec2 i=floor(v+dot(v,C.yy)); vec2 x0=v-i+dot(i,C.xx);
+        vec2 i1=(x0.x>x0.y)?vec2(1.0,0.0):vec2(0.0,1.0);
+        vec4 x12=x0.xyxy+C.xxzz; x12.xy-=i1; i=mod289(i);
+        vec3 p=permute(permute(i.y+vec3(0.0,i1.y,1.0))+i.x+vec3(0.0,i1.x,1.0));
+        vec3 m=max(0.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.0);
+        m=m*m; m=m*m; vec3 x=2.0*fract(p*C.www)-1.0; vec3 h=abs(x)-0.5; vec3 ox=floor(x+0.5);
+        vec3 a0=x-ox; m*=1.79284291-0.85373472*(a0*a0+h*h);
+        vec3 g; g.x=a0.x*x0.x+h.x*x0.y; g.yz=a0.yz*x12.xz+h.yz*x12.yw; return 130.0*dot(m,g);}
+      float fbm(vec2 p){float s=0.0,a=0.5; for(int i=0;i<5;i++){s+=a*snoise(p); p*=2.0; a*=0.5;} return s;}
+      void main(){
+        vec2 uv=gl_FragCoord.xy/u_res.xy; vec2 p=uv; p.x*=u_res.x/u_res.y;
+        float t=u_time*0.08;
+        vec2 q=vec2(fbm(p+t),fbm(p+vec2(5.2,1.3)-t));
+        float n=fbm(p+1.6*q+u_time*0.05);
+        float md=distance(uv,u_mouse); float spot=smoothstep(0.35,0.0,md); n+=spot*0.9;
+        vec3 cDeep=vec3(0.039,0.165,0.141), cPrim=vec3(0.055,0.353,0.314), cAcc=vec3(0.165,0.616,0.561), cBri=vec3(0.373,0.816,0.749);
+        vec3 col=mix(cDeep,cPrim,smoothstep(-0.4,0.3,n));
+        col=mix(col,cAcc,smoothstep(0.2,0.7,n));
+        col=mix(col,cBri,smoothstep(0.6,0.95,n)*0.7);
+        col+=cBri*spot*0.5;
+        gl_FragColor=vec4(col,0.92);
+      }`
+  });
+  scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2,2),mat));
+  function size(){const w=sec.clientWidth,h=sec.clientHeight; renderer.setSize(w,h,false); mat.uniforms.u_res.value.set(w,h);}
+  size(); addEventListener('resize',size);
+  sec.addEventListener('mousemove',e=>{const r=sec.getBoundingClientRect();
+    mat.uniforms.u_mouse.value.set((e.clientX-r.left)/r.width,1-(e.clientY-r.top)/r.height);});
+  const clock=new THREE.Clock(); let raf=null,playing=false;
+  function render(){mat.uniforms.u_time.value=reduce?0:clock.getElapsedTime(); renderer.render(scene,camera); raf=requestAnimationFrame(render);}
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting&&!playing){playing=true;size();render();}
+    else if(!e.isIntersecting&&playing){playing=false;cancelAnimationFrame(raf);}
+  }),{threshold:.01});
+  io.observe(sec);
+})();
+</script>
+</body>
+</html>
+

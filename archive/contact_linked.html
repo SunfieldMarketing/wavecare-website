@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Wavecare — Let's Make Your Seconds Count</title>
+<meta name="description" content="Tell us about your facility and we'll show you exactly what we'd build, capture, or design. Book a call or send a message — we reply within one business day.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<style>
+  :root{
+    --teal-deep:#0A4339; --teal-primary:#0E5A50; --teal-secondary:#1B7A6E;
+    --teal-accent:#2A9D8F; --teal-bright:#5FD0BF; --teal-light:#E8F5F3;
+    --ink:#062A24; --navy:#1A2332; --white:#FFFFFF;
+    --on-dark:rgba(255,255,255,0.82); --muted:rgba(255,255,255,0.5); --label:rgba(255,255,255,0.62);
+    --soft:rgba(255,255,255,0.10); --border-teal:rgba(42,157,143,0.4);
+    --field:rgba(255,255,255,0.05); --field-line:rgba(255,255,255,0.18);
+    --ok:#5FD0BF; --err:#E8927C;
+    --font-display:'DM Serif Display',Georgia,serif; --font-body:'DM Sans',system-ui,sans-serif;
+    --pad:clamp(80px,9vw,130px); --container:1320px;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  body{margin:0; background:var(--ink); color:var(--white); font-family:var(--font-body); line-height:1.6;
+    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; overflow-x:hidden;}
+  img{max-width:100%; display:block;} a{color:inherit; text-decoration:none;}
+  ::selection{background:var(--teal-accent); color:var(--ink);}
+  .container{max-width:var(--container); margin:0 auto; padding:0 clamp(22px,4vw,56px);}
+
+  .grain{position:fixed; inset:0; z-index:9998; pointer-events:none; opacity:0.04; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .progress{position:fixed; top:0; left:0; height:2px; width:0%; z-index:9999; background:linear-gradient(90deg,var(--teal-accent),var(--teal-bright)); box-shadow:0 0 12px var(--teal-accent);}
+
+  .preloader{position:fixed; inset:0; z-index:10000; background:var(--ink); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:26px;}
+  .preloader img{width:62px; height:auto; animation:floaty 2.4s ease-in-out infinite;}
+  @keyframes floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+  .pl-bar{width:200px; height:2px; background:rgba(255,255,255,0.12); border-radius:2px; overflow:hidden;}
+  .pl-bar span{display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--teal-accent),var(--teal-bright));}
+  .pl-num{font-family:var(--font-display); font-size:13px; letter-spacing:0.3em; color:var(--label);}
+
+  .cdot,.cring{position:fixed; top:0; left:0; z-index:9997; pointer-events:none; border-radius:50%; transform:translate(-50%,-50%); mix-blend-mode:difference;}
+  .cdot{width:7px; height:7px; background:#fff;}
+  .cring{width:40px; height:40px; border:1px solid rgba(255,255,255,0.6); transition:width .3s,height .3s,background .3s,border-color .3s;}
+  .cring.hot{width:62px; height:62px; background:rgba(95,208,191,0.12); border-color:var(--teal-bright);}
+  @media (hover:none),(pointer:coarse){ .cdot,.cring{display:none;} }
+
+  .nav{position:fixed; top:0; left:0; right:0; z-index:1000; padding:22px 0; transition:.4s;}
+  .nav.scrolled{background:rgba(6,42,36,0.82); backdrop-filter:blur(14px); padding:13px 0; border-bottom:1px solid rgba(255,255,255,0.06);}
+  .nav-inner{display:flex; align-items:center; justify-content:space-between; max-width:var(--container); margin:0 auto; padding:0 clamp(22px,4vw,56px);}
+  .logo{display:flex; align-items:center; gap:12px; color:#fff; font-weight:700; font-size:15px; letter-spacing:0.18em;}
+  .logo img{height:30px; width:auto;}
+  .nav-links{display:flex; align-items:center; gap:38px;}
+  .nav-links a:not(.btn){color:var(--on-dark); font-size:14px; font-weight:500; position:relative;}
+  .nav-links a:not(.btn)::after{content:""; position:absolute; left:0; bottom:-5px; width:0; height:1px; background:var(--teal-bright); transition:width .3s;}
+  .nav-links a:not(.btn):hover::after{width:100%;}
+  @media (max-width:860px){ .nav-links a:not(.btn){display:none;} }
+
+  .btn{position:relative; display:inline-flex; align-items:center; justify-content:center; gap:12px; padding:17px 36px; font-family:var(--font-body); font-size:14px; font-weight:600; letter-spacing:0.04em; color:#fff; background:var(--teal-primary); border:none; border-radius:50px; cursor:pointer; overflow:hidden; isolation:isolate; transition:color .35s,box-shadow .35s;}
+  .btn::before{content:""; position:absolute; inset:0; z-index:-1; border-radius:50px; background:linear-gradient(120deg,var(--teal-accent),var(--teal-bright)); transform:scaleX(0); transform-origin:left; transition:transform .45s cubic-bezier(.6,.2,.1,1);}
+  .btn:hover{color:var(--ink); box-shadow:0 14px 40px rgba(42,157,143,0.4);}
+  .btn:hover::before{transform:scaleX(1);}
+  .btn .arr{transition:transform .35s;} .btn:hover .arr{transform:translateX(5px);}
+  .btn-ghost{background:transparent; border:1px solid rgba(255,255,255,0.3); color:#fff;}
+  .btn-ghost::before{background:rgba(255,255,255,0.10);} .btn-ghost:hover{color:#fff;}
+
+  .label{display:inline-flex; align-items:center; gap:14px; font-size:12px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:var(--teal-accent); margin-bottom:26px;}
+  .label::before{content:""; width:34px; height:1px; background:var(--teal-accent);}
+  .label.dark{color:var(--teal-primary);} .label.dark::before{background:var(--teal-primary);}
+  h1,h2,h3{font-family:var(--font-display); font-weight:400; line-height:1.05; letter-spacing:-0.015em; margin:0;}
+  h2{font-size:clamp(32px,4.4vw,58px);} h3{font-size:clamp(20px,2vw,26px);}
+  .accent{color:var(--teal-accent); font-style:italic;} .lite{font-style:italic; font-weight:300;}
+  p{margin:0;} .lead{font-size:clamp(16px,1.2vw,18px); line-height:1.7; color:var(--on-dark);}
+  .light .lead{color:rgba(26,35,50,0.78);}
+
+  section{position:relative;}
+  .deep{background:var(--teal-deep);} .ink{background:var(--ink);} .light{background:var(--teal-light); color:var(--navy);}
+  .sec-pad{padding:var(--pad) 0;}
+  .glow{position:absolute; border-radius:50%; filter:blur(120px); opacity:0.4; pointer-events:none; z-index:0;}
+
+  /* ===== CONTACT HERO — split: value/trust (left) + FORM (right), form above the fold ===== */
+  .chero{position:relative; overflow:hidden; padding:clamp(120px,16vh,180px) 0 var(--pad);}
+  .chero-bg{position:absolute; inset:0; z-index:0;}
+  .chero-bg img{width:100%; height:100%; object-fit:cover;}
+  .chero-bg::after{content:""; position:absolute; inset:0; background:linear-gradient(120deg, rgba(6,42,36,0.96) 0%, rgba(6,42,36,0.88) 45%, rgba(6,42,36,0.74) 100%);}
+  .chero .container{position:relative; z-index:2;}
+  .chero-grid{display:grid; grid-template-columns:1fr 1.05fr; gap:clamp(36px,5vw,80px); align-items:start;}
+  @media (max-width:920px){ .chero-grid{grid-template-columns:1fr; gap:44px;} }
+
+  .chero .wave-accent{width:74px; height:24px; margin-bottom:20px; overflow:visible;}
+  .chero .wave-accent path{fill:none; stroke:var(--teal-bright); stroke-width:2.2; stroke-linecap:round; stroke-dasharray:240; stroke-dashoffset:240;}
+  .chero h1{font-size:clamp(40px,5.4vw,72px); color:#fff; margin:4px 0 22px;}
+  .chero-sub{max-width:460px; font-size:clamp(15px,1.2vw,18px); line-height:1.65; color:var(--on-dark); margin-bottom:38px;}
+
+  .trust-list{display:flex; flex-direction:column; gap:18px; margin-bottom:38px;}
+  .trust-item{display:flex; gap:14px; align-items:flex-start;}
+  .trust-item .ic{flex-shrink:0; width:38px; height:38px; border-radius:10px; background:rgba(42,157,143,0.14); border:1px solid var(--border-teal); display:grid; place-items:center; color:var(--teal-bright);}
+  .trust-item .ic svg{width:18px; height:18px;}
+  .trust-item h4{margin:0 0 2px; font-size:15px; font-weight:600; color:#fff;}
+  .trust-item p{font-size:13.5px; color:var(--on-dark);}
+  .direct{display:flex; flex-direction:column; gap:10px; padding-top:26px; border-top:1px solid var(--soft);}
+  .direct a{display:inline-flex; align-items:center; gap:10px; font-size:15px; color:#fff; transition:color .25s;}
+  .direct a:hover{color:var(--teal-bright);}
+  .direct a .ic{color:var(--teal-bright);}
+
+  /* ===== FORM CARD ===== */
+  .form-card{background:rgba(255,255,255,0.045); border:1px solid var(--soft); border-radius:22px; padding:clamp(28px,3vw,44px); backdrop-filter:blur(10px); box-shadow:0 40px 100px rgba(0,0,0,0.4); position:relative;}
+  .form-card h2{font-size:clamp(24px,2.4vw,32px); color:#fff; margin-bottom:8px;}
+  .form-card .fsub{font-size:14px; color:var(--on-dark); margin-bottom:30px;}
+  .form{display:flex; flex-direction:column; gap:22px;}       /* single column */
+  .field{position:relative;}
+  .field label{display:block; font-size:12.5px; font-weight:500; letter-spacing:0.04em; color:var(--label); margin-bottom:9px;}
+  .field label .req{color:var(--teal-bright);}
+  .field input,.field textarea{width:100%; background:var(--field); border:1px solid var(--field-line); border-radius:12px; padding:15px 16px; color:#fff; font-family:var(--font-body); font-size:15px; transition:border-color .25s, background .25s; min-height:52px;}
+  .field textarea{resize:vertical; min-height:110px;}
+  .field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,0.35);}
+  .field input:focus,.field textarea:focus{outline:none; border-color:var(--teal-accent); background:rgba(255,255,255,0.07);}
+  .field.valid input,.field.valid textarea{border-color:rgba(95,208,191,0.6);}
+  .field.invalid input,.field.invalid textarea{border-color:var(--err);}
+  .field .check{position:absolute; right:14px; top:39px; color:var(--ok); opacity:0; transition:opacity .25s; pointer-events:none;}
+  .field.valid .check{opacity:1;}
+  .field .hint{font-size:12px; color:var(--err); margin-top:7px; min-height:0; opacity:0; transition:opacity .2s;}
+  .field.invalid .hint{opacity:1;}
+
+  .chips-label{font-size:12.5px; font-weight:500; letter-spacing:0.04em; color:var(--label); margin-bottom:12px;}
+  .chips{display:flex; flex-wrap:wrap; gap:10px;}
+  .chip{padding:10px 16px; border-radius:50px; border:1px solid var(--field-line); background:var(--field); color:var(--on-dark); font-size:13px; font-weight:500; cursor:pointer; transition:all .25s; user-select:none;}
+  .chip:hover{border-color:var(--border-teal);}
+  .chip.on{background:linear-gradient(120deg,var(--teal-accent),var(--teal-bright)); border-color:transparent; color:var(--ink); font-weight:600;}
+  .submit-btn{margin-top:6px; width:100%; padding:18px; font-size:15px; min-height:56px;}
+  .submit-btn[disabled]{opacity:0.6; cursor:default;}
+  .submit-btn .spinner{width:18px; height:18px; border:2px solid rgba(255,255,255,0.4); border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite; display:none;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .form.sending .submit-btn .spinner{display:inline-block;}
+  .form.sending .submit-btn .txt,.form.sending .submit-btn .arr{display:none;}
+  .form-note{margin-top:16px; font-size:12px; color:var(--muted); text-align:center;}
+
+  /* success state */
+  .form-success{display:none; text-align:center; padding:30px 10px;}
+  .form-card.done .form{display:none;} .form-card.done .form-success{display:block;}
+  .form-success .ok-ic{width:70px; height:70px; border-radius:50%; background:rgba(95,208,191,0.14); border:1px solid var(--border-teal); display:grid; place-items:center; margin:0 auto 22px; color:var(--teal-bright);}
+  .form-success h3{color:#fff; margin-bottom:12px;} .form-success p{color:var(--on-dark); font-size:15px; max-width:340px; margin:0 auto;}
+
+  /* ===== WHAT HAPPENS NEXT ===== */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; counter-reset:step;}
+  @media (max-width:860px){ .steps{grid-template-columns:1fr;} }
+  .step{position:relative; background:rgba(255,255,255,0.03); border:1px solid var(--soft); border-radius:16px; padding:40px 32px; transition:transform .5s cubic-bezier(.2,.7,.2,1),border-color .5s;}
+  .step:hover{transform:translateY(-6px); border-color:var(--border-teal);}
+  .step .sn{font-family:var(--font-display); font-size:15px; color:var(--teal-bright); margin-bottom:18px;}
+  .step h3{color:#fff; font-size:20px; margin-bottom:12px;} .step p{color:var(--on-dark); font-size:14.5px; line-height:1.65;}
+
+  .sec-head{max-width:760px; margin-bottom:60px;} .sec-head.center{margin:0 auto 60px; text-align:center;} .sec-head.center .label{justify-content:center;} .sec-head h2{margin-bottom:20px;}
+  .light .sec-head h2{color:var(--navy);}
+
+  /* booking calendar */
+  .cal-wrap{position:relative; z-index:2; background:rgba(255,255,255,0.03); border:1px solid var(--soft); border-radius:20px; overflow:hidden; min-height:680px;}
+  .cal-wrap iframe{width:100%; min-height:680px; border:0; display:block;}
+  .cal-fallback{padding:60px 30px; text-align:center;}
+  .cal-fallback p{color:var(--on-dark); margin-bottom:24px;}
+
+  /* testimonial strip */
+  .tstrip{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  @media (max-width:860px){ .tstrip{grid-template-columns:1fr;} }
+  .tmini{background:rgba(255,255,255,0.04); border:1px solid var(--soft); border-radius:16px; padding:32px 28px;}
+  .tmini blockquote{margin:0 0 18px; font-size:14px; line-height:1.7; color:var(--on-dark); font-style:italic;}
+  .tmini .who{font-size:12.5px; color:var(--label);} .tmini .who strong{display:block; color:#fff; font-style:normal; font-weight:600; font-size:13.5px;}
+
+  /* final wave CTA (compact) */
+  .final{position:relative; text-align:center; padding:calc(var(--pad)) 0; overflow:hidden; background:var(--teal-deep);}
+  #waveCanvas{position:absolute; inset:0; z-index:0; opacity:0.8;}
+  .final .container{position:relative; z-index:2;}
+  .final h2{font-size:clamp(32px,5vw,64px); color:#fff; max-width:900px; margin:0 auto 28px;}
+  .final .sub{max-width:520px; margin:0 auto 38px; color:var(--on-dark); font-size:16px; line-height:1.7;}
+
+  footer{background:var(--ink); color:var(--on-dark); padding:88px 0 42px; position:relative; z-index:2;}
+  .f-grid{display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:48px; margin-bottom:58px;}
+  @media (max-width:860px){ .f-grid{grid-template-columns:1fr 1fr;} } @media (max-width:540px){ .f-grid{grid-template-columns:1fr;} }
+  .f-brand img{height:78px; width:auto; margin-bottom:18px;} .f-brand p{max-width:330px; font-size:14px; line-height:1.6; color:var(--muted);}
+  .f-col h4{font-size:12px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--label); margin:0 0 20px;}
+  .f-col ul{list-style:none; padding:0; margin:0;} .f-col li{margin-bottom:11px;}
+  .f-col a{font-size:14px; color:var(--on-dark); transition:color .25s;} .f-col a:hover{color:var(--teal-bright);}
+  .f-bottom{padding-top:30px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted);}
+
+  [data-reveal]{opacity:0; transform:translateY(30px); transition:opacity .9s ease, transform .9s ease;}
+  [data-reveal].in{opacity:1; transform:none;}
+  .stagger>*{opacity:0; transform:translateY(30px); transition:opacity .8s ease, transform .8s ease;}
+  .stagger.in>*{opacity:1; transform:none;}
+  .stagger.in>*:nth-child(2){transition-delay:.1s;} .stagger.in>*:nth-child(3){transition-delay:.2s;}
+  @media (prefers-reduced-motion:reduce){ [data-reveal],.stagger>*{opacity:1!important; transform:none!important;} }
+  /* Dropdown */
+  .nav-dropdown { position: relative; display: inline-block; }
+  .dropdown-content { 
+    visibility: hidden; opacity: 0; position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
+    background: rgba(6,42,36,0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); 
+    border-radius: 8px; padding: 12px 0; min-width: 180px; transition: all 0.3s ease; z-index: 1001;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3); display: flex; flex-direction: column; text-align: center;
+  }
+  .nav-dropdown:hover .dropdown-content { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); }
+  .dropdown-content a { padding: 10px 20px !important; color: rgba(255,255,255,0.82) !important; font-size: 13.5px !important; transition: background 0.2s, color 0.2s; white-space: nowrap; border: none !important; }
+  .dropdown-content a:hover { background: rgba(95,208,191,0.15) !important; color: #fff !important; }
+  .dropdown-content a::after { display: none !important; }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div class="progress" id="progress"></div>
+<div class="cdot" id="cdot"></div><div class="cring" id="cring"></div>
+
+<div class="preloader" id="preloader">
+  <img src="/images/img_112.png" alt="Wavecare">
+  <div class="pl-bar"><span id="plbar"></span></div>
+  <div class="pl-num" id="plnum">0</div>
+</div>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo" data-cursor><img src="/images/img_113.png" alt="">WAVECARE</a>
+    <div class="nav-links">
+      <a href="index.html" data-cursor>Home</a>
+            <div class="nav-dropdown">
+        <a href="services.html" data-cursor>Services ▾</a>
+        <div class="dropdown-content">
+          <a href="photoservices.html" data-cursor>Brand & Photoshoots</a>
+          <a href="videoservices.html" data-cursor>Video Production</a>
+          <a href="design-print.html" data-cursor>Design & Print</a>
+          <a href="webdesign.html" data-cursor>Web Design</a>
+        </div>
+      </div>
+      <a href="about.html" data-cursor>About</a>
+      <a href="contact.html" data-cursor>Contact</a>
+      <a href="#book" class="btn" data-magnetic data-cursor>Book a Call</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== CONTACT HERO: value/trust + FORM (above the fold) ===== -->
+<header class="chero">
+  <div class="chero-bg"><img src="/images/img_114.jpeg" alt="Caregiver with resident at a senior care facility"></div>
+  <div class="container">
+    <div class="chero-grid">
+
+      <!-- LEFT: value + trust signals + direct contact -->
+      <div data-reveal>
+        <svg class="wave-accent" viewBox="0 0 78 26"><path d="M2 13 Q 12 2, 21 13 T 40 13 T 59 13 T 76 11"/></svg>
+        <span class="label">Get in Touch</span>
+        <h1>Let's make your<br><span class="accent">seconds count.</span></h1>
+        <p class="chero-sub">Tell us about your facility and we'll show you exactly what we'd build, capture, or design to bring the right families through your doors.</p>
+
+        <div class="trust-list">
+          <div class="trust-item">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg></span>
+            <div><h4>Reply within one business day</h4><p>Real humans, 8 AM – 8 PM daily. No bots, no runaround.</p></div>
+          </div>
+          <div class="trust-item">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></span>
+            <div><h4>HIPAA-conscious from day one</h4><p>Privacy and resident dignity built into everything we produce.</p></div>
+          </div>
+          <div class="trust-item">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></span>
+            <div><h4>Most projects launch in ~2 weeks</h4><p>From the first call to live, without the drawn-out timeline.</p></div>
+          </div>
+        </div>
+
+        <div class="direct">
+          <a href="mailto:info@wavecare.io" data-cursor><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>info@wavecare.io</a>
+          <a href="tel:+17329301934" data-cursor><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-3 2a14 14 0 006 6l2-3 5 2v4a2 2 0 01-2 2A18 18 0 013 6a2 2 0 012-2z"/></svg></span>+1 732 930 1934</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: the form -->
+      <div class="form-card" id="formCard" data-reveal>
+        <h2>Send us a message</h2>
+        <p class="fsub">Prefer to talk? <a href="#book" style="color:var(--teal-bright);" data-cursor>Book a call instead →</a></p>
+
+        <!-- NOTE FOR DEVELOPER: wire this form to GHL.
+             Either POST to a GHL inbound webhook, or replace with the GHL form embed.
+             On success, the .done state below is shown. -->
+        <form class="form" id="contactForm" novalidate>
+          <div class="field" data-validate="required">
+            <label>Full name <span class="req">*</span></label>
+            <input type="text" name="name" autocomplete="name" placeholder="Jane Doe" required>
+            <span class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span>
+            <div class="hint">Please enter your name.</div>
+          </div>
+
+          <div class="field" data-validate="email">
+            <label>Email <span class="req">*</span></label>
+            <input type="email" name="email" autocomplete="email" inputmode="email" placeholder="jane@facility.com" required>
+            <span class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span>
+            <div class="hint">Please enter a valid email.</div>
+          </div>
+
+          <div class="field" data-validate="required">
+            <label>Facility / Organization <span class="req">*</span></label>
+            <input type="text" name="facility" autocomplete="organization" placeholder="Park Gardens Rehabilitation" required>
+            <span class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span>
+            <div class="hint">Let us know where you're reaching out from.</div>
+          </div>
+
+          <div class="field">
+            <label>Phone <span style="color:var(--muted);font-weight:400;">(optional)</span></label>
+            <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="(732) 930-1934">
+          </div>
+
+          <div>
+            <div class="chips-label">What do you need help with?</div>
+            <div class="chips" id="chips">
+              <span class="chip" data-cursor>Brand &amp; Photos</span>
+              <span class="chip" data-cursor>Video</span>
+              <span class="chip" data-cursor>Design &amp; Print</span>
+              <span class="chip" data-cursor>Web Design</span>
+              <span class="chip" data-cursor>Not sure yet</span>
+            </div>
+            <input type="hidden" name="interests" id="interests">
+          </div>
+
+          <div class="field">
+            <label>Tell us about your facility <span style="color:var(--muted);font-weight:400;">(optional)</span></label>
+            <textarea name="message" placeholder="A sentence or two about what you're working on…"></textarea>
+          </div>
+
+          <button type="submit" class="btn submit-btn" data-magnetic data-cursor>
+            <span class="spinner"></span><span class="txt">Send Message</span><span class="arr">→</span>
+          </button>
+          <p class="form-note">No spam, ever. We reply within one business day.</p>
+        </form>
+
+        <div class="form-success">
+          <div class="ok-ic"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></div>
+          <h3>Message sent — thank you.</h3>
+          <p>We've got it. A real human from Wavecare will be in touch within one business day.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- ===== WHAT HAPPENS NEXT ===== -->
+<section class="ink sec-pad">
+  <div class="glow" style="width:480px;height:480px;background:var(--teal-primary);top:-120px;right:-120px;"></div>
+  <div class="container">
+    <div class="sec-head center" data-reveal>
+      <span class="label">What Happens Next</span>
+      <h2>From hello to live, here's the path.</h2>
+    </div>
+    <div class="steps stagger">
+      <article class="step" data-cursor><div class="sn">01</div><h3>We listen &amp; audit</h3><p>We learn about your facility, your audience, and review your current online presence — what's working and what's costing you tours.</p></article>
+      <article class="step" data-cursor><div class="sn">02</div><h3>We map the plan</h3><p>You get a clear, no-filler plan for exactly what we'd build, capture, or design — with honest timelines and scope.</p></article>
+      <article class="step" data-cursor><div class="sn">03</div><h3>We make it count</h3><p>We produce the work and optimize the journey, so the right families come across your community and say "yeah, this feels right."</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BOOKING CALENDAR (secondary path) ===== -->
+<section class="deep sec-pad" id="book">
+  <div class="glow" style="width:520px;height:520px;background:var(--teal-accent);bottom:-160px;left:-120px;opacity:0.26;"></div>
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="sec-head center" data-reveal>
+      <span class="label">Rather Just Grab a Time?</span>
+      <h2>Book a call that fits your schedule.</h2>
+      <p class="lead" style="margin:0 auto;">Pick a slot and we'll come prepared with ideas specific to your facility.</p>
+    </div>
+    <div class="cal-wrap" data-reveal>
+      <!-- GHL calendar embed. Swap the src if your booking link differs.
+           For GHL embeds, also include their script: https://link.msgsndr.com/js/form_embed.js -->
+      <iframe src="https://go.wavecare.io/widget/bookings/wavecare-website-audit" scrolling="no" title="Book a call with Wavecare"></iframe>
+      <div class="cal-fallback" style="display:none;" id="calFallback">
+        <p>Having trouble loading the calendar?</p>
+        <a href="https://go.wavecare.io/widget/bookings/wavecare-website-audit" class="btn" data-cursor>Open Booking Page →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROOF STRIP ===== -->
+<section class="ink sec-pad">
+  <div class="container">
+    <div class="sec-head center" data-reveal>
+      <span class="label">You're in Good Company</span>
+      <h2>Trusted by healthcare<br>brands across the country.</h2>
+    </div>
+    <div class="tstrip stagger">
+      <article class="tmini" data-cursor><blockquote>"We started receiving better-quality inquiries within weeks. The branding helped us look more professional and trustworthy."</blockquote><div class="who"><strong>Director</strong>Senior Care Facility</div></article>
+      <article class="tmini" data-cursor><blockquote>"They handled everything from creative direction to execution smoothly. The final results exceeded our expectations."</blockquote><div class="who"><strong>Marketing Manager</strong>Healthcare Practice</div></article>
+      <article class="tmini" data-cursor><blockquote>"Wavecare feels more like a partner than a vendor. Their experience in healthcare marketing really shows."</blockquote><div class="who"><strong>Operations Lead</strong>Medical Services Provider</div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL WAVE CTA ===== -->
+<section class="final">
+  <canvas id="waveCanvas"></canvas>
+  <div class="container">
+    <span class="label" style="justify-content:center;" data-reveal>Ready When You Are</span>
+    <h2 data-reveal>Your next resident is<br>searching <span class="accent">right now.</span></h2>
+    <p class="sub" data-reveal>Let's make sure that when they find you, they say yes.</p>
+    <div data-reveal><a href="#formCard" class="btn" data-magnetic data-cursor style="background:#fff;color:var(--teal-primary);">Send a Message</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="f-grid">
+      <div class="f-col f-brand"><img src="/images/img_115.png" alt="Wavecare Marketing"><p>Healthcare marketing built for senior care and the practices that families trust most.</p></div>
+      <div class="f-col"><h4>Navigation</h4><ul><li><a href="index.html" data-cursor>Home</a></li><li><a href="services.html" data-cursor>Services</a></li><li><a href="about.html" data-cursor>About</a></li><li><a href="contact.html" data-cursor>Contact</a></li></ul></div>
+      <div class="f-col"><h4>Services</h4><ul><li><a href="photoservices.html" data-cursor>Brand &amp; Photoshoots</a></li><li><a href="videoservices.html" data-cursor>Video Production</a></li><li><a href="design-print.html" data-cursor>Design &amp; Print</a></li><li><a href="webdesign.html" data-cursor>Web Design</a></li></ul></div>
+      <div class="f-col"><h4>Contact</h4><ul><li><a href="mailto:info@wavecare.io" data-cursor>info@wavecare.io</a></li><li><a href="tel:+17329301934" data-cursor>+1 732 930 1934</a></li></ul></div>
+    </div>
+    <div class="f-bottom"><span>© 2026 by Wavecare. All rights reserved.</span><span>Built for healthcare.</span></div>
+  </div>
+</footer>
+
+<script>
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function runPreloader(done){
+  const bar=document.getElementById('plbar'),num=document.getElementById('plnum'),pre=document.getElementById('preloader');
+  let p=0,fin=false;
+  function finish(){ if(fin)return; fin=true; pre.style.transition='opacity .6s'; pre.style.opacity='0'; setTimeout(()=>{pre.style.display='none'; done();},620); }
+  const iv=setInterval(()=>{ p=Math.min(100,p+Math.random()*22+10); bar.style.width=p+'%'; num.textContent=Math.floor(p); if(p>=100){clearInterval(iv); setTimeout(finish,200);} },90);
+  setTimeout(finish,3000);
+}
+function initReveals(){
+  const els=document.querySelectorAll('[data-reveal],.stagger');
+  if(!('IntersectionObserver' in window)){ els.forEach(e=>e.classList.add('in')); return; }
+  const io=new IntersectionObserver(es=>{ es.forEach(en=>{ if(en.isIntersecting) en.target.classList.add('in'); }); },{threshold:0.15, rootMargin:'0px 0px -8% 0px'});
+  els.forEach(e=>io.observe(e));
+  setTimeout(()=>{ els.forEach(e=>{ const r=e.getBoundingClientRect(); if(r.top<innerHeight) e.classList.add('in'); }); },400);
+}
+function initChrome(){
+  const prog=document.getElementById('progress'),nav=document.getElementById('nav');
+  function on(){ const h=document.documentElement,sc=h.scrollTop||document.body.scrollTop,max=h.scrollHeight-h.clientHeight; prog.style.width=(max>0?sc/max*100:0)+'%'; nav.classList.toggle('scrolled',sc>40); }
+  addEventListener('scroll',on,{passive:true}); on();
+}
+function initLenis(){
+  if(!window.Lenis||reduceMotion) return;
+  const lenis=new Lenis({lerp:0.09,smoothWheel:true});
+  if(window.gsap&&window.ScrollTrigger){ lenis.on('scroll',ScrollTrigger.update); gsap.ticker.add(t=>lenis.raf(t*1000)); gsap.ticker.lagSmoothing(0); }
+  else { (function raf(t){lenis.raf(t); requestAnimationFrame(raf);})(0); }
+  document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const el=document.querySelector(a.getAttribute('href')); if(el){e.preventDefault(); lenis.scrollTo(el,{offset:-20});}}));
+}
+function initHero(){
+  const wp=document.querySelector('.wave-accent path');
+  if(window.gsap){ if(wp) gsap.to(wp,{strokeDashoffset:0,duration:1.4,ease:'power2.out',delay:0.4}); }
+  else if(wp){ wp.style.strokeDashoffset=0; }
+}
+
+/* ===== FORM: real-time validation + chips + submit states ===== */
+function initForm(){
+  const form=document.getElementById('contactForm'); if(!form) return;
+  const card=document.getElementById('formCard');
+
+  // service chips (multi-select) -> hidden input
+  const chips=[...document.querySelectorAll('#chips .chip')], hidden=document.getElementById('interests');
+  function syncChips(){ hidden.value=chips.filter(c=>c.classList.contains('on')).map(c=>c.textContent.trim()).join(', '); }
+  chips.forEach(c=>c.addEventListener('click',()=>{ c.classList.toggle('on'); syncChips(); }));
+
+  function validateField(f){
+    const input=f.querySelector('input,textarea'); if(!input) return true;
+    const type=f.dataset.validate; const v=input.value.trim();
+    let ok=true;
+    if(type==='required') ok=v.length>0;
+    else if(type==='email') ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    else ok=true;
+    f.classList.toggle('valid', ok && v.length>0);
+    f.classList.toggle('invalid', !ok && v.length>0);
+    return ok;
+  }
+  const vFields=[...form.querySelectorAll('.field[data-validate]')];
+  vFields.forEach(f=>{
+    const input=f.querySelector('input,textarea');
+    input.addEventListener('input',()=>{ if(f.classList.contains('invalid')) validateField(f); else if(input.value.trim()) validateField(f); });
+    input.addEventListener('blur',()=>validateField(f));
+  });
+
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    let allOk=true;
+    vFields.forEach(f=>{ if(!validateField(f)){ allOk=false; f.classList.add('invalid'); } });
+    if(!allOk){ const firstBad=form.querySelector('.field.invalid'); firstBad&&firstBad.scrollIntoView({behavior:'smooth',block:'center'}); return; }
+
+    // ---- DEVELOPER: send to GHL here ----
+    // Example: fetch('YOUR_GHL_INBOUND_WEBHOOK', {method:'POST', body:new FormData(form)})
+    //   .then(()=> showSuccess()).catch(()=> showError());
+    // For the blueprint we simulate the network call + success UX:
+    form.classList.add('sending');
+    const btn=form.querySelector('.submit-btn'); btn.disabled=true;
+    setTimeout(()=>{ card.classList.add('done'); card.scrollIntoView({behavior:'smooth',block:'center'}); }, 1100);
+  });
+}
+
+/* calendar load fallback */
+function initCal(){
+  const ifr=document.querySelector('.cal-wrap iframe'), fb=document.getElementById('calFallback');
+  if(!ifr) return;
+  let loaded=false; ifr.addEventListener('load',()=>loaded=true);
+  setTimeout(()=>{ if(!loaded && fb){ fb.style.display='block'; } }, 4000);
+}
+
+function initCursor(){
+  const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
+  if(!dot||matchMedia('(hover:none),(pointer:coarse)').matches){ if(dot)dot.style.display='none'; if(ring)ring.style.display='none'; return; }
+  let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+  addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+  (function r(){rx+=(mx-rx)*0.18;ry+=(my-ry)*0.18;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(r);})();
+  document.querySelectorAll('[data-cursor]').forEach(el=>{el.addEventListener('mouseenter',()=>ring.classList.add('hot'));el.addEventListener('mouseleave',()=>ring.classList.remove('hot'));});
+  if(window.gsap) document.querySelectorAll('[data-magnetic]').forEach(el=>{
+    el.addEventListener('mousemove',e=>{const r=el.getBoundingClientRect();gsap.to(el,{x:(e.clientX-(r.left+r.width/2))*0.3,y:(e.clientY-(r.top+r.height/2))*0.3,duration:0.4,ease:'power3.out'});});
+    el.addEventListener('mouseleave',()=>gsap.to(el,{x:0,y:0,duration:0.5,ease:'elastic.out(1,0.4)'}));
+  });
+}
+function initWaveAccent(){
+  const canvas=document.getElementById('waveCanvas');
+  if(!canvas||!window.THREE){ if(canvas) canvas.style.background='radial-gradient(ellipse at center,rgba(42,157,143,0.25),transparent 70%)'; return; }
+  let renderer; try{ renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true}); }catch(e){ canvas.style.display='none'; return; }
+  const sec=canvas.parentElement; function size(){ return [sec.clientWidth, sec.clientHeight]; }
+  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5)); let [w,h]=size(); renderer.setSize(w,h);
+  const scene=new THREE.Scene(), cam=new THREE.OrthographicCamera(-1,1,1,-1,0,1);
+  const uniforms={uTime:{value:0},uRes:{value:new THREE.Vector2(w,h)},uMouse:{value:new THREE.Vector2(0.5,0.5)}};
+  const frag=`precision highp float; uniform float uTime; uniform vec2 uRes; uniform vec2 uMouse; varying vec2 vUv;
+    vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;} vec2 mod289(vec2 x){return x-floor(x*(1.0/289.0))*289.0;}
+    vec3 permute(vec3 x){return mod289(((x*34.0)+1.0)*x);}
+    float snoise(vec2 v){const vec4 C=vec4(0.211324865405187,0.366025403784439,-0.577350269189626,0.024390243902439);
+      vec2 i=floor(v+dot(v,C.yy));vec2 x0=v-i+dot(i,C.xx);vec2 i1=(x0.x>x0.y)?vec2(1.0,0.0):vec2(0.0,1.0);
+      vec4 x12=x0.xyxy+C.xxzz;x12.xy-=i1;i=mod289(i);
+      vec3 p=permute(permute(i.y+vec3(0.0,i1.y,1.0))+i.x+vec3(0.0,i1.x,1.0));
+      vec3 m=max(0.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.0);m=m*m;m=m*m;
+      vec3 x=2.0*fract(p*C.www)-1.0;vec3 hh=abs(x)-0.5;vec3 ox=floor(x+0.5);vec3 a0=x-ox;
+      m*=1.79284291400159-0.85373472095314*(a0*a0+hh*hh);
+      vec3 g;g.x=a0.x*x0.x+hh.x*x0.y;g.yz=a0.yz*x12.xz+hh.yz*x12.yw;return 130.0*dot(m,g);}
+    float fbm(vec2 p){float v=0.0,a=0.5;for(int i=0;i<5;i++){v+=a*snoise(p);p*=2.0;a*=0.5;}return v;}
+    void main(){ vec2 uv=vUv; vec2 p=(gl_FragCoord.xy-0.5*uRes.xy)/uRes.y; float t=uTime*0.05;
+      vec2 q=vec2(fbm(p*1.5+t),fbm(p*1.5+vec2(3.2,1.7)-t)); float f=fbm(p*1.5+2.0*q+t); f=f*0.5+0.5;
+      float d=distance(uv,uMouse); f+=sin(d*22.0-uTime*2.0)*exp(-d*5.0)*0.12;
+      vec3 cDeep=vec3(0.039,0.263,0.224),cPrim=vec3(0.055,0.353,0.314),cAcc=vec3(0.165,0.616,0.561),cBri=vec3(0.373,0.816,0.749);
+      vec3 col=mix(cDeep,cPrim,smoothstep(0.2,0.6,f)); col=mix(col,cAcc,smoothstep(0.6,0.85,f)); col=mix(col,cBri,smoothstep(0.85,1.0,f));
+      col+=cBri*exp(-d*6.0)*0.10; float al=0.85-0.5*pow(distance(uv,vec2(0.5)),1.3);
+      gl_FragColor=vec4(col,clamp(al,0.0,1.0)); }`;
+  const mat=new THREE.ShaderMaterial({uniforms,fragmentShader:frag,vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position,1.0);}`,transparent:true});
+  scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2,2),mat));
+  let mx=0.5,my=0.5,tmx=0.5,tmy=0.5;
+  sec.addEventListener('mousemove',e=>{const r=sec.getBoundingClientRect();tmx=(e.clientX-r.left)/r.width;tmy=1-(e.clientY-r.top)/r.height;});
+  addEventListener('resize',()=>{[w,h]=size();renderer.setSize(w,h);uniforms.uRes.value.set(w,h);});
+  let vis=true; if('IntersectionObserver' in window) new IntersectionObserver(es=>vis=es[0].isIntersecting,{rootMargin:'100px'}).observe(sec);
+  const clock=new THREE.Clock();
+  (function loop(){ requestAnimationFrame(loop); if(!vis)return; mx+=(tmx-mx)*0.06;my+=(tmy-my)*0.06;
+    uniforms.uMouse.value.set(mx,my); uniforms.uTime.value=clock.getElapsedTime()*(reduceMotion?0:1); renderer.render(scene,cam); })();
+}
+
+addEventListener('load',()=>{
+  runPreloader(()=>{
+    initChrome(); initLenis(); initReveals(); initHero();
+    initForm(); initCal(); initCursor(); initWaveAccent();
+    if(window.ScrollTrigger) ScrollTrigger.refresh();
+  });
+});
+</script>
+</body>
+</html>
+
