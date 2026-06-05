@@ -1,0 +1,152 @@
+
+### Page: about.html
+- **Section:** Header / Top of Page
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+- **Section:** Header / Top of Page
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+- **Section:** ===== HERO =====
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/jpeg;base64,/9j/4AAQSkZJRgABA...
+- **Section:** Ten years. Hundreds of facilities. One problem.
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/jpeg;base64,/9j/4AAQSkZJRgABA...
+- **Section:** Everything your brand needs.
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/jpeg;base64,/9j/4AAQSkZJRgABA...
+- **Section:** Everything your brand needs.
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/jpeg;base64,/9j/4AAQSkZJRgABA...
+- **Section:** Everything your brand needs.
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/jpeg;base64,/9j/4AAQSkZJRgABA...
+- **Section:** Everything your brand needs.
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/jpeg;base64,/9j/4AAQSkZJRgABA...
+- **Section:** Our story, in our own words.
+  - **Media Type:** Embedded Video (Vimeo)
+  - **Current link:** https://player.vimeo.com/video/1187767005?title=0&byline=0&portrait=0
+- **Section:** Let's make yourseconds count.
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+
+### Page: casestudy.html
+- **Section:** Header / Top of Page
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+- **Section:** Header / Top of Page
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+- **Section:** [REPLACE] hero.jpg (caregiver + resident) — swap .ph for <img src="..." alt="Caregiver with resident">
+  - **Media Type:** Image
+  - **Current placeholder:** ......
+- **Section:** Ready to be the next case study?
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+
+### Page: commercial.html
+
+### Page: contact.html
+- **Section:** Header / Top of Page
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+- **Section:** Header / Top of Page
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+- **Section:** ===== CONTACT HERO: value/trust + FORM (above the fold) =====
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/jpeg;base64,/9j/4AAQSkZJRgABA...
+- **Section:** Your next resident issearching right now.
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+
+### Page: design-print.html
+- **Section:** Header / Top of Page
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+- **Section:** Header / Top of Page
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+- **Section:** Make every touchpoint feel professional.
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+
+### Page: index.html
+- **Section:** Libraries: GSAP + ScrollTrigger (scroll animation), Lenis (smooth scroll), Three.js (accent wave, scoped to CTA only)
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+- **Section:** Libraries: GSAP + ScrollTrigger (scroll animation), Lenis (smooth scroll), Three.js (accent wave, scoped to CTA only)
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+- **Section:** ===== HERO =====
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/jpeg;base64,/9j/4AAQSkZJRgABA...
+- **Section:** Marketing that earns trust before the first tour.
+  - **Media Type:** Embedded Video (Vimeo)
+  - **Current link:** https://player.vimeo.com/video/1187767005?title=0&byline=0&portrait=0
+- **Section:** Everything your brand needs.
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/jpeg;base64,/9j/4AAQSkZJRgABA...
+- **Section:** Brand &amp; Photoshoots
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/jpeg;base64,/9j/4AAQSkZJRgABA...
+- **Section:** Video Production
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/jpeg;base64,/9j/4AAQSkZJRgABA...
+- **Section:** Design &amp; Print
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/jpeg;base64,/9j/4AAQSkZJRgABA...
+- **Section:** Ready to look as good asthe care you provide?
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+
+### Page: photoservices.html
+- **Section:** Header / Top of Page
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+- **Section:** Header / Top of Page
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+- **Section:** Give families a clearer picture of your care.
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+
+### Page: services.html
+
+### Page: testimonials.html
+- **Section:** Header / Top of Page
+  - **Media Type:** Image
+  - **Current placeholder:** https://static.wixstatic.com/media/060a8...
+- **Section:** Administrators on what actually changed
+  - **Media Type:** Embedded Video (Vimeo)
+  - **Current link:** https://player.vimeo.com/video/1187758900?badge=0&autopause=0&player_id=0&app_id=58479
+- **Section:** Administrators on what actually changed
+  - **Media Type:** Embedded Video (Vimeo)
+  - **Current link:** https://player.vimeo.com/video/1187761002?badge=0&autopause=0&player_id=0&app_id=58479
+
+### Page: videoservices.html
+- **Section:** Header / Top of Page
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+- **Section:** Header / Top of Page
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+- **Section:** The work, in motion.
+  - **Media Type:** Embedded Video (Vimeo)
+  - **Current link:** https://player.vimeo.com/video/1187767005?title=0&byline=0&portrait=0
+- **Section:** Let families see the care behind your facility.
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+
+### Page: webdesign.html
+- **Section:** Header / Top of Page
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+- **Section:** Header / Top of Page
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+- **Section:** See how your website really performs.
+  - **Media Type:** Image
+  - **Current placeholder:** data:image/png;base64,iVBORw0KGgoAAAANSU...
+
