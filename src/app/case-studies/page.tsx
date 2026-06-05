@@ -1,130 +1,187 @@
-import './casestudy.css';
+'use client';
+import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect } from 'react';
+import './case-studies.css';
 
 export default function CaseStudies() {
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const runScripts = () => {
+      // @ts-ignore
+      const gsap = window.gsap;
+      // @ts-ignore
+      const ScrollTrigger = window.ScrollTrigger;
+
+      function initReveals() {
+        const els = document.querySelectorAll('[data-reveal], .stagger');
+        if (!('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('in')); return; }
+        const io = new IntersectionObserver(es => {
+          es.forEach(en => { if (en.isIntersecting) en.target.classList.add('in'); });
+        }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+        els.forEach(e => io.observe(e));
+        setTimeout(() => {
+          els.forEach(e => { const r = e.getBoundingClientRect(); if (r.top < innerHeight) e.classList.add('in'); });
+        }, 400);
+      }
+
+      // Check and execute
+      let retryCount = 0;
+      const checkScripts = setInterval(() => {
+        retryCount++;
+        // @ts-ignore
+        if (window.gsap && window.ScrollTrigger) {
+          clearInterval(checkScripts);
+          initReveals();
+          // @ts-ignore
+          if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+        } else if (retryCount > 100) {
+          clearInterval(checkScripts); // Give up after ~5 seconds
+          initReveals();
+        }
+      }, 50);
+    };
+
+    runScripts();
+  }, []);
+
   return (
     <>
-      <header className="hero">
-        <div className="hero-bg">
-          <div className="ph" data-label="hero.jpg &middot; caregiver + resident"></div>
-        </div>
-        <div className="hero-overlay"></div>
-        <div className="hero-in">
-          <div className="hero-content">
-            <svg className="wave-line" viewBox="0 0 120 18" aria-hidden="true"><path d="M2 9 Q17 1 32 9 T62 9 T92 9 T118 9"/></svg>
-            <span className="label">Case Studies</span>
-            <h1>The work behind <span className="accent">the trust.</span></h1>
-            <p className="sub">Real facilities. Real families finding the right care. See how we help healthcare brands look as good as the care they provide.</p>
-            <div className="hero-ctas">
-              <Link href="#work" className="btn" data-cursor data-magnetic>See the projects <span className="arr">&rarr;</span></Link>
-              <Link href="/contact" className="btn btn-ghost" data-cursor data-magnetic>Book a Call</Link>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <section className="panel light sec-pad">
-        <div className="container">
-          <div className="sec-head" data-reveal>
-            <span className="label dark">Built for Healthcare</span>
-            <h2>Families judge a facility in seconds. <span className="accent">We make those seconds count.</span></h2>
-            <p className="sub" style={{marginTop: '18px'}}>Every project below started the same way &mdash; a facility that wasn&apos;t being seen the way it deserved. Here&apos;s what changed once it was.</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="panel ink sec-pad" id="work">
-        <div className="glow" style={{width: '520px', height: '520px', background: 'var(--teal-secondary)', top: '-120px', right: '-120px'}}></div>
+      <section className="sec-pad panel ink" style={{ paddingTop: '180px' }}>
         <div className="container">
           <div className="sec-head center" data-reveal>
-            <span className="label">Selected Projects</span>
-            <h2>Results we&apos;re <span className="lite">proud of.</span></h2>
+            <span className="label">Our Work</span>
+            <h2>Real results for real healthcare brands.</h2>
+            <p className="sub" style={{ margin: '20px auto 0' }}>
+              We don't just make things look pretty. We build marketing engines that drive tours, patient inquiries, and trust.
+            </p>
           </div>
+
           <div className="cs-grid stagger">
-
-            <Link href="/case-studies/park-gardens" className="cs-card" data-cursor>
+            <Link href="/case-studies/oakwood" className="cs-card">
               <div className="cs-media">
-                <div className="ph"><span>[REPLACE &mdash; Park Gardens website screenshot]</span></div>
-                <div className="cs-tag"><span>Web Design</span><span>Photography</span></div>
+                <div className="ph"><span>OAKWOOD HERO IMAGE</span></div>
+                <div className="cs-tag">
+                  <span>Web Design</span>
+                  <span>Video</span>
+                </div>
               </div>
               <div className="cs-body">
-                <div className="cs-client">Park Gardens Rehabilitation &amp; Nursing</div>
-                <h3>A skilled nursing site that finally matched the care inside.</h3>
-                <p className="cs-desc">A full website rebuild and on-site photoshoot that gave families a real first impression &mdash; warm, clear, and built to convert tours.</p>
-                <div className="cs-result"><span className="num">[RESULT]%</span><span className="lbl">more qualified inquiries</span></div>
-                <span className="cs-go">View case study <span className="arr">&rarr;</span></span>
+                <span className="cs-client">Oakwood Senior Living</span>
+                <h3>How a modern website and facility tour video increased bookings by 42%</h3>
+                <p className="cs-desc">Oakwood was losing out to newer competitors despite offering better care. We completely overhauled their digital presence.</p>
+                <div className="cs-result">
+                  <span className="num">42%</span>
+                  <span className="lbl">Increase in qualified tours</span>
+                </div>
+                <div className="cs-go">
+                  Read Case Study <span className="arr">&rarr;</span>
+                </div>
               </div>
             </Link>
 
-            <Link href="/case-studies/project-two" className="cs-card" data-cursor>
+            <Link href="/case-studies/pinnacle" className="cs-card">
               <div className="cs-media">
-                <div className="ph"><span>[REPLACE &mdash; project image]</span></div>
-                <div className="cs-tag"><span>Video Production</span></div>
+                <div className="ph"><span>THE PINNACLE HERO</span></div>
+                <div className="cs-tag">
+                  <span>Photography</span>
+                  <span>Print</span>
+                </div>
               </div>
               <div className="cs-body">
-                <div className="cs-client">[REPLACE &mdash; Facility / Client name]</div>
-                <h3>A facility tour film that booked the room.</h3>
-                <p className="cs-desc">[REPLACE &mdash; one-line summary: what they came to us for and what we delivered.]</p>
-                <div className="cs-result"><span className="num">[RESULT]</span><span className="lbl">[REPLACE &mdash; metric label]</span></div>
-                <span className="cs-go">View case study <span className="arr">&rarr;</span></span>
+                <span className="cs-client">The Pinnacle</span>
+                <h3>Elevating a luxury memory care brand through premium visuals</h3>
+                <p className="cs-desc">We replaced outdated stock imagery with authentic, sensitive photography that captures the true quality of their care.</p>
+                <div className="cs-result">
+                  <span className="num">3X</span>
+                  <span className="lbl">Higher engagement on ads</span>
+                </div>
+                <div className="cs-go">
+                  Read Case Study <span className="arr">&rarr;</span>
+                </div>
+              </div>
+            </Link>
+            
+            <Link href="/case-studies/harmony" className="cs-card">
+              <div className="cs-media">
+                <div className="ph"><span>HARMONY CARE HERO</span></div>
+                <div className="cs-tag">
+                  <span>Full Service</span>
+                </div>
+              </div>
+              <div className="cs-body">
+                <span className="cs-client">Harmony Care</span>
+                <h3>A ground-up rebrand for a growing regional provider</h3>
+                <p className="cs-desc">From the logo and messaging to the website and print collateral, we built a cohesive brand system ready to scale.</p>
+                <div className="cs-result">
+                  <span className="num">15</span>
+                  <span className="lbl">Facilities launched</span>
+                </div>
+                <div className="cs-go">
+                  Read Case Study <span className="arr">&rarr;</span>
+                </div>
               </div>
             </Link>
 
-            <Link href="/case-studies/project-three" className="cs-card" data-cursor>
+            <Link href="/case-studies/mercy" className="cs-card">
               <div className="cs-media">
-                <div className="ph"><span>[REPLACE &mdash; project image]</span></div>
-                <div className="cs-tag"><span>Design &amp; Print</span><span>Branding</span></div>
+                <div className="ph"><span>MERCY HEALTH HERO</span></div>
+                <div className="cs-tag">
+                  <span>Web Design</span>
+                  <span>SEO</span>
+                </div>
               </div>
               <div className="cs-body">
-                <div className="cs-client">[REPLACE &mdash; Facility / Client name]</div>
-                <h3>A brand refresh that aged up the perception, not the people.</h3>
-                <p className="cs-desc">[REPLACE &mdash; one-line summary: what they came to us for and what we delivered.]</p>
-                <div className="cs-result"><span className="num">[RESULT]</span><span className="lbl">[REPLACE &mdash; metric label]</span></div>
-                <span className="cs-go">View case study <span className="arr">&rarr;</span></span>
+                <span className="cs-client">Mercy Health Partners</span>
+                <h3>Dominating local search with a conversion-first medical site</h3>
+                <p className="cs-desc">We structured their multi-location practice website to rank locally, resulting in a massive influx of organic patient leads.</p>
+                <div className="cs-result">
+                  <span className="num">+210%</span>
+                  <span className="lbl">Organic search traffic</span>
+                </div>
+                <div className="cs-go">
+                  Read Case Study <span className="arr">&rarr;</span>
+                </div>
               </div>
             </Link>
-
-            <Link href="/case-studies/project-four" className="cs-card" data-cursor>
-              <div className="cs-media">
-                <div className="ph"><span>[REPLACE &mdash; project image]</span></div>
-                <div className="cs-tag"><span>Advertising</span></div>
-              </div>
-              <div className="cs-body">
-                <div className="cs-client">[REPLACE &mdash; Facility / Client name]</div>
-                <h3>Ad spend that finally filled beds, not just clicks.</h3>
-                <p className="cs-desc">[REPLACE &mdash; one-line summary: what they came to us for and what we delivered.]</p>
-                <div className="cs-result"><span className="num">[RESULT]</span><span className="lbl">[REPLACE &mdash; metric label]</span></div>
-                <span className="cs-go">View case study <span className="arr">&rarr;</span></span>
-              </div>
-            </Link>
-
           </div>
         </div>
       </section>
 
-      <section className="panel deep sec-pad">
+      <section className="sec-pad panel deep">
         <div className="container">
           <div className="sec-head center" data-reveal>
-            <span className="label">By the Numbers</span>
-            <h2>A decade of <span className="accent">getting it right.</span></h2>
+            <h2>By the numbers</h2>
+            <p className="sub" style={{ margin: '20px auto 0' }}>The impact we've had on our clients across the country.</p>
           </div>
           <div className="stats stagger">
-            <div className="stat"><div className="n" data-count="10">0</div><div className="t">Years in Healthcare</div></div>
-            <div className="stat"><div className="n" data-count="500" data-suffix="+">0</div><div className="t">Facilities Served</div></div>
-            <div className="stat"><div className="n" data-count="700">0</div><div className="t">Assisted Placements</div></div>
-            <div className="stat"><div className="n" data-count="2400" data-comma="1">0</div><div className="t">Smiles Captured</div></div>
+            <div className="stat">
+              <div className="n">50+</div>
+              <div className="t">Facilities Served</div>
+            </div>
+            <div className="stat">
+              <div className="n">1M+</div>
+              <div className="t">Video Views</div>
+            </div>
+            <div className="stat">
+              <div className="n">100%</div>
+              <div className="t">HIPAA Compliant</div>
+            </div>
+            <div className="stat">
+              <div className="n">35%</div>
+              <div className="t">Avg. Lead Increase</div>
+            </div>
           </div>
         </div>
       </section>
 
       <section className="final">
         <div className="final-fallback"></div>
-        <canvas id="waveCanvas"></canvas>
         <div className="final-in" data-reveal>
-          <span className="label">Your facility, seen the right way</span>
-          <h2>Ready to be the next <span className="accent">case study?</span></h2>
-          <p className="sub">Tell us about your facility. We&apos;ll show you exactly what a Wavecare rebuild could look like &mdash; and what it could do for your inquiries.</p>
-          <Link href="/contact" className="btn btn-light" data-cursor data-magnetic>Book a Call <span className="arr">&rarr;</span></Link>
+          <h2>Ready for your own success story?</h2>
+          <p className="sub">Let's build a brand that books tours and earns trust.</p>
+          <Link href="/contact" className="btn">Book a Discovery Call <span className="arr">&rarr;</span></Link>
         </div>
       </section>
     </>

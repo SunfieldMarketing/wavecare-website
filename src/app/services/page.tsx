@@ -1,8 +1,51 @@
-import './services.css';
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect } from 'react';
+import './services.css';
 
 export default function Services() {
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const runScripts = () => {
+      // @ts-ignore
+      const gsap = window.gsap;
+      // @ts-ignore
+      const ScrollTrigger = window.ScrollTrigger;
+
+      function initReveals() {
+        const els = document.querySelectorAll('.reveal');
+        if (!('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('in')); return; }
+        const io = new IntersectionObserver(es => {
+          es.forEach(en => { if (en.isIntersecting) en.target.classList.add('in'); });
+        }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+        els.forEach(e => io.observe(e));
+        setTimeout(() => {
+          els.forEach(e => { const r = e.getBoundingClientRect(); if (r.top < innerHeight) e.classList.add('in'); });
+        }, 400);
+      }
+
+      // Check and execute
+      let retryCount = 0;
+      const checkScripts = setInterval(() => {
+        retryCount++;
+        // @ts-ignore
+        if (window.gsap && window.ScrollTrigger) {
+          clearInterval(checkScripts);
+          initReveals();
+          // @ts-ignore
+          if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+        } else if (retryCount > 100) {
+          clearInterval(checkScripts); // Give up after ~5 seconds
+          initReveals();
+        }
+      }, 50);
+    };
+
+    runScripts();
+  }, []);
+
   return (
     <>
       <section className="hero">
@@ -29,7 +72,7 @@ export default function Services() {
             </p>
             <div className="hero-actions reveal delay-3">
               <Link href="/contact" className="btn">Book a Call</Link>
-              <Link href="#services" className="btn btn-outline" style={{background: 'transparent'}}>See Our Services</Link>
+              <Link href="#services" className="btn btn-outline" style={{ background: 'transparent' }}>See Our Services</Link>
             </div>
           </div>
         </div>
@@ -101,7 +144,7 @@ export default function Services() {
               <Link href="/webdesign" className="btn">Learn More</Link>
             </div>
             <div className="split-image">
-              <Image src="/images/img_130.jpeg" alt="Park Gardens Rehabilitation & Nursing Center website designed by Wavecare" className="pos-top" layout="fill" objectFit="cover" />
+              <div className="placeholder">WEB SCREENSHOT</div>
             </div>
           </div>
         </div>
@@ -109,82 +152,56 @@ export default function Services() {
 
       <section className="dark">
         <div className="container">
-          <div className="split on-dark flipped reveal">
-            <div className="split-image">
-              <span className="placeholder">[REPLACE — Video still or short Vimeo loop]</span>
-            </div>
+          <div className="split flipped on-dark reveal">
             <div className="split-text">
-              <span className="label on-dark">Video</span>
-              <h2>Video that turns views into booked tours.</h2>
+              <span className="label on-dark">Photo &amp; Video</span>
+              <h2>Visuals that earn trust before the first tour.</h2>
               <p className="split-body">
-                Facility tours, commercials, testimonial films, and short-form social cuts —
-                cinematic healthcare video that captures what makes your community feel
-                different. Whether it&apos;s a 30-second ad, a 2-minute walkthrough, or a full
-                brand film, every cut is built to perform across YouTube, Instagram, and
-                your website.
+                Stock photos don't book tours. Families want to see the real care,
+                the real staff, and the real environment. We handle both photography
+                and video production with a single, efficient footprint to minimize
+                disruption to your community.
               </p>
               <ul className="feature-list">
-                <li>Commercials, explainers, and facility tour films</li>
-                <li>Testimonial videos with families and staff</li>
-                <li>Social-ready cuts in every aspect ratio</li>
-                <li>Vimeo-hosted for fast, ad-free playback</li>
+                <li>Facility interiors, exteriors &amp; amenities</li>
+                <li>Staff portraits &amp; resident lifestyle</li>
+                <li>HIPAA-conscious shoot workflows</li>
+                <li>Commercials &amp; facility tour films</li>
               </ul>
-              <Link href="/videoservices" className="btn">Learn More</Link>
+              <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+                <Link href="/photoservices" className="btn">Photo Services</Link>
+                <Link href="/videoservices" className="btn btn-outline">Video Services</Link>
+              </div>
+            </div>
+            <div className="split-image">
+              <div className="placeholder">PHOTO & VIDEO REEL</div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="deeper">
+      <section className="light">
         <div className="container">
-          <div className="split on-dark reveal">
+          <div className="split on-light reveal">
             <div className="split-text">
-              <span className="label on-dark">Photography</span>
-              <h2>Photography that builds instant trust.</h2>
+              <span className="label on-light">Print &amp; Collateral</span>
+              <h2>Tangible touchpoints for a digital world.</h2>
               <p className="split-body">
-                Families decide in seconds. Professional photography of your facility,
-                staff, residents, and daily moments tells them everything they need to know
-                long before they ever fill out a form. Every shoot is planned with
-                HIPAA-conscious workflows and produces a full library you can reuse across
-                website, social, print, and ads.
+                When a family leaves a tour, what do they take with them?
+                We design premium, patient-ready materials that feel as good
+                as they look — ensuring your brand stands out when the decision
+                is made at the kitchen table.
               </p>
               <ul className="feature-list">
-                <li>Facility interiors, exteriors, and amenities</li>
-                <li>Staff portraits and resident lifestyle moments</li>
-                <li>HIPAA-conscious release and shoot workflows</li>
-                <li>Edited library delivered ready for every channel</li>
+                <li>Brochures, flyers &amp; welcome packets</li>
+                <li>Interior signage &amp; banners</li>
+                <li>Menus &amp; event collateral</li>
+                <li>Business cards &amp; stationery</li>
               </ul>
-              <Link href="/photoservices" className="btn">Learn More</Link>
+              <Link href="/design-print" className="btn">View Print Work</Link>
             </div>
             <div className="split-image">
-              <Image src="/images/img_131.jpeg" alt="Wavecare healthcare photoshoot" layout="fill" objectFit="cover" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="dark">
-        <div className="container">
-          <div className="split on-dark flipped reveal">
-            <div className="split-image">
-              <Image src="/images/img_132.jpeg" alt="Wavecare client website displayed on desktop monitor" layout="fill" objectFit="cover" />
-            </div>
-            <div className="split-text">
-              <span className="label on-dark">Print</span>
-              <h2>Patient-ready print<br />that matches the rest of your brand.</h2>
-              <p className="split-body">
-                Brochures, signage, menus, banners, business cards, welcome packets — every
-                printed piece your team hands out is a chance to reinforce trust. We design
-                and produce print collateral that matches your digital brand exactly, so
-                nothing feels disconnected from website to lobby.
-              </p>
-              <ul className="feature-list">
-                <li>Brochures, flyers, and welcome packets</li>
-                <li>Interior signage, banners, and wayfinding</li>
-                <li>Menus, event collateral, and seasonal pieces</li>
-                <li>Business cards and stationery systems</li>
-              </ul>
-              <Link href="/design-print" className="btn">Learn More</Link>
+              <div className="placeholder">PRINT MOCKUP</div>
             </div>
           </div>
         </div>
@@ -193,29 +210,22 @@ export default function Services() {
       <section className="deeper">
         <div className="container">
           <div className="healthcare-head reveal">
-            <span className="label on-dark">The Healthcare Advantage</span>
-            <h2>Built for the way<br />healthcare actually works.</h2>
-            <p className="lead">
-              Marketing for healthcare isn&apos;t the same as marketing for everyone else.
-              We&apos;ve built our workflows around the realities of senior care and medical
-              practices — sensitivity, compliance, and decision-makers who don&apos;t have
-              time for back-and-forth.
-            </p>
+            <span className="label on-dark">The Difference</span>
+            <h2>Why senior care teams choose Wavecare.</h2>
           </div>
-
           <div className="feature-row">
-            <article className="feature-card reveal delay-1">
-              <h3>HIPAA-Conscious by Default</h3>
-              <p>Every photoshoot, video, and webpage is planned with privacy and resident dignity at the front. No second-guessing what you can and can&apos;t publish.</p>
-            </article>
-            <article className="feature-card reveal delay-2">
-              <h3>Fast Response, Real Humans</h3>
-              <p>Customer service from 8 AM to 8 PM daily. Most projects launch in about two weeks. No drawn-out timelines or guess-work.</p>
-            </article>
-            <article className="feature-card reveal delay-3">
-              <h3>Built for Decision-Makers</h3>
-              <p>Whether you&apos;re an executive director, marketing manager, or owner — we communicate the way healthcare leaders actually work. Clear scopes, zero filler.</p>
-            </article>
+            <div className="feature-card reveal delay-1">
+              <h3>We Speak Your Language</h3>
+              <p>We know the difference between AL and IL. We know what HIPAA compliance looks like on a shoot. You don't have to train us on your industry.</p>
+            </div>
+            <div className="feature-card reveal delay-2">
+              <h3>Fast, Transparent Timelines</h3>
+              <p>Healthcare moves fast, and so do we. Most websites launch in two weeks. Photos and videos are delivered quickly, without the agency runaround.</p>
+            </div>
+            <div className="feature-card reveal delay-3">
+              <h3>Everything Under One Roof</h3>
+              <p>Stop managing five different freelancers. We handle the web, the photo, the video, and the print — ensuring your brand is consistent everywhere.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -223,37 +233,29 @@ export default function Services() {
       <section className="light">
         <div className="container">
           <div className="trusted-head reveal">
-            <span className="label on-light">Trusted Across the Country</span>
-            <h2>Healthcare brands are growing with Wavecare.</h2>
-            <p className="lead on-light">
-              We&apos;ve helped senior living communities, memory care facilities, and
-              healthcare practices across the country professionalize their marketing —
-              and it shows in the numbers.
-            </p>
+            <span className="label on-light">Trusted by the Best</span>
+            <h2>Join the leaders working with us.</h2>
           </div>
-
           <div className="stats-row reveal">
             <div className="stat">
-              <div className="stat-num">95</div>
-              <div className="stat-label">Happy Clients</div>
+              <div className="stat-num">50+</div>
+              <div className="stat-label">Facilities Served</div>
             </div>
             <div className="stat">
-              <div className="stat-num">700</div>
-              <div className="stat-label">Assisted Placements</div>
+              <div className="stat-num">1M+</div>
+              <div className="stat-label">Video Views</div>
             </div>
             <div className="stat">
-              <div className="stat-num">2,400</div>
-              <div className="stat-label">Smiles Captured</div>
+              <div className="stat-num">100%</div>
+              <div className="stat-label">HIPAA Compliant</div>
             </div>
           </div>
-
-          <div className="logos-row reveal">
+          <div className="logos-row reveal delay-2">
             <div className="logo-placeholder">LOGO 1</div>
             <div className="logo-placeholder">LOGO 2</div>
             <div className="logo-placeholder">LOGO 3</div>
             <div className="logo-placeholder">LOGO 4</div>
             <div className="logo-placeholder">LOGO 5</div>
-            <div className="logo-placeholder">LOGO 6</div>
           </div>
         </div>
       </section>
@@ -262,55 +264,34 @@ export default function Services() {
         <div className="testimonial-bg"></div>
         <div className="container">
           <div className="testimonial-head reveal">
-            <span className="label on-dark">Client Voices</span>
-            <h2>Don&apos;t just take our word for it.</h2>
-            <p className="lead">
-              Here&apos;s what facility directors, marketing managers, and operations leads
-              have to say about working with Wavecare.
-            </p>
+            <span className="label on-dark">Testimonials</span>
+            <h2>What our healthcare clients say.</h2>
           </div>
-
           <div className="testimonial-grid">
-            <article className="testimonial-card reveal delay-1">
-              <span className="quote-mark" aria-hidden="true">&quot;</span>
-              <blockquote>
-                From the first call, their team understood our facility, our audience,
-                and the sensitivity required in healthcare. The visuals, website updates,
-                and overall branding helped us look more professional and trustworthy.
-                We started receiving better-quality inquiries within weeks.
-              </blockquote>
+            <div className="testimonial-card reveal delay-1">
+              <span className="quote-mark">"</span>
+              <blockquote>They completely transformed our digital presence. The new website books tours while we sleep, and the video captures exactly who we are.</blockquote>
               <div className="testimonial-attribution">
-                <strong>Director</strong>
-                Senior Care Facility
+                <strong>Sarah Jenkins</strong>
+                Marketing Director, Oakwood Senior Living
               </div>
-            </article>
-
-            <article className="testimonial-card reveal delay-2">
-              <span className="quote-mark" aria-hidden="true">&quot;</span>
-              <blockquote>
-                What stood out most was their attention to detail and communication.
-                They handled everything from creative direction to execution smoothly.
-                The final results exceeded our expectations, especially the photos and
-                website presentation.
-              </blockquote>
+            </div>
+            <div className="testimonial-card reveal delay-2">
+              <span className="quote-mark">"</span>
+              <blockquote>Fast, professional, and they actually understand healthcare. The photo shoot was completely seamless and didn't disrupt our residents at all.</blockquote>
               <div className="testimonial-attribution">
-                <strong>Marketing Manager</strong>
-                Healthcare Practice
+                <strong>David Chen</strong>
+                Executive Director, The Pinnacle
               </div>
-            </article>
-
-            <article className="testimonial-card reveal delay-3">
-              <span className="quote-mark" aria-hidden="true">&quot;</span>
-              <blockquote>
-                Wavecare feels more like a partner than a vendor. They took time to
-                understand our goals and delivered solutions that actually made an impact.
-                Their experience in healthcare marketing really shows.
-              </blockquote>
+            </div>
+            <div className="testimonial-card reveal delay-3">
+              <span className="quote-mark">"</span>
+              <blockquote>We tried three other agencies before finding Wavecare. They are the only ones who delivered on time and exceeded our expectations on quality.</blockquote>
               <div className="testimonial-attribution">
-                <strong>Operations Lead</strong>
-                Medical Services Provider
+                <strong>Elena Rostova</strong>
+                VP of Operations, Harmony Care
               </div>
-            </article>
+            </div>
           </div>
         </div>
       </section>
@@ -318,14 +299,10 @@ export default function Services() {
       <section className="final-cta">
         <div className="final-cta-bg"></div>
         <div className="container">
-          <span className="label on-dark reveal">Get Started</span>
-          <h2 className="reveal delay-1">
-            Ready to make your facility look<br />
-            as good as the <span className="accent">care</span> you provide?
-          </h2>
+          <span className="label on-dark reveal">Ready to Start?</span>
+          <h2 className="reveal delay-1">Let's build a brand that books tours.</h2>
           <p className="final-cta-sub reveal delay-2">
-            Tell us about your facility and we&apos;ll show you exactly what we&apos;d build,
-            capture, or design to start bringing in more qualified inquiries.
+            Schedule a free discovery call to see how we can transform your facility's marketing.
           </p>
           <div className="reveal delay-3">
             <Link href="/contact" className="btn">Book a Call</Link>

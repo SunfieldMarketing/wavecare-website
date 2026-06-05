@@ -1,14 +1,12 @@
 import type { Metadata } from 'next';
-import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Wavecare | Premium Care Marketing',
-  description: 'Wavecare Marketing',
+  title: 'Wavecare — Built for Healthcare',
+  description: 'Wavecare is a healthcare marketing agency built for senior care — branding, photography, video, print, and conversion-first web design.',
 };
 
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import GlobalEffects from '@/components/GlobalEffects';
 import Script from 'next/script';
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -17,7 +15,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@100..900&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
         
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" strategy="beforeInteractive" />
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" strategy="beforeInteractive" />
@@ -33,7 +31,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Navbar />
         {children}
         <Footer />
-        <GlobalEffects />
       </body>
     </html>
   );
