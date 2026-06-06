@@ -232,27 +232,36 @@ export default function Home() {
         })();
       }
 
-      // Check and execute
-      let retryCount = 0;
-      const checkScripts = setInterval(() => {
-        retryCount++;
-        // @ts-ignore
-        if (window.gsap && window.ScrollTrigger && window.Lenis && window.THREE) {
-          clearInterval(checkScripts);
-          runPreloader(() => {
-            initChrome(); initLenis(); initReveals(); initCount(); initHero();
-            initServices(); initMarquee(); initCursor(); initWaveAccent();
+      // Run preloader immediately — don't block on CDN libraries loading
+      runPreloader(() => {
+        initChrome();
+        initReveals();
+        initCount();
+        initServices();
+        initMarquee();
+        initCursor();
+
+        // Wait for animation libraries (up to 4s), then init hero/wave
+        let retryCount = 0;
+        const checkScripts = setInterval(() => {
+          retryCount++;
+          // @ts-ignore
+          const gsapReady = window.gsap && window.ScrollTrigger;
+          // @ts-ignore
+          const lenisReady = window.Lenis;
+          // @ts-ignore
+          const threeReady = window.THREE;
+
+          if ((gsapReady && lenisReady && threeReady) || retryCount > 80) {
+            clearInterval(checkScripts);
+            if (lenisReady) initLenis();
+            initHero();
+            initWaveAccent();
             // @ts-ignore
             if (window.ScrollTrigger) window.ScrollTrigger.refresh();
-          });
-        } else if (retryCount > 100) {
-          clearInterval(checkScripts); // Give up after ~5 seconds
-          runPreloader(() => {
-            initChrome(); initReveals(); initCount(); initHero();
-            initServices(); initMarquee(); initCursor(); initWaveAccent();
-          });
-        }
-      }, 50);
+          }
+        }, 50);
+      });
     };
 
     runScripts();

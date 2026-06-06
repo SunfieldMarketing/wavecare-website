@@ -185,27 +185,37 @@ export default function About() {
         (function loop() { requestAnimationFrame(loop); if (!vis) return; mx += (tmx - mx) * 0.06; my += (tmy - my) * 0.06; uniforms.uMouse.value.set(mx, my); uniforms.uTime.value = clock.getElapsedTime() * (reduceMotion ? 0 : 1); renderer.render(scene, cam); })();
       }
 
-      // Check and execute
-      let retryCount = 0;
-      const checkScripts = setInterval(() => {
-        retryCount++;
-        // @ts-ignore
-        if (window.gsap && window.ScrollTrigger && window.Lenis && window.THREE) {
-          clearInterval(checkScripts);
-          runPreloader(() => {
-            initChrome(); initLenis(); initReveals(); initCount(); initHero();
-            initInsight(); initAccordion(); initCursor(); initWaveAccent();
+      // Run preloader immediately — don't block on CDN libraries loading
+      // Then progressively enhance with animations as libraries become available
+      runPreloader(() => {
+        initChrome();
+        initReveals();
+        initCount();
+        initAccordion();
+        initCursor();
+
+        // Wait for animation libraries (up to 4s), then init hero/insight/wave
+        let retryCount = 0;
+        const checkScripts = setInterval(() => {
+          retryCount++;
+          // @ts-ignore
+          const gsapReady = window.gsap && window.ScrollTrigger;
+          // @ts-ignore
+          const lenisReady = window.Lenis;
+          // @ts-ignore
+          const threeReady = window.THREE;
+
+          if ((gsapReady && lenisReady && threeReady) || retryCount > 80) {
+            clearInterval(checkScripts);
+            if (lenisReady) initLenis();
+            initHero();
+            initInsight();
+            initWaveAccent();
             // @ts-ignore
             if (window.ScrollTrigger) window.ScrollTrigger.refresh();
-          });
-        } else if (retryCount > 100) {
-          clearInterval(checkScripts); // Give up after ~5 seconds
-          runPreloader(() => {
-            initChrome(); initReveals(); initCount(); initHero();
-            initInsight(); initAccordion(); initCursor(); initWaveAccent();
-          });
-        }
-      }, 50);
+          }
+        }, 50);
+      });
     };
 
     runScripts();
