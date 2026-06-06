@@ -294,7 +294,7 @@ export default function About() {
         <div className="glow" style={{ width: '600px', height: '600px', background: 'var(--teal-primary)', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', opacity: 0.3 }}></div>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="sec-head center" data-reveal><span className="label">A Decade of Results</span><h2>The numbers behind the work.</h2></div>
-          <div className="stats stagger">
+          <div className="stats four stagger">
             <div className="stat"><div className="num" data-count="10">0</div><div className="cap">Years Experience</div></div>
             <div className="stat"><div className="num" data-count="500" data-suffix="+">0</div><div className="cap">Facilities Served</div></div>
             <div className="stat"><div className="num" data-count="700">0</div><div className="cap">Assisted Placements</div></div>
