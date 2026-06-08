@@ -133,11 +133,11 @@ export default function PhotoServices() {
               </div>
               <div className={`ctx-scene ${ctxTab === 1 ? 'on' : ''}`}>
                 <div className="mock-bro" style={{ maxWidth: '700px', gap: '16px' }}>
-                  <div className="pg" style={{ padding: 0 }}>
-                    <img src="/images/brochure_inside.png" alt="Brochure Inside" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '3px' }} />
+                  <div className="pg" style={{ padding: 0, overflow: 'hidden' }}>
+                    <img src="/images/brochure_cover.jpg" alt="Brochure Cover" style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'scale(1.4)' }} />
                   </div>
-                  <div className="pg" style={{ padding: 0 }}>
-                    <img src="/images/brochure_cover.jpg" alt="Brochure Cover" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '3px' }} />
+                  <div className="pg" style={{ padding: 0, overflow: 'hidden' }}>
+                    <img src="/images/brochure_inside.png" alt="Brochure Inside" style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'scale(1.4)' }} />
                   </div>
                 </div>
               </div>
@@ -228,7 +228,7 @@ export default function PhotoServices() {
             <div className="m" style={{ aspectRatio: '1.5' }}><img src="/images/gallery/Elders%20cooking.jpg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
             <div className="m" style={{ aspectRatio: '1' }}><img src="/images/gallery/Employees%20laughing%20photo.jpeg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
             <div className="m" style={{ aspectRatio: '1.3' }}><img src="/images/gallery/Two%20women%20with%20notepads%20smiling.jpg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-            <div className="m" style={{ aspectRatio: '0.8' }}><img src="/images/gallery/Caregiver%20with%20elderly%20women.jpeg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+            <div className="m" style={{ aspectRatio: '0.8' }}><img src="/images/gallery/Balloon%20activity%20photo.jpeg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
             <div className="m" style={{ aspectRatio: '1.2' }}><img src="/images/gallery/Catherdral%20Health%20Center%20Front%20Photo.jpeg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
             <div className="m" style={{ aspectRatio: '1' }}><img src="/images/gallery/Elderly%20doing%20puzzles%20photo.jpg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
             <div className="m" style={{ aspectRatio: '1.4' }}><img src="/images/gallery/Yorktown%20landscape%20aerial%20photo%202.jpeg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
