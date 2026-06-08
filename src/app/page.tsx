@@ -159,8 +159,13 @@ export default function Home() {
         window.addEventListener('pointerup', () => { down = false; vp.classList.remove('dragging'); });
         track.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); } }, true);
         
-        document.querySelectorAll('.svc-card .svc-toggle').forEach(btn => {
-          btn.addEventListener('click', e => { e.stopPropagation(); btn.closest('.svc-card')!.classList.toggle('open'); ScrollTrigger && ScrollTrigger.refresh && ScrollTrigger.refresh(); });
+        document.querySelectorAll('.svc-card').forEach(card => {
+          card.addEventListener('click', (e: Event) => {
+            if ((e.target as HTMLElement).closest('a')) return;
+            card.classList.toggle('open');
+            // @ts-ignore
+            if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+          });
         });
         window.addEventListener('resize', () => { x = clamp(x); apply(); });
         apply();
