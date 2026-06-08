@@ -35,19 +35,23 @@ export default function Services() {
       }
 
       function initVideoAutoplay() {
-        const video = document.querySelector('.split-image video');
-        if (!video) return;
-        if (!('IntersectionObserver' in window)) { (video as HTMLVideoElement).play().catch(()=>{}); return; }
+        const videos = document.querySelectorAll('.split-image video');
+        if (!videos.length) return;
+        if (!('IntersectionObserver' in window)) { 
+          videos.forEach(v => (v as HTMLVideoElement).play().catch(()=>{})); 
+          return; 
+        }
         const observer = new IntersectionObserver(entries => {
           entries.forEach(entry => {
+            const v = entry.target as HTMLVideoElement;
             if (entry.isIntersecting) {
-              (video as HTMLVideoElement).play().catch(() => {});
+              v.play().catch(() => {});
             } else {
-              (video as HTMLVideoElement).pause();
+              v.pause();
             }
           });
         }, { threshold: 0.2 });
-        observer.observe(video);
+        videos.forEach(v => observer.observe(v));
       }
 
       initMarquee();
@@ -171,7 +175,13 @@ export default function Services() {
               <Link href="/webdesign" className="btn">Learn More</Link>
             </div>
             <div className="split-image">
-              <img src="/images/service_website.png" alt="Website Design" />
+              <video 
+                src="/videos/Website video .mp4" 
+                muted 
+                loop
+                playsInline
+                style={{ pointerEvents: 'none' }}
+              ></video>
             </div>
           </div>
         </div>
@@ -234,7 +244,13 @@ export default function Services() {
               <Link href="/design-print" className="btn">View Print Work</Link>
             </div>
             <div className="split-image">
-              <img src="/images/service_print.png" alt="Print Mockup" />
+              <video 
+                src="/videos/Brochure wavecare video.mp4" 
+                muted 
+                loop
+                playsInline
+                style={{ pointerEvents: 'none' }}
+              ></video>
             </div>
           </div>
         </div>
