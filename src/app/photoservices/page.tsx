@@ -132,12 +132,12 @@ export default function PhotoServices() {
                 </div>
               </div>
               <div className={`ctx-scene ${ctxTab === 1 ? 'on' : ''}`}>
-                <div className="mock-bro" style={{ maxWidth: '800px', width: '100%', gap: '20px', display: 'grid', gridTemplateColumns: '3.5fr 5.5fr' }}>
-                  <div className="pg" style={{ padding: 0, overflow: 'hidden', aspectRatio: '3/4' }}>
+                <div className="mock-bro" style={{ maxWidth: '800px', width: '100%', gap: '20px' }}>
+                  <div className="pg" style={{ padding: 0, overflow: 'hidden', aspectRatio: '4/5' }}>
                     <img src="/images/brochure_inside.png" alt="Brochure Cover" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
-                  <div className="pg" style={{ padding: 0, overflow: 'hidden' }}>
-                    <img src="/images/brochure_cover.jpg" alt="Brochure Inside" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <div className="pg" style={{ padding: 0, overflow: 'hidden', aspectRatio: '4/5', backgroundColor: '#fff' }}>
+                    <img src="/images/brochure_cover.jpg" alt="Brochure Inside" style={{ width: '100%', height: '100%', objectFit: 'contain', transform: 'scale(1.15)' }} />
                   </div>
                 </div>
               </div>
