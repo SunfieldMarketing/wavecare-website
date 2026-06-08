@@ -100,19 +100,23 @@ export default function CaseStudies() {
         }, 400);
       }
 
+      initCount();
+
       // Check and execute
       let retryCount = 0;
       const checkScripts = setInterval(() => {
         retryCount++;
         // @ts-ignore
-        if (window.gsap && window.ScrollTrigger) {
+        if (window.gsap && window.ScrollTrigger && window.THREE) {
           clearInterval(checkScripts);
           initReveals();
+          initWaveAccent();
           // @ts-ignore
           if (window.ScrollTrigger) window.ScrollTrigger.refresh();
         } else if (retryCount > 100) {
           clearInterval(checkScripts); // Give up after ~5 seconds
           initReveals();
+          initWaveAccent();
         }
       }, 50);
     };
@@ -253,7 +257,7 @@ export default function CaseStudies() {
       <section className="final">
         <div className="final-fallback"></div>
         <canvas id="waveCanvas"></canvas>
-        <div className="final-in" data-reveal style={{ textAlign: 'center' }}>
+        <div className="container" data-reveal style={{ textAlign: 'center' }}>
           <div className="label" style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '24px', display: 'inline-flex', justifyContent: 'center' }}>YOUR FACILITY, SEEN THE RIGHT WAY</div>
           <h2>Ready to be the next <em style={{ color: 'var(--teal-bright)', fontStyle: 'italic' }}>case study?</em></h2>
           <p className="sub" style={{ margin: '0 auto 40px', maxWidth: '600px' }}>Tell us about your facility. We'll show you exactly what a Wavecare rebuild could look like — and what it could do for your inquiries.</p>
