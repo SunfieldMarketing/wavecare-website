@@ -155,22 +155,22 @@ export default function CaseStudies() {
             <span className="label">BY THE NUMBERS</span>
             <h2>A decade of <em style={{ color: 'var(--teal-bright)', fontStyle: 'italic' }}>getting it right.</em></h2>
           </div>
-          <div className="stats stagger">
+          <div className="stats four stagger">
             <div className="stat">
-              <div className="n" data-count="10">0</div>
-              <div className="t">Years in Healthcare</div>
+              <div className="num" data-count="10">0</div>
+              <div className="cap">Years in Healthcare</div>
             </div>
             <div className="stat">
-              <div className="n"><span data-count="500">0</span>+</div>
-              <div className="t">Facilities Served</div>
+              <div className="num"><span data-count="500">0</span>+</div>
+              <div className="cap">Facilities Served</div>
             </div>
             <div className="stat">
-              <div className="n" data-count="700">0</div>
-              <div className="t">Assisted Placements</div>
+              <div className="num" data-count="700">0</div>
+              <div className="cap">Assisted Placements</div>
             </div>
             <div className="stat">
-              <div className="n" data-count="2400" data-comma="1">0</div>
-              <div className="t">Smiles Captured</div>
+              <div className="num" data-count="2400" data-comma="1">0</div>
+              <div className="cap">Smiles Captured</div>
             </div>
           </div>
         </div>
@@ -178,11 +178,11 @@ export default function CaseStudies() {
 
       <section className="final">
         <div className="final-fallback"></div>
-        <div className="final-in" data-reveal>
-          <span className="label" style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '24px', display: 'block' }}>YOUR FACILITY, SEEN THE RIGHT WAY</span>
+        <div className="final-in" data-reveal style={{ textAlign: 'center' }}>
+          <div className="label" style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '24px', display: 'inline-flex', justifyContent: 'center' }}>YOUR FACILITY, SEEN THE RIGHT WAY</div>
           <h2>Ready to be the next <em style={{ color: 'var(--teal-bright)', fontStyle: 'italic' }}>case study?</em></h2>
-          <p className="sub">Tell us about your facility. We'll show you exactly what a Wavecare rebuild could look like — and what it could do for your inquiries.</p>
-          <Link href="/contact" className="btn">Book a Call &rarr;</Link>
+          <p className="sub" style={{ margin: '0 auto 40px', maxWidth: '600px' }}>Tell us about your facility. We'll show you exactly what a Wavecare rebuild could look like — and what it could do for your inquiries.</p>
+          <Link href="/contact" className="btn btn-light">Book a Call &rarr;</Link>
         </div>
       </section>
     </>
