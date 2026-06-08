@@ -53,7 +53,7 @@ export default function CaseStudies() {
         const canvas = document.getElementById('waveCanvas');
         if (!canvas || !THREE) { if (canvas) canvas.style.background = 'radial-gradient(ellipse at center,rgba(42,157,143,0.25),transparent 70%)'; return; }
         let renderer; try { renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true }); } catch (e) { canvas.style.display = 'none'; return; }
-        const sec = canvas.parentElement;
+        const sec = canvas.parentElement!;
         function size() { return [sec.clientWidth, sec.clientHeight]; }
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
         let [w, h] = size(); renderer.setSize(w, h);
