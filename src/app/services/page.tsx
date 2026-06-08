@@ -180,7 +180,6 @@ export default function Services() {
                 muted 
                 loop
                 playsInline
-                preload="metadata"
                 style={{ pointerEvents: 'none' }}
               ></video>
             </div>
@@ -217,7 +216,6 @@ export default function Services() {
                 muted 
                 loop
                 playsInline
-                preload="metadata"
                 style={{ pointerEvents: 'none' }}
               ></video>
             </div>
@@ -251,7 +249,6 @@ export default function Services() {
                 muted 
                 loop
                 playsInline
-                preload="metadata"
                 style={{ pointerEvents: 'none' }}
               ></video>
             </div>
