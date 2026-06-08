@@ -318,7 +318,7 @@ export default function About() {
           </div>
           <div className="accordion" id="accordion">
             <article className="acc-panel active" data-cursor>
-              <img src="/images/img_4.jpeg" alt="Brand & photoshoots" /><span className="acc-num">01</span>
+              <img src="/images/brand_photoshoots.jpg" alt="Brand & photoshoots" /><span className="acc-num">01</span>
               <div className="acc-content">
                 <div className="acc-title">Brand &amp; Photoshoots</div>
                 <p className="acc-tag">Build instant trust with a clean, modern healthcare look.</p>
@@ -327,7 +327,7 @@ export default function About() {
               </div>
             </article>
             <article className="acc-panel" data-cursor>
-              <img src="/images/img_5.jpeg" alt="Video production" /><span className="acc-num">02</span>
+              <img src="/images/video_production.jpg" alt="Video production" /><span className="acc-num">02</span>
               <div className="acc-content">
                 <div className="acc-title">Video Production</div>
                 <p className="acc-tag">Short-form &amp; explainer videos that turn views into booked calls.</p>
@@ -336,7 +336,7 @@ export default function About() {
               </div>
             </article>
             <article className="acc-panel" data-cursor>
-              <img src="/images/img_6.jpeg" alt="Design & print" /><span className="acc-num">03</span>
+              <img src="/images/design_print_2.jpg" alt="Design & print" /><span className="acc-num">03</span>
               <div className="acc-content">
                 <div className="acc-title">Design &amp; Print</div>
                 <p className="acc-tag">Patient-ready brochures, banners, menus, and signage.</p>
@@ -345,7 +345,7 @@ export default function About() {
               </div>
             </article>
             <article className="acc-panel" data-cursor>
-              <img src="/images/img_7.jpeg" alt="Web design & management" /><span className="acc-num">04</span>
+              <img src="/images/img_6.jpeg" alt="Web design & management" /><span className="acc-num">04</span>
               <div className="acc-content">
                 <div className="acc-title">Web Design &amp; Management</div>
                 <p className="acc-tag">Fast, conversion-first websites that generate inquiries daily.</p>
