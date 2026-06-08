@@ -439,13 +439,13 @@ export default function Home() {
         </div>
         <div className="marquee">
           <div className="marquee-row" id="marqueeRow">
-            <div className="m-logo"><img src="/images/logos/logo1.png" alt="Client Logo 1" /></div>
-            <div className="m-logo"><img src="/images/logos/logo2.png" alt="Client Logo 2" /></div>
-            <div className="m-logo"><img src="/images/logos/logo3.png" alt="Client Logo 3" className="invert" /></div>
-            <div className="m-logo"><img src="/images/logos/logo4.png" alt="Client Logo 4" /></div>
-            <div className="m-logo"><img src="/images/logos/logo5.png" alt="Client Logo 5" className="scale-up" /></div>
-            <div className="m-logo"><img src="/images/logos/logo6.png" alt="Client Logo 6" /></div>
-            <div className="m-logo"><img src="/images/logos/logo7.png" alt="Client Logo 7" /></div>
+            <div className="m-logo"><img src="/images/logos/logo2.png" alt="The Enclave at Rye" className="scale-up" /></div>
+            <div className="m-logo"><img src="/images/logos/logo3.png" alt="Heart Shield" /></div>
+            <div className="m-logo"><img src="/images/logos/logo4.png" alt="Silverstream" /></div>
+            <div className="m-logo"><img src="/images/logos/logo5.png" alt="Nyack Ridge" /></div>
+            <div className="m-logo"><img src="/images/logos/logo6.png" alt="Galloway" /></div>
+            <div className="m-logo"><img src="/images/logos/logo7.png" alt="South Shore" /></div>
+            <div className="m-logo"><img src="/images/logos/logo8.png" alt="Link Homecare" className="invert" /></div>
           </div>
         </div>
       </section>
