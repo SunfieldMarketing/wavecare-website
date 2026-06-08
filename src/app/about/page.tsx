@@ -223,14 +223,16 @@ export default function About() {
   return (
     <>
       <header className="hero">
-        <div className="hero-bg"><img src="/images/img_3.jpeg" alt="Caregiver with resident at a senior care facility" /></div>
-        <div className="container hero-inner">
+        <div className="hero-bg">
+          <img src="/images/img_3.jpeg" alt="Caregiver with resident at a senior care facility" />
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(6, 42, 36, 0.65)' }}></div>
+        </div>
+        <div className="container hero-inner" style={{ maxWidth: '1000px' }}>
           <svg className="wave-accent" viewBox="0 0 78 26"><path d="M2 13 Q 12 2, 21 13 T 40 13 T 59 13 T 76 11"/></svg>
           <span className="label" data-hero>About Wavecare</span>
-          <h1>
-            <span className="line" data-hero><span>Your facility gets</span></span>
-            <span className="line" data-hero><span>judged in seconds.</span></span>
-            <span className="line" data-hero><span className="accent">We make them count.</span></span>
+          <h1 style={{ fontSize: 'clamp(42px, 6.5vw, 84px)', lineHeight: '1.1' }} data-hero>
+            Your facility gets judged in seconds.<br />
+            <span className="accent">We make them count.</span>
           </h1>
           <p className="hero-sub" data-hero>
             For over a decade we've helped hundreds of nursing homes and healthcare operators get
