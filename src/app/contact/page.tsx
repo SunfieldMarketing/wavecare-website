@@ -71,7 +71,7 @@ export default function Contact() {
     <>
       <section className="chero">
         <div className="chero-bg">
-          <Image src="/case_study_pinnacle_1.jpg" alt="Background" fill style={{ objectFit: 'cover' }} />
+          <Image src="/images/img_3.jpeg" alt="Background" fill style={{ objectFit: 'cover' }} />
         </div>
         <div className="container">
           <div className="chero-grid">
@@ -79,9 +79,6 @@ export default function Contact() {
             <div className="chero-content reveal" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
               <div className="chero-content-top">
                 <span className="label" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'var(--teal-bright)', fontSize: '13px', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '24px' }}>
-                  <svg width="24" height="6" viewBox="0 0 24 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 3C3 1 5 1 7 3C9 5 11 5 13 3C15 1 17 1 19 3C21 5 23 5 23 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
                   GET IN TOUCH
                 </span>
                 <h1>Let's make your<br/><span className="accent">seconds count.</span></h1>
@@ -94,7 +91,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <h4>Reply within one business day</h4>
-                      <p>Real humans. 9 AM - 5 PM daily. No bots, no nonsense.</p>
+                      <p>Real humans, 8 AM – 8 PM daily. No bots, no runaround.</p>
                     </div>
                   </div>
                   <div className="trust-item">
@@ -111,7 +108,7 @@ export default function Contact() {
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                     </div>
                     <div>
-                      <h4>Most projects launch in &lt; 4 weeks</h4>
+                      <h4>Most projects launch in ~2 weeks</h4>
                       <p>From the first call to live, without the drawn-out timeline.</p>
                     </div>
                   </div>
