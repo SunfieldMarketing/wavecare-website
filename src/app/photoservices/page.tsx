@@ -123,19 +123,36 @@ export default function PhotoServices() {
             
             <div className="ctx-stage" style={{ position: 'relative', height: '320px', marginTop: '40px' }}>
               <div className={`ctx-scene ${ctxTab === 0 ? 'on' : ''}`}>
-                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src="/images/park_gardens_website.png" alt="Website" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: '8px', boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }} />
+                <div className="mock-web">
+                  <div className="bar"><i></i><i></i><i></i></div>
+                  <div className="shot">
+                    <img src="/images/park_gardens_website.png" alt="Website" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                  <div className="lines"><span></span><span></span><span></span></div>
                 </div>
               </div>
               <div className={`ctx-scene ${ctxTab === 1 ? 'on' : ''}`}>
-                <div style={{ display: 'flex', gap: '24px', height: '100%', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src="/images/harvest_acres_brochure.jpg" alt="Harvest Acres Brochure" style={{ maxHeight: '90%', objectFit: 'contain', borderRadius: '4px', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }} />
-                  <img src="/images/gardens_brochure_inside.png" alt="The Gardens Brochure" style={{ maxHeight: '90%', objectFit: 'contain', borderRadius: '4px', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }} />
+                <div className="mock-bro">
+                  <div className="pg">
+                    <div className="shot">
+                      <img src="/images/harvest_acres_brochure.jpg" alt="Brochure Cover" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                    <div className="lines"><span></span><span></span></div>
+                  </div>
+                  <div className="pg">
+                    <div className="shot">
+                      <img src="/images/gardens_brochure_inside.png" alt="Brochure Inside" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                    <div className="lines"><span></span><span></span></div>
+                  </div>
                 </div>
               </div>
               <div className={`ctx-scene ${ctxTab === 2 ? 'on' : ''}`}>
-                <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src="/images/gmb_profile_photo.png" alt="Google Business Profile" style={{ maxHeight: '100%', objectFit: 'contain', borderRadius: '8px', boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }} />
+                <div className="mock-goo">
+                  <div className="shot">
+                    <img src="/images/gmb_profile_photo.png" alt="Google Business Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                  <div className="info"><div className="name">Park Gardens &middot; Senior Living</div><div className="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div className="meta"></div></div>
                 </div>
               </div>
             </div>
@@ -187,12 +204,12 @@ export default function PhotoServices() {
               <div className={`proc-sheet dev${procTab}`}>
                 <div className="loupe">{procLoupes[procTab] || procLoupes[0]}</div>
                 {[
-                  '/images/img_1.png', 
-                  '/images/img_2.png', 
-                  '/images/img_3.jpeg', 
-                  '/images/img_4.jpeg', 
-                  '/images/img_5.jpeg', 
-                  '/images/img_6.jpeg'
+                  '/images/proc_1.png', 
+                  '/images/proc_2.png', 
+                  '/images/proc_3.png', 
+                  '/images/proc_4.png', 
+                  '/images/proc_5.png', 
+                  '/images/proc_6.png'
                 ].map((src, idx) => (
                   <div className="frame" key={idx}>
                     <img className="pho" src={src} alt="Process mockup" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -213,15 +230,15 @@ export default function PhotoServices() {
             <h2>A closer <span className="lite">look.</span></h2>
           </div>
           <div className="mason stagger">
-            <div className="m" style={{ aspectRatio: '0.75' }}><div className="placeholder" style={{ width: '100%', height: '100%', background: '#0a3a32' }}></div></div>
-            <div className="m" style={{ aspectRatio: '1.5' }}><div className="placeholder" style={{ width: '100%', height: '100%', background: '#0a3a32' }}></div></div>
-            <div className="m" style={{ aspectRatio: '1' }}><div className="placeholder" style={{ width: '100%', height: '100%', background: '#0a3a32' }}></div></div>
-            <div className="m" style={{ aspectRatio: '1.3' }}><div className="placeholder" style={{ width: '100%', height: '100%', background: '#0a3a32' }}></div></div>
-            <div className="m" style={{ aspectRatio: '0.8' }}><div className="placeholder" style={{ width: '100%', height: '100%', background: '#0a3a32' }}></div></div>
-            <div className="m" style={{ aspectRatio: '1.2' }}><div className="placeholder" style={{ width: '100%', height: '100%', background: '#0a3a32' }}></div></div>
-            <div className="m" style={{ aspectRatio: '1' }}><div className="placeholder" style={{ width: '100%', height: '100%', background: '#0a3a32' }}></div></div>
-            <div className="m" style={{ aspectRatio: '1.4' }}><div className="placeholder" style={{ width: '100%', height: '100%', background: '#0a3a32' }}></div></div>
-            <div className="m" style={{ aspectRatio: '0.9' }}><div className="placeholder" style={{ width: '100%', height: '100%', background: '#0a3a32' }}></div></div>
+            <div className="m" style={{ aspectRatio: '0.75' }}><img src="/images/gallery/Caregiver%20with%20elderly%20man%20playing%20game.jpeg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+            <div className="m" style={{ aspectRatio: '1.5' }}><img src="/images/gallery/Elders%20cooking.jpg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+            <div className="m" style={{ aspectRatio: '1' }}><img src="/images/gallery/Employees%20laughing%20photo.jpeg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+            <div className="m" style={{ aspectRatio: '1.3' }}><img src="/images/gallery/Two%20women%20with%20notepads%20smiling.jpg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+            <div className="m" style={{ aspectRatio: '0.8' }}><img src="/images/gallery/Caregiver%20with%20elderly%20women.jpeg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+            <div className="m" style={{ aspectRatio: '1.2' }}><img src="/images/gallery/Catherdral%20Health%20Center%20Front%20Photo.jpeg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+            <div className="m" style={{ aspectRatio: '1' }}><img src="/images/gallery/Elderly%20doing%20puzzles%20photo.jpg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+            <div className="m" style={{ aspectRatio: '1.4' }}><img src="/images/gallery/Yorktown%20landscape%20aerial%20photo%202.jpeg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+            <div className="m" style={{ aspectRatio: '0.9' }}><img src="/images/gallery/Employees%20smiling.jpeg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
           </div>
           <div style={{ textAlign: 'center', marginTop: '50px' }} data-reveal>
             <Link href="/case-studies" className="btn btn-ghost">View More Work <span className="arr">&rarr;</span></Link>
