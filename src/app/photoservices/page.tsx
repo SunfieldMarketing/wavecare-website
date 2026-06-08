@@ -123,22 +123,19 @@ export default function PhotoServices() {
             
             <div className="ctx-stage" style={{ position: 'relative', height: '320px', marginTop: '40px' }}>
               <div className={`ctx-scene ${ctxTab === 0 ? 'on' : ''}`}>
-                <div className="mock-web">
-                  <div className="bar"><i></i><i></i><i></i></div>
-                  <div className="shot"><div className="placeholder" style={{ width: '100%', height: '100%', background: '#0a3a32' }}></div></div>
-                  <div className="lines"><span></span><span></span><span></span></div>
+                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <img src="/images/park_gardens_website.png" alt="Website" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: '8px', boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }} />
                 </div>
               </div>
               <div className={`ctx-scene ${ctxTab === 1 ? 'on' : ''}`}>
-                <div className="mock-bro">
-                  <div className="pg"><div className="shot"><div className="placeholder" style={{ width: '100%', height: '100%', background: '#0a3a32' }}></div></div><div className="lines"><span></span><span></span></div></div>
-                  <div className="pg"><div className="shot"><div className="placeholder" style={{ width: '100%', height: '100%', background: '#0a3a32' }}></div></div><div className="lines"><span></span><span></span></div></div>
+                <div style={{ display: 'flex', gap: '24px', height: '100%', alignItems: 'center', justifyContent: 'center' }}>
+                  <img src="/images/harvest_acres_brochure.jpg" alt="Harvest Acres Brochure" style={{ maxHeight: '90%', objectFit: 'contain', borderRadius: '4px', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }} />
+                  <img src="/images/gardens_brochure_inside.png" alt="The Gardens Brochure" style={{ maxHeight: '90%', objectFit: 'contain', borderRadius: '4px', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }} />
                 </div>
               </div>
               <div className={`ctx-scene ${ctxTab === 2 ? 'on' : ''}`}>
-                <div className="mock-goo">
-                  <div className="shot"><div className="placeholder" style={{ width: '100%', height: '100%', background: '#0a3a32' }}></div></div>
-                  <div className="info"><div className="name">Park Gardens &middot; Senior Living</div><div className="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div className="meta"></div></div>
+                <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <img src="/images/gmb_profile_photo.png" alt="Google Business Profile" style={{ maxHeight: '100%', objectFit: 'contain', borderRadius: '8px', boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }} />
                 </div>
               </div>
             </div>
@@ -189,9 +186,16 @@ export default function PhotoServices() {
               
               <div className={`proc-sheet dev${procTab}`}>
                 <div className="loupe">{procLoupes[procTab] || procLoupes[0]}</div>
-                {[1, 2, 3, 4, 'select', 6].map((label, idx) => (
+                {[
+                  '/images/img_1.png', 
+                  '/images/img_2.png', 
+                  '/images/img_3.jpeg', 
+                  '/images/img_4.jpeg', 
+                  '/images/img_5.jpeg', 
+                  '/images/img_6.jpeg'
+                ].map((src, idx) => (
                   <div className="frame" key={idx}>
-                    <div className="pho" style={{ width: '100%', height: '100%', background: '#0d4a40' }}></div>
+                    <img className="pho" src={src} alt="Process mockup" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     <div className="pick"></div>
                   </div>
                 ))}
