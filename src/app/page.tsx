@@ -361,7 +361,7 @@ export default function Home() {
             <article className="svc-card" data-cursor>
               <div className="svc-media">
                 <span className="svc-num">02</span>
-                <Image src="/images/img_5.jpeg" alt="Video production" layout="fill" objectFit="cover" />
+                <Image src="/images/video_production.jpg" alt="Video production" layout="fill" objectFit="cover" />
               </div>
               <div className="svc-body">
                 <h3>Video Production</h3>
@@ -382,7 +382,7 @@ export default function Home() {
             <article className="svc-card" data-cursor>
               <div className="svc-media">
                 <span className="svc-num">03</span>
-                <Image src="/images/img_6.jpeg" alt="Design & print" layout="fill" objectFit="cover" />
+                <Image src="/images/design_print.png" alt="Design & print" layout="fill" objectFit="cover" />
               </div>
               <div className="svc-body">
                 <h3>Design &amp; Print</h3>
