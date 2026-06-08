@@ -157,6 +157,7 @@
   .m-logo:hover{opacity:0.9;}
   .m-logo img{max-height:100%; max-width:100%; object-fit:contain; filter: grayscale(1) contrast(1.2) brightness(0.6);}
   .m-logo img.invert{filter: invert(1) grayscale(1) contrast(1.2) brightness(0.6);}
+  .m-logo img.scale-up{transform: scale(1.5);}
 
   /* stats */
   .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
