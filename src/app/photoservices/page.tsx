@@ -82,10 +82,10 @@ export default function PhotoServices() {
               <Link href="/contact" className="btn">Book a Photoshoot <span className="arr">&rarr;</span></Link>
             </div>
             <div className="phero-wall">
-              <div className="cell c1"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div></div>
-              <div className="cell c2"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div></div>
-              <div className="cell c3"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div></div>
-              <div className="cell c4"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div></div>
+              <div className="cell c1"><img src="/images/gallery/Caregiver%20with%20elderly%20women%202.jpeg" alt="Healthcare Photography" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+              <div className="cell c2"><img src="/images/gallery/Yorktown%20front.jpg" alt="Healthcare Photography" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+              <div className="cell c3"><img src="/images/gallery/Yorktown%20landscape%20aerial%20photo.jpeg" alt="Healthcare Photography" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+              <div className="cell c4"><img src="/images/gallery/Employees%20laughing%20photo.jpeg" alt="Healthcare Photography" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
             </div>
           </div>
         </div>
@@ -136,8 +136,8 @@ export default function PhotoServices() {
                   <div className="pg" style={{ padding: 0, overflow: 'hidden', aspectRatio: '4/5' }}>
                     <img src="/images/brochure_inside.png" alt="Brochure Cover" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
-                  <div className="pg" style={{ padding: 0, overflow: 'hidden', aspectRatio: '4/5', backgroundColor: '#fff' }}>
-                    <img src="/images/brochure_cover.jpg" alt="Brochure Inside" style={{ width: '100%', height: '100%', objectFit: 'contain', transform: 'scale(1.15)' }} />
+                  <div className="pg" style={{ padding: 0, overflow: 'hidden', aspectRatio: '4/5' }}>
+                    <img src="/images/brochure_cover.jpg" alt="Brochure Inside" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
                 </div>
               </div>
