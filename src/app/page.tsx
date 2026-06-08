@@ -340,7 +340,7 @@ export default function Home() {
             <article className="svc-card" data-cursor>
               <div className="svc-media">
                 <span className="svc-num">01</span>
-                <Image src="/images/img_4.jpeg" alt="Brand & photoshoots" layout="fill" objectFit="cover" />
+                <Image src="/images/brand_photoshoots.jpg" alt="Brand & photoshoots" layout="fill" objectFit="cover" />
               </div>
               <div className="svc-body">
                 <h3>Brand &amp; Photoshoots</h3>
@@ -382,7 +382,7 @@ export default function Home() {
             <article className="svc-card" data-cursor>
               <div className="svc-media">
                 <span className="svc-num">03</span>
-                <Image src="/images/design_print.png" alt="Design & print" layout="fill" objectFit="cover" />
+                <Image src="/images/design_print.png" alt="Design & print" layout="fill" objectFit="contain" />
               </div>
               <div className="svc-body">
                 <h3>Design &amp; Print</h3>
@@ -403,7 +403,7 @@ export default function Home() {
             <article className="svc-card" data-cursor>
               <div className="svc-media">
                 <span className="svc-num">04</span>
-                <Image src="/images/img_7.jpeg" alt="Web design & management" layout="fill" objectFit="cover" />
+                <Image src="/images/img_6.jpeg" alt="Web design & management" layout="fill" objectFit="cover" />
               </div>
               <div className="svc-body">
                 <h3>Web Design &amp; Management</h3>
