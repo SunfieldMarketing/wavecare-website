@@ -144,7 +144,7 @@ export default function Services() {
               <Link href="/webdesign" className="btn">Learn More</Link>
             </div>
             <div className="split-image">
-              <img src="/images/service_website.png" alt="Website Design" style={{ width: '100%', height: 'auto', borderRadius: '16px' }} />
+              <img src="/images/service_website.png" alt="Website Design" />
             </div>
           </div>
         </div>
@@ -173,13 +173,14 @@ export default function Services() {
                 <Link href="/videoservices" className="btn btn-outline">Video Services</Link>
               </div>
             </div>
-            <div className="split-image" style={{ aspectRatio: '16/9', overflow: 'hidden', borderRadius: '16px' }}>
+            <div className="split-image">
               <video 
                 src="/videos/country_lane_720p.mp4" 
-                width="100%" 
-                height="100%" 
                 controls 
-                style={{ borderRadius: '16px', objectFit: 'cover' }}
+                autoPlay 
+                muted 
+                loop
+                playsInline
               ></video>
             </div>
           </div>
@@ -207,7 +208,7 @@ export default function Services() {
               <Link href="/design-print" className="btn">View Print Work</Link>
             </div>
             <div className="split-image">
-              <img src="/images/service_print.png" alt="Print Mockup" style={{ width: '100%', height: 'auto', borderRadius: '16px' }} />
+              <img src="/images/service_print.png" alt="Print Mockup" />
             </div>
           </div>
         </div>
