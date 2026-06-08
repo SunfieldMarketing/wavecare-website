@@ -132,19 +132,19 @@ export default function PhotoServices() {
                 </div>
               </div>
               <div className={`ctx-scene ${ctxTab === 1 ? 'on' : ''}`}>
-                <div className="mock-bro">
-                  <div className="pg" style={{ padding: 0 }}>
-                    <img src="/images/brochure_cover.jpg" alt="Brochure Cover" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '3px' }} />
-                  </div>
+                <div className="mock-bro" style={{ maxWidth: '700px', gap: '16px' }}>
                   <div className="pg" style={{ padding: 0 }}>
                     <img src="/images/brochure_inside.png" alt="Brochure Inside" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '3px' }} />
+                  </div>
+                  <div className="pg" style={{ padding: 0 }}>
+                    <img src="/images/brochure_cover.jpg" alt="Brochure Cover" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '3px' }} />
                   </div>
                 </div>
               </div>
               <div className={`ctx-scene ${ctxTab === 2 ? 'on' : ''}`}>
                 <div className="mock-goo">
                   <div className="shot">
-                    <img src="/images/gmb.png" alt="Google Business Profile" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%' }} />
+                    <img src="/images/gallery/Caregiver%20with%20elderly%20women.jpeg" alt="Google Business Profile Photo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
                   <div className="info"><div className="name">Park Gardens &middot; Senior Living</div><div className="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div className="meta"></div></div>
                 </div>
