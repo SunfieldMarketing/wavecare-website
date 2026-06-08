@@ -130,9 +130,9 @@ export default function CaseStudies() {
         <div className="container">
           <div className="sec-head center" data-reveal>
             <span className="label">Our Work</span>
-            <h2>Real results for real healthcare brands.</h2>
+            <h2>Real facilities. Real families finding the right care.</h2>
             <p className="sub" style={{ margin: '20px auto 0' }}>
-              We don't just make things look pretty. We build marketing engines that drive tours, patient inquiries, and trust.
+              See how we help healthcare brands look as good as the care they provide.
             </p>
           </div>
 
