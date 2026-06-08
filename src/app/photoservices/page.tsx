@@ -121,24 +121,32 @@ export default function PhotoServices() {
               </div>
             </div>
             
-            <div className="ctx-stage" style={{ position: 'relative', height: '360px', marginTop: '40px' }}>
+            <div className="ctx-stage" style={{ position: 'relative', height: '320px', marginTop: '40px' }}>
               <div className={`ctx-scene ${ctxTab === 0 ? 'on' : ''}`}>
-                <div className="mock-web" style={{ margin: '0 auto', maxHeight: '100%', display: 'flex', flexDirection: 'column' }}>
-                  <div className="bar" style={{ flexShrink: 0 }}><i></i><i></i><i></i></div>
-                  <div style={{ overflow: 'hidden', flexGrow: 1 }}>
+                <div className="mock-web">
+                  <div className="bar"><i></i><i></i><i></i></div>
+                  <div className="shot">
                     <img src="/images/website.png" alt="Website" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
                   </div>
+                  <div className="lines"><span></span><span></span><span></span></div>
                 </div>
               </div>
               <div className={`ctx-scene ${ctxTab === 1 ? 'on' : ''}`}>
-                <div style={{ display: 'flex', gap: '24px', height: '100%', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src="/images/brochure_cover.jpg" alt="Brochure Cover" style={{ maxHeight: '100%', objectFit: 'contain', borderRadius: '4px', boxShadow: '0 20px 40px -10px rgba(0,0,0,0.3)' }} />
-                  <img src="/images/brochure_inside.png" alt="Brochure Inside" style={{ maxHeight: '100%', objectFit: 'contain', borderRadius: '4px', boxShadow: '0 20px 40px -10px rgba(0,0,0,0.3)' }} />
+                <div className="mock-bro">
+                  <div className="pg" style={{ padding: 0 }}>
+                    <img src="/images/brochure_cover.jpg" alt="Brochure Cover" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '3px' }} />
+                  </div>
+                  <div className="pg" style={{ padding: 0 }}>
+                    <img src="/images/brochure_inside.png" alt="Brochure Inside" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '3px' }} />
+                  </div>
                 </div>
               </div>
               <div className={`ctx-scene ${ctxTab === 2 ? 'on' : ''}`}>
-                <div className="mock-goo" style={{ padding: 0, overflow: 'hidden', height: '100%', maxWidth: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', boxShadow: '0 20px 40px -10px rgba(0,0,0,0.3)' }}>
-                  <img src="/images/gmb.png" alt="Google Business Profile" style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: '16px' }} />
+                <div className="mock-goo">
+                  <div className="shot">
+                    <img src="/images/gmb.png" alt="Google Business Profile" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%' }} />
+                  </div>
+                  <div className="info"><div className="name">Park Gardens &middot; Senior Living</div><div className="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div className="meta"></div></div>
                 </div>
               </div>
             </div>
