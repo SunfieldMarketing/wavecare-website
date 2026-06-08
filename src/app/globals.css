@@ -265,15 +265,18 @@
 
   /* footer */
   footer{background:var(--ink); color:var(--on-dark); padding:88px 0 42px; position:relative; z-index:2;}
-  .f-grid{display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:48px; margin-bottom:58px;}
+  .f-grid{display:grid; grid-template-columns:2fr 1fr 1fr; gap:48px; margin-bottom:58px;}
   @media (max-width:860px){ .f-grid{grid-template-columns:1fr 1fr;} }
   @media (max-width:540px){ .f-grid{grid-template-columns:1fr;} }
-  .f-brand img{height:78px; width:auto; margin-bottom:18px;}
-  .f-brand p{max-width:330px; font-size:14px; line-height:1.6; color:var(--muted);}
-  .f-col h4{font-size:12px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--label); margin:0 0 20px;}
-  .f-col ul{list-style:none; padding:0; margin:0;} .f-col li{margin-bottom:11px;}
-  .f-col a{font-size:14px; color:var(--on-dark); transition:color .25s;} .f-col a:hover{color:var(--teal-bright);}
-  .f-bottom{padding-top:30px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted);}
+  .f-brand img{height:36px; width:auto; margin-bottom:0;}
+  .f-logo-row{display:flex; align-items:center; gap:16px; margin-bottom:24px;}
+  .f-logo-text{font-size:22px; font-weight:700; letter-spacing:0.04em; color:var(--on-dark);}
+  .f-brand p{max-width:380px; font-size:15px; line-height:1.6; color:var(--muted);}
+  .f-col h4{font-size:13px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--teal-bright); margin:0 0 24px;}
+  .f-col ul{list-style:none; padding:0; margin:0;} .f-col li{margin-bottom:14px;}
+  .f-col a{font-size:15px; color:var(--on-dark); transition:color .25s;} .f-col a:hover{color:var(--teal-bright);}
+  .f-col a.f-book{color:var(--teal-bright); font-weight:500;}
+  .f-bottom{padding-top:30px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:14px; color:var(--muted);}
 
   /* reveal — IntersectionObserver driven, fires both directions, fails visible */
   [data-reveal]{opacity:0; transform:translateY(34px); transition:opacity .9s ease, transform .9s ease;}
