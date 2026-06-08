@@ -79,7 +79,7 @@ export default function PhotoServices() {
                 <span className="label" style={{ marginBottom: 0 }}>✓ Unintrusive</span>
                 <span className="label" style={{ marginBottom: 0 }}>✓ Conversion-Focused</span>
               </div>
-              <Link href="/contact" className="btn">Book a Photoshoot <span className="arr">&rarr;</span></Link>
+              <Link href="/contact" className="btn">Book a Photoshoot</Link>
             </div>
             <div className="phero-wall">
               <div className="cell c1"><img src="/images/gallery/Caregiver%20with%20elderly%20women%202.jpeg" alt="Healthcare Photography" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
@@ -235,7 +235,7 @@ export default function PhotoServices() {
             <div className="m" style={{ aspectRatio: '0.9' }}><img src="/images/gallery/Employees%20smiling.jpeg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
           </div>
           <div style={{ textAlign: 'center', marginTop: '50px' }} data-reveal>
-            <Link href="/case-studies" className="btn btn-ghost">View More Work <span className="arr">&rarr;</span></Link>
+            <Link href="/case-studies" className="btn btn-ghost">View More Work</Link>
           </div>
         </div>
       </section>
@@ -247,10 +247,11 @@ export default function PhotoServices() {
           <span className="label">A clearer picture of your care</span>
           <h2>Give families a clearer <span className="accent">picture</span> of your care.</h2>
           <p className="sub">We capture the spaces, people, and moments that make your facility feel professional, welcoming, and trustworthy.</p>
-          <Link href="/contact" className="btn">Book a Photoshoot <span className="arr">&rarr;</span></Link>
+          <Link href="/contact" className="btn">Book a Photoshoot</Link>
         </div>
       </section>
     </>
   );
 }
+
 

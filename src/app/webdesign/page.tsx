@@ -75,7 +75,7 @@ export default function WebDesign() {
                 <span className="label" style={{ marginBottom: 0 }}>✓ Mobile Optimized</span>
                 <span className="label" style={{ marginBottom: 0 }}>✓ Fast &amp; Secure</span>
               </div>
-              <Link href="/contact" className="btn">Get a Free Website Audit <span className="arr">&rarr;</span></Link>
+              <Link href="/contact" className="btn">Get a Free Website Audit</Link>
             </div>
             <div className="phero-wall">
               <div className="cell c1"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div></div>
@@ -191,10 +191,11 @@ export default function WebDesign() {
           <span className="label">Are you losing tours online?</span>
           <h2>See how your website really <span className="accent">performs.</span></h2>
           <p className="sub">Let's look at your current site. We'll show you where you're losing traffic, how families perceive your brand online, and exactly how we'd fix it.</p>
-          <Link href="/contact" className="btn btn-light">Get Your Free Website Audit <span className="arr">&rarr;</span></Link>
+          <Link href="/contact" className="btn btn-light">Get Your Free Website Audit</Link>
         </div>
       </section>
     </>
   );
 }
+
 

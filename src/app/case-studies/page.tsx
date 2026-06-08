@@ -76,7 +76,7 @@ export default function CaseStudies() {
                   <span className="lbl">Increase in qualified tours</span>
                 </div>
                 <div className="cs-go">
-                  Read Case Study <span className="arr">&rarr;</span>
+                  Read Case Study
                 </div>
               </div>
             </Link>
@@ -98,7 +98,7 @@ export default function CaseStudies() {
                   <span className="lbl">Higher engagement on ads</span>
                 </div>
                 <div className="cs-go">
-                  Read Case Study <span className="arr">&rarr;</span>
+                  Read Case Study
                 </div>
               </div>
             </Link>
@@ -119,7 +119,7 @@ export default function CaseStudies() {
                   <span className="lbl">Facilities launched</span>
                 </div>
                 <div className="cs-go">
-                  Read Case Study <span className="arr">&rarr;</span>
+                  Read Case Study
                 </div>
               </div>
             </Link>
@@ -141,7 +141,7 @@ export default function CaseStudies() {
                   <span className="lbl">Organic search traffic</span>
                 </div>
                 <div className="cs-go">
-                  Read Case Study <span className="arr">&rarr;</span>
+                  Read Case Study
                 </div>
               </div>
             </Link>
@@ -181,9 +181,10 @@ export default function CaseStudies() {
         <div className="final-in" data-reveal>
           <h2>Ready for your own success story?</h2>
           <p className="sub">Let's build a brand that books tours and earns trust.</p>
-          <Link href="/contact" className="btn">Book a Discovery Call <span className="arr">&rarr;</span></Link>
+          <Link href="/contact" className="btn">Book a Discovery Call</Link>
         </div>
       </section>
     </>
   );
 }
+

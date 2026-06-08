@@ -75,7 +75,7 @@ export default function DesignPrint() {
                 <span className="label" style={{ marginBottom: 0 }}>✓ Facility Signage</span>
                 <span className="label" style={{ marginBottom: 0 }}>✓ Video Brochures</span>
               </div>
-              <Link href="/contact" className="btn">Start a Design Project <span className="arr">&rarr;</span></Link>
+              <Link href="/contact" className="btn">Start a Design Project</Link>
             </div>
             <div className="phero-wall">
               <div className="cell c1"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div></div>
@@ -195,10 +195,11 @@ export default function DesignPrint() {
           <span className="label">Print that speaks for you</span>
           <h2>Leave families with a <span className="accent">lasting</span> impression.</h2>
           <p className="sub">When a family finishes a tour, the materials they take home represent your facility. Make sure they say the right thing.</p>
-          <Link href="/contact" className="btn btn-light">Start a Design Project <span className="arr">&rarr;</span></Link>
+          <Link href="/contact" className="btn btn-light">Start a Design Project</Link>
         </div>
       </section>
     </>
   );
 }
+
 

@@ -91,7 +91,7 @@ export default function VideoServices() {
                 <span className="label" style={{ marginBottom: 0 }}>✓ Scripting &amp; Creative</span>
                 <span className="label" style={{ marginBottom: 0 }}>✓ Multi-Format Delivery</span>
               </div>
-              <Link href="/contact" className="btn">Book a Call <span className="arr">&rarr;</span></Link>
+              <Link href="/contact" className="btn">Book a Call</Link>
             </div>
             <div className="phero-wall">
               <div className="cell c1"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div></div>
@@ -154,10 +154,10 @@ export default function VideoServices() {
               </div>
               
               <div className={`proc-screen dev${procTab + 1}`}>
-                <div className="frame"><div className="placeholder" style={{ width: '100%', height: '100%', background: '#0a3a32' }}></div><div className="ui"><div className="rec"><div className="led"></div>REC</div></div></div>
-                <div className="frame"><div className="placeholder" style={{ width: '100%', height: '100%', background: '#0a3a32' }}></div><div className="ui"><div className="rec"><div className="led"></div>REC</div></div></div>
-                <div className="frame"><div className="placeholder" style={{ width: '100%', height: '100%', background: '#0a3a32' }}></div><div className="ui"><div className="rec"><div className="led"></div>REC</div></div></div>
-                <div className="frame"><div className="placeholder" style={{ width: '100%', height: '100%', background: '#0a3a32' }}></div><div className="ui"><div className="rec"><div className="led"></div>REC</div></div></div>
+                <div className="frame"><img src="/images/vid_proc_1.png" alt="Strategy and Scripting" /><div className="ui"><div className="rec"><div className="led"></div>REC</div></div></div>
+                <div className="frame"><img src="/images/vid_proc_2.png" alt="Pre-Production" /><div className="ui"><div className="rec"><div className="led"></div>REC</div></div></div>
+                <div className="frame"><img src="/images/vid_proc_3.png" alt="Production Day" /><div className="ui"><div className="rec"><div className="led"></div>REC</div></div></div>
+                <div className="frame"><img src="/images/vid_proc_4.png" alt="Post and Delivery" /><div className="ui"><div className="rec"><div className="led"></div>REC</div></div></div>
               </div>
             </div>
           </div>
@@ -283,10 +283,11 @@ export default function VideoServices() {
           <span className="label">Your facility, seen the right way</span>
           <h2>Let families see the <span className="accent">care</span> behind your facility.</h2>
           <p className="sub">From planning and scripting to filming and final delivery, we manage the entire production process to create polished videos that build trust and support admissions growth.</p>
-          <Link href="/contact" className="btn btn-light">Book a Call <span className="arr">&rarr;</span></Link>
+          <Link href="/contact" className="btn btn-light">Book a Call</Link>
         </div>
       </section>
     </>
   );
 }
+
 

@@ -102,7 +102,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
                 <p key={i} style={{ color: 'var(--on-dark)', fontSize: '17px', lineHeight: '1.85', marginBottom: '22px' }}>{para}</p>
               ))}
               <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginTop: '36px' }}>
-                <Link href="/contact" className="btn">Start Your Project <span className="arr">→</span></Link>
+                <Link href="/contact" className="btn">Start Your Project</Link>
                 <Link href="/case-studies" className="btn btn-ghost">← All Case Studies</Link>
               </div>
             </div>
@@ -117,7 +117,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           <span className="label">Ready for results like this?</span>
           <h2>Let's build your success story.</h2>
           <p className="sub">Book a free discovery call and we'll map out exactly what we'd build for your facility.</p>
-          <Link href="/contact" className="btn">Book a Call <span className="arr">→</span></Link>
+          <Link href="/contact" className="btn">Book a Call</Link>
         </div>
       </section>
     </>
