@@ -5,7 +5,7 @@
 .chero-bg img{width:100%; height:100%; object-fit:cover;}
 .chero-bg::after{content:""; position:absolute; inset:0; background:linear-gradient(120deg, rgba(6,42,36,0.96) 0%, rgba(6,42,36,0.88) 45%, rgba(6,42,36,0.74) 100%);}
 .chero .container{position:relative; z-index:2;}
-.chero-grid{display:grid; grid-template-columns:1fr 1.05fr; gap:clamp(36px,5vw,80px); align-items:start;}
+.chero-grid{display:grid; grid-template-columns:1fr 1.05fr; gap:clamp(36px,5vw,80px); align-items:stretch;}
 @media (max-width:920px){ .chero-grid{grid-template-columns:1fr; gap:44px;} }
 
 .chero .wave-accent{width:74px; height:24px; margin-bottom:20px; overflow:visible;}

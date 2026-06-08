@@ -71,38 +71,49 @@ export default function Contact() {
     <>
       <section className="chero">
         <div className="chero-bg">
-          <div className="placeholder" style={{ width: '100%', height: '100%', background: '#062A24' }}></div>
+          <Image src="/case_study_pinnacle_1.jpg" alt="Background" fill style={{ objectFit: 'cover' }} />
         </div>
         <div className="container">
           <div className="chero-grid">
             
-            <div className="chero-content reveal">
-              <svg className="wave-accent" viewBox="0 0 74 24">
-                <path d="M2,12 Q12,2 20,12 T38,12 T56,12 T72,12"></path>
-              </svg>
-              <h1>Let's Make Your<br/><span className="accent">Seconds Count.</span></h1>
-              <p className="chero-sub">Tell us about your facility and we'll show you exactly what we'd build, capture, or design. We reply within one business day.</p>
-              
-              <div className="trust-list stagger">
-                <div className="trust-item">
-                  <div className="ic">✓</div>
-                  <div>
-                    <h4>Transparent Pricing</h4>
-                    <p>No hidden fees. We scope everything upfront.</p>
+            <div className="chero-content reveal" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
+              <div className="chero-content-top">
+                <span className="label" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'var(--teal-bright)', fontSize: '13px', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '24px' }}>
+                  <svg width="24" height="6" viewBox="0 0 24 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 3C3 1 5 1 7 3C9 5 11 5 13 3C15 1 17 1 19 3C21 5 23 5 23 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  GET IN TOUCH
+                </span>
+                <h1>Let's make your<br/><span className="accent">seconds count.</span></h1>
+                <p className="chero-sub">Tell us about your facility and we'll show you exactly what we'd build, capture, or design to bring the right families through your doors.</p>
+                
+                <div className="trust-list stagger">
+                  <div className="trust-item">
+                    <div className="ic">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <div>
+                      <h4>Reply within one business day</h4>
+                      <p>Real humans. 9 AM - 5 PM daily. No bots, no nonsense.</p>
+                    </div>
                   </div>
-                </div>
-                <div className="trust-item">
-                  <div className="ic">✓</div>
-                  <div>
-                    <h4>Fast Turnarounds</h4>
-                    <p>Healthcare moves fast. So do our deliverables.</p>
+                  <div className="trust-item">
+                    <div className="ic">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <div>
+                      <h4>HIPAA-conscious from day one</h4>
+                      <p>Privacy and resident dignity built into everything we produce.</p>
+                    </div>
                   </div>
-                </div>
-                <div className="trust-item">
-                  <div className="ic">✓</div>
-                  <div>
-                    <h4>HIPAA Conscious</h4>
-                    <p>We know how to operate safely in your environment.</p>
+                  <div className="trust-item">
+                    <div className="ic">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </div>
+                    <div>
+                      <h4>Most projects launch in &lt; 4 weeks</h4>
+                      <p>From the first call to live, without the drawn-out timeline.</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -113,11 +124,11 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="reveal" style={{ transitionDelay: '0.2s' }}>
-              <div className={`form-card ${status === 'success' ? 'done' : ''}`}>
+            <div className="reveal" style={{ transitionDelay: '0.2s', height: '100%' }}>
+              <div className={`form-card ${status === 'success' ? 'done' : ''}`} style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <form className={`form ${status === 'sending' ? 'sending' : ''}`} onSubmit={handleSubmit}>
-                  <h2>Start a Project</h2>
-                  <p className="fsub">Fill out the form below to get in touch.</p>
+                  <h2>Send us a message</h2>
+                  <p className="fsub">Prefer to talk? <Link href="#calendar" style={{ color: 'var(--teal-bright)', textDecoration: 'none' }}>Book a call instead &rarr;</Link></p>
 
                   <div className="field">
                     <label>Name <span className="req">*</span></label>
@@ -135,9 +146,9 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <div className="chips-label">Services Interested In</div>
+                    <div className="chips-label">What do you need help with?</div>
                     <div className="chips">
-                      {['Web Design', 'Photography', 'Video', 'Print & Branding'].map(chip => (
+                      {['Brand & Photos', 'Video', 'Design & Print', 'Web Design', 'Not sure yet'].map(chip => (
                         <div 
                           key={chip}
                           className={`chip ${selectedChips[chip] ? 'on' : ''}`}
@@ -150,8 +161,8 @@ export default function Contact() {
                   </div>
 
                   <div className="field">
-                    <label>Project Details</label>
-                    <textarea placeholder="Tell us a little bit about what you're looking for..."></textarea>
+                    <label>Tell us about your facility (Optional)</label>
+                    <textarea placeholder="A sentence or two about what you're working on..."></textarea>
                   </div>
 
                   <button type="submit" className="btn submit-btn" disabled={status === 'sending'}>
@@ -176,24 +187,29 @@ export default function Contact() {
       <section className="sec-pad ink">
         <div className="container">
           <div className="sec-head center reveal">
-            <span className="label">Process</span>
-            <h2>What happens next?</h2>
+            <span className="label" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'var(--teal-bright)', fontSize: '13px', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '24px', justifyContent: 'center' }}>
+              <svg width="24" height="6" viewBox="0 0 24 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 3C3 1 5 1 7 3C9 5 11 5 13 3C15 1 17 1 19 3C21 5 23 5 23 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              WHAT HAPPENS NEXT
+            </span>
+            <h2>From hello to live, here's the path.</h2>
           </div>
           <div className="steps stagger">
             <div className="step">
               <div className="sn">01</div>
-              <h3>Discovery Call</h3>
-              <p>A quick 15-minute chat to understand your goals, timeline, and whether we're the right fit for your facility.</p>
+              <h3>We listen & audit</h3>
+              <p>We learn about your facility, your audience, and review your current online presence — what's working and what's costing you tours.</p>
             </div>
             <div className="step">
               <div className="sn">02</div>
-              <h3>Custom Proposal</h3>
-              <p>We'll send over a detailed scope of work with transparent pricing and a clear timeline for deliverables.</p>
+              <h3>We map the plan</h3>
+              <p>You get a clear, no-filler plan for exactly what we'd build, capture, or design — with honest timelines and scope.</p>
             </div>
             <div className="step">
               <div className="sn">03</div>
-              <h3>Kickoff</h3>
-              <p>Once approved, we get straight to work. Web builds start immediately, and shoots are scheduled at your convenience.</p>
+              <h3>We make it count</h3>
+              <p>We produce the work and optimize the journey, so the right families come across your community and say "yeah, this feels right."</p>
             </div>
           </div>
         </div>
@@ -201,10 +217,10 @@ export default function Contact() {
 
       <section className="sec-pad deep">
         <div className="container">
-          <div className="sec-head center reveal">
-            <h2>Rather book a meeting?</h2>
-            <p className="lead" style={{ margin: '20px auto 0', maxWidth: '600px', textAlign: 'center' }}>
-              Skip the form and grab a time directly on our calendar. We'll send a brief questionnaire before we talk.
+          <div className="sec-head center reveal" id="calendar">
+            <h2>Rather Just Grab a Time?</h2>
+            <p className="lead" style={{ margin: '20px auto 0', maxWidth: '600px', textAlign: 'center', color: 'var(--on-dark)' }}>
+              Book a call that fits your schedule.<br/>Pick a slot and we'll come prepared with ideas specific to your facility.
             </p>
           </div>
           <div className="cal-wrap reveal">
