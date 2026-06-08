@@ -26,6 +26,33 @@ export default function Services() {
         }, 400);
       }
 
+      function initMarquee() {
+        const row = document.getElementById('marqueeRow'); if (!row) return;
+        row.innerHTML += row.innerHTML; let x = 0, half = row.scrollWidth / 2;
+        function tick() { x -= 0.6; if (-x >= half) x += half; row!.style.transform = `translateX(${x}px)`; requestAnimationFrame(tick); }
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reduceMotion) tick();
+      }
+
+      function initVideoAutoplay() {
+        const video = document.querySelector('.split-image video');
+        if (!video) return;
+        if (!('IntersectionObserver' in window)) { (video as HTMLVideoElement).play().catch(()=>{}); return; }
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              (video as HTMLVideoElement).play().catch(() => {});
+            } else {
+              (video as HTMLVideoElement).pause();
+            }
+          });
+        }, { threshold: 0.2 });
+        observer.observe(video);
+      }
+
+      initMarquee();
+      initVideoAutoplay();
+
       // Check and execute
       let retryCount = 0;
       const checkScripts = setInterval(() => {
@@ -71,8 +98,8 @@ export default function Services() {
               online as they are in person.
             </p>
             <div className="hero-actions reveal delay-3">
-              <Link href="/contact" className="btn">Book a Call</Link>
-              <Link href="#services" className="btn btn-outline" style={{ background: 'transparent' }}>See Our Services</Link>
+              <Link href="/contact" className="btn btn-light">Book a Call</Link>
+              <Link href="#services" className="btn btn-ghost" style={{ background: 'transparent' }}>See Our Services</Link>
             </div>
           </div>
         </div>
@@ -169,18 +196,17 @@ export default function Services() {
                 <li>Commercials &amp; facility tour films</li>
               </ul>
               <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-                <Link href="/photoservices" className="btn">Photo Services</Link>
-                <Link href="/videoservices" className="btn btn-outline">Video Services</Link>
+                <Link href="/photoservices" className="btn btn-light">Photo Services</Link>
+                <Link href="/videoservices" className="btn btn-ghost">Video Services</Link>
               </div>
             </div>
             <div className="split-image">
               <video 
                 src="/videos/country_lane_720p.mp4" 
-                controls 
-                autoPlay 
                 muted 
                 loop
                 playsInline
+                style={{ pointerEvents: 'none' }}
               ></video>
             </div>
           </div>
@@ -271,7 +297,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="testimonial-section">
+      <section className="testimonial-section sec-pad">
         <div className="testimonial-bg"></div>
         <div className="container">
           <div className="testimonial-head reveal">
@@ -316,7 +342,7 @@ export default function Services() {
             Schedule a free discovery call to see how we can transform your facility's marketing.
           </p>
           <div className="reveal delay-3">
-            <Link href="/contact" className="btn">Book a Call</Link>
+            <Link href="/contact" className="btn btn-light">Book a Call</Link>
           </div>
         </div>
       </section>
