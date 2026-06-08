@@ -19,17 +19,8 @@ export default function About() {
 
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      // Hard fallback: force ALL animated elements visible after 100ms — no library dependency
-      setTimeout(() => {
-        document.querySelectorAll('[data-reveal],[data-hero],.stagger').forEach(el => {
-          el.classList.add('in');
-          (el as HTMLElement).style.opacity = '1';
-          (el as HTMLElement).style.transform = 'none';
-        });
-        const wp = document.querySelector('.wave-accent path') as SVGPathElement | null;
-        if (wp) wp.style.strokeDashoffset = '0';
-      }, 100);
       
+
       function initReveals() {
         const els = document.querySelectorAll('[data-reveal],.stagger');
         if (!('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('in')); return; }
