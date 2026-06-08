@@ -121,7 +121,7 @@ export default function PhotoServices() {
               </div>
             </div>
             
-            <div className="ctx-stage" style={{ position: 'relative', height: '320px', marginTop: '40px' }}>
+            <div className="ctx-stage" style={{ position: 'relative', height: '440px', marginTop: '40px' }}>
               <div className={`ctx-scene ${ctxTab === 0 ? 'on' : ''}`}>
                 <div className="mock-web">
                   <div className="bar"><i></i><i></i><i></i></div>
@@ -132,12 +132,12 @@ export default function PhotoServices() {
                 </div>
               </div>
               <div className={`ctx-scene ${ctxTab === 1 ? 'on' : ''}`}>
-                <div className="mock-bro" style={{ maxWidth: '700px', gap: '16px' }}>
-                  <div className="pg" style={{ padding: 0, overflow: 'hidden' }}>
-                    <img src="/images/brochure_cover.jpg" alt="Brochure Cover" style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'scale(1.4)' }} />
+                <div className="mock-bro" style={{ maxWidth: '800px', width: '100%', gap: '20px' }}>
+                  <div className="pg" style={{ padding: 0, overflow: 'hidden', aspectRatio: '4/5' }}>
+                    <img src="/images/brochure_cover.jpg" alt="Brochure Cover" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
-                  <div className="pg" style={{ padding: 0, overflow: 'hidden' }}>
-                    <img src="/images/brochure_inside.png" alt="Brochure Inside" style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'scale(1.4)' }} />
+                  <div className="pg" style={{ padding: 0, overflow: 'hidden', aspectRatio: '4/5' }}>
+                    <img src="/images/brochure_inside.png" alt="Brochure Inside" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
                 </div>
               </div>
