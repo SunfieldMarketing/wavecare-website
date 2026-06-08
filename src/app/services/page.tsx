@@ -144,7 +144,7 @@ export default function Services() {
               <Link href="/webdesign" className="btn">Learn More</Link>
             </div>
             <div className="split-image">
-              <div className="placeholder">WEB SCREENSHOT</div>
+              <img src="/images/service_website.png" alt="Website Design" style={{ width: '100%', height: 'auto', borderRadius: '16px' }} />
             </div>
           </div>
         </div>
@@ -173,8 +173,16 @@ export default function Services() {
                 <Link href="/videoservices" className="btn btn-outline">Video Services</Link>
               </div>
             </div>
-            <div className="split-image">
-              <div className="placeholder">PHOTO & VIDEO REEL</div>
+            <div className="split-image" style={{ aspectRatio: '16/9', overflow: 'hidden', borderRadius: '16px' }}>
+              <iframe 
+                src="https://jumpshare.com/embed/MUXprcQJvoGtTZeWQLnA" 
+                width="100%" 
+                height="100%" 
+                frameBorder="0" 
+                allowFullScreen 
+                style={{ borderRadius: '16px', border: 'none' }}
+                title="Photo & Video"
+              ></iframe>
             </div>
           </div>
         </div>
@@ -201,7 +209,7 @@ export default function Services() {
               <Link href="/design-print" className="btn">View Print Work</Link>
             </div>
             <div className="split-image">
-              <div className="placeholder">PRINT MOCKUP</div>
+              <img src="/images/service_print.png" alt="Print Mockup" style={{ width: '100%', height: 'auto', borderRadius: '16px' }} />
             </div>
           </div>
         </div>
@@ -250,12 +258,16 @@ export default function Services() {
               <div className="stat-label">HIPAA Compliant</div>
             </div>
           </div>
-          <div className="logos-row reveal delay-2">
-            <div className="logo-placeholder">LOGO 1</div>
-            <div className="logo-placeholder">LOGO 2</div>
-            <div className="logo-placeholder">LOGO 3</div>
-            <div className="logo-placeholder">LOGO 4</div>
-            <div className="logo-placeholder">LOGO 5</div>
+        </div>
+        <div className="marquee">
+          <div className="marquee-row" id="marqueeRow">
+            <div className="m-logo"><img src="/images/logos/logo2.png" alt="The Enclave at Rye" className="scale-up" /></div>
+            <div className="m-logo"><img src="/images/logos/logo3.png" alt="Heart Shield" /></div>
+            <div className="m-logo"><img src="/images/logos/logo4.png" alt="Silverstream" /></div>
+            <div className="m-logo"><img src="/images/logos/logo5.png" alt="Nyack Ridge" /></div>
+            <div className="m-logo"><img src="/images/logos/logo6.png" alt="Galloway" /></div>
+            <div className="m-logo"><img src="/images/logos/logo7.png" alt="South Shore" /></div>
+            <div className="m-logo"><img src="/images/logos/logo8.png" alt="Link Homecare" className="invert" /></div>
           </div>
         </div>
       </section>
