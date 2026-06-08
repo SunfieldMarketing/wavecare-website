@@ -382,7 +382,7 @@ export default function Home() {
             <article className="svc-card" data-cursor>
               <div className="svc-media">
                 <span className="svc-num">03</span>
-                <Image src="/images/design_print.png" alt="Design & print" layout="fill" objectFit="contain" />
+                <Image src="/images/design_print_2.jpg" alt="Design & print" layout="fill" objectFit="contain" />
               </div>
               <div className="svc-body">
                 <h3>Design &amp; Print</h3>
