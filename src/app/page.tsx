@@ -439,13 +439,13 @@ export default function Home() {
         </div>
         <div className="marquee">
           <div className="marquee-row" id="marqueeRow">
-            <div className="m-logo">LINK</div>
-            <div className="m-logo">CITADEL</div>
-            <div className="m-logo">LOGO 3</div>
-            <div className="m-logo">LOGO 4</div>
-            <div className="m-logo">LOGO 5</div>
-            <div className="m-logo">LOGO 6</div>
-            <div className="m-logo">LOGO 7</div>
+            <div className="m-logo"><img src="/images/logos/logo1.png" alt="Client Logo 1" /></div>
+            <div className="m-logo"><img src="/images/logos/logo2.png" alt="Client Logo 2" /></div>
+            <div className="m-logo"><img src="/images/logos/logo3.png" alt="Client Logo 3" /></div>
+            <div className="m-logo"><img src="/images/logos/logo4.png" alt="Client Logo 4" /></div>
+            <div className="m-logo"><img src="/images/logos/logo5.png" alt="Client Logo 5" /></div>
+            <div className="m-logo"><img src="/images/logos/logo6.png" alt="Client Logo 6" /></div>
+            <div className="m-logo"><img src="/images/logos/logo7.png" alt="Client Logo 7" /></div>
           </div>
         </div>
       </section>
