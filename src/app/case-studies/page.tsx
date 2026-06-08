@@ -152,25 +152,25 @@ export default function CaseStudies() {
       <section className="sec-pad panel deep">
         <div className="container">
           <div className="sec-head center" data-reveal>
-            <h2>By the numbers</h2>
-            <p className="sub" style={{ margin: '20px auto 0' }}>The impact we've had on our clients across the country.</p>
+            <span className="label">BY THE NUMBERS</span>
+            <h2>A decade of <em style={{ color: 'var(--teal-bright)', fontStyle: 'italic' }}>getting it right.</em></h2>
           </div>
           <div className="stats stagger">
             <div className="stat">
-              <div className="n">50+</div>
+              <div className="n" data-count="10">0</div>
+              <div className="t">Years in Healthcare</div>
+            </div>
+            <div className="stat">
+              <div className="n"><span data-count="500">0</span>+</div>
               <div className="t">Facilities Served</div>
             </div>
             <div className="stat">
-              <div className="n">1M+</div>
-              <div className="t">Video Views</div>
+              <div className="n" data-count="700">0</div>
+              <div className="t">Assisted Placements</div>
             </div>
             <div className="stat">
-              <div className="n">100%</div>
-              <div className="t">HIPAA Compliant</div>
-            </div>
-            <div className="stat">
-              <div className="n">35%</div>
-              <div className="t">Avg. Lead Increase</div>
+              <div className="n" data-count="2400" data-comma="1">0</div>
+              <div className="t">Smiles Captured</div>
             </div>
           </div>
         </div>
@@ -179,9 +179,10 @@ export default function CaseStudies() {
       <section className="final">
         <div className="final-fallback"></div>
         <div className="final-in" data-reveal>
-          <h2>Ready for your own success story?</h2>
-          <p className="sub">Let's build a brand that books tours and earns trust.</p>
-          <Link href="/contact" className="btn">Book a Discovery Call</Link>
+          <span className="label" style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '24px', display: 'block' }}>YOUR FACILITY, SEEN THE RIGHT WAY</span>
+          <h2>Ready to be the next <em style={{ color: 'var(--teal-bright)', fontStyle: 'italic' }}>case study?</em></h2>
+          <p className="sub">Tell us about your facility. We'll show you exactly what a Wavecare rebuild could look like — and what it could do for your inquiries.</p>
+          <Link href="/contact" className="btn">Book a Call &rarr;</Link>
         </div>
       </section>
     </>
