@@ -25,7 +25,7 @@ export default function CaseStudies() {
         if (!('IntersectionObserver' in window)) {
           els.forEach(el => {
             const c = (el as HTMLElement).dataset.comma === '1';
-            const t = +(el as HTMLElement).dataset.count;
+            const t = +(el as HTMLElement).dataset.count!;
             el.textContent = c ? t.toLocaleString() : t.toString();
           });
           return;
@@ -33,9 +33,9 @@ export default function CaseStudies() {
         const io = new IntersectionObserver(es => {
           es.forEach(en => {
             if (!en.isIntersecting) return;
-            const el = en.target;
+            const el = en.target as HTMLElement;
             io.unobserve(el);
-            const target = +el.dataset.count, comma = el.dataset.comma === '1', suf = el.dataset.suffix || '', dur = reduceMotion ? 0 : 1700, t0 = performance.now();
+            const target = +el.dataset.count!, comma = el.dataset.comma === '1', suf = el.dataset.suffix || '', dur = reduceMotion ? 0 : 1700, t0 = performance.now();
             (function step(now) {
               const k = dur ? Math.min((now - t0) / dur, 1) : 1;
               const e = 1 - Math.pow(1 - k, 3);
