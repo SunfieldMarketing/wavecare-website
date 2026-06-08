@@ -174,15 +174,13 @@ export default function Services() {
               </div>
             </div>
             <div className="split-image" style={{ aspectRatio: '16/9', overflow: 'hidden', borderRadius: '16px' }}>
-              <iframe 
-                src="https://jumpshare.com/embed/MUXprcQJvoGtTZeWQLnA" 
+              <video 
+                src="/videos/country_lane_720p.mp4" 
                 width="100%" 
                 height="100%" 
-                frameBorder="0" 
-                allowFullScreen 
-                style={{ borderRadius: '16px', border: 'none' }}
-                title="Photo & Video"
-              ></iframe>
+                controls 
+                style={{ borderRadius: '16px', objectFit: 'cover' }}
+              ></video>
             </div>
           </div>
         </div>
