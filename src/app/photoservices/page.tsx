@@ -197,7 +197,7 @@ export default function PhotoServices() {
           
           <div data-reveal>
             <BeforeAfterSlider 
-              beforeImage="/images/gallery/yorktown_front_before.jpg" 
+              beforeImage="/images/gallery/Yorktown_front_before.jpg" 
               afterImage="/images/gallery/Yorktown%20front.jpg"
             />
             <p className="ba-caption">Drag the handle &mdash; left is typical phone photo // right is professional photography</p>
