@@ -324,10 +324,10 @@ export default function PhotoServices() {
       {/* ========== PROCESS ========== */}
       <section className="panel ink sec-pad">
         <div className="container">
-          <div className="sec-head" data-reveal>
+          <div className="sec-head" data-reveal style={{ maxWidth: '1000px' }}>
             <span className="label">Our Process</span>
-            <h2>From shot list to <span className="accent">final gallery.</span></h2>
-            <p className="sub" style={{ marginTop: '18px' }}>Hover a phase &mdash; watch the contact sheet develop from raw proofs to the final selects.</p>
+            <h2 style={{ textWrap: 'unset' }}>From shot list to <span className="accent">final gallery.</span></h2>
+            <p className="sub" style={{ marginTop: '18px', maxWidth: '600px' }}>Hover a phase &mdash; watch the contact sheet develop from raw proofs to the final selects.</p>
           </div>
           
           <div className="proc-tabs" data-reveal>
@@ -386,9 +386,9 @@ export default function PhotoServices() {
       {/* ========== GALLERY ========== */}
       <section className="panel deep sec-pad" id="gallery">
         <div className="container">
-          <div className="sec-head center" data-reveal>
+          <div className="sec-head center" data-reveal style={{ maxWidth: '1000px' }}>
             <span className="label">THE WORK</span>
-            <h2>Real facilities, <span className="accent">real moments.</span></h2>
+            <h2 style={{ textWrap: 'unset' }}>Real facilities, <span className="accent">real moments.</span></h2>
             <p className="sub" style={{ marginTop: '16px', maxWidth: '600px', margin: '16px auto 0' }}>
               Filter by what you need to see. Every image is shot on location &mdash; no stock, ever.
             </p>
