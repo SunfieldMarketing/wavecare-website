@@ -191,7 +191,7 @@ export default function PhotoServices() {
         <div className="container">
           <div className="sec-head" data-reveal style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 60px' }}>
             <span className="label">WHY PROFESSIONAL PHOTOGRAPHY MATTERS</span>
-            <h2>Families form their first <br/><span className="accent">impression online.</span></h2>
+            <h2>Families form their first <span className="accent">impression online.</span></h2>
             <p className="sub" style={{ marginTop: '18px' }}>Outdated, inconsistent, or stock photography can make even the best facility feel untrustworthy. Drag to see the difference real photography makes.</p>
           </div>
           
@@ -211,8 +211,7 @@ export default function PhotoServices() {
           <div className="sec-head" data-reveal style={{ textAlign: 'center', margin: '0 auto 60px' }}>
             <span className="label">WHAT WE PHOTOGRAPH</span>
             <h2 style={{ fontSize: 'clamp(40px, 5vw, 64px)', lineHeight: '1.1', marginTop: '16px' }}>
-              Everything that tells your <br />
-              <span className="accent" style={{ fontStyle: 'italic' }}>story.</span>
+              Everything that tells your <span className="accent" style={{ fontStyle: 'italic' }}>story.</span>
             </h2>
           </div>
           
@@ -247,27 +246,27 @@ export default function PhotoServices() {
             
             <div className="ctx-tabs" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <div className={`ctx-tab ${ctxTab === 0 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(0)} onClick={() => setCtxTab(0)} style={{ width: '100%', justifyContent: 'flex-start' }}>
-                <div className="ic">✓</div>
+                <div className="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="20" x2="22" y2="20"></line></svg></div>
                 <div style={{ textAlign: 'left' }}>
                   <h3>Website</h3><p>Stronger first impression, instant trust.</p>
                 </div>
               </div>
               <div className={`ctx-tab ${ctxTab === 1 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(1)} onClick={() => setCtxTab(1)} style={{ width: '100%', justifyContent: 'flex-start' }}>
-                <div className="ic">✓</div>
+                <div className="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></div>
                 <div style={{ textAlign: 'left' }}>
                   <h3>Brochures &amp; Packets</h3><p>Polished materials for tours and admissions.</p>
                 </div>
               </div>
               <div className={`ctx-tab ${ctxTab === 2 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(2)} onClick={() => setCtxTab(2)} style={{ width: '100%', justifyContent: 'flex-start' }}>
-                <div className="ic">✓</div>
+                <div className="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
                 <div style={{ textAlign: 'left' }}>
                   <h3>Google Business Profile</h3><p>Better local visibility with real imagery.</p>
                 </div>
               </div>
             </div>
           </div>
-          <div className="ctx" data-reveal style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <div className="ctx-stage" style={{ position: 'relative', height: '100%', minHeight: '440px', width: '100%' }}>
+          <div className="ctx" data-reveal style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
+            <div className="ctx-stage" style={{ position: 'relative', height: '100%', minHeight: '520px', width: '115%', marginLeft: '-7.5%' }}>
               <div className={`ctx-scene ${ctxTab === 0 ? 'on' : ''}`}>
                 <div className="mock-web">
                   <div className="bar"><i></i><i></i><i></i></div>

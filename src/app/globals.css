@@ -69,7 +69,7 @@
     text-transform:uppercase; color:var(--teal-accent); margin-bottom:28px;}
   .label::before{content:""; width:34px; height:1px; background:var(--teal-accent);}
   .label.dark{color:var(--teal-primary);} .label.dark::before{background:var(--teal-primary);}
-  h1,h2,h3{font-family:var(--font-display); font-weight:400; line-height:1.04; letter-spacing:-0.015em; margin:0;}
+  h1,h2,h3{font-family:var(--font-display); font-weight:400; line-height:1.04; letter-spacing:-0.015em; margin:0; text-wrap:balance;}
   h2{font-size:clamp(34px,5vw,68px);} h3{font-size:clamp(22px,2.2vw,30px);}
   .accent{color:var(--teal-accent); font-style:italic;}
   .lite{font-style:italic; font-weight:300;}
