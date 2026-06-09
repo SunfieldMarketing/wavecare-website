@@ -79,22 +79,66 @@ export default function VideoServices() {
         els.forEach(el => io.observe(el));
       }
 
+      function initWaveAccent() {
+        const canvas = document.getElementById('waveCanvas') as HTMLCanvasElement;
+        // @ts-ignore
+        const THREE = window.THREE;
+        if (!canvas || !THREE) { if (canvas) canvas.style.background = 'radial-gradient(ellipse at center,rgba(42,157,143,0.25),transparent 70%)'; return; }
+        let renderer: any; try { renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true }); } catch (e) { canvas.style.display = 'none'; return; }
+        const sec = canvas.parentElement!;
+        function size() { return [sec.clientWidth, sec.clientHeight]; }
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+        let [w, h] = size(); renderer.setSize(w, h);
+        const scene = new THREE.Scene(), cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+        const uniforms = { uTime: { value: 0 }, uRes: { value: new THREE.Vector2(w, h) }, uMouse: { value: new THREE.Vector2(0.5, 0.5) } };
+        const frag = `precision highp float; uniform float uTime; uniform vec2 uRes; uniform vec2 uMouse; varying vec2 vUv;
+          vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;} vec2 mod289(vec2 x){return x-floor(x*(1.0/289.0))*289.0;}
+          vec3 permute(vec3 x){return mod289(((x*34.0)+1.0)*x);}
+          float snoise(vec2 v){const vec4 C=vec4(0.211324865405187,0.366025403784439,-0.577350269189626,0.024390243902439);
+            vec2 i=floor(v+dot(v,C.yy));vec2 x0=v-i+dot(i,C.xx);vec2 i1=(x0.x>x0.y)?vec2(1.0,0.0):vec2(0.0,1.0);
+            vec4 x12=x0.xyxy+C.xxzz;x12.xy-=i1;i=mod289(i);
+            vec3 p=permute(permute(i.y+vec3(0.0,i1.y,1.0))+i.x+vec3(0.0,i1.x,1.0));
+            vec3 m=max(0.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.0);m=m*m;m=m*m;
+            vec3 x=2.0*fract(p*C.www)-1.0;vec3 hh=abs(x)-0.5;vec3 ox=floor(x+0.5);vec3 a0=x-ox;
+            m*=1.79284291400159-0.85373472095314*(a0*a0+hh*hh);
+            vec3 g;g.x=a0.x*x0.x+hh.x*x0.y;g.yz=a0.yz*x12.xz+hh.yz*x12.yw;return 130.0*dot(m,g);}
+          float fbm(vec2 p){float v=0.0,a=0.5;for(int i=0;i<5;i++){v+=a*snoise(p);p*=2.0;a*=0.5;}return v;}
+          void main(){ vec2 uv=vUv; vec2 p=(gl_FragCoord.xy-0.5*uRes.xy)/uRes.y; float t=uTime*0.05;
+            vec2 q=vec2(fbm(p*1.5+t),fbm(p*1.5+vec2(3.2,1.7)-t));
+            float f=fbm(p*1.5+2.0*q+t); f=f*0.5+0.5;
+            float d=distance(uv,uMouse); f+=sin(d*22.0-uTime*2.0)*exp(-d*5.0)*0.12;
+            vec3 cDeep=vec3(0.039,0.263,0.224),cPrim=vec3(0.055,0.353,0.314),cAcc=vec3(0.165,0.616,0.561),cBri=vec3(0.373,0.816,0.749);
+            vec3 col=mix(cDeep,cPrim,smoothstep(0.2,0.6,f)); col=mix(col,cAcc,smoothstep(0.6,0.85,f)); col=mix(col,cBri,smoothstep(0.85,1.0,f));
+            col+=cBri*exp(-d*6.0)*0.10; float al=0.9-0.5*pow(distance(uv,vec2(0.5)),1.3);
+            gl_FragColor=vec4(col,clamp(al,0.0,1.0)); }`;
+        const mat = new THREE.ShaderMaterial({
+          uniforms, fragmentShader: frag,
+          vertexShader: `varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position,1.0);}`, transparent: true
+        });
+        scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat));
+        let mx = 0.5, my = 0.5, tmx = 0.5, tmy = 0.5;
+        sec.addEventListener('mousemove', e => { const r = sec.getBoundingClientRect(); tmx = (e.clientX - r.left) / r.width; tmy = 1 - (e.clientY - r.top) / r.height; });
+        window.addEventListener('resize', () => { [w, h] = size(); renderer.setSize(w, h); uniforms.uRes.value.set(w, h); });
+        let vis = true; if ('IntersectionObserver' in window) new IntersectionObserver(es => vis = es[0].isIntersecting, { rootMargin: '100px' }).observe(sec);
+        const clock = new THREE.Clock();
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        (function loop() {
+          requestAnimationFrame(loop); if (!vis) return; mx += (tmx - mx) * 0.06; my += (tmy - my) * 0.06;
+          uniforms.uMouse.value.set(mx, my); uniforms.uTime.value = clock.getElapsedTime() * (reduceMotion ? 0 : 1); renderer.render(scene, cam);
+        })();
+      }
+
       let retryCount = 0;
       const checkScripts = setInterval(() => {
         retryCount++;
         // @ts-ignore
-        if (window.gsap && window.ScrollTrigger) {
+        if ((window.gsap && window.ScrollTrigger && window.THREE) || retryCount > 100) {
           clearInterval(checkScripts);
           initReveals();
           initHeroWall();
           initFilter();
           initCount();
-        } else if (retryCount > 100) {
-          clearInterval(checkScripts);
-          initReveals();
-          initHeroWall();
-          initFilter();
-          initCount();
+          initWaveAccent();
         }
       }, 50);
     };
@@ -385,17 +429,17 @@ export default function VideoServices() {
             <h2>Recent <span className="accent">healthcare</span> films.</h2>
           </div>
           <div className="fw-grid stagger">
-            <div className="fw-card hero" onClick={() => setActiveVideo('906115435')} style={{ overflow: 'hidden', cursor: 'pointer' }}>
-              <iframe src="https://player.vimeo.com/video/906115435?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=1080p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Link Homecare Commercial"></iframe>
+            <div className="fw-card hero" onClick={() => setActiveVideo('906115435')} style={{ overflow: 'hidden', cursor: 'pointer', backgroundImage: 'linear-gradient(to top, rgba(10, 58, 50, 0.9) 0%, rgba(10, 58, 50, 0) 40%), url(https://i.vimeocdn.com/video/1787724682-99c5f028f168e64a7c91d011cf8d19a16d4453e95b0911be06e755c443218d36-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+              <div className="play" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', pointerEvents: 'none', background: 'rgba(255,255,255,0.2)', width: '70px', height: '70px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '28px', backdropFilter: 'blur(4px)' }}><span>&#9654;</span></div>
               <div className="fw-meta" style={{ pointerEvents: 'none' }}><span className="tag">Commercial</span><span className="title">Link Homecare - Zsanet &amp; Terry</span></div>
             </div>
             <div className="fw-side">
-              <div className="fw-card small" onClick={() => setActiveVideo('1183056612')} style={{ overflow: 'hidden', cursor: 'pointer' }}>
-                <iframe src="https://player.vimeo.com/video/1183056612?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=1080p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Park Gardens Tour"></iframe>
+              <div className="fw-card small" onClick={() => setActiveVideo('1183056612')} style={{ overflow: 'hidden', cursor: 'pointer', backgroundImage: 'linear-gradient(to top, rgba(10, 58, 50, 0.9) 0%, rgba(10, 58, 50, 0) 40%), url(https://i.vimeocdn.com/video/2145807255-3028a1cb240082c2500af287b5f93ca2c503d1d0c131602574bc88e4976ed1f5-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                <div className="play" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', pointerEvents: 'none', background: 'rgba(255,255,255,0.2)', width: '50px', height: '50px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '20px', backdropFilter: 'blur(4px)' }}><span>&#9654;</span></div>
                 <div className="fw-meta" style={{ pointerEvents: 'none' }}><span className="tag">Virtual Tour</span><span className="title">Park Gardens Tour</span></div>
               </div>
-              <div className="fw-card small" onClick={() => setActiveVideo('930394765')} style={{ overflow: 'hidden', cursor: 'pointer' }}>
-                <iframe src="https://player.vimeo.com/video/930394765?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=1080p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="River Ridge Tour"></iframe>
+              <div className="fw-card small" onClick={() => setActiveVideo('930394765')} style={{ overflow: 'hidden', cursor: 'pointer', backgroundImage: 'linear-gradient(to top, rgba(10, 58, 50, 0.9) 0%, rgba(10, 58, 50, 0) 40%), url(https://i.vimeocdn.com/video/1827081869-f1d75fd0450accdafec4e7b7c8368040ea48a3450daf1cd9b6f636ef56ec7e39-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                <div className="play" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', pointerEvents: 'none', background: 'rgba(255,255,255,0.2)', width: '50px', height: '50px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '20px', backdropFilter: 'blur(4px)' }}><span>&#9654;</span></div>
                 <div className="fw-meta" style={{ pointerEvents: 'none' }}><span className="tag">Virtual Tour</span><span className="title">River Ridge Tour</span></div>
               </div>
             </div>
@@ -422,12 +466,12 @@ export default function VideoServices() {
 
       {/* ========== FINAL CTA ========== */}
       <section className="final">
-        <div className="final-fallback"></div>
-        <div className="final-in" data-reveal>
-          <span className="label">Your facility, seen the right way</span>
-          <h2>Let families see the <span className="accent">care</span> behind your facility.</h2>
-          <p className="sub">From planning and scripting to filming and final delivery, we manage the entire production process to create polished videos that build trust and support admissions growth.</p>
-          <Link href="/contact" className="btn btn-light">Book a Call</Link>
+        <canvas id="waveCanvas"></canvas>
+        <div className="container">
+          <span className="label" style={{ justifyContent: 'center' }} data-reveal>Your facility, seen the right way</span>
+          <h2 data-reveal>Let families see the <br/><span className="accent">care</span> behind your facility.</h2>
+          <p className="sub" data-reveal>From planning and scripting to filming and final delivery, we manage the entire production process to create polished videos that build trust and support admissions growth.</p>
+          <div data-reveal><Link href="/contact" className="btn btn-light" data-magnetic data-cursor>Book a Call</Link></div>
         </div>
       </section>
 
