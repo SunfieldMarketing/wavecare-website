@@ -262,7 +262,7 @@ export default function PhotoServices() {
           <div data-reveal style={{ marginBottom: '60px' }}>
             <span className="label">WHERE YOUR PHOTOS ARE USED</span>
             <h2 style={{ textWrap: 'unset' }}>One shoot. <span className="accent">Everywhere</span> it counts.</h2>
-            <p className="sub" style={{ marginTop: '18px', maxWidth: '600px' }}>The same professional image earns its keep across every place families and referral partners find you.</p>
+            <p className="sub" style={{ marginTop: '18px', maxWidth: '1000px' }}>The same professional image earns its keep across every place families and referral partners find you.</p>
           </div>
           
           <div className="phero-in" style={{ gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center' }}>
@@ -327,7 +327,7 @@ export default function PhotoServices() {
           <div className="sec-head" data-reveal style={{ maxWidth: '1000px' }}>
             <span className="label">Our Process</span>
             <h2 style={{ textWrap: 'unset' }}>From shot list to <span className="accent">final gallery.</span></h2>
-            <p className="sub" style={{ marginTop: '18px', maxWidth: '600px' }}>Hover a phase &mdash; watch the contact sheet develop from raw proofs to the final selects.</p>
+            <p className="sub" style={{ marginTop: '18px', maxWidth: '1000px' }}>Hover a phase &mdash; watch the contact sheet develop from raw proofs to the final selects.</p>
           </div>
           
           <div className="proc-tabs" data-reveal>
@@ -389,7 +389,7 @@ export default function PhotoServices() {
           <div className="sec-head center" data-reveal style={{ maxWidth: '1000px' }}>
             <span className="label">THE WORK</span>
             <h2 style={{ textWrap: 'unset' }}>Real facilities, <span className="accent">real moments.</span></h2>
-            <p className="sub" style={{ marginTop: '16px', maxWidth: '600px', margin: '16px auto 0' }}>
+            <p className="sub" style={{ marginTop: '16px', maxWidth: '1000px', margin: '16px auto 0' }}>
               Filter by what you need to see. Every image is shot on location &mdash; no stock, ever.
             </p>
           </div>
