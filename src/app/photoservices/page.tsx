@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import '../subservices.css';
+import BeforeAfterSlider from '@/components/BeforeAfterSlider';
 
 export default function PhotoServices() {
   const [ctxTab, setCtxTab] = useState(0);
@@ -30,12 +31,12 @@ export default function PhotoServices() {
 
       // Hero wall assembles on load
       function initHeroWall() {
-        const cells = document.querySelectorAll('.phero-wall .cell');
+        const cells = document.querySelectorAll('.phero-grid-full .cell');
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
           cells.forEach(c => c.classList.add('in')); return;
         }
         const order = Array.from(cells.keys()).sort(() => Math.random() - 0.5);
-        order.forEach((idx, i) => setTimeout(() => cells[idx].classList.add('in'), 250 + i * 70));
+        order.forEach((idx, i) => setTimeout(() => cells[idx].classList.add('in'), 250 + i * 20));
       }
 
       function initCamCursor() {
@@ -98,153 +99,70 @@ export default function PhotoServices() {
       {/* ========== HERO ========== */}
       <section className="phero">
         <div className="phero-bg">
-          <div className="placeholder" style={{ width: '100%', height: '100%', background: '#062A24' }}></div>
+          <div className="phero-grid-full">
+            {Array.from({ length: 48 }).map((_, i) => (
+              <div key={i} className="cell">IMG {i + 1}</div>
+            ))}
+          </div>
         </div>
         <div className="container">
-          <div className="phero-in">
-            <div data-reveal>
-              <svg className="wave-accent" viewBox="0 0 74 24">
-                <path d="M2,12 Q12,2 20,12 T38,12 T56,12 T72,12"></path>
-              </svg>
-              <h1>Healthcare <span className="accent">Photography</span></h1>
-              <p className="phero-sub">Stock photos don't build trust. Real photography shows families exactly why they should choose your facility.</p>
-              <div className="trust-list" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '34px' }}>
-                <span className="label" style={{ marginBottom: 0 }}>✓ HIPAA Compliant</span>
-                <span className="label" style={{ marginBottom: 0 }}>✓ Unintrusive</span>
-                <span className="label" style={{ marginBottom: 0 }}>✓ Conversion-Focused</span>
-              </div>
+          <div className="phero-center" data-reveal>
+            <svg className="wave-accent" viewBox="0 0 74 24" style={{ marginBottom: '24px' }}>
+              <path d="M2,12 Q12,2 20,12 T38,12 T56,12 T72,12"></path>
+            </svg>
+            <h1>Professional photography that <span className="accent">builds trust.</span></h1>
+            <p className="phero-sub">Showcase your facility, staff, residents, and care environment with authentic imagery &mdash; built for websites, social media, admissions materials, and marketing campaigns.</p>
+            <div className="btn-group">
               <Link href="/contact" className="btn">Book a Photoshoot</Link>
-            </div>
-            <div className="phero-wall">
-              <div className="cell c1"><img src="/images/gallery/Caregiver%20with%20elderly%20women%202.jpeg" alt="Healthcare Photography" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-              <div className="cell c2"><img src="/images/gallery/Yorktown%20front.jpg" alt="Healthcare Photography" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-              <div className="cell c3"><img src="/images/gallery/Yorktown%20landscape%20aerial%20photo.jpeg" alt="Healthcare Photography" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-              <div className="cell c4"><img src="/images/gallery/Employees%20laughing%20photo.jpeg" alt="Healthcare Photography" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+              <Link href="#gallery" className="btn btn-light">View Photo Work</Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ========== CONTEXT ========== */}
+      {/* ========== WHY PROFESSIONAL PHOTOGRAPHY MATTERS ========== */}
       <section className="panel deep sec-pad">
-        <div className="container phero-in" style={{ gridTemplateColumns: '1fr 1fr' }}>
-          <div data-reveal>
-            <span className="label">Where Your Photos Are Used</span>
-            <h2>One shoot. <span className="accent">Everywhere</span> it counts.</h2>
-            <p className="sub" style={{ marginTop: '18px' }}>The same professional image earns its keep across every place families and referral partners find you.</p>
+        <div className="container">
+          <div className="sec-head" data-reveal style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 60px' }}>
+            <span className="label">WHY PROFESSIONAL PHOTOGRAPHY MATTERS</span>
+            <h2>Families form their first <br/><span className="accent">impression online.</span></h2>
+            <p className="sub" style={{ marginTop: '18px' }}>Outdated, inconsistent, or stock photography can make even the best facility feel untrustworthy. Drag to see the difference real photography makes.</p>
           </div>
-          <div className="ctx" data-reveal>
-            <div className="ctx-tabs">
-              <div className={`ctx-tab ${ctxTab === 0 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(0)} onClick={() => setCtxTab(0)}>
-                <div className="ic">✓</div>
-                <div>
-                  <h3>Website</h3><p>Stronger first impression, instant trust.</p>
-                </div>
-              </div>
-              <div className={`ctx-tab ${ctxTab === 1 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(1)} onClick={() => setCtxTab(1)}>
-                <div className="ic">✓</div>
-                <div>
-                  <h3>Brochures &amp; Packets</h3><p>Polished materials for tours and admissions.</p>
-                </div>
-              </div>
-              <div className={`ctx-tab ${ctxTab === 2 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(2)} onClick={() => setCtxTab(2)}>
-                <div className="ic">✓</div>
-                <div>
-                  <h3>Google Business Profile</h3><p>Better local visibility with real imagery.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="ctx-stage" style={{ position: 'relative', height: '440px', marginTop: '40px' }}>
-              <div className={`ctx-scene ${ctxTab === 0 ? 'on' : ''}`}>
-                <div className="mock-web">
-                  <div className="bar"><i></i><i></i><i></i></div>
-                  <div className="shot">
-                    <img src="/images/website.png" alt="Website" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
-                  </div>
-                  <div className="lines"><span></span><span></span><span></span></div>
-                </div>
-              </div>
-              <div className={`ctx-scene ${ctxTab === 1 ? 'on' : ''}`}>
-                <div className="mock-bro" style={{ maxWidth: '800px', width: '100%', gap: '20px' }}>
-                  <div className="pg" style={{ padding: 0, overflow: 'hidden', aspectRatio: '4/5' }}>
-                    <img src="/images/brochure_inside.png" alt="Brochure Cover" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  </div>
-                  <div className="pg" style={{ padding: 0, overflow: 'hidden', aspectRatio: '4/5' }}>
-                    <img src="/images/brochure_cover.jpg" alt="Brochure Inside" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  </div>
-                </div>
-              </div>
-              <div className={`ctx-scene ${ctxTab === 2 ? 'on' : ''}`}>
-                <div className="mock-goo">
-                  <div className="shot">
-                    <img src="/images/gallery/Caregiver%20with%20elderly%20women.jpeg" alt="Google Business Profile Photo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  </div>
-                  <div className="info"><div className="name">Park Gardens &middot; Senior Living</div><div className="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div className="meta"></div></div>
-                </div>
-              </div>
-            </div>
+          
+          <div data-reveal>
+            <BeforeAfterSlider 
+              beforeImage="/images/gallery/Caregiver%20with%20elderly%20women%202.jpeg" 
+              afterImage="/images/gallery/Employees%20laughing%20photo.jpeg"
+            />
+            <p className="ba-caption">Drag the handle &mdash; left is typical stock // right is professional photography</p>
           </div>
         </div>
       </section>
 
-      {/* ========== PROCESS ========== */}
+      {/* ========== WHAT WE PHOTOGRAPH ========== */}
       <section className="panel ink sec-pad">
         <div className="container">
-          <div className="sec-head" data-reveal>
-            <span className="label">Our Process</span>
-            <h2>From shot list to <span className="accent">final gallery.</span></h2>
-            <p className="sub" style={{ marginTop: '18px' }}>Hover a phase &mdash; watch the contact sheet develop from raw proofs to the final selects.</p>
+          <div className="sec-head" data-reveal style={{ textAlign: 'center' }}>
+            <span className="label">WHAT WE PHOTOGRAPH</span>
+            <h2>Everything that tells your <span className="accent">story.</span></h2>
           </div>
           
-          <div className="proc-tabs" data-reveal>
-            <div className={`proc-tab ${procTab === 0 ? 'on' : ''}`} onMouseEnter={() => setProcTab(0)} onClick={() => setProcTab(0)}>
-              <span className="pnum">01</span><span className="pname">Planning</span><span className="pbar"></span>
+          <div className="shoot-grid" data-reveal>
+            <div className="shoot-card">
+              <h3>Facility Photography</h3>
+              <p>Common areas, resident rooms, amenities, dining spaces, and exterior views &mdash; the spaces families judge first.</p>
             </div>
-            <div className={`proc-tab ${procTab === 1 ? 'on' : ''}`} onMouseEnter={() => setProcTab(1)} onClick={() => setProcTab(1)}>
-              <span className="pnum">02</span><span className="pname">Photoshoot Day</span><span className="pbar"></span>
+            <div className="shoot-card">
+              <h3>Staff &amp; Team Photography</h3>
+              <p>Professional portraits and candid team moments that put real faces to your culture and care.</p>
             </div>
-            <div className={`proc-tab ${procTab === 2 ? 'on' : ''}`} onMouseEnter={() => setProcTab(2)} onClick={() => setProcTab(2)}>
-              <span className="pnum">03</span><span className="pname">Editing</span><span className="pbar"></span>
+            <div className="shoot-card">
+              <h3>Resident Lifestyle</h3>
+              <p>Authentic moments of daily life, activities, and community &mdash; the proof that people are happy here.</p>
             </div>
-            <div className={`proc-tab ${procTab === 3 ? 'on' : ''}`} onMouseEnter={() => setProcTab(3)} onClick={() => setProcTab(3)}>
-              <span className="pnum">04</span><span className="pname">Delivery</span><span className="pbar"></span>
-            </div>
-          </div>
-          
-          <div className="proc-panel-wrap" data-reveal>
-            <div className="proc-monitor">
-              <div className="proc-detail">
-                <div className={`step ${procTab === 0 ? 'on' : ''}`}>
-                  <h3>Planning</h3><p>We identify goals, locations, and the exact shot list &mdash; so nothing is missed and your staff knows what to expect.</p>
-                </div>
-                <div className={`step ${procTab === 1 ? 'on' : ''}`}>
-                  <h3>Photoshoot Day</h3><p>Our team captures everything planned, efficiently and respectfully, working around residents and daily routines.</p>
-                </div>
-                <div className={`step ${procTab === 2 ? 'on' : ''}`}>
-                  <h3>Editing</h3><p>Images are professionally edited, color-corrected, and optimized for every marketing use.</p>
-                </div>
-                <div className={`step ${procTab === 3 ? 'on' : ''}`}>
-                  <h3>Delivery</h3><p>You receive organized, ready-to-use files for web, print, social, and advertising &mdash; named and sized correctly.</p>
-                </div>
-              </div>
-              
-              <div className={`proc-sheet dev${procTab}`}>
-                <div className="loupe">{procLoupes[procTab] || procLoupes[0]}</div>
-                {[
-                  '/images/proc_1.png', 
-                  '/images/proc_2.png', 
-                  '/images/proc_3.png', 
-                  '/images/proc_4.png', 
-                  '/images/proc_5.png', 
-                  '/images/proc_6.png'
-                ].map((src, idx) => (
-                  <div className="frame" key={idx}>
-                    <img className="pho" src={src} alt="Process mockup" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    <div className="pick"></div>
-                  </div>
-                ))}
-              </div>
+            <div className="shoot-card">
+              <h3>Marketing Content</h3>
+              <p>Images shaped for websites, social, brochures, ads, and recruitment &mdash; shot with the end user in mind.</p>
             </div>
           </div>
         </div>
