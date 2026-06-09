@@ -180,8 +180,8 @@ export default function PhotoServices() {
       </section>
 
       {/* ========== SOCIAL PROOF BANNER ========== */}
-      <div style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', padding: '16px 20px', textAlign: 'center' }}>
-        <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.6)', letterSpacing: '0.04em', textTransform: 'uppercase', margin: 0 }}>
+      <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)', padding: '16px 20px', textAlign: 'center' }}>
+        <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.6)', letterSpacing: '0.02em', margin: 0 }}>
           Trusted by healthcare facilities improving their online presence, admissions marketing, and brand perception.
         </p>
       </div>
@@ -208,13 +208,11 @@ export default function PhotoServices() {
       {/* ========== WHAT WE PHOTOGRAPH ========== */}
       <section className="panel ink sec-pad">
         <div className="container">
-          <div className="sec-head" data-reveal style={{ maxWidth: '800px', margin: '0 auto 60px' }}>
-            <span className="label" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-              <div style={{ width: '40px', height: '1px', background: 'var(--teal-bright)' }}></div> WHAT WE PHOTOGRAPH
-            </span>
+          <div className="sec-head" data-reveal style={{ textAlign: 'center', margin: '0 auto 60px' }}>
+            <span className="label">WHAT WE PHOTOGRAPH</span>
             <h2 style={{ fontSize: 'clamp(40px, 5vw, 64px)', lineHeight: '1.1', marginTop: '16px' }}>
               Everything that tells your <br />
-              <span className="accent" style={{ fontStyle: 'italic', display: 'inline-block', marginLeft: '15%' }}>story.</span>
+              <span className="accent" style={{ fontStyle: 'italic' }}>story.</span>
             </h2>
           </div>
           
@@ -241,35 +239,35 @@ export default function PhotoServices() {
 
       {/* ========== CONTEXT ========== */}
       <section className="panel deep sec-pad">
-        <div className="container phero-in" style={{ gridTemplateColumns: '1fr 1fr' }}>
-          <div data-reveal>
-            <span className="label">Where Your Photos Are Used</span>
+        <div className="container phero-in" style={{ gridTemplateColumns: '1fr 1fr', gap: '60px' }}>
+          <div data-reveal style={{ display: 'flex', flexDirection: 'column' }}>
+            <span className="label">WHERE YOUR PHOTOS ARE USED</span>
             <h2>One shoot. <span className="accent">Everywhere</span> it counts.</h2>
-            <p className="sub" style={{ marginTop: '18px' }}>The same professional image earns its keep across every place families and referral partners find you.</p>
-          </div>
-          <div className="ctx" data-reveal>
-            <div className="ctx-tabs">
-              <div className={`ctx-tab ${ctxTab === 0 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(0)} onClick={() => setCtxTab(0)}>
+            <p className="sub" style={{ marginTop: '18px', marginBottom: '40px' }}>The same professional image earns its keep across every place families and referral partners find you.</p>
+            
+            <div className="ctx-tabs" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <div className={`ctx-tab ${ctxTab === 0 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(0)} onClick={() => setCtxTab(0)} style={{ width: '100%', justifyContent: 'flex-start' }}>
                 <div className="ic">✓</div>
-                <div>
+                <div style={{ textAlign: 'left' }}>
                   <h3>Website</h3><p>Stronger first impression, instant trust.</p>
                 </div>
               </div>
-              <div className={`ctx-tab ${ctxTab === 1 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(1)} onClick={() => setCtxTab(1)}>
+              <div className={`ctx-tab ${ctxTab === 1 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(1)} onClick={() => setCtxTab(1)} style={{ width: '100%', justifyContent: 'flex-start' }}>
                 <div className="ic">✓</div>
-                <div>
+                <div style={{ textAlign: 'left' }}>
                   <h3>Brochures &amp; Packets</h3><p>Polished materials for tours and admissions.</p>
                 </div>
               </div>
-              <div className={`ctx-tab ${ctxTab === 2 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(2)} onClick={() => setCtxTab(2)}>
+              <div className={`ctx-tab ${ctxTab === 2 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(2)} onClick={() => setCtxTab(2)} style={{ width: '100%', justifyContent: 'flex-start' }}>
                 <div className="ic">✓</div>
-                <div>
+                <div style={{ textAlign: 'left' }}>
                   <h3>Google Business Profile</h3><p>Better local visibility with real imagery.</p>
                 </div>
               </div>
             </div>
-            
-            <div className="ctx-stage" style={{ position: 'relative', height: '440px', marginTop: '40px' }}>
+          </div>
+          <div className="ctx" data-reveal style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div className="ctx-stage" style={{ position: 'relative', height: '100%', minHeight: '440px', width: '100%' }}>
               <div className={`ctx-scene ${ctxTab === 0 ? 'on' : ''}`}>
                 <div className="mock-web">
                   <div className="bar"><i></i><i></i><i></i></div>
