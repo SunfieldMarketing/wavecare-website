@@ -183,10 +183,10 @@
 /* ===== Custom Hero Grid Background ===== */
 .phero-grid-full { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 4px; padding: 4px; z-index: 1; opacity: 0.15; }
 .phero-grid-full .cell { background: rgba(95, 208, 191, 0.05); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: rgba(255,255,255,0.3); font-weight: 600; letter-spacing: 0.1em; }
-.phero-center { position: relative; z-index: 3; text-align: center; max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
-.phero-center h1 { font-size: clamp(40px, 5vw, 64px); margin-bottom: 24px; }
-.phero-center .phero-sub { text-align: center; margin: 0 auto 40px; }
-.phero-center .btn-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.phero-center { position: relative; z-index: 3; text-align: center; max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; padding: 60px 20px; }
+.phero-center h1 { font-size: clamp(44px, 6vw, 80px); margin-bottom: 24px; letter-spacing: -0.02em; }
+.phero-center .phero-sub { text-align: center; max-width: 720px; margin: 0 auto 40px; font-size: clamp(18px, 1.5vw, 20px); line-height: 1.6; }
+.phero-center .btn-group { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
 
 /* ===== Before/After Slider ===== */
 .ba-slider-wrap { position: relative; width: 100%; max-width: 900px; margin: 0 auto; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; user-select: none; border: 1px solid var(--soft); box-shadow: 0 20px 40px rgba(0,0,0,0.4); background: #062a24; }
