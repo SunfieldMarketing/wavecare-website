@@ -320,7 +320,7 @@ export default function Home() {
               <Link href="/contact" className="btn" data-magnetic data-cursor style={{ marginTop: '14px' }}>Book a Call</Link>
             </div>
             <div className="reel-frame" data-reveal data-cursor>
-              <iframe src="https://player.vimeo.com/video/1187767005?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" title="Wavecare Commercial"></iframe>
+              <iframe src="https://player.vimeo.com/video/1187767005?title=0&byline=0&portrait=0&quality=1080p" allow="autoplay; fullscreen; picture-in-picture" title="Wavecare Commercial"></iframe>
             </div>
           </div>
         </div>

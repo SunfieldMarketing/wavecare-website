@@ -82,7 +82,7 @@ export default function Services() {
       <section className="hero">
         <div className="hero-video-wrap">
           <iframe
-            src="https://player.vimeo.com/video/1187767005?background=1&autoplay=1&loop=1&muted=1&autopause=0"
+            src="https://player.vimeo.com/video/1187767005?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=1080p"
             allow="autoplay; fullscreen; picture-in-picture"
             title="Wavecare Commercial">
           </iframe>

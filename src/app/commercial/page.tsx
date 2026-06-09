@@ -29,7 +29,7 @@ export default function Commercial() {
           <div className="wc-video-border"></div>
           <div className="wc-video-container">
             <iframe
-              src="https://player.vimeo.com/video/1187767005?badge=0&autopause=0&player_id=0&app_id=58479"
+              src="https://player.vimeo.com/video/1187767005?badge=0&autopause=0&player_id=0&app_id=58479&quality=1080p"
               allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 'none' }}
               title="Wavecare Commercial">

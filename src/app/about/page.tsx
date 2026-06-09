@@ -365,7 +365,7 @@ export default function About() {
           </div>
           <div className="reel-wrap" data-reveal data-cursor>
             <div className="reel-frame">
-              <iframe src="https://player.vimeo.com/video/1187767005?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" title="Wavecare Commercial"></iframe>
+              <iframe src="https://player.vimeo.com/video/1187767005?title=0&byline=0&portrait=0&quality=1080p" allow="autoplay; fullscreen; picture-in-picture" title="Wavecare Commercial"></iframe>
             </div>
           </div>
         </div>

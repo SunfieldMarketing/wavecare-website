@@ -138,7 +138,7 @@ export default function Testimonials() {
 
         <div className="wct-video-row">
           <div className="wct-video-embed">
-            <iframe src="https://player.vimeo.com/video/1187758900?badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="Wavecare Testimonial 1"></iframe>
+            <iframe src="https://player.vimeo.com/video/1187758900?badge=0&autopause=0&player_id=0&app_id=58479&quality=1080p" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="Wavecare Testimonial 1"></iframe>
           </div>
           <div className="wct-video-content">
             <div className="wct-stars">★★★★★</div>
@@ -158,7 +158,7 @@ export default function Testimonials() {
 
         <div className="wct-video-row wct-reverse">
           <div className="wct-video-embed">
-            <iframe src="https://player.vimeo.com/video/1187761002?badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="Wavecare Testimonial 2"></iframe>
+            <iframe src="https://player.vimeo.com/video/1187761002?badge=0&autopause=0&player_id=0&app_id=58479&quality=1080p" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="Wavecare Testimonial 2"></iframe>
           </div>
           <div className="wct-video-content">
             <div className="wct-stars">★★★★★</div>

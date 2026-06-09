@@ -149,7 +149,7 @@ export default function VideoServices() {
           </div>
           <div className="commercial-player stagger" style={{ maxWidth: '900px', margin: '0 auto', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.3)', position: 'relative', aspectRatio: '16/9', background: '#000' }}>
             {/* Vimeo Placeholder - update src with actual video later */}
-            <iframe src="https://player.vimeo.com/video/1187767005?title=0&byline=0&portrait=0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Wavecare Commercial"></iframe>
+            <iframe src="https://player.vimeo.com/video/1187767005?title=0&byline=0&portrait=0&quality=1080p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Wavecare Commercial"></iframe>
           </div>
         </div>
       </section>
@@ -360,19 +360,19 @@ export default function VideoServices() {
             <h2>Recent <span className="accent">healthcare</span> films.</h2>
           </div>
           <div className="fw-grid stagger">
-            <Link href="/case-studies" className="fw-card hero">
-              <div className="ph-bg" data-label="Commercial"><div className="placeholder" style={{ width: '100%', height: '100%', background: '#0a3a32' }}></div><div className="play"><span>&#9654;</span></div></div>
-              <div className="fw-meta"><span className="tag">Commercial</span><span className="title">Senior Living Campaign</span></div>
-            </Link>
+            <div className="fw-card hero" style={{ overflow: 'hidden' }}>
+              <iframe src="https://player.vimeo.com/video/906115435?title=0&byline=0&portrait=0&quality=1080p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Link Homecare Commercial"></iframe>
+              <div className="fw-meta" style={{ pointerEvents: 'none' }}><span className="tag">Commercial</span><span className="title">Link Homecare - Zsanet &amp; Terry</span></div>
+            </div>
             <div className="fw-side">
-              <Link href="/case-studies" className="fw-card small">
-                <div className="ph-bg" data-label="Virtual tour"><div className="placeholder" style={{ width: '100%', height: '100%', background: '#0a3a32' }}></div><div className="play"><span>&#9654;</span></div></div>
-                <div className="fw-meta"><span className="tag">Virtual Tour</span><span className="title">Park Gardens Tour</span></div>
-              </Link>
-              <Link href="/case-studies" className="fw-card small">
-                <div className="ph-bg" data-label="Testimonial"><div className="placeholder" style={{ width: '100%', height: '100%', background: '#0a3a32' }}></div><div className="play"><span>&#9654;</span></div></div>
-                <div className="fw-meta"><span className="tag">Testimonial</span><span className="title">The Smith Family Story</span></div>
-              </Link>
+              <div className="fw-card small" style={{ overflow: 'hidden' }}>
+                <iframe src="https://player.vimeo.com/video/1183056612?title=0&byline=0&portrait=0&quality=1080p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Park Gardens Tour"></iframe>
+                <div className="fw-meta" style={{ pointerEvents: 'none' }}><span className="tag">Virtual Tour</span><span className="title">Park Gardens Tour</span></div>
+              </div>
+              <div className="fw-card small" style={{ overflow: 'hidden' }}>
+                <iframe src="https://player.vimeo.com/video/930394765?title=0&byline=0&portrait=0&quality=1080p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="River Ridge Tour"></iframe>
+                <div className="fw-meta" style={{ pointerEvents: 'none' }}><span className="tag">Virtual Tour</span><span className="title">River Ridge Tour</span></div>
+              </div>
             </div>
           </div>
         </div>
