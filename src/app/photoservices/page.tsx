@@ -261,7 +261,7 @@ export default function PhotoServices() {
         <div className="container">
           <div data-reveal style={{ maxWidth: '600px', marginBottom: '60px' }}>
             <span className="label">WHERE YOUR PHOTOS ARE USED</span>
-            <h2>One shoot. <br/><span className="accent">Everywhere</span> it counts.</h2>
+            <h2 style={{ textWrap: 'unset' }}>One shoot. <span className="accent">Everywhere</span> it counts.</h2>
             <p className="sub" style={{ marginTop: '18px' }}>The same professional image earns its keep across every place families and referral partners find you.</p>
           </div>
           
@@ -270,19 +270,19 @@ export default function PhotoServices() {
               <div className={`ctx-tab ${ctxTab === 0 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(0)} onClick={() => setCtxTab(0)} style={{ width: '100%', justifyContent: 'flex-start' }}>
                 <div className="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="20" x2="22" y2="20"></line></svg></div>
                 <div style={{ textAlign: 'left' }}>
-                  <h3>Website</h3><p>Stronger first impression, instant trust.</p>
+                  <h3 style={{ textWrap: 'unset' }}>Website</h3><p>Stronger first impression, instant trust.</p>
                 </div>
               </div>
               <div className={`ctx-tab ${ctxTab === 1 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(1)} onClick={() => setCtxTab(1)} style={{ width: '100%', justifyContent: 'flex-start' }}>
                 <div className="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></div>
                 <div style={{ textAlign: 'left' }}>
-                  <h3>Brochures &amp; Packets</h3><p>Polished materials for tours and admissions.</p>
+                  <h3 style={{ textWrap: 'unset' }}>Brochures &amp; Packets</h3><p>Polished materials for tours and admissions.</p>
                 </div>
               </div>
               <div className={`ctx-tab ${ctxTab === 2 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(2)} onClick={() => setCtxTab(2)} style={{ width: '100%', justifyContent: 'flex-start' }}>
                 <div className="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
                 <div style={{ textAlign: 'left' }}>
-                  <h3>Google Business Profile</h3><p>Better local visibility with real imagery.</p>
+                  <h3 style={{ textWrap: 'unset' }}>Google Business Profile</h3><p>Better local visibility with real imagery.</p>
                 </div>
               </div>
             </div>
