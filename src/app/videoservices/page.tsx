@@ -5,6 +5,7 @@ import '../subservices.css';
 
 export default function VideoServices() {
   const [procTab, setProcTab] = useState(0);
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -300,75 +301,75 @@ export default function VideoServices() {
           </div>
           
           <div className="types-grid stagger" id="typesGrid">
-            <div className="tcard" data-cat="family">
+            <div className="tcard" data-cat="family" onClick={() => setActiveVideo('906115435')} style={{ cursor: 'pointer' }}>
               <div className="thumb" data-label="brand film">
-                <iframe src="https://player.vimeo.com/video/906115435?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
+                <iframe src="https://player.vimeo.com/video/906115435?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
               </div>
               <div className="body"><h3>Hero Brand Film</h3><p>The centerpiece of your website. Tells your full story, showcases the facility, and builds deep trust.</p><div className="where">Homepage &middot; Ads</div></div>
             </div>
-            <div className="tcard" data-cat="family">
+            <div className="tcard" data-cat="family" onClick={() => setActiveVideo('1183056612')} style={{ cursor: 'pointer' }}>
               <div className="thumb" data-label="virtual tour">
-                <iframe src="https://player.vimeo.com/video/1183056612?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
+                <iframe src="https://player.vimeo.com/video/1183056612?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
               </div>
               <div className="body"><h3>Guided Virtual Tour</h3><p>Walk families through your community when they can't be there in person.</p><div className="where">Website &middot; Email follow-ups</div></div>
             </div>
-            <div className="tcard" data-cat="family">
+            <div className="tcard" data-cat="family" onClick={() => setActiveVideo('1183669641')} style={{ cursor: 'pointer' }}>
               <div className="thumb" data-label="service line video">
-                <iframe src="https://player.vimeo.com/video/1183669641?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
+                <iframe src="https://player.vimeo.com/video/1183669641?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
               </div>
               <div className="body"><h3>Service Line Spot</h3><p>Focused pieces for memory care, rehab, hospice, or key service lines.</p><div className="where">Service pages &middot; Ads</div></div>
             </div>
-            <div className="tcard" data-cat="recruit">
+            <div className="tcard" data-cat="recruit" onClick={() => setActiveVideo('930394765')} style={{ cursor: 'pointer' }}>
               <div className="thumb" data-label="recruitment">
-                <iframe src="https://player.vimeo.com/video/930394765?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
+                <iframe src="https://player.vimeo.com/video/930394765?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
               </div>
               <div className="body"><h3>Recruitment Film</h3><p>Shows the team and culture &mdash; what the job feels like, not just what it pays.</p><div className="where">Careers page &middot; LinkedIn</div></div>
             </div>
-            <div className="tcard" data-cat="recruit">
+            <div className="tcard" data-cat="recruit" onClick={() => setActiveVideo('856155374')} style={{ cursor: 'pointer' }}>
               <div className="thumb" data-label="day in the life">
-                <iframe src="https://player.vimeo.com/video/856155374?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
+                <iframe src="https://player.vimeo.com/video/856155374?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
               </div>
               <div className="body"><h3>Day in the Life</h3><p>Follows a caregiver through a shift to attract the right candidates.</p><div className="where">Careers page &middot; Indeed</div></div>
             </div>
-            <div className="tcard" data-cat="recruit">
+            <div className="tcard" data-cat="recruit" onClick={() => setActiveVideo('856155997')} style={{ cursor: 'pointer' }}>
               <div className="thumb" data-label="staff spotlight">
-                <iframe src="https://player.vimeo.com/video/856155997?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
+                <iframe src="https://player.vimeo.com/video/856155997?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
               </div>
               <div className="body"><h3>Staff Spotlight</h3><p>Short profiles that put real faces to your employer brand.</p><div className="where">Social &middot; Careers page</div></div>
             </div>
-            <div className="tcard" data-cat="testimonial">
+            <div className="tcard" data-cat="testimonial" onClick={() => setActiveVideo('856154806')} style={{ cursor: 'pointer' }}>
               <div className="thumb" data-label="resident testimonial">
-                <iframe src="https://player.vimeo.com/video/856154806?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
+                <iframe src="https://player.vimeo.com/video/856154806?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
               </div>
               <div className="body"><h3>Resident &amp; Family Testimonial</h3><p>Real stories from real families &mdash; the most persuasive video you can publish.</p><div className="where">Website &middot; Sales materials</div></div>
             </div>
-            <div className="tcard" data-cat="testimonial">
+            <div className="tcard" data-cat="testimonial" onClick={() => setActiveVideo('856153642')} style={{ cursor: 'pointer' }}>
               <div className="thumb" data-label="staff testimonial">
-                <iframe src="https://player.vimeo.com/video/856153642?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
+                <iframe src="https://player.vimeo.com/video/856153642?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
               </div>
               <div className="body"><h3>Staff Testimonial</h3><p>Team members on why they stay &mdash; trust for families and recruits alike.</p><div className="where">Careers &middot; About page</div></div>
             </div>
-            <div className="tcard" data-cat="testimonial">
+            <div className="tcard" data-cat="testimonial" onClick={() => setActiveVideo('1187758900')} style={{ cursor: 'pointer' }}>
               <div className="thumb" data-label="referral partner">
-                <iframe src="https://player.vimeo.com/video/1187758900?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
+                <iframe src="https://player.vimeo.com/video/1187758900?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
               </div>
               <div className="body"><h3>Referral Partner Story</h3><p>Physicians and discharge planners on why they refer to you.</p><div className="where">Sales deck &middot; Outreach</div></div>
             </div>
-            <div className="tcard" data-cat="social">
+            <div className="tcard" data-cat="social" onClick={() => setActiveVideo('1187761002')} style={{ cursor: 'pointer' }}>
               <div className="thumb" data-label="social vertical">
-                <iframe src="https://player.vimeo.com/video/1187761002?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
+                <iframe src="https://player.vimeo.com/video/1187761002?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
               </div>
               <div className="body"><h3>Social Vertical Cut</h3><p>9:16 edits of your hero footage, sized for Instagram, TikTok, and Reels.</p><div className="where">Instagram &middot; TikTok</div></div>
             </div>
-            <div className="tcard" data-cat="social">
+            <div className="tcard" data-cat="social" onClick={() => setActiveVideo('1187767005')} style={{ cursor: 'pointer' }}>
               <div className="thumb" data-label="event recap">
-                <iframe src="https://player.vimeo.com/video/1187767005?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
+                <iframe src="https://player.vimeo.com/video/1187767005?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
               </div>
               <div className="body"><h3>Event Recap</h3><p>Quick highlight reels from community events and open houses.</p><div className="where">Facebook &middot; Instagram</div></div>
             </div>
-            <div className="tcard" data-cat="social">
+            <div className="tcard" data-cat="social" onClick={() => setActiveVideo('906115435')} style={{ cursor: 'pointer' }}>
               <div className="thumb" data-label="seasonal short">
-                <iframe src="https://player.vimeo.com/video/906115435?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
+                <iframe src="https://player.vimeo.com/video/906115435?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
               </div>
               <div className="body"><h3>Seasonal Short</h3><p>Holiday and milestone moments that keep your feed warm and active.</p><div className="where">Social feeds</div></div>
             </div>
@@ -384,17 +385,17 @@ export default function VideoServices() {
             <h2>Recent <span className="accent">healthcare</span> films.</h2>
           </div>
           <div className="fw-grid stagger">
-            <div className="fw-card hero" style={{ overflow: 'hidden' }}>
-              <iframe src="https://player.vimeo.com/video/906115435?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=1080p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Link Homecare Commercial"></iframe>
+            <div className="fw-card hero" onClick={() => setActiveVideo('906115435')} style={{ overflow: 'hidden', cursor: 'pointer' }}>
+              <iframe src="https://player.vimeo.com/video/906115435?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=1080p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Link Homecare Commercial"></iframe>
               <div className="fw-meta" style={{ pointerEvents: 'none' }}><span className="tag">Commercial</span><span className="title">Link Homecare - Zsanet &amp; Terry</span></div>
             </div>
             <div className="fw-side">
-              <div className="fw-card small" style={{ overflow: 'hidden' }}>
-                <iframe src="https://player.vimeo.com/video/1183056612?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=1080p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Park Gardens Tour"></iframe>
+              <div className="fw-card small" onClick={() => setActiveVideo('1183056612')} style={{ overflow: 'hidden', cursor: 'pointer' }}>
+                <iframe src="https://player.vimeo.com/video/1183056612?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=1080p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Park Gardens Tour"></iframe>
                 <div className="fw-meta" style={{ pointerEvents: 'none' }}><span className="tag">Virtual Tour</span><span className="title">Park Gardens Tour</span></div>
               </div>
-              <div className="fw-card small" style={{ overflow: 'hidden' }}>
-                <iframe src="https://player.vimeo.com/video/930394765?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=1080p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="River Ridge Tour"></iframe>
+              <div className="fw-card small" onClick={() => setActiveVideo('930394765')} style={{ overflow: 'hidden', cursor: 'pointer' }}>
+                <iframe src="https://player.vimeo.com/video/930394765?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=1080p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="River Ridge Tour"></iframe>
                 <div className="fw-meta" style={{ pointerEvents: 'none' }}><span className="tag">Virtual Tour</span><span className="title">River Ridge Tour</span></div>
               </div>
             </div>
@@ -429,6 +430,16 @@ export default function VideoServices() {
           <Link href="/contact" className="btn btn-light">Book a Call</Link>
         </div>
       </section>
+
+      {/* Video Lightbox */}
+      {activeVideo && (
+        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.9)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => setActiveVideo(null)}>
+          <button onClick={() => setActiveVideo(null)} style={{ position: 'absolute', top: '20px', right: '30px', background: 'transparent', border: 'none', color: '#fff', fontSize: '40px', cursor: 'pointer', zIndex: 10000 }}>&times;</button>
+          <div style={{ width: '90%', maxWidth: '1200px', aspectRatio: '16/9', position: 'relative' }} onClick={(e) => e.stopPropagation()}>
+            <iframe src={`https://player.vimeo.com/video/${activeVideo}?autoplay=1&quality=1080p`} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
+          </div>
+        </div>
+      )}
     </>
   );
 }
