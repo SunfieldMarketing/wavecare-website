@@ -148,8 +148,7 @@ export default function VideoServices() {
             <h2 style={{ textWrap: 'unset' }}>The work, <span className="lite">in motion.</span></h2>
           </div>
           <div className="commercial-player stagger" style={{ maxWidth: '900px', margin: '0 auto', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.3)', position: 'relative', aspectRatio: '16/9', background: '#000' }}>
-            {/* Vimeo Placeholder - update src with actual video later */}
-            <iframe src="https://player.vimeo.com/video/1187767005?title=0&byline=0&portrait=0&quality=1080p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Wavecare Commercial"></iframe>
+            <video preload="none" src="/videos/Brochure wavecare video.mp4" autoPlay loop muted playsInline style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}></video>
           </div>
         </div>
       </section>
@@ -291,62 +290,54 @@ export default function VideoServices() {
             <p className="sub" style={{ margin: '20px auto 0', maxWidth: '600px' }}>Every video is purpose-built for the place it will actually be seen — the website, the tour, the inbox, the feed.</p>
           </div>
           
-          <div className="filter-bar" data-reveal>
-            <button className="fchip on" data-filter="all">All Projects</button>
-            <button className="fchip" data-filter="family">Family &amp; Facility</button>
-            <button className="fchip" data-filter="recruit">Recruitment</button>
-            <button className="fchip" data-filter="testimonial">Testimonials</button>
-            <button className="fchip" data-filter="social">Social Media</button>
-          </div>
-          
           <div className="types-grid stagger" id="typesGrid">
-            <div className="tcard" data-cat="family">
-              <div className="thumb" data-label="brand film"><div className="play"><span>&#9654;</span></div></div>
-              <div className="body"><h3>Hero Brand Film</h3><p>The centerpiece of your website. Tells your full story, showcases the facility, and builds deep trust.</p><div className="where">Homepage &middot; Ads</div></div>
+            <div className="tcard">
+              <div className="thumb" style={{ position: 'relative' }}>
+                <video preload="none" src="/videos/water-nursing.mp4" autoPlay loop muted playsInline style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}></video>
+              </div>
+              <div className="body"><h3>Water Nursing Rehab Center</h3><p>Facility Tour &amp; Overview</p></div>
             </div>
-            <div className="tcard" data-cat="family">
-              <div className="thumb" data-label="virtual tour"><div className="play"><span>&#9654;</span></div></div>
-              <div className="body"><h3>Guided Virtual Tour</h3><p>Walk families through your community when they can't be there in person.</p><div className="where">Website &middot; Email follow-ups</div></div>
+            <div className="tcard">
+              <div className="thumb" style={{ position: 'relative' }}>
+                <video preload="none" src="/videos/park-gardens.mp4" autoPlay loop muted playsInline style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}></video>
+              </div>
+              <div className="body"><h3>Park Gardens</h3><p>Facility Tour &amp; Overview</p></div>
             </div>
-            <div className="tcard" data-cat="family">
-              <div className="thumb" data-label="service line video"><div className="play"><span>&#9654;</span></div></div>
-              <div className="body"><h3>Service Line Spot</h3><p>Focused pieces for memory care, rehab, hospice, or key service lines.</p><div className="where">Service pages &middot; Ads</div></div>
+            <div className="tcard">
+              <div className="thumb" style={{ position: 'relative' }}>
+                <video preload="none" src="/videos/link-homecare.mp4" autoPlay loop muted playsInline style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}></video>
+              </div>
+              <div className="body"><h3>Links Home Care</h3><p>Hero Brand Film</p></div>
             </div>
-            <div className="tcard" data-cat="recruit">
-              <div className="thumb" data-label="recruitment"><div className="play"><span>&#9654;</span></div></div>
-              <div className="body"><h3>Recruitment Film</h3><p>Shows the team and culture &mdash; what the job feels like, not just what it pays.</p><div className="where">Careers page &middot; LinkedIn</div></div>
+            <div className="tcard">
+              <div className="thumb" style={{ position: 'relative' }}>
+                <video preload="none" src="/videos/river-ridge.mp4" autoPlay loop muted playsInline style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}></video>
+              </div>
+              <div className="body"><h3>River Ridge Rehab Center</h3><p>Facility Tour &amp; Overview</p></div>
             </div>
-            <div className="tcard" data-cat="recruit">
-              <div className="thumb" data-label="day in the life"><div className="play"><span>&#9654;</span></div></div>
-              <div className="body"><h3>Day in the Life</h3><p>Follows a caregiver through a shift to attract the right candidates.</p><div className="where">Careers page &middot; Indeed</div></div>
+            <div className="tcard">
+              <div className="thumb" style={{ position: 'relative' }}>
+                <video preload="none" src="/videos/pines-bristol.mp4" autoPlay loop muted playsInline style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}></video>
+              </div>
+              <div className="body"><h3>The Pines At Bristol</h3><p>Facility Tour &amp; Overview</p></div>
             </div>
-            <div className="tcard" data-cat="recruit">
-              <div className="thumb" data-label="staff spotlight"><div className="play"><span>&#9654;</span></div></div>
-              <div className="body"><h3>Staff Spotlight</h3><p>Short profiles that put real faces to your employer brand.</p><div className="where">Social &middot; Careers page</div></div>
+            <div className="tcard">
+              <div className="thumb" style={{ position: 'relative' }}>
+                <video preload="none" src="/videos/ny-congregational.mp4" autoPlay loop muted playsInline style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}></video>
+              </div>
+              <div className="body"><h3>NY Congregational</h3><p>Facility Tour &amp; Overview</p></div>
             </div>
-            <div className="tcard" data-cat="testimonial">
-              <div className="thumb" data-label="resident testimonial"><div className="play"><span>&#9654;</span></div></div>
-              <div className="body"><h3>Resident &amp; Family Testimonial</h3><p>Real stories from real families &mdash; the most persuasive video you can publish.</p><div className="where">Website &middot; Sales materials</div></div>
+            <div className="tcard">
+              <div className="thumb" style={{ position: 'relative' }}>
+                <video preload="none" src="/videos/cascades.mp4" autoPlay loop muted playsInline style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}></video>
+              </div>
+              <div className="body"><h3>Cascades Assisted Living</h3><p>Facility Tour &amp; Overview</p></div>
             </div>
-            <div className="tcard" data-cat="testimonial">
-              <div className="thumb" data-label="staff testimonial"><div className="play"><span>&#9654;</span></div></div>
-              <div className="body"><h3>Staff Testimonial</h3><p>Team members on why they stay &mdash; trust for families and recruits alike.</p><div className="where">Careers &middot; About page</div></div>
-            </div>
-            <div className="tcard" data-cat="testimonial">
-              <div className="thumb" data-label="referral partner"><div className="play"><span>&#9654;</span></div></div>
-              <div className="body"><h3>Referral Partner Story</h3><p>Physicians and discharge planners on why they refer to you.</p><div className="where">Sales deck &middot; Outreach</div></div>
-            </div>
-            <div className="tcard" data-cat="social">
-              <div className="thumb" data-label="social vertical"><div className="play"><span>&#9654;</span></div></div>
-              <div className="body"><h3>Social Vertical Cut</h3><p>9:16 edits of your hero footage, sized for Instagram, TikTok, and Reels.</p><div className="where">Instagram &middot; TikTok</div></div>
-            </div>
-            <div className="tcard" data-cat="social">
-              <div className="thumb" data-label="event recap"><div className="play"><span>&#9654;</span></div></div>
-              <div className="body"><h3>Event Recap</h3><p>Quick highlight reels from community events and open houses.</p><div className="where">Facebook &middot; Instagram</div></div>
-            </div>
-            <div className="tcard" data-cat="social">
-              <div className="thumb" data-label="seasonal short"><div className="play"><span>&#9654;</span></div></div>
-              <div className="body"><h3>Seasonal Short</h3><p>Holiday and milestone moments that keep your feed warm and active.</p><div className="where">Social feeds</div></div>
+            <div className="tcard">
+              <div className="thumb" style={{ position: 'relative' }}>
+                <video preload="none" src="/videos/green-acres.mp4" autoPlay loop muted playsInline style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}></video>
+              </div>
+              <div className="body"><h3>CG Green Acres</h3><p>Facility Tour &amp; Overview</p></div>
             </div>
           </div>
         </div>
@@ -361,16 +352,16 @@ export default function VideoServices() {
           </div>
           <div className="fw-grid stagger">
             <div className="fw-card hero" style={{ overflow: 'hidden', position: 'relative' }}>
-              <video src="/videos/link-homecare.mp4" autoPlay loop muted playsInline style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}></video>
+              <video preload="none" src="/videos/link-homecare.mp4" autoPlay loop muted playsInline style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}></video>
               <div className="fw-meta" style={{ pointerEvents: 'none' }}><span className="tag">Commercial</span><span className="title">Link Homecare - Zsanet &amp; Terry</span></div>
             </div>
             <div className="fw-side">
               <div className="fw-card small" style={{ overflow: 'hidden', position: 'relative' }}>
-                <video src="/videos/park-gardens.mp4" autoPlay loop muted playsInline style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}></video>
+                <video preload="none" src="/videos/park-gardens.mp4" autoPlay loop muted playsInline style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}></video>
                 <div className="fw-meta" style={{ pointerEvents: 'none' }}><span className="tag">Virtual Tour</span><span className="title">Park Gardens Tour</span></div>
               </div>
               <div className="fw-card small" style={{ overflow: 'hidden', position: 'relative' }}>
-                <video src="/videos/river-ridge.mp4" autoPlay loop muted playsInline style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}></video>
+                <video preload="none" src="/videos/river-ridge.mp4" autoPlay loop muted playsInline style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}></video>
                 <div className="fw-meta" style={{ pointerEvents: 'none' }}><span className="tag">Virtual Tour</span><span className="title">River Ridge Tour</span></div>
               </div>
             </div>
