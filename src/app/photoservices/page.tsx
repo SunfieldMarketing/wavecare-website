@@ -228,9 +228,9 @@ export default function PhotoServices() {
       {/* ========== WHAT WE PHOTOGRAPH ========== */}
       <section className="panel ink sec-pad">
         <div className="container">
-          <div className="sec-head" data-reveal style={{ textAlign: 'center', margin: '0 auto 60px' }}>
+          <div className="sec-head" data-reveal style={{ textAlign: 'center', margin: '0 auto 60px', maxWidth: '1000px' }}>
             <span className="label">WHAT WE PHOTOGRAPH</span>
-            <h2 style={{ fontSize: 'clamp(40px, 5vw, 64px)', lineHeight: '1.1', marginTop: '16px' }}>
+            <h2 style={{ fontSize: 'clamp(40px, 5vw, 64px)', lineHeight: '1.1', marginTop: '16px', textWrap: 'unset' }}>
               Everything that tells your <span className="accent" style={{ fontStyle: 'italic' }}>story.</span>
             </h2>
           </div>
