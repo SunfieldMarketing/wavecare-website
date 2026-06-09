@@ -180,7 +180,7 @@ export default function PhotoServices() {
       </section>
 
       {/* ========== SOCIAL PROOF BANNER ========== */}
-      <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)', padding: '16px 20px', textAlign: 'center' }}>
+      <div style={{ borderTop: '1px solid rgba(255,255,255,0.2)', borderBottom: '1px solid rgba(255,255,255,0.2)', padding: '16px 20px', textAlign: 'center' }}>
         <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.6)', letterSpacing: '0.02em', margin: 0 }}>
           Trusted by healthcare facilities improving their online presence, admissions marketing, and brand perception.
         </p>
@@ -197,10 +197,10 @@ export default function PhotoServices() {
           
           <div data-reveal>
             <BeforeAfterSlider 
-              beforeImage="/images/gallery/Yorktown_front_before.jpg" 
+              beforeImage="/images/gallery/yorktown_front_before.png" 
               afterImage="/images/gallery/Yorktown%20front.jpg"
             />
-            <p className="ba-caption">Drag the handle &mdash; left is typical stock // right is professional photography</p>
+            <p className="ba-caption">Drag the handle &mdash; left is typical phone photo // right is professional photography</p>
           </div>
         </div>
       </section>
