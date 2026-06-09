@@ -212,3 +212,8 @@
 .shoot-card:hover { background: rgba(95,208,191,0.04); border-color: var(--border-teal); transform: translateY(-4px); }
 .shoot-card h3 { font-size: 1.25rem; color: #fff; margin-bottom: 12px; }
 .shoot-card p { font-size: 14px; color: var(--on-dark); line-height: 1.6; margin: 0; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

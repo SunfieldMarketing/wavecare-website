@@ -7,6 +7,19 @@ import BeforeAfterSlider from '@/components/BeforeAfterSlider';
 export default function PhotoServices() {
   const [ctxTab, setCtxTab] = useState(0);
   const [procTab, setProcTab] = useState(0);
+  const [activeFilter, setActiveFilter] = useState('ALL');
+
+  const galleryItems = [
+    { src: '/images/gallery/Caregiver%20with%20elderly%20man%20playing%20game.jpeg', aspect: '0.75', filters: ['RESIDENT LIFESTYLE', 'ALL'] },
+    { src: '/images/gallery/Elders%20cooking.jpg', aspect: '1.5', filters: ['RESIDENT LIFESTYLE', 'ALL'] },
+    { src: '/images/gallery/Employees%20laughing%20photo.jpeg', aspect: '1', filters: ['STAFF & TEAM', 'MARKETING', 'ALL'] },
+    { src: '/images/gallery/Two%20women%20with%20notepads%20smiling.jpg', aspect: '1.3', filters: ['STAFF & TEAM', 'ALL'] },
+    { src: '/images/gallery/Balloon%20activity%20photo.jpeg', aspect: '0.8', filters: ['RESIDENT LIFESTYLE', 'ALL'] },
+    { src: '/images/gallery/Catherdral%20Health%20Center%20Front%20Photo.jpeg', aspect: '1.2', filters: ['FACILITY', 'MARKETING', 'ALL'] },
+    { src: '/images/gallery/Elderly%20doing%20puzzles%20photo.jpg', aspect: '1', filters: ['RESIDENT LIFESTYLE', 'ALL'] },
+    { src: '/images/gallery/Yorktown%20landscape%20aerial%20photo%202.jpeg', aspect: '1.4', filters: ['FACILITY', 'MARKETING', 'ALL'] },
+    { src: '/images/gallery/Employees%20smiling.jpeg', aspect: '0.9', filters: ['STAFF & TEAM', 'ALL'] }
+  ];
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -16,6 +29,11 @@ export default function PhotoServices() {
       const gsap = window.gsap;
       // @ts-ignore
       const ScrollTrigger = window.ScrollTrigger;
+
+      // @ts-ignore
+      const THREE = window.THREE;
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       function initReveals() {
         const els = document.querySelectorAll('[data-reveal], .stagger');
@@ -61,6 +79,45 @@ export default function PhotoServices() {
         });
       }
 
+      function initWaveAccent() {
+        const canvas = document.getElementById('waveCanvas') as HTMLCanvasElement;
+        if (!canvas || !THREE) { if (canvas) canvas.style.background = 'radial-gradient(ellipse at center,rgba(42,157,143,0.25),transparent 70%)'; return; }
+        let renderer: any; try { renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true }); } catch (e) { canvas.style.display = 'none'; return; }
+        const sec = canvas.parentElement!;
+        function size() { return [sec.clientWidth, sec.clientHeight]; }
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+        let [w, h] = size(); renderer.setSize(w, h);
+        const scene = new THREE.Scene(), cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+        const uniforms = { uTime: { value: 0 }, uRes: { value: new THREE.Vector2(w, h) }, uMouse: { value: new THREE.Vector2(0.5, 0.5) } };
+        const frag = `precision highp float; uniform float uTime; uniform vec2 uRes; uniform vec2 uMouse; varying vec2 vUv;
+          vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;} vec2 mod289(vec2 x){return x-floor(x*(1.0/289.0))*289.0;}
+          vec3 permute(vec3 x){return mod289(((x*34.0)+1.0)*x);}
+          float snoise(vec2 v){const vec4 C=vec4(0.211324865405187,0.366025403784439,-0.577350269189626,0.024390243902439);
+            vec2 i=floor(v+dot(v,C.yy));vec2 x0=v-i+dot(i,C.xx);vec2 i1=(x0.x>x0.y)?vec2(1.0,0.0):vec2(0.0,1.0);
+            vec4 x12=x0.xyxy+C.xxzz;x12.xy-=i1;i=mod289(i);
+            vec3 p=permute(permute(i.y+vec3(0.0,i1.y,1.0))+i.x+vec3(0.0,i1.x,1.0));
+            vec3 m=max(0.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.0);m=m*m;m=m*m;
+            vec3 x=2.0*fract(p*C.www)-1.0;vec3 hh=abs(x)-0.5;vec3 ox=floor(x+0.5);vec3 a0=x-ox;
+            m*=1.79284291400159-0.85373472095314*(a0*a0+hh*hh);
+            vec3 g;g.x=a0.x*x0.x+hh.x*x0.y;g.yz=a0.yz*x12.xz+hh.yz*x12.yw;return 130.0*dot(m,g);}
+          float fbm(vec2 p){float v=0.0,a=0.5;for(int i=0;i<5;i++){v+=a*snoise(p);p*=2.0;a*=0.5;}return v;}
+          void main(){ vec2 uv=vUv; vec2 p=(gl_FragCoord.xy-0.5*uRes.xy)/uRes.y; float t=uTime*0.05;
+            vec2 q=vec2(fbm(p*1.5+t),fbm(p*1.5+vec2(3.2,1.7)-t)); float f=fbm(p*1.5+2.0*q+t); f=f*0.5+0.5;
+            float d=distance(uv,uMouse); f+=sin(d*22.0-uTime*2.0)*exp(-d*5.0)*0.12;
+            vec3 cDeep=vec3(0.039,0.263,0.224),cPrim=vec3(0.055,0.353,0.314),cAcc=vec3(0.165,0.616,0.561),cBri=vec3(0.373,0.816,0.749);
+            vec3 col=mix(cDeep,cPrim,smoothstep(0.2,0.6,f)); col=mix(col,cAcc,smoothstep(0.6,0.85,f)); col=mix(col,cBri,smoothstep(0.85,1.0,f));
+            col+=cBri*exp(-d*6.0)*0.10; float al=0.9-0.5*pow(distance(uv,vec2(0.5)),1.3);
+            gl_FragColor=vec4(col,clamp(al,0.0,1.0)); }`;
+        const mat = new THREE.ShaderMaterial({ uniforms, fragmentShader: frag, vertexShader: `varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position,1.0);}`, transparent: true });
+        scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat));
+        let mx = 0.5, my = 0.5, tmx = 0.5, tmy = 0.5;
+        sec.addEventListener('mousemove', e => { const r = sec.getBoundingClientRect(); tmx = (e.clientX - r.left) / r.width; tmy = 1 - (e.clientY - r.top) / r.height; });
+        window.addEventListener('resize', () => { [w, h] = size(); renderer.setSize(w, h); uniforms.uRes.value.set(w, h); });
+        let vis = true; if ('IntersectionObserver' in window) new IntersectionObserver(es => vis = es[0].isIntersecting, { rootMargin: '100px' }).observe(sec);
+        const clock = new THREE.Clock();
+        (function loop() { requestAnimationFrame(loop); if (!vis) return; mx += (tmx - mx) * 0.06; my += (tmy - my) * 0.06; uniforms.uMouse.value.set(mx, my); uniforms.uTime.value = clock.getElapsedTime() * (reduceMotion ? 0 : 1); renderer.render(scene, cam); })();
+      }
+
       let retryCount = 0;
       const checkScripts = setInterval(() => {
         retryCount++;
@@ -70,11 +127,13 @@ export default function PhotoServices() {
           initReveals();
           initHeroWall();
           initCamCursor();
+          initWaveAccent();
         } else if (retryCount > 100) {
           clearInterval(checkScripts);
           initReveals();
           initHeroWall();
           initCamCursor();
+          initWaveAccent();
         }
       }, 50);
     };
@@ -107,9 +166,6 @@ export default function PhotoServices() {
         </div>
         <div className="container">
           <div className="phero-center" data-reveal>
-            <p style={{ textAlign: 'center', fontSize: '11px', color: 'rgba(255,255,255,0.6)', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '40px' }}>
-              Trusted by healthcare facilities improving their online presence, admissions marketing, and brand perception.
-            </p>
             <svg className="wave-accent" viewBox="0 0 74 24" style={{ marginBottom: '24px' }}>
               <path d="M2,12 Q12,2 20,12 T38,12 T56,12 T72,12"></path>
             </svg>
@@ -123,6 +179,13 @@ export default function PhotoServices() {
         </div>
       </section>
 
+      {/* ========== SOCIAL PROOF BANNER ========== */}
+      <div style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', padding: '16px 20px', textAlign: 'center' }}>
+        <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.6)', letterSpacing: '0.04em', textTransform: 'uppercase', margin: 0 }}>
+          Trusted by healthcare facilities improving their online presence, admissions marketing, and brand perception.
+        </p>
+      </div>
+
       {/* ========== WHY PROFESSIONAL PHOTOGRAPHY MATTERS ========== */}
       <section className="panel deep sec-pad">
         <div className="container">
@@ -134,8 +197,8 @@ export default function PhotoServices() {
           
           <div data-reveal>
             <BeforeAfterSlider 
-              beforeImage="/images/gallery/Caregiver%20with%20elderly%20women%202.jpeg" 
-              afterImage="/images/gallery/Employees%20laughing%20photo.jpeg"
+              beforeImage="/images/gallery/Yorktown_front_before.jpg" 
+              afterImage="/images/gallery/Yorktown%20front.jpg"
             />
             <p className="ba-caption">Drag the handle &mdash; left is typical stock // right is professional photography</p>
           </div>
@@ -145,26 +208,31 @@ export default function PhotoServices() {
       {/* ========== WHAT WE PHOTOGRAPH ========== */}
       <section className="panel ink sec-pad">
         <div className="container">
-          <div className="sec-head" data-reveal style={{ textAlign: 'center' }}>
-            <span className="label">WHAT WE PHOTOGRAPH</span>
-            <h2>Everything that tells your <span className="accent">story.</span></h2>
+          <div className="sec-head" data-reveal style={{ maxWidth: '800px', margin: '0 auto 60px' }}>
+            <span className="label" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              <div style={{ width: '40px', height: '1px', background: 'var(--teal-bright)' }}></div> WHAT WE PHOTOGRAPH
+            </span>
+            <h2 style={{ fontSize: 'clamp(40px, 5vw, 64px)', lineHeight: '1.1', marginTop: '16px' }}>
+              Everything that tells your <br />
+              <span className="accent" style={{ fontStyle: 'italic', display: 'inline-block', marginLeft: '15%' }}>story.</span>
+            </h2>
           </div>
           
           <div className="shoot-grid" data-reveal>
             <div className="shoot-card">
-              <h3>Facility Photography</h3>
+              <h3 style={{ fontFamily: 'var(--font-head)' }}>Facility Photography</h3>
               <p>Common areas, resident rooms, amenities, dining spaces, and exterior views &mdash; the spaces families judge first.</p>
             </div>
             <div className="shoot-card">
-              <h3>Staff &amp; Team Photography</h3>
+              <h3 style={{ fontFamily: 'var(--font-head)' }}>Staff &amp; Team Photography</h3>
               <p>Professional portraits and candid team moments that put real faces to your culture and care.</p>
             </div>
             <div className="shoot-card">
-              <h3>Resident Lifestyle</h3>
+              <h3 style={{ fontFamily: 'var(--font-head)' }}>Resident Lifestyle</h3>
               <p>Authentic moments of daily life, activities, and community &mdash; the proof that people are happy here.</p>
             </div>
             <div className="shoot-card">
-              <h3>Marketing Content</h3>
+              <h3 style={{ fontFamily: 'var(--font-head)' }}>Marketing Content</h3>
               <p>Images shaped for websites, social, brochures, ads, and recruitment &mdash; shot with the end user in mind.</p>
             </div>
           </div>
@@ -307,22 +375,32 @@ export default function PhotoServices() {
             </p>
           </div>
           <div className="filter-bar" data-reveal>
-            <button className="fchip on">ALL</button>
-            <button className="fchip">FACILITY</button>
-            <button className="fchip">STAFF &amp; TEAM</button>
-            <button className="fchip">RESIDENT LIFESTYLE</button>
-            <button className="fchip">MARKETING</button>
+            {['ALL', 'FACILITY', 'STAFF & TEAM', 'RESIDENT LIFESTYLE', 'MARKETING'].map(f => (
+              <button 
+                key={f} 
+                className={`fchip ${activeFilter === f ? 'on' : ''}`}
+                onClick={() => setActiveFilter(f)}
+              >
+                {f}
+              </button>
+            ))}
           </div>
-          <div className="mason stagger">
-            <div className="m" style={{ aspectRatio: '0.75' }}><img src="/images/gallery/Caregiver%20with%20elderly%20man%20playing%20game.jpeg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-            <div className="m" style={{ aspectRatio: '1.5' }}><img src="/images/gallery/Elders%20cooking.jpg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-            <div className="m" style={{ aspectRatio: '1' }}><img src="/images/gallery/Employees%20laughing%20photo.jpeg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-            <div className="m" style={{ aspectRatio: '1.3' }}><img src="/images/gallery/Two%20women%20with%20notepads%20smiling.jpg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-            <div className="m" style={{ aspectRatio: '0.8' }}><img src="/images/gallery/Balloon%20activity%20photo.jpeg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-            <div className="m" style={{ aspectRatio: '1.2' }}><img src="/images/gallery/Catherdral%20Health%20Center%20Front%20Photo.jpeg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-            <div className="m" style={{ aspectRatio: '1' }}><img src="/images/gallery/Elderly%20doing%20puzzles%20photo.jpg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-            <div className="m" style={{ aspectRatio: '1.4' }}><img src="/images/gallery/Yorktown%20landscape%20aerial%20photo%202.jpeg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-            <div className="m" style={{ aspectRatio: '0.9' }}><img src="/images/gallery/Employees%20smiling.jpeg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+          <div className="mason">
+            {galleryItems.filter(item => item.filters.includes(activeFilter)).map((item, idx) => (
+              <div 
+                className="m" 
+                style={{ 
+                  aspectRatio: item.aspect, 
+                  animation: `fadeUp 0.5s ease forwards`,
+                  animationDelay: `${idx * 0.05}s`,
+                  opacity: 0,
+                  transform: 'translateY(20px)'
+                }} 
+                key={activeFilter + item.src}
+              >
+                <img src={item.src} alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+            ))}
           </div>
           <div style={{ textAlign: 'center', marginTop: '50px' }} data-reveal>
             <Link href="/case-studies" className="btn btn-ghost">View More Work</Link>
@@ -331,10 +409,8 @@ export default function PhotoServices() {
       </section>
 
       {/* ========== CTA ========== */}
-      <section className="final" style={{ position: 'relative', overflow: 'hidden' }}>
-        <svg className="cta-waves" preserveAspectRatio="none" viewBox="0 0 1440 320" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: 'auto', zIndex: 0, opacity: 0.1 }}>
-          <path fill="var(--teal-bright)" fillOpacity="1" d="M0,160L48,149.3C96,139,192,117,288,117.3C384,117,480,139,576,160C672,181,768,203,864,213.3C960,224,1056,224,1152,202.7C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-        </svg>
+      <section className="final">
+        <canvas id="waveCanvas"></canvas>
         <div className="final-fallback"></div>
         <div className="final-in" data-reveal style={{ position: 'relative', zIndex: 1 }}>
           <span className="label">A clearer picture of your care</span>
