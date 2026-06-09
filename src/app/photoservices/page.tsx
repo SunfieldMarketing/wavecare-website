@@ -159,9 +159,29 @@ export default function PhotoServices() {
       <section className="phero">
         <div className="phero-bg">
           <div className="phero-grid-full">
-            {Array.from({ length: 48 }).map((_, i) => (
-              <div key={i} className="cell">IMG {i + 1}</div>
-            ))}
+            {Array.from({ length: 48 }).map((_, i) => {
+              const galleryPhotos = [
+                "Balloon activity photo.jpeg",
+                "Caregiver with elderly man playing game.jpeg",
+                "Caregiver with elderly women 2.jpeg",
+                "Caregiver with elderly women.jpeg",
+                "Catherdral Health Center Front Photo.jpeg",
+                "Elderly doing puzzles photo.jpg",
+                "Elders cooking.jpg",
+                "Employees laughing photo.jpeg",
+                "Employees smiling.jpeg",
+                "Two women with notepads smiling.jpg",
+                "Yorktown front.jpg",
+                "Yorktown landscape aerial photo 2.jpeg",
+                "Yorktown landscape aerial photo.jpeg"
+              ];
+              const photo = galleryPhotos[i % galleryPhotos.length];
+              return (
+                <div key={i} className="cell" style={{ padding: 0, overflow: 'hidden' }}>
+                  <img src={`/images/gallery/${encodeURIComponent(photo)}`} alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%) opacity(0.3)' }} />
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className="container">
