@@ -259,10 +259,10 @@ export default function PhotoServices() {
       {/* ========== CONTEXT ========== */}
       <section className="panel deep sec-pad">
         <div className="container">
-          <div data-reveal style={{ maxWidth: '600px', marginBottom: '60px' }}>
+          <div data-reveal style={{ marginBottom: '60px' }}>
             <span className="label">WHERE YOUR PHOTOS ARE USED</span>
             <h2 style={{ textWrap: 'unset' }}>One shoot. <span className="accent">Everywhere</span> it counts.</h2>
-            <p className="sub" style={{ marginTop: '18px' }}>The same professional image earns its keep across every place families and referral partners find you.</p>
+            <p className="sub" style={{ marginTop: '18px', maxWidth: '600px' }}>The same professional image earns its keep across every place families and referral partners find you.</p>
           </div>
           
           <div className="phero-in" style={{ gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center' }}>
