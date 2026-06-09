@@ -268,64 +268,22 @@ export default function PhotoServices() {
           <div className="ctx" data-reveal style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
             <div className="ctx-stage" style={{ position: 'relative', height: '100%', minHeight: '520px', width: '115%', marginLeft: '-7.5%' }}>
               <div className={`ctx-scene ${ctxTab === 0 ? 'on' : ''}`} style={{ alignItems: 'flex-end' }}>
-                <div className="mock-web" style={{ maxWidth: '800px', width: '100%' }}>
+                <div className="mock-web">
                   <div className="bar"><i></i><i></i><i></i></div>
-                  <div className="shot">
-                    <img src="/images/website.png" alt="Website" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
-                  </div>
+                  <div className="shot"><div className="pho" data-label="hero image [REPLACE]"></div></div>
                   <div className="lines"><span></span><span></span><span></span></div>
                 </div>
               </div>
               <div className={`ctx-scene ${ctxTab === 1 ? 'on' : ''}`} style={{ alignItems: 'flex-end' }}>
-                <div className="mock-bro" style={{ maxWidth: '800px', width: '100%', gap: '20px' }}>
-                  <div className="pg" style={{ padding: 0, overflow: 'hidden', aspectRatio: '4/5' }}>
-                    <img src="/images/brochure_inside.png" alt="Brochure Cover" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  </div>
-                  <div className="pg" style={{ padding: 0, overflow: 'hidden', aspectRatio: '4/5' }}>
-                    <img src="/images/brochure_cover.jpg" alt="Brochure Inside" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  </div>
+                <div className="mock-bro">
+                  <div className="pg"><div className="shot"><div className="pho" data-label="brochure [REPLACE]"></div></div><div className="lines"><span></span><span></span></div></div>
+                  <div className="pg"><div className="shot"><div className="pho" data-label="packet [REPLACE]"></div></div><div className="lines"><span></span><span></span></div></div>
                 </div>
               </div>
               <div className={`ctx-scene ${ctxTab === 2 ? 'on' : ''}`} style={{ alignItems: 'flex-end' }}>
-                <div className="mock-goo" style={{ maxWidth: '800px', width: '100%', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--soft)', background: '#0b3f37', boxShadow: '0 30px 60px -25px rgba(0,0,0,.6)' }}>
-                  <div className="shot" style={{ display: 'grid', gridTemplateColumns: '2.5fr 1fr', gap: '4px', padding: '4px', background: 'rgba(255,255,255,0.05)' }}>
-                    <div style={{ aspectRatio: '16/9', overflow: 'hidden', borderRadius: '8px 0 0 8px' }}>
-                      <img src="/images/gallery/Yorktown%20front.jpg" alt="Exterior" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    </div>
-                    <div style={{ display: 'grid', gridTemplateRows: '1fr 1fr', gap: '4px' }}>
-                      <div style={{ overflow: 'hidden', borderRadius: '0 8px 0 0' }}>
-                        <img src="/images/gallery/Elderly%20doing%20puzzles%20photo.jpg" alt="Inside" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                      </div>
-                      <div style={{ background: '#062a24', display: 'grid', placeItems: 'center', color: 'var(--teal-bright)', fontSize: '12px', fontWeight: 600, letterSpacing: '0.05em', borderRadius: '0 0 8px 0', textTransform: 'uppercase' }}>See photos</div>
-                    </div>
-                  </div>
-                  <div className="info" style={{ padding: '28px 32px' }}>
-                    <div className="name" style={{ fontSize: '26px', fontWeight: 700, color: '#fff', marginBottom: '8px', letterSpacing: '-0.02em' }}>Park Gardens Senior Living</div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '24px' }}>
-                      <div style={{ color: '#fff', fontWeight: 600, fontSize: '16px' }}>5.0</div>
-                      <div className="stars" style={{ color: '#fbbc04', letterSpacing: '2px', fontSize: '16px' }}>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                      <div style={{ color: 'var(--on-dark)', fontSize: '14px', marginLeft: '4px' }}>(124 Google reviews)</div>
-                    </div>
-                    <div style={{ display: 'flex', gap: '12px', marginBottom: '28px' }}>
-                      <div style={{ flex: 1, padding: '12px', textAlign: 'center', border: '1px solid var(--soft)', borderRadius: '50px', color: 'var(--teal-bright)', fontSize: '13px', fontWeight: 600, background: 'rgba(255,255,255,0.03)' }}>Website</div>
-                      <div style={{ flex: 1, padding: '12px', textAlign: 'center', border: '1px solid var(--soft)', borderRadius: '50px', color: 'var(--teal-bright)', fontSize: '13px', fontWeight: 600, background: 'rgba(255,255,255,0.03)' }}>Directions</div>
-                      <div style={{ flex: 1, padding: '12px', textAlign: 'center', border: '1px solid var(--soft)', borderRadius: '50px', color: 'var(--teal-bright)', fontSize: '13px', fontWeight: 600, background: 'rgba(255,255,255,0.03)' }}>Call</div>
-                    </div>
-                    <div style={{ display: 'grid', gap: '16px', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '24px' }}>
-                      <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal-bright)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                        <div style={{ color: 'var(--on-dark)', fontSize: '15px' }}>123 Care Avenue, Suite 100</div>
-                      </div>
-                      <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal-bright)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                        <div style={{ color: 'var(--on-dark)', fontSize: '15px' }}><span style={{ color: '#5fd0bf', fontWeight: 500 }}>Open</span> &middot; Closes 8 PM</div>
-                      </div>
-                      <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal-bright)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                        <div style={{ color: 'var(--on-dark)', fontSize: '15px' }}>(555) 123-4567</div>
-                      </div>
-                    </div>
-                  </div>
+                <div className="mock-goo">
+                  <div className="shot"><div className="pho" data-label="listing image [REPLACE]"></div></div>
+                  <div className="info"><div className="name">Park Gardens &middot; Senior Living</div><div className="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div className="meta"></div></div>
                 </div>
               </div>
             </div>
