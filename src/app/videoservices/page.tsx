@@ -360,17 +360,17 @@ export default function VideoServices() {
             <h2>Recent <span className="accent">healthcare</span> films.</h2>
           </div>
           <div className="fw-grid stagger">
-            <div className="fw-card hero" style={{ overflow: 'hidden' }}>
-              <iframe src="https://player.vimeo.com/video/906115435?title=0&byline=0&portrait=0&quality=1080p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Link Homecare Commercial"></iframe>
+            <div className="fw-card hero" style={{ overflow: 'hidden', position: 'relative' }}>
+              <video src="/videos/link-homecare.mp4" autoPlay loop muted playsInline style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}></video>
               <div className="fw-meta" style={{ pointerEvents: 'none' }}><span className="tag">Commercial</span><span className="title">Link Homecare - Zsanet &amp; Terry</span></div>
             </div>
             <div className="fw-side">
-              <div className="fw-card small" style={{ overflow: 'hidden' }}>
-                <iframe src="https://player.vimeo.com/video/1183056612?title=0&byline=0&portrait=0&quality=1080p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Park Gardens Tour"></iframe>
+              <div className="fw-card small" style={{ overflow: 'hidden', position: 'relative' }}>
+                <video src="/videos/park-gardens.mp4" autoPlay loop muted playsInline style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}></video>
                 <div className="fw-meta" style={{ pointerEvents: 'none' }}><span className="tag">Virtual Tour</span><span className="title">Park Gardens Tour</span></div>
               </div>
-              <div className="fw-card small" style={{ overflow: 'hidden' }}>
-                <iframe src="https://player.vimeo.com/video/930394765?title=0&byline=0&portrait=0&quality=1080p" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="River Ridge Tour"></iframe>
+              <div className="fw-card small" style={{ overflow: 'hidden', position: 'relative' }}>
+                <video src="/videos/river-ridge.mp4" autoPlay loop muted playsInline style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}></video>
                 <div className="fw-meta" style={{ pointerEvents: 'none' }}><span className="tag">Virtual Tour</span><span className="title">River Ridge Tour</span></div>
               </div>
             </div>
