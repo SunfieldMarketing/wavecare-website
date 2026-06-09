@@ -239,72 +239,61 @@ export default function PhotoServices() {
       {/* ========== CONTEXT ========== */}
       <section className="panel deep sec-pad">
         <div className="container phero-in" style={{ gridTemplateColumns: '1fr 1fr', gap: '60px' }}>
-          <div data-reveal style={{ display: 'flex', flexDirection: 'column' }}>
+          <div data-reveal style={{ maxWidth: '640px', marginBottom: '48px' }}>
             <span className="label">WHERE YOUR PHOTOS ARE USED</span>
             <h2>One shoot. <span className="accent">Everywhere</span> it counts.</h2>
-            <p className="sub" style={{ marginTop: '18px', marginBottom: '40px' }}>The same professional image earns its keep across every place families and referral partners find you.</p>
-            
-            <div className="ctx-tabs" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <p className="sub" style={{ marginTop: '18px' }}>The same professional image earns its keep across every place families and referral partners find you.</p>
+          </div>
+          
+          <div className="phero-in" style={{ gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'stretch' }}>
+            <div className="ctx-tabs" data-reveal style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div className={`ctx-tab ${ctxTab === 0 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(0)} onClick={() => setCtxTab(0)} style={{ width: '100%', justifyContent: 'flex-start' }}>
                 <div className="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="20" x2="22" y2="20"></line></svg></div>
                 <div style={{ textAlign: 'left' }}>
                   <h3>Website</h3><p>Stronger first impression, instant trust.</p>
                 </div>
               </div>
-              <div className={`ctx-tab ${ctxTab === 1 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(1)} onClick={() => setCtxTab(1)} style={{ width: '100%', justifyContent: 'flex-start' }}>
+              <div className={`ctx-tab ${ctxTab === 1 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(1)} onClick={() => setCtxTab(1)} style={{ width: '100%', justifyContent: 'flex-start', marginTop: '16px' }}>
                 <div className="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></div>
                 <div style={{ textAlign: 'left' }}>
                   <h3>Brochures &amp; Packets</h3><p>Polished materials for tours and admissions.</p>
                 </div>
               </div>
-              <div className={`ctx-tab ${ctxTab === 2 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(2)} onClick={() => setCtxTab(2)} style={{ width: '100%', justifyContent: 'flex-start' }}>
-                <div className="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
+              <div className={`ctx-tab ${ctxTab === 2 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(2)} onClick={() => setCtxTab(2)} style={{ width: '100%', justifyContent: 'flex-start', marginTop: '16px' }}>
+                <div className="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
                 <div style={{ textAlign: 'left' }}>
                   <h3>Google Business Profile</h3><p>Better local visibility with real imagery.</p>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="ctx" data-reveal style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
-            <div className="ctx-stage" style={{ position: 'relative', width: '110%', marginLeft: '-5%' }}>
-              
-              <div className={`ctx-scene ${ctxTab === 0 ? 'on' : ''}`}>
-                <div className="mock-widget">
+            
+            <div className="ctx-stage" data-reveal style={{ position: 'relative', height: '100%', width: '100%' }}>
+              <div className={`ctx-scene ${ctxTab === 0 ? 'on' : ''}`} style={{ width: '100%', height: '100%' }}>
+                <div className="mock-web" style={{ maxWidth: '100%', width: '100%', height: '100%', display: 'flex', flexDirection: 'column', margin: 0 }}>
                   <div className="bar"><i></i><i></i><i></i></div>
-                  <div className="content">
+                  <div className="shot" style={{ flex: 1, aspectRatio: 'auto' }}>
                     <img src="/images/website.png" alt="Website" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
                   </div>
                 </div>
               </div>
 
-              <div className={`ctx-scene ${ctxTab === 1 ? 'on' : ''}`}>
-                <div className="mock-widget">
+              <div className={`ctx-scene ${ctxTab === 1 ? 'on' : ''}`} style={{ width: '100%', height: '100%' }}>
+                <div className="mock-web" style={{ maxWidth: '100%', width: '100%', height: '100%', display: 'flex', flexDirection: 'column', margin: 0 }}>
                   <div className="bar"><i></i><i></i><i></i></div>
-                  <div className="content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#e2e8f0', padding: '30px' }}>
-                    <div style={{ display: 'flex', gap: '16px', height: '100%' }}>
-                      <img src="/images/brochure_inside.png" alt="Brochure Inside" style={{ height: '100%', objectFit: 'contain', boxShadow: '0 10px 25px rgba(0,0,0,0.15)' }} />
-                      <img src="/images/brochure_cover.jpg" alt="Brochure Cover" style={{ height: '100%', objectFit: 'contain', boxShadow: '0 10px 25px rgba(0,0,0,0.15)' }} />
-                    </div>
+                  <div className="shot" style={{ flex: 1, aspectRatio: 'auto' }}>
+                    <img src="/images/brochure_cover.jpg" alt="Brochure Cover" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
                   </div>
                 </div>
               </div>
 
-              <div className={`ctx-scene ${ctxTab === 2 ? 'on' : ''}`}>
-                <div className="mock-widget">
+              <div className={`ctx-scene ${ctxTab === 2 ? 'on' : ''}`} style={{ width: '100%', height: '100%' }}>
+                <div className="mock-web" style={{ maxWidth: '100%', width: '100%', height: '100%', display: 'flex', flexDirection: 'column', margin: 0 }}>
                   <div className="bar"><i></i><i></i><i></i></div>
-                  <div className="content" style={{ display: 'flex', flexDirection: 'column' }}>
-                    <div style={{ height: '70%' }}>
-                      <img src="/images/gallery/Caregiver%20with%20elderly%20women.jpeg" alt="Google Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    </div>
-                    <div style={{ padding: '20px 24px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '8px' }}>
-                      <div style={{ fontWeight: 700, color: '#fff', fontSize: '18px' }}>Park Gardens &middot; Senior Living</div>
-                      <div style={{ color: 'var(--teal-bright)', letterSpacing: '2px', fontSize: '15px' }}>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                      <div style={{ height: '8px', width: '70%', borderRadius: '4px', background: 'rgba(255,255,255,0.1)' }}></div>
-                    </div>
+                  <div className="shot" style={{ flex: 1, aspectRatio: 'auto' }}>
+                    <img src="/images/gallery/Caregiver%20with%20elderly%20women.jpeg" alt="Google Business Profile Photo" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
