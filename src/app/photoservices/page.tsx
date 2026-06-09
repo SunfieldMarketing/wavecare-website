@@ -267,8 +267,8 @@ export default function PhotoServices() {
           </div>
           <div className="ctx" data-reveal style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
             <div className="ctx-stage" style={{ position: 'relative', height: '100%', minHeight: '520px', width: '115%', marginLeft: '-7.5%' }}>
-              <div className={`ctx-scene ${ctxTab === 0 ? 'on' : ''}`}>
-                <div className="mock-web">
+              <div className={`ctx-scene ${ctxTab === 0 ? 'on' : ''}`} style={{ alignItems: 'flex-end' }}>
+                <div className="mock-web" style={{ maxWidth: '800px', width: '100%' }}>
                   <div className="bar"><i></i><i></i><i></i></div>
                   <div className="shot">
                     <img src="/images/website.png" alt="Website" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
@@ -276,7 +276,7 @@ export default function PhotoServices() {
                   <div className="lines"><span></span><span></span><span></span></div>
                 </div>
               </div>
-              <div className={`ctx-scene ${ctxTab === 1 ? 'on' : ''}`}>
+              <div className={`ctx-scene ${ctxTab === 1 ? 'on' : ''}`} style={{ alignItems: 'flex-end' }}>
                 <div className="mock-bro" style={{ maxWidth: '800px', width: '100%', gap: '20px' }}>
                   <div className="pg" style={{ padding: 0, overflow: 'hidden', aspectRatio: '4/5' }}>
                     <img src="/images/brochure_inside.png" alt="Brochure Cover" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -286,8 +286,8 @@ export default function PhotoServices() {
                   </div>
                 </div>
               </div>
-              <div className={`ctx-scene ${ctxTab === 2 ? 'on' : ''}`}>
-                <div className="mock-goo">
+              <div className={`ctx-scene ${ctxTab === 2 ? 'on' : ''}`} style={{ alignItems: 'flex-end' }}>
+                <div className="mock-goo" style={{ maxWidth: '800px', width: '100%' }}>
                   <div className="shot">
                     <img src="/images/gallery/Caregiver%20with%20elderly%20women.jpeg" alt="Google Business Profile Photo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
