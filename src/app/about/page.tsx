@@ -312,36 +312,44 @@ export default function About() {
               <img src="/images/brand_photoshoots.jpg" alt="Brand & photoshoots" /><span className="acc-num">01</span>
               <div className="acc-content">
                 <div className="acc-title">Brand &amp; Photoshoots</div>
-                <p className="acc-tag">Build instant trust with a clean, modern healthcare look.</p>
-                <div className="acc-detail"><span>Facility &amp; lifestyle</span><span>Staff portraits</span><span>HIPAA-conscious</span></div>
-                <div className="acc-cta"><Link href="/photoservices" className="btn" data-cursor>Learn More</Link></div>
+                <div className="acc-body-wrap">
+                  <p className="acc-tag">Build instant trust with a clean, modern healthcare look.</p>
+                  <div className="acc-detail"><span>Facility &amp; lifestyle</span><span>Staff portraits</span><span>HIPAA-conscious</span></div>
+                  <div className="acc-cta"><Link href="/photoservices" className="btn" data-cursor>Learn More</Link></div>
+                </div>
               </div>
             </article>
             <article className="acc-panel" data-cursor>
               <img src="/images/video_production.jpg" alt="Video production" /><span className="acc-num">02</span>
               <div className="acc-content">
                 <div className="acc-title">Video Production</div>
-                <p className="acc-tag">Short-form &amp; explainer videos that turn views into booked calls.</p>
-                <div className="acc-detail"><span>Commercials</span><span>Facility tours</span><span>Social cuts</span></div>
-                <div className="acc-cta"><Link href="/videoservices" className="btn" data-cursor>Learn More</Link></div>
+                <div className="acc-body-wrap">
+                  <p className="acc-tag">Short-form &amp; explainer videos that turn views into booked calls.</p>
+                  <div className="acc-detail"><span>Commercials</span><span>Facility tours</span><span>Social cuts</span></div>
+                  <div className="acc-cta"><Link href="/videoservices" className="btn" data-cursor>Learn More</Link></div>
+                </div>
               </div>
             </article>
             <article className="acc-panel" data-cursor>
               <img src="/images/design_print_2.jpg" alt="Design & print" /><span className="acc-num">03</span>
               <div className="acc-content">
                 <div className="acc-title">Design &amp; Print</div>
-                <p className="acc-tag">Patient-ready brochures, banners, menus, and signage.</p>
-                <div className="acc-detail"><span>Brochures</span><span>Signage</span><span>Stationery</span></div>
-                <div className="acc-cta"><Link href="/design-print" className="btn" data-cursor>Learn More</Link></div>
+                <div className="acc-body-wrap">
+                  <p className="acc-tag">Patient-ready brochures, banners, menus, and signage.</p>
+                  <div className="acc-detail"><span>Brochures</span><span>Signage</span><span>Stationery</span></div>
+                  <div className="acc-cta"><Link href="/design-print" className="btn" data-cursor>Learn More</Link></div>
+                </div>
               </div>
             </article>
             <article className="acc-panel" data-cursor>
               <img src="/images/img_6.jpeg" alt="Web design & management" /><span className="acc-num">04</span>
               <div className="acc-content">
                 <div className="acc-title">Web Design &amp; Management</div>
-                <p className="acc-tag">Fast, conversion-first websites that generate inquiries daily.</p>
-                <div className="acc-detail"><span>Mobile-first</span><span>SEO + GBP</span><span>~2-week launch</span></div>
-                <div className="acc-cta"><Link href="/webdesign" className="btn" data-cursor>Learn More</Link></div>
+                <div className="acc-body-wrap">
+                  <p className="acc-tag">Fast, conversion-first websites that generate inquiries daily.</p>
+                  <div className="acc-detail"><span>Mobile-first</span><span>SEO + GBP</span><span>~2-week launch</span></div>
+                  <div className="acc-cta"><Link href="/webdesign" className="btn" data-cursor>Learn More</Link></div>
+                </div>
               </div>
             </article>
           </div>
