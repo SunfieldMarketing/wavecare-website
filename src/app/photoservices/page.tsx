@@ -176,9 +176,10 @@ export default function PhotoServices() {
                 "Yorktown landscape aerial photo.jpeg"
               ];
               const photo = galleryPhotos[i % galleryPhotos.length];
+              const webpName = photo.replace(/\.(jpg|jpeg|png)$/i, '.webp');
               return (
                 <div key={i} className="cell" style={{ padding: 0, overflow: 'hidden' }}>
-                  <img src={`/images/gallery/${encodeURIComponent(photo)}`} alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%) opacity(0.3)' }} />
+                  <img src={`/images/gallery/thumbs/${encodeURIComponent(webpName)}`} alt="Selected Work Background" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%) opacity(0.3)' }} loading="lazy" />
                 </div>
               );
             })}
