@@ -1,54 +1,46 @@
 import sharp from 'sharp';
-import fs from 'fs';
 
 async function degradeImage() {
   const inputPath = 'public/images/gallery/Yorktown front.jpg';
-  // Use the exact case-sensitive filename that Git is tracking
   const outputPath = 'public/images/gallery/Yorktown_front_before.jpg';
 
   console.log('Loading image...');
   const metadata = await sharp(inputPath).metadata();
   
-  // Downscale heavily first to lose detail
-  const lowResWidth = 400; 
-  const lowResHeight = Math.round((metadata.height / metadata.width) * lowResWidth);
+  // Moderate downscale
+  const resWidth = 1000; 
+  const resHeight = Math.round((metadata.height / metadata.width) * resWidth);
 
-  // Generate heavy noise buffer
-  console.log('Generating heavy noise...');
-  const noiseSize = lowResWidth * lowResHeight * 3;
+  // Generate moderate noise buffer
+  console.log('Generating noise...');
+  const noiseSize = resWidth * resHeight * 3;
   const noiseBuffer = Buffer.alloc(noiseSize);
   for (let i = 0; i < noiseSize; i++) {
-    // Aggressive colored noise
-    const grain = Math.floor(Math.random() * 200) - 100; 
+    // Light colored noise
+    const grain = Math.floor(Math.random() * 80) - 40; 
     noiseBuffer[i] = Math.min(255, Math.max(0, 128 + grain));
   }
 
-  console.log('Applying extreme degradation effects...');
+  console.log('Applying realistic amateur photo effects...');
   await sharp(inputPath)
-    .resize(lowResWidth, lowResHeight) // Extreme downscale
-    .blur(1.5) // Out of focus blur
+    .resize(resWidth, resHeight)
+    .blur(0.5) // Just a tiny bit soft
     .modulate({
-      brightness: 1.25, // Very blown out highlights
-      saturation: 0.3, // Extremely washed out
-      hue: -25 // Strong ugly color shift (greenish/yellow tint)
+      brightness: 1.05, 
+      saturation: 0.8, // Slightly dull colors
+      hue: -5 // Very slight tint
     })
     .composite([{
       input: noiseBuffer,
-      raw: { width: lowResWidth, height: lowResHeight, channels: 3 },
+      raw: { width: resWidth, height: resHeight, channels: 3 },
       blend: 'overlay', 
-      opacity: 0.8 // Much heavier noise opacity
+      opacity: 0.35 // Noticeable but not overwhelming grain
     }])
     .jpeg({
-      quality: 5, // Maximum compression artifacting
+      quality: 40, // Standard phone compression
       chromaSubsampling: '4:2:0'
     })
-    .toBuffer()
-    .then(data => {
-      // Upscale it back up slightly so it fits the container without browser smoothing it nicely
-      return sharp(data)
-        .resize(800, null, { kernel: 'nearest' }) // Nearest neighbor upscale for blockiness
-        .toFile(outputPath);
-    });
+    .toFile(outputPath);
 
   console.log('Done!');
 }
