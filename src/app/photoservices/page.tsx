@@ -238,59 +238,61 @@ export default function PhotoServices() {
 
       {/* ========== CONTEXT ========== */}
       <section className="panel deep sec-pad">
-        <div className="container phero-in" style={{ gridTemplateColumns: '1fr 1fr', gap: '60px' }}>
-          <div data-reveal style={{ maxWidth: '640px', marginBottom: '48px' }}>
+        <div className="container">
+          <div data-reveal style={{ maxWidth: '600px', marginBottom: '60px' }}>
             <span className="label">WHERE YOUR PHOTOS ARE USED</span>
-            <h2>One shoot. <span className="accent">Everywhere</span> it counts.</h2>
+            <h2>One shoot. <br/><span className="accent">Everywhere</span> it counts.</h2>
             <p className="sub" style={{ marginTop: '18px' }}>The same professional image earns its keep across every place families and referral partners find you.</p>
           </div>
           
-          <div className="phero-in" style={{ gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'stretch' }}>
-            <div className="ctx-tabs" data-reveal style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <div className="phero-in" style={{ gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center' }}>
+            <div className="ctx-tabs" data-reveal style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <div className={`ctx-tab ${ctxTab === 0 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(0)} onClick={() => setCtxTab(0)} style={{ width: '100%', justifyContent: 'flex-start' }}>
                 <div className="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="20" x2="22" y2="20"></line></svg></div>
                 <div style={{ textAlign: 'left' }}>
                   <h3>Website</h3><p>Stronger first impression, instant trust.</p>
                 </div>
               </div>
-              <div className={`ctx-tab ${ctxTab === 1 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(1)} onClick={() => setCtxTab(1)} style={{ width: '100%', justifyContent: 'flex-start', marginTop: '16px' }}>
+              <div className={`ctx-tab ${ctxTab === 1 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(1)} onClick={() => setCtxTab(1)} style={{ width: '100%', justifyContent: 'flex-start' }}>
                 <div className="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></div>
                 <div style={{ textAlign: 'left' }}>
                   <h3>Brochures &amp; Packets</h3><p>Polished materials for tours and admissions.</p>
                 </div>
               </div>
-              <div className={`ctx-tab ${ctxTab === 2 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(2)} onClick={() => setCtxTab(2)} style={{ width: '100%', justifyContent: 'flex-start', marginTop: '16px' }}>
+              <div className={`ctx-tab ${ctxTab === 2 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(2)} onClick={() => setCtxTab(2)} style={{ width: '100%', justifyContent: 'flex-start' }}>
                 <div className="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
                 <div style={{ textAlign: 'left' }}>
                   <h3>Google Business Profile</h3><p>Better local visibility with real imagery.</p>
                 </div>
               </div>
             </div>
-            
-            <div className="ctx-stage" data-reveal style={{ position: 'relative', height: '100%', width: '100%' }}>
-              <div className={`ctx-scene ${ctxTab === 0 ? 'on' : ''}`} style={{ width: '100%', height: '100%' }}>
-                <div className="mock-web" style={{ maxWidth: '100%', width: '100%', height: '100%', display: 'flex', flexDirection: 'column', margin: 0 }}>
-                  <div className="bar"><i></i><i></i><i></i></div>
-                  <div className="shot" style={{ flex: 1, aspectRatio: 'auto' }}>
-                    <img src="/images/website.png" alt="Website" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
+            <div className="ctx" data-reveal style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div className="ctx-stage" style={{ position: 'relative', height: '100%', minHeight: '400px', width: '100%' }}>
+                <div className={`ctx-scene ${ctxTab === 0 ? 'on' : ''}`}>
+                  <div className="mock-web" style={{ maxWidth: '600px', width: '100%' }}>
+                    <div className="bar"><i></i><i></i><i></i></div>
+                    <div className="shot" style={{ aspectRatio: '16/10' }}>
+                      <img src="/images/website.png" alt="Website" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
+                    </div>
+                    <div className="lines"><span></span><span></span><span></span></div>
                   </div>
                 </div>
-              </div>
-
-              <div className={`ctx-scene ${ctxTab === 1 ? 'on' : ''}`} style={{ width: '100%', height: '100%' }}>
-                <div className="mock-web" style={{ maxWidth: '100%', width: '100%', height: '100%', display: 'flex', flexDirection: 'column', margin: 0 }}>
-                  <div className="bar"><i></i><i></i><i></i></div>
-                  <div className="shot" style={{ flex: 1, aspectRatio: 'auto' }}>
-                    <img src="/images/brochure_cover.jpg" alt="Brochure Cover" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
+                <div className={`ctx-scene ${ctxTab === 1 ? 'on' : ''}`}>
+                  <div className="mock-bro" style={{ maxWidth: '600px', width: '100%', gap: '16px', transform: 'none' }}>
+                    <div className="pg" style={{ padding: 0, overflow: 'hidden', aspectRatio: '4/5' }}>
+                      <img src="/images/brochure_inside.png" alt="Brochure Cover" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                    <div className="pg" style={{ padding: 0, overflow: 'hidden', aspectRatio: '4/5' }}>
+                      <img src="/images/brochure_cover.jpg" alt="Brochure Inside" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              <div className={`ctx-scene ${ctxTab === 2 ? 'on' : ''}`} style={{ width: '100%', height: '100%' }}>
-                <div className="mock-web" style={{ maxWidth: '100%', width: '100%', height: '100%', display: 'flex', flexDirection: 'column', margin: 0 }}>
-                  <div className="bar"><i></i><i></i><i></i></div>
-                  <div className="shot" style={{ flex: 1, aspectRatio: 'auto' }}>
-                    <img src="/images/gallery/Caregiver%20with%20elderly%20women.jpeg" alt="Google Business Profile Photo" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
+                <div className={`ctx-scene ${ctxTab === 2 ? 'on' : ''}`}>
+                  <div className="mock-goo" style={{ maxWidth: '600px', width: '100%' }}>
+                    <div className="shot" style={{ aspectRatio: '16/10' }}>
+                      <img src="/images/gallery/Caregiver%20with%20elderly%20women.jpeg" alt="Google Business Profile Photo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                    <div className="info"><div className="name">Park Gardens &middot; Senior Living</div><div className="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div className="meta"></div></div>
                   </div>
                 </div>
               </div>
