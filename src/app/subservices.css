@@ -217,3 +217,23 @@
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* ===== Four Kinds Grid (Videos) ===== */
+.four-kinds-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+@media(max-width: 860px) {
+  .four-kinds-grid { grid-template-columns: 1fr; }
+}
+.fk-card {
+  background: rgba(255,255,255,0.03); border: 1px solid var(--soft); border-radius: 16px; padding: 40px; 
+  display: flex; flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, background 0.4s; 
+  cursor: pointer;
+}
+.fk-card:hover { transform: translateY(-6px); border-color: var(--teal-bright); background: rgba(95,208,191,0.06); }
+.fk-card .ic { 
+  width: 48px; height: 48px; border-radius: 50%; background: rgba(95,208,191,0.1); 
+  display: flex; align-items: center; justify-content: center; margin-bottom: 24px; color: var(--teal-bright);
+  transition: transform 0.4s, background 0.4s; 
+}
+.fk-card:hover .ic { transform: scale(1.1); background: rgba(95,208,191,0.2); }
+
