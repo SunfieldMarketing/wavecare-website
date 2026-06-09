@@ -50,6 +50,34 @@ export default function VideoServices() {
         }));
       }
 
+      function initCount() {
+        const els = document.querySelectorAll('[data-count]');
+        if (!('IntersectionObserver' in window)) {
+          els.forEach(el => {
+            const c = (el as HTMLElement).dataset.comma === '1';
+            const t = +(el as HTMLElement).dataset.count!;
+            el.textContent = c ? t.toLocaleString() : t.toString();
+          });
+          return;
+        }
+        const io = new IntersectionObserver(es => {
+          es.forEach(en => {
+            if (!en.isIntersecting) return;
+            const el = en.target as HTMLElement;
+            io.unobserve(el);
+            const target = +el.dataset.count!, comma = el.dataset.comma === '1', suf = el.dataset.suffix || '', dur = 1700, t0 = performance.now();
+            (function step(now) {
+              const k = dur ? Math.min((now - t0) / dur, 1) : 1;
+              const e = 1 - Math.pow(1 - k, 3);
+              const v = Math.floor(target * e);
+              el.textContent = (comma ? v.toLocaleString() : v.toString()) + suf;
+              if (k < 1) requestAnimationFrame(step); else el.textContent = (comma ? target.toLocaleString() : target.toString()) + suf;
+            })(performance.now());
+          });
+        }, { threshold: 0.25 });
+        els.forEach(el => io.observe(el));
+      }
+
       let retryCount = 0;
       const checkScripts = setInterval(() => {
         retryCount++;
@@ -59,11 +87,13 @@ export default function VideoServices() {
           initReveals();
           initHeroWall();
           initFilter();
+          initCount();
         } else if (retryCount > 100) {
           clearInterval(checkScripts);
           initReveals();
           initHeroWall();
           initFilter();
+          initCount();
         }
       }, 50);
     };
@@ -119,7 +149,7 @@ export default function VideoServices() {
           </div>
           <div className="commercial-player stagger" style={{ maxWidth: '900px', margin: '0 auto', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.3)', position: 'relative', aspectRatio: '16/9', background: '#000' }}>
             {/* Vimeo Placeholder - update src with actual video later */}
-            <iframe src="https://player.vimeo.com/video/824804225?h=8f2b2c4889&title=0&byline=0&portrait=0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
+            <iframe src="https://player.vimeo.com/video/1187767005?title=0&byline=0&portrait=0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Wavecare Commercial"></iframe>
           </div>
         </div>
       </section>
@@ -127,9 +157,9 @@ export default function VideoServices() {
       {/* ========== STATS ========== */}
       <section className="panel sec-pad" style={{ background: '#062A24', paddingTop: '20px', paddingBottom: '80px' }}>
         <div className="container stats stagger" style={{ maxWidth: '900px', margin: '0 auto' }}>
-          <div className="stat"><div className="num" style={{ fontSize: '38px', background: 'none', WebkitTextFillColor: '#fff', color: '#fff', marginBottom: '12px' }}>80%</div><div className="cap" style={{ fontSize: '14px', textTransform: 'none', letterSpacing: '0', color: '#fff', fontWeight: '400' }}>of families watch a video before<br/>touring</div></div>
-          <div className="stat"><div className="num" style={{ fontSize: '38px', background: 'none', WebkitTextFillColor: '#fff', color: '#fff', marginBottom: '12px' }}>3x</div><div className="cap" style={{ fontSize: '14px', textTransform: 'none', letterSpacing: '0', color: '#fff', fontWeight: '400' }}>higher conversion on pages with<br/>video</div></div>
-          <div className="stat"><div className="num" style={{ fontSize: '38px', background: 'none', WebkitTextFillColor: '#fff', color: '#fff', marginBottom: '12px' }}>2.5x</div><div className="cap" style={{ fontSize: '14px', textTransform: 'none', letterSpacing: '0', color: '#fff', fontWeight: '400' }}>more engagement on social<br/>media</div></div>
+          <div className="stat"><div className="num" data-count="80" data-suffix="%">0</div><div className="cap">of families watch a video before touring</div></div>
+          <div className="stat"><div className="num" data-count="3" data-suffix="x">0</div><div className="cap">higher conversion on pages with video</div></div>
+          <div className="stat"><div className="num" data-count="2" data-suffix=".5x">0</div><div className="cap">more engagement on social media</div></div>
         </div>
       </section>
 
@@ -247,6 +277,76 @@ export default function VideoServices() {
               <h3 style={{ fontSize: '22px', color: '#fff', marginBottom: '16px' }}>Social &amp; Service Cuts</h3>
               <p style={{ color: 'var(--on-dark)', fontSize: '15px', lineHeight: '1.6', marginBottom: '32px', flex: 1 }}>Vertical cuts, service-line spots, and short-form content sized for the platforms your audience actually scrolls.</p>
               <Link href="#" className="btn-text" style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start' }}>View Sample &rarr;</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== TYPES OF VIDEOS ========== */}
+      <section className="panel deep sec-pad">
+        <div className="container container-wide">
+          <div className="sec-head center" data-reveal>
+            <span className="label">Types of Videos</span>
+            <h2>What we <span className="lite">produce.</span></h2>
+            <p className="sub" style={{ margin: '20px auto 0', maxWidth: '600px' }}>Every video is purpose-built for the place it will actually be seen — the website, the tour, the inbox, the feed.</p>
+          </div>
+          
+          <div className="filter-bar" data-reveal>
+            <button className="fchip on" data-filter="all">All Projects</button>
+            <button className="fchip" data-filter="family">Family &amp; Facility</button>
+            <button className="fchip" data-filter="recruit">Recruitment</button>
+            <button className="fchip" data-filter="testimonial">Testimonials</button>
+            <button className="fchip" data-filter="social">Social Media</button>
+          </div>
+          
+          <div className="types-grid stagger" id="typesGrid">
+            <div className="tcard" data-cat="family">
+              <div className="thumb" data-label="brand film"><div className="play"><span>&#9654;</span></div></div>
+              <div className="body"><h3>Hero Brand Film</h3><p>The centerpiece of your website. Tells your full story, showcases the facility, and builds deep trust.</p><div className="where">Homepage &middot; Ads</div></div>
+            </div>
+            <div className="tcard" data-cat="family">
+              <div className="thumb" data-label="virtual tour"><div className="play"><span>&#9654;</span></div></div>
+              <div className="body"><h3>Guided Virtual Tour</h3><p>Walk families through your community when they can't be there in person.</p><div className="where">Website &middot; Email follow-ups</div></div>
+            </div>
+            <div className="tcard" data-cat="family">
+              <div className="thumb" data-label="service line video"><div className="play"><span>&#9654;</span></div></div>
+              <div className="body"><h3>Service Line Spot</h3><p>Focused pieces for memory care, rehab, hospice, or key service lines.</p><div className="where">Service pages &middot; Ads</div></div>
+            </div>
+            <div className="tcard" data-cat="recruit">
+              <div className="thumb" data-label="recruitment"><div className="play"><span>&#9654;</span></div></div>
+              <div className="body"><h3>Recruitment Film</h3><p>Shows the team and culture &mdash; what the job feels like, not just what it pays.</p><div className="where">Careers page &middot; LinkedIn</div></div>
+            </div>
+            <div className="tcard" data-cat="recruit">
+              <div className="thumb" data-label="day in the life"><div className="play"><span>&#9654;</span></div></div>
+              <div className="body"><h3>Day in the Life</h3><p>Follows a caregiver through a shift to attract the right candidates.</p><div className="where">Careers page &middot; Indeed</div></div>
+            </div>
+            <div className="tcard" data-cat="recruit">
+              <div className="thumb" data-label="staff spotlight"><div className="play"><span>&#9654;</span></div></div>
+              <div className="body"><h3>Staff Spotlight</h3><p>Short profiles that put real faces to your employer brand.</p><div className="where">Social &middot; Careers page</div></div>
+            </div>
+            <div className="tcard" data-cat="testimonial">
+              <div className="thumb" data-label="resident testimonial"><div className="play"><span>&#9654;</span></div></div>
+              <div className="body"><h3>Resident &amp; Family Testimonial</h3><p>Real stories from real families &mdash; the most persuasive video you can publish.</p><div className="where">Website &middot; Sales materials</div></div>
+            </div>
+            <div className="tcard" data-cat="testimonial">
+              <div className="thumb" data-label="staff testimonial"><div className="play"><span>&#9654;</span></div></div>
+              <div className="body"><h3>Staff Testimonial</h3><p>Team members on why they stay &mdash; trust for families and recruits alike.</p><div className="where">Careers &middot; About page</div></div>
+            </div>
+            <div className="tcard" data-cat="testimonial">
+              <div className="thumb" data-label="referral partner"><div className="play"><span>&#9654;</span></div></div>
+              <div className="body"><h3>Referral Partner Story</h3><p>Physicians and discharge planners on why they refer to you.</p><div className="where">Sales deck &middot; Outreach</div></div>
+            </div>
+            <div className="tcard" data-cat="social">
+              <div className="thumb" data-label="social vertical"><div className="play"><span>&#9654;</span></div></div>
+              <div className="body"><h3>Social Vertical Cut</h3><p>9:16 edits of your hero footage, sized for Instagram, TikTok, and Reels.</p><div className="where">Instagram &middot; TikTok</div></div>
+            </div>
+            <div className="tcard" data-cat="social">
+              <div className="thumb" data-label="event recap"><div className="play"><span>&#9654;</span></div></div>
+              <div className="body"><h3>Event Recap</h3><p>Quick highlight reels from community events and open houses.</p><div className="where">Facebook &middot; Instagram</div></div>
+            </div>
+            <div className="tcard" data-cat="social">
+              <div className="thumb" data-label="seasonal short"><div className="play"><span>&#9654;</span></div></div>
+              <div className="body"><h3>Seasonal Short</h3><p>Holiday and milestone moments that keep your feed warm and active.</p><div className="where">Social feeds</div></div>
             </div>
           </div>
         </div>
