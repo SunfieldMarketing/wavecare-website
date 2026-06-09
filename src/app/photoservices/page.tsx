@@ -107,6 +107,9 @@ export default function PhotoServices() {
         </div>
         <div className="container">
           <div className="phero-center" data-reveal>
+            <p style={{ textAlign: 'center', fontSize: '11px', color: 'rgba(255,255,255,0.6)', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '40px' }}>
+              Trusted by healthcare facilities improving their online presence, admissions marketing, and brand perception.
+            </p>
             <svg className="wave-accent" viewBox="0 0 74 24" style={{ marginBottom: '24px' }}>
               <path d="M2,12 Q12,2 20,12 T38,12 T56,12 T72,12"></path>
             </svg>
@@ -168,12 +171,147 @@ export default function PhotoServices() {
         </div>
       </section>
 
-      {/* ========== GALLERY ========== */}
+      {/* ========== CONTEXT ========== */}
       <section className="panel deep sec-pad">
+        <div className="container phero-in" style={{ gridTemplateColumns: '1fr 1fr' }}>
+          <div data-reveal>
+            <span className="label">Where Your Photos Are Used</span>
+            <h2>One shoot. <span className="accent">Everywhere</span> it counts.</h2>
+            <p className="sub" style={{ marginTop: '18px' }}>The same professional image earns its keep across every place families and referral partners find you.</p>
+          </div>
+          <div className="ctx" data-reveal>
+            <div className="ctx-tabs">
+              <div className={`ctx-tab ${ctxTab === 0 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(0)} onClick={() => setCtxTab(0)}>
+                <div className="ic">✓</div>
+                <div>
+                  <h3>Website</h3><p>Stronger first impression, instant trust.</p>
+                </div>
+              </div>
+              <div className={`ctx-tab ${ctxTab === 1 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(1)} onClick={() => setCtxTab(1)}>
+                <div className="ic">✓</div>
+                <div>
+                  <h3>Brochures &amp; Packets</h3><p>Polished materials for tours and admissions.</p>
+                </div>
+              </div>
+              <div className={`ctx-tab ${ctxTab === 2 ? 'on' : ''}`} onMouseEnter={() => setCtxTab(2)} onClick={() => setCtxTab(2)}>
+                <div className="ic">✓</div>
+                <div>
+                  <h3>Google Business Profile</h3><p>Better local visibility with real imagery.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="ctx-stage" style={{ position: 'relative', height: '440px', marginTop: '40px' }}>
+              <div className={`ctx-scene ${ctxTab === 0 ? 'on' : ''}`}>
+                <div className="mock-web">
+                  <div className="bar"><i></i><i></i><i></i></div>
+                  <div className="shot">
+                    <img src="/images/website.png" alt="Website" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
+                  </div>
+                  <div className="lines"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+              <div className={`ctx-scene ${ctxTab === 1 ? 'on' : ''}`}>
+                <div className="mock-bro" style={{ maxWidth: '800px', width: '100%', gap: '20px' }}>
+                  <div className="pg" style={{ padding: 0, overflow: 'hidden', aspectRatio: '4/5' }}>
+                    <img src="/images/brochure_inside.png" alt="Brochure Cover" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                  <div className="pg" style={{ padding: 0, overflow: 'hidden', aspectRatio: '4/5' }}>
+                    <img src="/images/brochure_cover.jpg" alt="Brochure Inside" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                </div>
+              </div>
+              <div className={`ctx-scene ${ctxTab === 2 ? 'on' : ''}`}>
+                <div className="mock-goo">
+                  <div className="shot">
+                    <img src="/images/gallery/Caregiver%20with%20elderly%20women.jpeg" alt="Google Business Profile Photo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                  <div className="info"><div className="name">Park Gardens &middot; Senior Living</div><div className="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div className="meta"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== PROCESS ========== */}
+      <section className="panel ink sec-pad">
+        <div className="container">
+          <div className="sec-head" data-reveal>
+            <span className="label">Our Process</span>
+            <h2>From shot list to <span className="accent">final gallery.</span></h2>
+            <p className="sub" style={{ marginTop: '18px' }}>Hover a phase &mdash; watch the contact sheet develop from raw proofs to the final selects.</p>
+          </div>
+          
+          <div className="proc-tabs" data-reveal>
+            <div className={`proc-tab ${procTab === 0 ? 'on' : ''}`} onMouseEnter={() => setProcTab(0)} onClick={() => setProcTab(0)}>
+              <span className="pnum">01</span><span className="pname">Planning</span><span className="pbar"></span>
+            </div>
+            <div className={`proc-tab ${procTab === 1 ? 'on' : ''}`} onMouseEnter={() => setProcTab(1)} onClick={() => setProcTab(1)}>
+              <span className="pnum">02</span><span className="pname">Photoshoot Day</span><span className="pbar"></span>
+            </div>
+            <div className={`proc-tab ${procTab === 2 ? 'on' : ''}`} onMouseEnter={() => setProcTab(2)} onClick={() => setProcTab(2)}>
+              <span className="pnum">03</span><span className="pname">Editing</span><span className="pbar"></span>
+            </div>
+            <div className={`proc-tab ${procTab === 3 ? 'on' : ''}`} onMouseEnter={() => setProcTab(3)} onClick={() => setProcTab(3)}>
+              <span className="pnum">04</span><span className="pname">Delivery</span><span className="pbar"></span>
+            </div>
+          </div>
+          
+          <div className="proc-panel-wrap" data-reveal>
+            <div className="proc-monitor">
+              <div className="proc-detail">
+                <div className={`step ${procTab === 0 ? 'on' : ''}`}>
+                  <h3>Planning</h3><p>We identify goals, locations, and the exact shot list &mdash; so nothing is missed and your staff knows what to expect.</p>
+                </div>
+                <div className={`step ${procTab === 1 ? 'on' : ''}`}>
+                  <h3>Photoshoot Day</h3><p>Our team captures everything planned, efficiently and respectfully, working around residents and daily routines.</p>
+                </div>
+                <div className={`step ${procTab === 2 ? 'on' : ''}`}>
+                  <h3>Editing</h3><p>Images are professionally edited, color-corrected, and optimized for every marketing use.</p>
+                </div>
+                <div className={`step ${procTab === 3 ? 'on' : ''}`}>
+                  <h3>Delivery</h3><p>You receive organized, ready-to-use files for web, print, social, and advertising &mdash; named and sized correctly.</p>
+                </div>
+              </div>
+              
+              <div className={`proc-sheet dev${procTab}`}>
+                <div className="loupe">{procLoupes[procTab] || procLoupes[0]}</div>
+                {[
+                  '/images/proc_1.png', 
+                  '/images/proc_2.png', 
+                  '/images/proc_3.png', 
+                  '/images/proc_4.png', 
+                  '/images/proc_5.png', 
+                  '/images/proc_6.png'
+                ].map((src, idx) => (
+                  <div className="frame" key={idx}>
+                    <img className="pho" src={src} alt="Process mockup" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <div className="pick"></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== GALLERY ========== */}
+      <section className="panel deep sec-pad" id="gallery">
         <div className="container">
           <div className="sec-head center" data-reveal>
-            <span className="label">Selected Work</span>
-            <h2>A closer <span className="lite">look.</span></h2>
+            <span className="label">THE WORK</span>
+            <h2>Real facilities, <span className="accent">real moments.</span></h2>
+            <p className="sub" style={{ marginTop: '16px', maxWidth: '600px', margin: '16px auto 0' }}>
+              Filter by what you need to see. Every image is shot on location &mdash; no stock, ever.
+            </p>
+          </div>
+          <div className="filter-bar" data-reveal>
+            <button className="fchip on">ALL</button>
+            <button className="fchip">FACILITY</button>
+            <button className="fchip">STAFF &amp; TEAM</button>
+            <button className="fchip">RESIDENT LIFESTYLE</button>
+            <button className="fchip">MARKETING</button>
           </div>
           <div className="mason stagger">
             <div className="m" style={{ aspectRatio: '0.75' }}><img src="/images/gallery/Caregiver%20with%20elderly%20man%20playing%20game.jpeg" alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
@@ -193,9 +331,12 @@ export default function PhotoServices() {
       </section>
 
       {/* ========== CTA ========== */}
-      <section className="final">
+      <section className="final" style={{ position: 'relative', overflow: 'hidden' }}>
+        <svg className="cta-waves" preserveAspectRatio="none" viewBox="0 0 1440 320" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: 'auto', zIndex: 0, opacity: 0.1 }}>
+          <path fill="var(--teal-bright)" fillOpacity="1" d="M0,160L48,149.3C96,139,192,117,288,117.3C384,117,480,139,576,160C672,181,768,203,864,213.3C960,224,1056,224,1152,202.7C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
         <div className="final-fallback"></div>
-        <div className="final-in" data-reveal>
+        <div className="final-in" data-reveal style={{ position: 'relative', zIndex: 1 }}>
           <span className="label">A clearer picture of your care</span>
           <h2>Give families a clearer <span className="accent">picture</span> of your care.</h2>
           <p className="sub">We capture the spaces, people, and moments that make your facility feel professional, welcoming, and trustworthy.</p>
