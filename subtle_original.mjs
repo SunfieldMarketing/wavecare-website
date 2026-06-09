@@ -17,11 +17,11 @@ async function processOriginal() {
     noiseBuffer[i] = Math.min(255, Math.max(0, 128 + grain));
   }
 
-  console.log('Applying subtle effects to un-zoomed original image...');
+  console.log('Applying adjusted subtle grey effect...');
   await sharp(inputPath)
     .modulate({
-      saturation: 0.75, 
-      brightness: 1.02, 
+      saturation: 0.60, // Reduced from 0.75 to make it slightly greyer
+      brightness: 1.04, 
       hue: -2 
     })
     .composite([{
