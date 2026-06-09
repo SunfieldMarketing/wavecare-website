@@ -38,6 +38,28 @@ export default function PhotoServices() {
         order.forEach((idx, i) => setTimeout(() => cells[idx].classList.add('in'), 250 + i * 70));
       }
 
+      function initCamCursor() {
+        const cursor = document.getElementById('camCursor');
+        // @ts-ignore
+        if (!cursor || !window.gsap || ('ontouchstart' in window)) return;
+        
+        // @ts-ignore
+        const gsap = window.gsap;
+        gsap.set(cursor, { xPercent: -50, yPercent: -50 });
+        
+        const moveCursor = (e: MouseEvent) => {
+          gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.15, ease: 'power2.out' });
+        };
+        const showCursor = () => cursor.classList.add('active');
+        const hideCursor = () => cursor.classList.remove('active');
+
+        document.querySelectorAll('.mason .m').forEach(el => {
+          el.addEventListener('mouseenter', showCursor);
+          el.addEventListener('mouseleave', hideCursor);
+          el.addEventListener('mousemove', moveCursor as EventListener);
+        });
+      }
+
       let retryCount = 0;
       const checkScripts = setInterval(() => {
         retryCount++;
@@ -46,10 +68,12 @@ export default function PhotoServices() {
           clearInterval(checkScripts);
           initReveals();
           initHeroWall();
+          initCamCursor();
         } else if (retryCount > 100) {
           clearInterval(checkScripts);
           initReveals();
           initHeroWall();
+          initCamCursor();
         }
       }, 50);
     };
@@ -61,6 +85,16 @@ export default function PhotoServices() {
 
   return (
     <>
+      <div className="cam-cursor" id="camCursor">
+        <div className="cam-box">
+          <div className="bracket tl"></div>
+          <div className="bracket tr"></div>
+          <div className="bracket bl"></div>
+          <div className="bracket br"></div>
+        </div>
+        <div className="cam-fstop">F/1.8</div>
+      </div>
+
       {/* ========== HERO ========== */}
       <section className="phero">
         <div className="phero-bg">
