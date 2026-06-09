@@ -233,6 +233,9 @@ export default function PhotoServices() {
             <h2 style={{ fontSize: 'clamp(40px, 5vw, 64px)', lineHeight: '1.1', marginTop: '16px', textWrap: 'unset' }}>
               Everything that tells your <span className="accent" style={{ fontStyle: 'italic' }}>story.</span>
             </h2>
+            <p className="sub" style={{ marginTop: '16px', maxWidth: '1000px', margin: '16px auto 0' }}>
+              Showcase your facility, staff, and resident lifestyle with authentic, professional imagery that families can trust.
+            </p>
           </div>
           
           <div className="shoot-grid" data-reveal>
