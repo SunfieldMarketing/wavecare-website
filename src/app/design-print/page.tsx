@@ -205,14 +205,23 @@ export default function DesignPrint() {
             <div className="ba-handle" style={{ left: `${baPos}%` }}></div>
             <div className="ba-tags"><span className="btag">BEFORE</span><span className="atag">AFTER</span></div>
           </div>
-          <p style={{textAlign: 'center', opacity: 0.6, marginTop: '24px', fontSize: '0.9rem', width: '100%'}} data-reveal>Drag — left is a typical flyer, right is a professionally designed piece.</p>
+          <p className="ba-caption" data-reveal style={{ marginTop: '24px' }}>Drag — left is a typical flyer, right is a professionally designed piece.</p>
 
-          <div style={{ position: 'relative', zIndex: 2, marginTop: '80px' }}>
-            <div className="stats stagger" style={{ maxWidth: '900px', margin: '0 auto' }}>
-              <div className="stat"><div className="num" data-count="60" data-suffix="%">0</div><div className="cap">of families judge care quality by marketing materials</div></div>
-              <div className="stat"><div className="num" data-count="2" data-suffix="x">0</div><div className="cap">higher conversion with professional admissions packets</div></div>
-              <div className="stat"><div className="num" data-count="100" data-suffix="%">0</div><div className="cap">tailored to senior care and medical practices</div></div>
-            </div>
+          <div className="dp-stats-bar stagger" data-reveal>
+             <div className="dp-stats-inner">
+                <div className="dp-stat">
+                   <div className="dp-stat-num">60%</div>
+                   <div className="dp-stat-label">Of families judge care quality by marketing materials</div>
+                </div>
+                <div className="dp-stat">
+                   <div className="dp-stat-num">2x</div>
+                   <div className="dp-stat-label">Higher conversion with professional admissions packets</div>
+                </div>
+                <div className="dp-stat">
+                   <div className="dp-stat-num">100%</div>
+                   <div className="dp-stat-label">Tailored to senior care and medical practices</div>
+                </div>
+             </div>
           </div>
         </div>
       </section>
