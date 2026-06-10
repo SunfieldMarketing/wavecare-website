@@ -190,13 +190,14 @@ export default function DesignPrint() {
       </div>
 
       <section className="panel sec-pad dp-why">
-        <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '60px', alignItems: 'center' }}>
-          <div data-reveal>
+        <div className="container">
+          <div className="sec-head center" data-reveal style={{ maxWidth: '800px', margin: '0 auto 60px' }}>
             <span className="label">Why Design & Print Matters</span>
             <h2>First impressions are <span className="accent">physical.</span></h2>
-            <p className="lead">Families often form opinions about your facility before they ever speak with your team. Professional design creates confidence, improves communication, and makes sure every touchpoint reflects the quality of care you provide.</p>
+            <p className="lead" style={{ marginTop: '24px' }}>Families often form opinions about your facility before they ever speak with your team. Professional design creates confidence, improves communication, and makes sure every touchpoint reflects the quality of care you provide.</p>
           </div>
           <div className="ba-slider" ref={sliderRef} 
+               style={{ maxWidth: '1000px', margin: '0 auto' }}
                onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); handleBaDrag(e); }}
                onPointerMove={(e) => { if (e.buttons > 0) handleBaDrag(e); }}
                data-reveal>
@@ -207,14 +208,14 @@ export default function DesignPrint() {
             <div className="ba-handle" style={{ left: `${baPos}%` }}></div>
             <div className="ba-tags"><span className="btag">BEFORE</span><span className="atag">AFTER</span></div>
           </div>
-        </div>
-        <p style={{textAlign: 'center', opacity: 0.6, marginTop: '24px', fontSize: '0.9rem', width: '100%'}} data-reveal>Drag — left is a typical flyer, right is a professionally designed piece.</p>
+          <p style={{textAlign: 'center', opacity: 0.6, marginTop: '24px', fontSize: '0.9rem', width: '100%'}} data-reveal>Drag — left is a typical flyer, right is a professionally designed piece.</p>
 
-        <div className="container" style={{ position: 'relative', zIndex: 2, marginTop: '100px' }}>
-          <div className="stats stagger" style={{ maxWidth: '900px', margin: '0 auto' }}>
-            <div className="stat"><div className="num" data-count="60" data-suffix="%">0</div><div className="cap">of families judge care quality by marketing materials</div></div>
-            <div className="stat"><div className="num" data-count="2" data-suffix="x">0</div><div className="cap">higher conversion with professional admissions packets</div></div>
-            <div className="stat"><div className="num" data-count="100" data-suffix="%">0</div><div className="cap">tailored to senior care and medical practices</div></div>
+          <div style={{ position: 'relative', zIndex: 2, marginTop: '80px' }}>
+            <div className="stats stagger" style={{ maxWidth: '900px', margin: '0 auto' }}>
+              <div className="stat"><div className="num" data-count="60" data-suffix="%">0</div><div className="cap">of families judge care quality by marketing materials</div></div>
+              <div className="stat"><div className="num" data-count="2" data-suffix="x">0</div><div className="cap">higher conversion with professional admissions packets</div></div>
+              <div className="stat"><div className="num" data-count="100" data-suffix="%">0</div><div className="cap">tailored to senior care and medical practices</div></div>
+            </div>
           </div>
         </div>
       </section>
