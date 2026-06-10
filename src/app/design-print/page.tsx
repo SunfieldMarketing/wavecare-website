@@ -156,7 +156,7 @@ export default function DesignPrint() {
               <div className="brcm">
                 <Link href="/">Home</Link> <span>/</span> <Link href="/services">Services</Link> <span>/</span> <span>Design & Print</span>
               </div>
-              <h1>Healthcare<br/><i style={{fontStyle: 'italic', color: 'var(--teal-primary)'}}>Design & Print</i></h1>
+              <h1>Healthcare<br/><span className="accent" style={{ fontWeight: '800' }}>Design & Print</span></h1>
               <p className="sub">Professional design and print for senior care facilities and medical practices. Brochures, admissions packets, signage, and branded materials that build trust at every touchpoint.</p>
               
               <div className="trust-list" style={{ marginTop: '32px', display: 'flex', flexWrap: 'wrap', gap: '16px 24px', opacity: 0.8, fontSize: '0.85rem', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--teal-bright)' }}>
@@ -179,14 +179,11 @@ export default function DesignPrint() {
         </div>
       </section>
 
-      <div className="dp-banner" data-reveal>
-        <span>Healthcare-Focused Design</span>
-        <div className="dot"></div>
-        <span>Print-Ready Files</span>
-        <div className="dot"></div>
-        <span>Custom Branding</span>
-        <div className="dot"></div>
-        <span>Premium Materials</span>
+      {/* ========== SOCIAL PROOF BANNER ========== */}
+      <div className="social-proof-banner" style={{ background: '#062A24', borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)', padding: '24px 0', textAlign: 'center' }}>
+        <p style={{ margin: 0, fontSize: '12px', letterSpacing: '0.15em', color: 'var(--teal-bright)', textTransform: 'uppercase', fontWeight: 600 }}>
+          Healthcare-Focused Design &nbsp;&bull;&nbsp; Print-Ready Files &nbsp;&bull;&nbsp; Custom Branding &nbsp;&bull;&nbsp; Premium Materials
+        </p>
       </div>
 
       <section className="panel sec-pad dp-why">
@@ -203,7 +200,7 @@ export default function DesignPrint() {
                data-reveal>
             <div className="ba-after"><img src="/images/brochure_inside.png" alt="After" /></div>
             <div className="ba-before" style={{ width: `${baPos}%` }}>
-               <img src="/images/img_130.jpeg" alt="Before" style={{ width: `${10000/baPos}%` }} />
+               <img src="/images/harvest_acres_brochure.jpg" alt="Before" style={{ width: `${10000/baPos}%` }} />
             </div>
             <div className="ba-handle" style={{ left: `${baPos}%` }}></div>
             <div className="ba-tags"><span className="btag">BEFORE</span><span className="atag">AFTER</span></div>
@@ -325,6 +322,37 @@ export default function DesignPrint() {
           </div>
         </section>
 
+        <section className="panel ink sec-pad">
+          <div className="container">
+            <div className="sec-head" data-reveal>
+              <span className="label">What You&apos;ll Receive</span>
+              <h2>Finished, formatted, <span className="lite">ready to print.</span></h2>
+            </div>
+            <div className="rx-grid stagger" style={{ marginTop: '40px' }}>
+               <div className="rx-item">
+                  <div className="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div>
+                  <h4>Print-Ready Files</h4>
+                  <p>Delivered with proper bleeds, crop marks, and CMYK color profiles.</p>
+               </div>
+               <div className="rx-item">
+                  <div className="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg></div>
+                  <h4>Reliable Source</h4>
+                  <p>We supply source files so you always have access to your assets.</p>
+               </div>
+               <div className="rx-item">
+                  <div className="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg></div>
+                  <h4>Stock & Finish Specs</h4>
+                  <p>Recommendations for paper weight, coating, and bindings.</p>
+               </div>
+               <div className="rx-item">
+                  <div className="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+                  <h4>Production Coordination</h4>
+                  <p>We can work directly with your print vendor to ensure flawless execution.</p>
+               </div>
+            </div>
+          </div>
+        </section>
+
         <section className="panel deep sec-pad dp-sig">
           <div className="container">
             <div className="sig-wrapper stagger">
@@ -345,7 +373,7 @@ export default function DesignPrint() {
           <div className="container">
             <div className="sec-head center" data-reveal style={{ maxWidth: '1000px', margin: '0 auto 40px' }}>
                <span className="label">Recent Print Projects</span>
-               <h2 style={{ textWrap: 'unset' }}>A look at the collateral.</h2>
+               <h2>A look at the collateral.</h2>
                <p className="sub" style={{ marginTop: '16px', maxWidth: '1000px', margin: '16px auto 0' }}>
                  A look at the collateral and materials we&apos;ve designed and printed.
                </p>
@@ -382,37 +410,6 @@ export default function DesignPrint() {
                <div className="m" style={{ aspectRatio: '0.85', position: 'relative' }}>
                  <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
                  <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Stationery</div>
-               </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="panel ink sec-pad">
-          <div className="container">
-            <div className="sec-head" data-reveal>
-              <span className="label">What You&apos;ll Receive</span>
-              <h2>Finished, formatted, <span className="lite">ready to print.</span></h2>
-            </div>
-            <div className="rx-grid stagger" style={{ marginTop: '40px' }}>
-               <div className="rx-item">
-                  <div className="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div>
-                  <h4>Print-Ready Files</h4>
-                  <p>Delivered with proper bleeds, crop marks, and CMYK color profiles.</p>
-               </div>
-               <div className="rx-item">
-                  <div className="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg></div>
-                  <h4>Reliable Source</h4>
-                  <p>We supply source files so you always have access to your assets.</p>
-               </div>
-               <div className="rx-item">
-                  <div className="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg></div>
-                  <h4>Stock & Finish Specs</h4>
-                  <p>Recommendations for paper weight, coating, and bindings.</p>
-               </div>
-               <div className="rx-item">
-                  <div className="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
-                  <h4>Production Coordination</h4>
-                  <p>We can work directly with your print vendor to ensure flawless execution.</p>
                </div>
             </div>
           </div>
