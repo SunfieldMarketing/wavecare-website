@@ -47,6 +47,37 @@ export default function WebDesign() {
         order.forEach((idx, i) => setTimeout(() => cells[idx].classList.add('in'), 250 + i * 70));
       }
 
+      function initCount() {
+        const els = document.querySelectorAll('[data-count]');
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!('IntersectionObserver' in window)) {
+          els.forEach(el => {
+            const c = el.getAttribute('data-comma') === '1', t = +el.getAttribute('data-count')!;
+            const p = el.getAttribute('data-prefix') || '', s = el.getAttribute('data-suffix') || '';
+            el.textContent = p + (c ? t.toLocaleString() : t) + s;
+          });
+          return;
+        }
+        const io = new IntersectionObserver(es => {
+          es.forEach(en => {
+            if (!en.isIntersecting) return;
+            const el = en.target as HTMLElement;
+            io.unobserve(el);
+            const target = +(el.getAttribute('data-count') || 0), comma = el.getAttribute('data-comma') === '1', dur = reduceMotion ? 0 : 1700, t0 = performance.now();
+            const p = el.getAttribute('data-prefix') || '', s = el.getAttribute('data-suffix') || '';
+            (function step(now) {
+              const k = dur ? Math.min((now - t0) / dur, 1) : 1;
+              const e = 1 - Math.pow(1 - k, 3);
+              const v = Math.floor(target * e);
+              el.textContent = p + (comma ? v.toLocaleString() : v) + s;
+              if (k < 1) requestAnimationFrame(step);
+              else el.textContent = p + (comma ? target.toLocaleString() : target) + s;
+            })(performance.now());
+          });
+        }, { threshold: 0.25 });
+        els.forEach(el => io.observe(el));
+      }
+
       let retryCount = 0;
       const checkScripts = setInterval(() => {
         retryCount++;
@@ -55,10 +86,12 @@ export default function WebDesign() {
           clearInterval(checkScripts);
           initReveals();
           initHeroWall();
+          initCount();
         } else if (retryCount > 100) {
           clearInterval(checkScripts);
           initReveals();
           initHeroWall();
+          initCount();
         }
       }, 50);
     };
@@ -69,7 +102,7 @@ export default function WebDesign() {
   return (
     <>
       <style dangerouslySetInnerHTML={{__html: `
-        .mock-window { width: 100%; height: 100%; background: #08211c; border-radius: 8px 8px 0 0; padding: 20px 16px; position: relative; border: 1px solid rgba(255,255,255,0.05); }
+        .mock-window { width: 100%; height: 180px; background: transparent; padding: 20px 16px; position: relative; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .mock-top { position: absolute; top: 0; left: 0; right: 0; height: 16px; background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; padding-left: 8px; gap: 4px; }
         .mock-top span { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.2); }
         
