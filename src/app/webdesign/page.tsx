@@ -78,20 +78,71 @@ export default function WebDesign() {
         els.forEach(el => io.observe(el));
       }
 
+      function initWaveAccent(){
+        const canvas = document.getElementById('waveCanvas') as HTMLCanvasElement;
+        // @ts-ignore
+        if (!canvas || !window.THREE) { if(canvas) canvas.style.background='radial-gradient(ellipse at center,rgba(42,157,143,0.25),transparent 70%)'; return; }
+        let renderer; 
+        try { 
+          // @ts-ignore
+          renderer = new window.THREE.WebGLRenderer({canvas, antialias:true, alpha:true}); 
+        } catch(e) { canvas.style.display='none'; return; }
+        const sec = canvas.parentElement!;
+        function size() { return [sec.clientWidth, sec.clientHeight]; }
+        renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
+        let [w,h] = size(); renderer.setSize(w,h);
+        // @ts-ignore
+        const scene = new window.THREE.Scene(), cam = new window.THREE.OrthographicCamera(-1,1,1,-1,0,1);
+        // @ts-ignore
+        const uniforms = {uTime:{value:0},uRes:{value:new window.THREE.Vector2(w,h)},uMouse:{value:new window.THREE.Vector2(0.5,0.5)}};
+        const frag = `precision highp float; uniform float uTime; uniform vec2 uRes; uniform vec2 uMouse; varying vec2 vUv;
+          vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;} vec2 mod289(vec2 x){return x-floor(x*(1.0/289.0))*289.0;}
+          vec3 permute(vec3 x){return mod289(((x*34.0)+1.0)*x);}
+          float snoise(vec2 v){const vec4 C=vec4(0.211324865405187,0.366025403784439,-0.577350269189626,0.024390243902439);
+            vec2 i=floor(v+dot(v,C.yy));vec2 x0=v-i+dot(i,C.xx);vec2 i1=(x0.x>x0.y)?vec2(1.0,0.0):vec2(0.0,1.0);
+            vec4 x12=x0.xyxy+C.xxzz;x12.xy-=i1;i=mod289(i);
+            vec3 p=permute(permute(i.y+vec3(0.0,i1.y,1.0))+i.x+vec3(0.0,i1.x,1.0));
+            vec3 m=max(0.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.0);m=m*m;m=m*m;
+            vec3 x=2.0*fract(p*C.www)-1.0;vec3 hh=abs(x)-0.5;vec3 ox=floor(x+0.5);vec3 a0=x-ox;
+            m*=1.79284291400159-0.85373472095314*(a0*a0+hh*hh);
+            vec3 g;g.x=a0.x*x0.x+hh.x*x0.y;g.yz=a0.yz*x12.xz+hh.yz*x12.yw;return 130.0*dot(m,g);}
+          float fbm(vec2 p){float v=0.0,a=0.5;for(int i=0;i<5;i++){v+=a*snoise(p);p*=2.0;a*=0.5;}return v;}
+          void main(){ vec2 uv=vUv; vec2 p=(gl_FragCoord.xy-0.5*uRes.xy)/uRes.y; float t=uTime*0.05;
+            vec2 q=vec2(fbm(p*1.5+t),fbm(p*1.5+vec2(3.2,1.7)-t));
+            float f=fbm(p*1.5+2.0*q+t); f=f*0.5+0.5;
+            float d=distance(uv,uMouse); f+=sin(d*22.0-uTime*2.0)*exp(-d*5.0)*0.12;
+            vec3 cDeep=vec3(0.039,0.263,0.224),cPrim=vec3(0.055,0.353,0.314),cAcc=vec3(0.165,0.616,0.561),cBri=vec3(0.373,0.816,0.749);
+            vec3 col=mix(cDeep,cPrim,smoothstep(0.2,0.6,f)); col=mix(col,cAcc,smoothstep(0.6,0.85,f)); col=mix(col,cBri,smoothstep(0.85,1.0,f));
+            col+=cBri*exp(-d*6.0)*0.10; float al=0.9-0.5*pow(distance(uv,vec2(0.5)),1.3);
+            gl_FragColor=vec4(col,clamp(al,0.0,1.0)); }`;
+        // @ts-ignore
+        const mat = new window.THREE.ShaderMaterial({uniforms,fragmentShader:frag, vertexShader:`varying vec2 vUv; void main(){vUv=uv; gl_Position=vec4(position,1.0);}`});
+        // @ts-ignore
+        scene.add(new window.THREE.Mesh(new window.THREE.PlaneGeometry(2,2),mat));
+        let t0 = performance.now(), req: number;
+        function render(){ const t=(performance.now()-t0)*0.001; uniforms.uTime.value=t; renderer.render(scene,cam); req=requestAnimationFrame(render); }
+        const io = new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting) render(); else cancelAnimationFrame(req); }); },{threshold:0});
+        io.observe(sec);
+        addEventListener('resize',()=>{ [w,h]=size(); renderer.setSize(w,h); uniforms.uRes.value.set(w,h); },{passive:true});
+        sec.addEventListener('mousemove',e=>{ const r=sec.getBoundingClientRect(); uniforms.uMouse.value.set((e.clientX-r.left)/w, 1.0-(e.clientY-r.top)/h); },{passive:true});
+      }
+
       let retryCount = 0;
       const checkScripts = setInterval(() => {
         retryCount++;
         // @ts-ignore
-        if (window.gsap && window.ScrollTrigger) {
+        if (window.gsap && window.ScrollTrigger && window.THREE) {
           clearInterval(checkScripts);
           initReveals();
           initHeroWall();
           initCount();
+          initWaveAccent();
         } else if (retryCount > 100) {
           clearInterval(checkScripts);
           initReveals();
           initHeroWall();
           initCount();
+          initWaveAccent();
         }
       }, 50);
     };
@@ -117,18 +168,25 @@ export default function WebDesign() {
         .anim-manage { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; height: 100%; padding-top: 12px; }
         .anim-manage div { background: rgba(255,255,255,0.05); border-radius: 4px; position: relative; }
         .anim-manage div.top { grid-column: span 2; height: 24px; background: linear-gradient(90deg, rgba(95,208,191,0.2) 0%, rgba(95,208,191,0.6) 100%); }
-        .anim-manage .cir { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; border-radius: 50%; border: 1px dashed rgba(255,255,255,0.4); display: flex; align-items: center; justify-content: center; background: transparent !important; }
-        .anim-manage .cir::after { content: ''; width: 4px; height: 4px; background: #fff; border-radius: 50%; }
+        .anim-manage .cir { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); }
 
-        .anim-seo { display: flex; align-items: center; justify-content: center; gap: 8px; height: 100%; padding-top: 12px; }
-        .anim-seo .bar { width: 24px; height: 8px; background: var(--teal-bright); border-radius: 4px; }
+        .anim-seo { position: relative; height: 100%; padding-top: 12px; }
+        .anim-seo .bars { display: flex; align-items: flex-end; gap: 6px; height: 40px; margin-top: 10px; padding-left: 8px; }
+        .anim-seo .bar { width: 14px; background: rgba(255,255,255,0.1); border-radius: 3px 3px 0 0; }
+        .anim-seo .bar:nth-child(1) { height: 30%; }
+        .anim-seo .bar:nth-child(2) { height: 45%; }
+        .anim-seo .bar:nth-child(3) { height: 60%; }
+        .anim-seo .bar:nth-child(4) { height: 80%; }
+        .anim-seo .bar:nth-child(5) { height: 100%; }
+        .anim-seo .cursor-arrow { position: absolute; bottom: 10px; right: 20px; transform: rotate(-15deg); }
 
         .anim-content { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; height: 100%; padding-top: 12px; }
         .anim-content div { background: rgba(255,255,255,0.05); border-radius: 4px; }
         .anim-content div.top { grid-column: span 2; height: 24px; }
 
-        .anim-hosting { display: flex; align-items: center; justify-content: center; height: 100%; padding-top: 12px; }
-        .anim-hosting .circle { width: 40px; height: 40px; background: var(--teal-bright); border-radius: 50%; }
+        .anim-hosting { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 16px; padding-top: 10px; }
+        .anim-hosting .url-bar { background: rgba(255,255,255,0.05); padding: 8px 16px; border-radius: 20px; font-size: 11px; color: rgba(255,255,255,0.6); font-family: monospace; border: 1px solid rgba(255,255,255,0.08); }
+        .anim-hosting .check-mark { color: var(--teal-bright); display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: rgba(95,208,191,0.1); border-radius: 50%; border: 1px solid rgba(95,208,191,0.2); }
       
         /* Wireframes for Before/After */
         .wire-bg { width: 100%; height: 100%; background: #fff; padding: 20px; border-radius: 8px; }
@@ -155,7 +213,7 @@ export default function WebDesign() {
       {/* ========== HERO ========== */}
       <section className="phero">
         <div className="phero-bg">
-          <div className="placeholder" style={{ width: '100%', height: '100%', background: '#062A24' }}></div>
+          <canvas id="waveCanvas" style={{ width: '100%', height: '100%' }}></canvas>
         </div>
         <div className="container">
           <div className="phero-in">
@@ -219,18 +277,10 @@ export default function WebDesign() {
             </div>
             <div className="ba-slider" ref={sliderRef} style={{ maxWidth: '560px', margin: '0 auto', aspectRatio: '16/10' }} onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); handleBaDrag(e); }} onPointerMove={(e) => { if (e.buttons > 0) handleBaDrag(e); }} data-reveal>
               <div className="ba-before">
-                <div className="wire-bg ugly">
-                   <div className="w-head"></div>
-                   <div className="w-hero"></div>
-                   <div className="w-body"><div className="w-line"></div><div className="w-line"></div><div className="w-line short"></div></div>
-                </div>
+                <img src="/images/evolve-before.png" alt="Evolve Therapy Services Before Website" style={{ width: '100%' }} />
               </div>
               <div className="ba-after" style={{ clipPath: `inset(0 0 0 ${baPos}%)` }}>
-                <div className="wire-bg modern">
-                   <div className="w-head"></div>
-                   <div className="w-hero"></div>
-                   <div className="w-cards"><div className="w-card"></div><div className="w-card"></div></div>
-                </div>
+                <img src="/images/evolve-after.png" alt="Evolve Therapy Services After Website" style={{ width: '100%' }} />
               </div>
               <div className="ba-handle" style={{ left: `${baPos}%` }}>
                 <div className="ba-handle-line"></div>
@@ -276,12 +326,19 @@ export default function WebDesign() {
               <div className="body"><h3>Website Management</h3><p>Ongoing updates, content changes, maintenance, and support.</p></div>
             </div>
             <div className="tcard" data-cat="all">
-              <div className="thumb mock-window" data-label="seo">
-                 <div className="mock-top"><span></span><span></span><span></span></div>
-                 <div className="anim-seo"><div className="bar"></div><div className="bar"></div><div className="bar"></div><div className="bar"></div><div className="bar"></div></div>
+                <div className="thumb mock-window" data-label="seo">
+                   <div className="mock-top"><span></span><span></span><span></span></div>
+                   <div className="anim-seo">
+                     <div className="bars">
+                       <div className="bar"></div><div className="bar"></div><div className="bar"></div><div className="bar"></div><div className="bar"></div>
+                     </div>
+                     <div className="cursor-arrow">
+                       <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--teal-bright)" stroke="#062a24" strokeWidth="1.5"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/></svg>
+                     </div>
+                   </div>
+                </div>
+                <div className="body"><h3>SEO Foundations</h3><p>Technical setup and optimization to help improve search visibility.</p></div>
               </div>
-              <div className="body"><h3>SEO Foundations</h3><p>Technical setup and optimization to help improve search visibility.</p></div>
-            </div>
             <div className="tcard" data-cat="all">
               <div className="thumb mock-window" data-label="content">
                  <div className="mock-top"><span></span><span></span><span></span></div>
@@ -292,7 +349,12 @@ export default function WebDesign() {
             <div className="tcard" data-cat="all">
               <div className="thumb mock-window" data-label="hosting">
                  <div className="mock-top"><span></span><span></span><span></span></div>
-                 <div className="anim-hosting"><div className="circle"></div></div>
+                 <div className="anim-hosting">
+                   <div className="url-bar">https://yourfacility.com</div>
+                   <div className="check-mark">
+                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                   </div>
+                 </div>
               </div>
               <div className="body"><h3>Hosting &amp; Performance</h3><p>Reliable hosting and monitoring to keep your site running smoothly.</p></div>
             </div>
@@ -514,7 +576,7 @@ export default function WebDesign() {
               </div>
             </div>
           </div>
-          <div className="center" data-reveal>
+          <div style={{ textAlign: 'center', marginTop: '40px' }} data-reveal>
             <Link href="#portfolio" className="btn btn-ghost" style={{ border: '1px solid rgba(255,255,255,0.2)' }}>View Website Examples &rarr;</Link>
           </div>
         </div>
