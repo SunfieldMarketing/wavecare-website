@@ -125,7 +125,7 @@ export default function Testimonials() {
           </div>
           <div className="wct-stat">
             <div className="wct-stat-num" data-target="100" data-suffix="%" data-decimals="0">0%</div>
-            <div className="wct-stat-label">Healthcare &amp; senior care focus &mdash; no other verticals</div>
+            <div className="wct-stat-label">Healthcare &amp; senior care focus with no other verticals</div>
           </div>
         </div>
       </div>

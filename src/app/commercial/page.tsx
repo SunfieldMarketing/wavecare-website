@@ -9,7 +9,7 @@ export default function Commercial() {
       {/* ========== HERO ========== */}
       <div className="wc-hero">
         <p className="wc-eyebrow">For Senior Care Facilities</p>
-        <h1>Families Decide in Seconds &mdash;<br />Here's How <em>500+ Facilities</em> Become the Obvious Choice</h1>
+        <h1>Families Decide in Seconds.<br />Here's How <em>500+ Facilities</em> Become the Obvious Choice</h1>
         <div className="wc-hero-trust">
           <span>Healthcare-focused since 2019</span>
           <span className="dot"></span>
@@ -20,7 +20,7 @@ export default function Commercial() {
       {/* ========== VIDEO CONTEXT LINE ========== */}
       <div className="wc-video-context">
         <span className="play-icon"></span>
-        <span>Watch the overview &mdash; Jake explains the family-first approach</span>
+        <span>Watch the overview as Jake explains the family-first approach</span>
       </div>
 
       {/* ========== VIDEO ========== */}
@@ -83,7 +83,7 @@ export default function Commercial() {
       {/* ========== BODY CTA ========== */}
       <div className="wc-body-section">
         <div className="wc-body-inner">
-          <span className="wc-section-tag">Free &mdash; No Obligation</span>
+          <span className="wc-section-tag">Free and No Obligation</span>
           <h2>See exactly what families see when they land on your website</h2>
           <p className="wc-sub">In 15 minutes we'll walk through your entire marketing presence and deliver:</p>
           <ul className="wc-audit-list">

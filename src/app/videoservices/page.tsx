@@ -280,7 +280,7 @@ export default function VideoServices() {
           <div className="sec-head center" data-reveal>
             <span className="label">WHAT WE PRODUCE</span>
             <h2>Four kinds of video, <span className="lite">one standard.</span></h2>
-            <p className="sub" style={{ margin: '20px auto 0', maxWidth: '600px' }}>Every project is shot, edited, and delivered to the same standard &mdash; whether it's a 90-second hero film or a 15-second cut for Instagram.</p>
+            <p className="sub" style={{ margin: '20px auto 0', maxWidth: '600px' }}>Every project is shot, edited, and delivered to the same standard whether it's a 90-second hero film or a 15-second cut for Instagram.</p>
           </div>
           
           <div className="four-kinds-grid stagger" style={{ marginTop: '60px' }}>
@@ -290,7 +290,7 @@ export default function VideoServices() {
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
               </div>
               <h3 style={{ fontSize: '22px', color: '#fff', marginBottom: '16px' }}>Facility Films</h3>
-              <p style={{ color: 'var(--on-dark)', fontSize: '15px', lineHeight: '1.6', marginBottom: '32px', flex: 1 }}>Hero videos for homepages, virtual tours, and admissions packets &mdash; the front families watch before booking a visit.</p>
+              <p style={{ color: 'var(--on-dark)', fontSize: '15px', lineHeight: '1.6', marginBottom: '32px', flex: 1 }}>Hero videos for homepages, virtual tours, and admissions packets are the front families watch before booking a visit.</p>
               <Link href="#" className="btn-text" style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start' }}>View Sample &rarr;</Link>
             </div>
 
@@ -442,7 +442,7 @@ export default function VideoServices() {
           <div className="sec-head" data-reveal>
             <span className="label">What You'll Receive</span>
             <h2>Finished, formatted, <span className="lite">ready to use.</span></h2>
-            <p className="sub" style={{ marginTop: '18px' }}>Every project ships with the cuts and formats you actually need &mdash; nothing left for you to figure out in post.</p>
+            <p className="sub" style={{ marginTop: '18px' }}>Every project ships with the cuts and formats you actually need with nothing left for you to figure out in post.</p>
           </div>
           <div className="deliv stagger">
             <div className="deliv-item"><div className="ic">&#9646;</div><h4>Master 16:9 Cuts</h4><p>Web, YouTube, presentations.</p></div>

@@ -315,7 +315,7 @@ export default function WebDesign() {
               <span className="label">Why Your Website Matters</span>
               <h2 style={{ fontSize: 'clamp(32px, 4vw, 48px)', marginBottom: '24px' }}>Families decide in <br/><span className="accent" style={{ fontStyle: 'italic' }}>seconds.</span></h2>
               <p className="lead" style={{ fontSize: '1rem', lineHeight: '1.6', maxWidth: '480px' }}>
-                An outdated website creates uncertainty. A professional one builds confidence before the first phone call &mdash; it should build trust immediately, communicate services clearly, showcase your team, improve search visibility, and generate more inquiries.
+                An outdated website creates uncertainty. A professional one builds confidence before the first phone call because it should build trust immediately, communicate services clearly, showcase your team, improve search visibility, and generate more inquiries.
               </p>
             </div>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -334,7 +334,7 @@ export default function WebDesign() {
                   </div>
                   <div className="ba-tags"><span className="btag">BEFORE</span><span className="atag">AFTER</span></div>
                 </div>
-                <p className="ba-caption" data-reveal style={{ marginTop: '24px', fontSize: '11px', textAlign: 'center', opacity: 0.6 }}>Drag &mdash; left is a typical dated healthcare site, right is a modern Wavecare build.</p>
+                <p className="ba-caption" data-reveal style={{ marginTop: '24px', fontSize: '11px', textAlign: 'center', opacity: 0.6 }}>Drag. Left is a typical dated healthcare site, right is a modern Wavecare build.</p>
               </div>
           </div>
         </div>
@@ -540,7 +540,7 @@ export default function WebDesign() {
                   <h3>Build</h3><p>Our team develops and launches your website with performance and usability in mind.</p>
                 </div>
                 <div className={`step ${procTab === 3 ? 'on' : ''}`}>
-                  <h3>Manage</h3><p>We provide ongoing support, updates, and improvements after launch &mdash; so it keeps performing.</p>
+                  <h3>Manage</h3><p>We provide ongoing support, updates, and improvements after launch so it keeps performing.</p>
                 </div>
               </div>
               
@@ -634,7 +634,7 @@ export default function WebDesign() {
                 </div>
                 <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.2)', fontSize: '12px', letterSpacing: '1px' }}>HOMEPAGE SCREENSHOT [REPLACE]</div>
                 <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '32px 24px 24px', background: 'linear-gradient(to top, rgba(6,42,36,0.95) 0%, transparent 100%)' }}>
-                  <h3 style={{ fontSize: '20px', marginBottom: '8px', color: '#fff' }}>[REPLACE &mdash; Facility name]</h3>
+                  <h3 style={{ fontSize: '20px', marginBottom: '8px', color: '#fff' }}>[REPLACE Facility name]</h3>
                   <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>Website Design &amp; Build &middot; [REPLACE summary]</p>
                 </div>
               </div>
@@ -647,7 +647,7 @@ export default function WebDesign() {
                 </div>
                 <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.2)', fontSize: '12px', letterSpacing: '1px' }}>HOMEPAGE SCREENSHOT [REPLACE]</div>
                 <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '32px 24px 24px', background: 'linear-gradient(to top, rgba(6,42,36,0.95) 0%, transparent 100%)' }}>
-                  <h3 style={{ fontSize: '20px', marginBottom: '8px', color: '#fff' }}>[REPLACE &mdash; Facility name]</h3>
+                  <h3 style={{ fontSize: '20px', marginBottom: '8px', color: '#fff' }}>[REPLACE Facility name]</h3>
                   <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>Website Design &amp; Build &middot; [REPLACE summary]</p>
                 </div>
               </div>

@@ -191,7 +191,7 @@ export default function PhotoServices() {
               <path d="M2,12 Q12,2 20,12 T38,12 T56,12 T72,12"></path>
             </svg>
             <h1>Professional photography that <span className="accent">builds trust.</span></h1>
-            <p className="phero-sub">Showcase your facility, staff, residents, and care environment with authentic imagery &mdash; built for websites, social media, admissions materials, and marketing campaigns.</p>
+            <p className="phero-sub">Showcase your facility, staff, residents, and care environment with authentic imagery built for websites, social media, admissions materials, and marketing campaigns.</p>
             <div className="btn-group">
               <Link href="/contact" className="btn">Book a Photoshoot</Link>
               <Link href="#gallery" className="btn btn-light">View Photo Work</Link>
@@ -221,7 +221,7 @@ export default function PhotoServices() {
               beforeImage="/images/gallery/Yorktown_front_before.jpg" 
               afterImage="/images/gallery/Yorktown%20front.jpg"
             />
-            <p className="ba-caption">Drag the handle &mdash; left is typical phone photo // right is professional photography</p>
+            <p className="ba-caption">Drag the handle. Left is a typical phone photo, right is professional photography.</p>
           </div>
         </div>
       </section>
@@ -242,7 +242,7 @@ export default function PhotoServices() {
           <div className="shoot-grid" data-reveal>
             <div className="shoot-card">
               <h3 style={{ fontFamily: 'var(--font-head)' }}>Facility Photography</h3>
-              <p>Common areas, resident rooms, amenities, dining spaces, and exterior views &mdash; the spaces families judge first.</p>
+              <p>Common areas, resident rooms, amenities, dining spaces, and exterior views are the spaces families judge first.</p>
             </div>
             <div className="shoot-card">
               <h3 style={{ fontFamily: 'var(--font-head)' }}>Staff &amp; Team Photography</h3>
@@ -250,11 +250,11 @@ export default function PhotoServices() {
             </div>
             <div className="shoot-card">
               <h3 style={{ fontFamily: 'var(--font-head)' }}>Resident Lifestyle</h3>
-              <p>Authentic moments of daily life, activities, and community &mdash; the proof that people are happy here.</p>
+              <p>Authentic moments of daily life, activities, and community are the proof that people are happy here.</p>
             </div>
             <div className="shoot-card">
               <h3 style={{ fontFamily: 'var(--font-head)' }}>Marketing Content</h3>
-              <p>Images shaped for websites, social, brochures, ads, and recruitment &mdash; shot with the end user in mind.</p>
+              <p>Images shaped for websites, social, brochures, ads, and recruitment are shot with the end user in mind.</p>
             </div>
           </div>
         </div>
@@ -331,7 +331,7 @@ export default function PhotoServices() {
           <div className="sec-head" data-reveal style={{ maxWidth: '1000px' }}>
             <span className="label">Our Process</span>
             <h2 style={{ textWrap: 'unset' }}>From shot list to <span className="accent">final gallery.</span></h2>
-            <p className="sub" style={{ marginTop: '18px', maxWidth: '1000px' }}>Hover a phase &mdash; watch the contact sheet develop from raw proofs to the final selects.</p>
+            <p className="sub" style={{ marginTop: '18px', maxWidth: '1000px' }}>Hover a phase to watch the contact sheet develop from raw proofs to the final selects.</p>
           </div>
           
           <div className="proc-tabs" data-reveal>
@@ -353,7 +353,7 @@ export default function PhotoServices() {
             <div className="proc-monitor">
               <div className="proc-detail">
                 <div className={`step ${procTab === 0 ? 'on' : ''}`}>
-                  <h3>Planning</h3><p>We identify goals, locations, and the exact shot list &mdash; so nothing is missed and your staff knows what to expect.</p>
+                  <h3>Planning</h3><p>We identify goals, locations, and the exact shot list so nothing is missed and your staff knows what to expect.</p>
                 </div>
                 <div className={`step ${procTab === 1 ? 'on' : ''}`}>
                   <h3>Photoshoot Day</h3><p>Our team captures everything planned, efficiently and respectfully, working around residents and daily routines.</p>
@@ -362,7 +362,7 @@ export default function PhotoServices() {
                   <h3>Editing</h3><p>Images are professionally edited, color-corrected, and optimized for every marketing use.</p>
                 </div>
                 <div className={`step ${procTab === 3 ? 'on' : ''}`}>
-                  <h3>Delivery</h3><p>You receive organized, ready-to-use files for web, print, social, and advertising &mdash; named and sized correctly.</p>
+                  <h3>Delivery</h3><p>You receive organized, ready-to-use files for web, print, social, and advertising that are named and sized correctly.</p>
                 </div>
               </div>
               
@@ -394,7 +394,7 @@ export default function PhotoServices() {
             <span className="label">THE WORK</span>
             <h2 style={{ textWrap: 'unset' }}>Real facilities, <span className="accent">real moments.</span></h2>
             <p className="sub" style={{ marginTop: '16px', maxWidth: '1000px', margin: '16px auto 0' }}>
-              Filter by what you need to see. Every image is shot on location &mdash; no stock, ever.
+              Filter by what you need to see. Every image is shot on location. We use no stock, ever.
             </p>
           </div>
           <div className="filter-bar" data-reveal>
