@@ -759,17 +759,17 @@
 }
 
 .hero-device.laptop {
-  width: 480px;
-  height: 300px;
-  border-width: 12px;
-  border-bottom-width: 16px;
+  width: 600px;
+  height: 380px;
+  border-width: 14px;
+  border-bottom-width: 18px;
   border-radius: 12px;
 }
 .hero-device.laptop::after {
   content: "";
   position: absolute;
-  bottom: -16px; left: 50%; transform: translateX(-50%);
-  width: 60px; height: 6px;
+  bottom: -18px; left: 50%; transform: translateX(-50%);
+  width: 140px; height: 6px;
   background: rgba(255,255,255,0.1);
   border-radius: 4px 4px 0 0;
 }
