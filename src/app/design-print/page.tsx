@@ -186,15 +186,15 @@ export default function DesignPrint() {
         </p>
       </div>
 
-      <section className="panel dp-why" style={{ padding: '80px 0' }}>
+      <section className="panel dp-why" style={{ padding: '120px 0' }}>
         <div className="container">
-            <div className="sec-head center" data-reveal style={{ maxWidth: '880px', margin: '0 auto 40px' }}>
+            <div className="sec-head center" data-reveal style={{ maxWidth: '880px', margin: '0 auto 60px' }}>
               <span className="label">Why Design & Print Matters</span>
               <h2 style={{ whiteSpace: 'nowrap', fontSize: 'clamp(18px, 4vw, 40px)' }}>First impressions are <span className="accent">physical.</span></h2>
               <p className="lead" style={{ margin: '16px auto 0', maxWidth: '100%', textWrap: 'balance', fontSize: '1rem' }}>Families often form opinions about your facility before they ever speak with your team. Professional design creates confidence, improves communication, and makes sure every touchpoint reflects the quality of care you provide.</p>
             </div>
           <div className="ba-slider" ref={sliderRef} 
-               style={{ maxWidth: '520px', margin: '0 auto' }}
+               style={{ maxWidth: '560px', margin: '0 auto' }}
                onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); handleBaDrag(e); }}
                onPointerMove={(e) => { if (e.buttons > 0) handleBaDrag(e); }}
                data-reveal>
@@ -205,9 +205,9 @@ export default function DesignPrint() {
             <div className="ba-handle" style={{ left: `${baPos}%` }}></div>
             <div className="ba-tags"><span className="btag">BEFORE</span><span className="atag">AFTER</span></div>
           </div>
-          <p className="ba-caption" data-reveal style={{ marginTop: '24px', fontSize: '11px' }}>Drag — left is a typical flyer, right is a professionally designed piece.</p>
+          <p className="ba-caption" data-reveal style={{ marginTop: '32px', fontSize: '11px' }}>Drag — left is a typical flyer, right is a professionally designed piece.</p>
 
-          <div className="stats stagger" style={{ maxWidth: '900px', margin: '60px auto 0' }}>
+          <div className="stats stagger" style={{ maxWidth: '900px', margin: '80px auto 0' }}>
             <div className="stat"><div className="num" style={{ fontSize: 'clamp(36px, 4.5vw, 60px)' }} data-count="60" data-suffix="%">0</div><div className="cap" style={{ fontSize: '12px' }}>of families judge care quality by marketing materials</div></div>
             <div className="stat"><div className="num" style={{ fontSize: 'clamp(36px, 4.5vw, 60px)' }} data-count="2" data-suffix="x">0</div><div className="cap" style={{ fontSize: '12px' }}>higher conversion with professional admissions packets</div></div>
             <div className="stat"><div className="num" style={{ fontSize: 'clamp(36px, 4.5vw, 60px)' }} data-count="100" data-suffix="%">0</div><div className="cap" style={{ fontSize: '12px' }}>tailored to senior care and medical practices</div></div>
@@ -378,36 +378,36 @@ export default function DesignPrint() {
                </p>
             </div>
             <div className="mason stagger">
-               <div className="m" style={{ aspectRatio: '1.4', position: 'relative' }}>
-                 <img src="/images/River ridge tri fold brochure.png" alt="Tri-Fold" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+               <div className="m" style={{ position: 'relative' }}>
+                 <img src="/images/River ridge tri fold brochure.png" alt="Tri-Fold" style={{ width: '100%', height: 'auto', display: 'block' }} />
                  <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Tri-Fold</div>
                </div>
-               <div className="m" style={{ aspectRatio: '0.8', position: 'relative' }}>
-                 <img src="/images/harvest_acres_brochure.jpg" alt="Brochure" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+               <div className="m" style={{ position: 'relative' }}>
+                 <img src="/images/harvest_acres_brochure.jpg" alt="Brochure" style={{ width: '100%', height: 'auto', display: 'block' }} />
                  <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Brochure</div>
                </div>
-               <div className="m" style={{ aspectRatio: '1', position: 'relative' }}>
-                 <img src="/images/Athens roadside billboard style print ad.jpg" alt="Billboard" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+               <div className="m" style={{ position: 'relative' }}>
+                 <img src="/images/Athens roadside billboard style print ad.jpg" alt="Billboard" style={{ width: '100%', height: 'auto', display: 'block' }} />
                  <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Billboard</div>
                </div>
-               <div className="m" style={{ aspectRatio: '1.2', position: 'relative' }}>
-                 <img src="/images/harvest acres pull up banner.png" alt="Banner" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+               <div className="m" style={{ position: 'relative' }}>
+                 <img src="/images/harvest acres pull up banner.png" alt="Banner" style={{ width: '100%', height: 'auto', display: 'block' }} />
                  <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Banner</div>
                </div>
-               <div className="m" style={{ aspectRatio: '0.9', position: 'relative' }}>
-                 <img src="/images/Neffsville postcard.png" alt="Postcard" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+               <div className="m" style={{ position: 'relative' }}>
+                 <img src="/images/Neffsville postcard.png" alt="Postcard" style={{ width: '100%', height: 'auto', display: 'block' }} />
                  <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Postcard</div>
                </div>
-               <div className="m" style={{ aspectRatio: '1.5', position: 'relative' }}>
-                 <img src="/images/Woodland manor signage.jpg" alt="Signage" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+               <div className="m" style={{ position: 'relative' }}>
+                 <img src="/images/Woodland manor signage.jpg" alt="Signage" style={{ width: '100%', height: 'auto', display: 'block' }} />
                  <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Signage</div>
                </div>
-               <div className="m" style={{ aspectRatio: '1.1', position: 'relative' }}>
-                 <img src="/images/Kendallville manor signage.png" alt="Outdoor Signage" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+               <div className="m" style={{ position: 'relative' }}>
+                 <img src="/images/Kendallville manor signage.png" alt="Outdoor Signage" style={{ width: '100%', height: 'auto', display: 'block' }} />
                  <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Signage</div>
                </div>
-               <div className="m" style={{ aspectRatio: '0.85', position: 'relative' }}>
-                 <img src="/images/inner roots business card.png" alt="Business Card" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+               <div className="m" style={{ position: 'relative' }}>
+                 <img src="/images/inner roots business card.png" alt="Business Card" style={{ width: '100%', height: 'auto', display: 'block' }} />
                  <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Business Card</div>
                </div>
             </div>
