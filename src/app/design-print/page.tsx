@@ -186,15 +186,15 @@ export default function DesignPrint() {
         </p>
       </div>
 
-      <section className="panel dp-why" style={{ padding: '40px 0' }}>
+      <section className="panel dp-why" style={{ padding: '80px 0' }}>
         <div className="container">
-            <div className="sec-head center" data-reveal style={{ maxWidth: '880px', margin: '0 auto 24px' }}>
+            <div className="sec-head center" data-reveal style={{ maxWidth: '880px', margin: '0 auto 40px' }}>
               <span className="label">Why Design & Print Matters</span>
-              <h2 style={{ whiteSpace: 'nowrap', fontSize: 'clamp(18px, 4vw, 48px)' }}>First impressions are <span className="accent">physical.</span></h2>
-              <p className="lead" style={{ margin: '12px auto 0', maxWidth: '100%', textWrap: 'balance' }}>Families often form opinions about your facility before they ever speak with your team. Professional design creates confidence, improves communication, and makes sure every touchpoint reflects the quality of care you provide.</p>
+              <h2 style={{ whiteSpace: 'nowrap', fontSize: 'clamp(18px, 4vw, 40px)' }}>First impressions are <span className="accent">physical.</span></h2>
+              <p className="lead" style={{ margin: '16px auto 0', maxWidth: '100%', textWrap: 'balance', fontSize: '1rem' }}>Families often form opinions about your facility before they ever speak with your team. Professional design creates confidence, improves communication, and makes sure every touchpoint reflects the quality of care you provide.</p>
             </div>
           <div className="ba-slider" ref={sliderRef} 
-               style={{ maxWidth: '640px', margin: '0 auto' }}
+               style={{ maxWidth: '520px', margin: '0 auto' }}
                onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); handleBaDrag(e); }}
                onPointerMove={(e) => { if (e.buttons > 0) handleBaDrag(e); }}
                data-reveal>
@@ -205,12 +205,12 @@ export default function DesignPrint() {
             <div className="ba-handle" style={{ left: `${baPos}%` }}></div>
             <div className="ba-tags"><span className="btag">BEFORE</span><span className="atag">AFTER</span></div>
           </div>
-          <p className="ba-caption" data-reveal style={{ marginTop: '16px' }}>Drag — left is a typical flyer, right is a professionally designed piece.</p>
+          <p className="ba-caption" data-reveal style={{ marginTop: '24px', fontSize: '11px' }}>Drag — left is a typical flyer, right is a professionally designed piece.</p>
 
-          <div className="stats stagger" style={{ maxWidth: '900px', margin: '32px auto 0' }}>
-            <div className="stat"><div className="num" data-count="60" data-suffix="%">0</div><div className="cap">of families judge care quality by marketing materials</div></div>
-            <div className="stat"><div className="num" data-count="2" data-suffix="x">0</div><div className="cap">higher conversion with professional admissions packets</div></div>
-            <div className="stat"><div className="num" data-count="100" data-suffix="%">0</div><div className="cap">tailored to senior care and medical practices</div></div>
+          <div className="stats stagger" style={{ maxWidth: '900px', margin: '60px auto 0' }}>
+            <div className="stat"><div className="num" style={{ fontSize: 'clamp(36px, 4.5vw, 60px)' }} data-count="60" data-suffix="%">0</div><div className="cap" style={{ fontSize: '12px' }}>of families judge care quality by marketing materials</div></div>
+            <div className="stat"><div className="num" style={{ fontSize: 'clamp(36px, 4.5vw, 60px)' }} data-count="2" data-suffix="x">0</div><div className="cap" style={{ fontSize: '12px' }}>higher conversion with professional admissions packets</div></div>
+            <div className="stat"><div className="num" style={{ fontSize: 'clamp(36px, 4.5vw, 60px)' }} data-count="100" data-suffix="%">0</div><div className="cap" style={{ fontSize: '12px' }}>tailored to senior care and medical practices</div></div>
           </div>
         </div>
       </section>
