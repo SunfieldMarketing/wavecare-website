@@ -149,12 +149,15 @@ export default function DesignPrint() {
     <>
       <section className="phero">
         <div className="container" style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '60px', alignItems: 'center', minHeight: '80vh' }}>
-          <div>
+          <div data-reveal>
             <div className="brcm">
               <Link href="/">Home</Link> <span>/</span> <Link href="/services">Services</Link> <span>/</span> <span>Design & Print</span>
             </div>
             <h1>Materials that represent your facility.</h1>
             <p className="sub">Brochures, admissions packets, and banners designed specifically for healthcare — giving families the right first impression.</p>
+            <div className="btn-group" style={{ marginTop: '32px' }}>
+              <Link href="/contact" className="btn">Start a Project</Link>
+            </div>
           </div>
           <div className="phero-3d stagger" data-reveal>
             <div className="ph3-card ph3-c1"><img src="/images/design_print_2.jpg" alt="Print Example 1" /></div>
@@ -193,7 +196,18 @@ export default function DesignPrint() {
             <div className="ba-tags"><span className="btag">BEFORE</span><span className="atag">AFTER</span></div>
           </div>
         </div>
-        <p style={{textAlign: 'center', opacity: 0.6, marginTop: '24px', fontSize: '0.9rem', width: '100%'}}>Drag — left is a typical flyer, right is a professionally designed piece.</p>
+        <p style={{textAlign: 'center', opacity: 0.6, marginTop: '24px', fontSize: '0.9rem', width: '100%'}} data-reveal>Drag — left is a typical flyer, right is a professionally designed piece.</p>
+      </section>
+
+      <section className="deep sec-pad" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          <div className="sec-head center" data-reveal><span className="label">A Decade of Results</span><h2>The numbers behind the work.</h2></div>
+          <div className="stats stagger" style={{ maxWidth: '900px', margin: '0 auto' }}>
+            <div className="stat"><div className="num" data-count="60" data-suffix="%">0</div><div className="cap">of families judge care quality by marketing materials</div></div>
+            <div className="stat"><div className="num" data-count="2" data-suffix="x">0</div><div className="cap">higher conversion with professional admissions packets</div></div>
+            <div className="stat"><div className="num" data-count="100" data-suffix="%">0</div><div className="cap">tailored to senior care and medical practices</div></div>
+          </div>
+        </div>
       </section>
 
       <section className="panel deep sec-pad dp-services">
@@ -351,26 +365,29 @@ export default function DesignPrint() {
           </div>
           
           <div className="sec-head center" data-reveal style={{ maxWidth: '1000px', margin: '0 auto 40px' }}>
-             <span className="label">Featured Work</span>
+             <span className="label">Recent Print Projects</span>
              <h2 style={{ textWrap: 'unset' }}>A look at the collateral.</h2>
+             <p className="sub" style={{ marginTop: '16px', maxWidth: '1000px', margin: '16px auto 0' }}>
+               A look at the collateral and materials we've designed and printed.
+             </p>
           </div>
           <div className="mason stagger">
-             <div className="m" style={{ aspectRatio: '1.4' }}><img src="/images/design_print_2.jpg" alt="Tri-Fold" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-             <div className="m" style={{ aspectRatio: '0.8' }}><img src="/images/brochure_inside.png" alt="Brochure" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-             <div className="m" style={{ aspectRatio: '1' }}><img src="/images/brochure_cover.jpg" alt="Folder" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-             <div className="m" style={{ aspectRatio: '1.2' }}><img src="/images/img_4.jpeg" alt="Banner" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-          </div>
-        </div>
-      </section>
-
-      <section className="deep sec-pad">
-        <div className="glow" style={{ width: '600px', height: '600px', background: 'var(--teal-primary)', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', opacity: 0.3 }}></div>
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className="sec-head center" data-reveal><span className="label">A Decade of Results</span><h2>The numbers behind the work.</h2></div>
-          <div className="stats stagger" style={{ maxWidth: '900px', margin: '0 auto' }}>
-            <div className="stat"><div className="num" data-count="60" data-suffix="%">0</div><div className="cap">of families judge care quality by marketing materials</div></div>
-            <div className="stat"><div className="num" data-count="2" data-suffix="x">0</div><div className="cap">higher conversion with professional admissions packets</div></div>
-            <div className="stat"><div className="num" data-count="100" data-suffix="%">0</div><div className="cap">tailored to senior care and medical practices</div></div>
+             <div className="m" style={{ aspectRatio: '1.4', position: 'relative' }}>
+               <img src="/images/design_print_2.jpg" alt="Tri-Fold" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+               <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Tri-Fold</div>
+             </div>
+             <div className="m" style={{ aspectRatio: '0.8', position: 'relative' }}>
+               <img src="/images/brochure_inside.png" alt="Brochure" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+               <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Brochure</div>
+             </div>
+             <div className="m" style={{ aspectRatio: '1', position: 'relative' }}>
+               <img src="/images/brochure_cover.jpg" alt="Folder" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+               <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Folder</div>
+             </div>
+             <div className="m" style={{ aspectRatio: '1.2', position: 'relative' }}>
+               <img src="/images/img_4.jpeg" alt="Banner" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+               <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Banner</div>
+             </div>
           </div>
         </div>
       </section>
