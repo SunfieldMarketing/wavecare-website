@@ -135,6 +135,21 @@
 .tcard .body p{font-size:14px; color:var(--on-dark); margin-bottom:14px; margin-top:0;}
 .tcard .where{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--teal-bright);}
 
+/* Interactive elements in tcard */
+.tcard .anim-design .top { transition: transform 0.3s; }
+.tcard:hover .anim-design .top { transform: scaleX(1.02); background: rgba(255,255,255,0.1); }
+.tcard .anim-dev > div { transition: all 0.3s; }
+.tcard:hover .anim-dev .top { height: 16px; background: var(--teal-bright); }
+.tcard .anim-manage .cir { transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.tcard:hover .anim-manage .cir { transform: scale(1.6); opacity: 1; background: var(--teal-bright); }
+.tcard .anim-seo .bar { transition: all 0.3s; }
+.tcard:hover .anim-seo .bar:nth-child(4), .tcard:hover .anim-seo .bar:nth-child(5) { background: var(--teal-bright); opacity: 1; }
+.tcard:hover .anim-seo .bar:nth-child(1), .tcard:hover .anim-seo .bar:nth-child(2) { opacity: 0.3; }
+.tcard .anim-content .top { transition: transform 0.3s; }
+.tcard:hover .anim-content .top { transform: translateY(-4px); background: rgba(255,255,255,0.15); }
+.tcard .anim-hosting .circle { transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.tcard:hover .anim-hosting .circle { transform: translateY(-6px) scale(1.1); box-shadow: 0 4px 12px rgba(95,208,191,0.4); }
+
 /* ===== Featured Work ===== */
 .fw-grid{display:grid; grid-template-columns:1.6fr 1fr; gap:24px; align-items:stretch;}
 @media(max-width:860px){.fw-grid{grid-template-columns:1fr;}}
@@ -199,8 +214,8 @@
 .before-image .ba-label { left: 20px; }
 .after-image .ba-label { right: 20px; }
 .ba-handle { position: absolute; top: 0; bottom: 0; width: 40px; margin-left: -20px; z-index: 4; display: flex; justify-content: center; align-items: center; cursor: ew-resize; touch-action: none; }
-.ba-handle-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: var(--teal-bright); transform: translateX(-50%); box-shadow: 0 0 10px rgba(0,0,0,0.5); }
-.ba-handle-button { position: relative; width: 36px; height: 36px; background: var(--teal-bright); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.3); transition: transform 0.2s; }
+.ba-handle-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: var(--teal-primary); transform: translateX(-50%); box-shadow: 0 0 10px rgba(0,0,0,0.5); }
+.ba-handle-button { position: relative; width: 42px; height: 42px; background: var(--teal-primary); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.3); transition: transform 0.2s; border: 2px solid rgba(255,255,255,0.1); }
 .ba-handle:hover .ba-handle-button { transform: scale(1.1); }
 .ba-handle:active .ba-handle-button { transform: scale(0.95); }
 .ba-caption { text-align: center; font-size: 12px; color: var(--on-dark); letter-spacing: 0.05em; margin-top: 16px; opacity: 0.8; }
@@ -288,29 +303,6 @@
   overflow: hidden;
   border-right: 2px solid var(--teal-primary);
 }
-.ba-handle {
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 48px;
-  height: 48px;
-  background: var(--teal-primary);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.3), inset 0 0 0 4px rgba(255,255,255,0.1);
-  z-index: 5;
-  pointer-events: none;
-}
-.ba-handle::before, .ba-handle::after {
-  content: '';
-  position: absolute;
-  width: 2px; height: 10px;
-  background: rgba(255,255,255,0.8);
-}
-.ba-handle::before { left: 16px; }
-.ba-handle::after { right: 16px; }
 .ba-tags {
   position: absolute;
   top: 24px; left: 24px; right: 24px;

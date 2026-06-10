@@ -134,7 +134,9 @@ export default function WebDesign() {
               <p className="phero-sub">Modern healthcare websites designed specifically for nursing homes, assisted living communities, rehabilitation centers, and healthcare organizations.</p>
               <div className="btn-group" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
                 <Link href="/contact" className="btn">Get a Website Audit &rarr;</Link>
-                <Link href="#portfolio" className="btn btn-ghost" style={{ background: 'transparent', border: '1px solid rgba(255,255,255,0.2)' }}>View Website Examples</Link>
+                <div style={{ textAlign: 'center' }}>
+                  <Link href="/case-studies" className="btn" data-magnetic>View Website Examples &rarr;</Link>
+                </div>
               </div>
             </div>
             <div className="hero-device-wrap" data-reveal>
@@ -165,8 +167,8 @@ export default function WebDesign() {
       </section>
 
       {/* ========== SOCIAL PROOF ========== */}
-      <div className="social-proof-banner" style={{ textAlign: 'center', padding: '24px 20px', borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)', background: 'rgba(255,255,255,0.01)' }}>
-        <p style={{ fontSize: '0.85rem', letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', maxWidth: '800px', margin: '0 auto', lineHeight: '1.6' }}>Trusted by healthcare providers improving their online presence, increasing inquiries, and modernizing their brand experience.</p>
+      <div className="social-proof-banner" style={{ textAlign: 'center', padding: '14px 20px', background: '#051A16', borderTop: '1px solid #0a2e26', borderBottom: '1px solid #0a2e26' }}>
+        <p style={{ fontSize: '10px', letterSpacing: '1px', color: 'rgba(255,255,255,0.6)', maxWidth: '800px', margin: '0 auto', textTransform: 'none', fontWeight: '500' }}>Trusted by healthcare providers improving their online presence, increasing inquiries, and modernizing their brand experience.</p>
       </div>
 
 
@@ -197,7 +199,12 @@ export default function WebDesign() {
                    <div className="w-cards"><div className="w-card"></div><div className="w-card"></div></div>
                 </div>
               </div>
-              <div className="ba-handle" style={{ left: `${baPos}%` }}></div>
+              <div className="ba-handle" style={{ left: `${baPos}%` }}>
+                <div className="ba-handle-line"></div>
+                <div className="ba-handle-button">
+                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5l7 7-7 7M5 12h14"/></svg>
+                </div>
+              </div>
               <div className="ba-tags"><span className="btag">BEFORE</span><span className="atag">AFTER</span></div>
             </div>
           </div>
@@ -317,9 +324,9 @@ export default function WebDesign() {
           </div>
 
           <div className="stats stagger" style={{ maxWidth: '900px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '30px', textAlign: 'center' }}>
-            <div className="stat"><div className="num" style={{ fontSize: 'clamp(36px, 4.5vw, 60px)', color: 'var(--teal-bright)', fontFamily: 'var(--font-display)', lineHeight: '1', marginBottom: '16px' }}><span data-count="3" data-suffix=".5x">0</span></div><div className="lbl" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>more organic traffic after a professional rebuild</div></div>
-            <div className="stat"><div className="num" style={{ fontSize: 'clamp(36px, 4.5vw, 60px)', color: 'var(--teal-bright)', fontFamily: 'var(--font-display)', lineHeight: '1', marginBottom: '16px' }}><span data-count="72" data-suffix="%">0</span></div><div className="lbl" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>of tours start from a mobile device</div></div>
-            <div className="stat"><div className="num" style={{ fontSize: 'clamp(36px, 4.5vw, 60px)', color: 'var(--teal-bright)', fontFamily: 'var(--font-display)', lineHeight: '1', marginBottom: '16px' }}><span data-prefix="&lt;" data-count="2" data-suffix="s">0</span></div><div className="lbl" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>load time optimization across the board</div></div>
+            <div className="stat"><div className="num" data-count="3" data-suffix=".5x" style={{ fontSize: 'clamp(36px, 4.5vw, 60px)', color: 'var(--teal-bright)', fontFamily: 'var(--font-display)', lineHeight: '1', marginBottom: '16px' }}>0</div><div className="lbl" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>more organic traffic after a professional rebuild</div></div>
+            <div className="stat"><div className="num" data-count="72" data-suffix="%" style={{ fontSize: 'clamp(36px, 4.5vw, 60px)', color: 'var(--teal-bright)', fontFamily: 'var(--font-display)', lineHeight: '1', marginBottom: '16px' }}>0</div><div className="lbl" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>of tours start from a mobile device</div></div>
+            <div className="stat"><div className="num" data-prefix="&lt;" data-count="2" data-suffix="s" style={{ fontSize: 'clamp(36px, 4.5vw, 60px)', color: 'var(--teal-bright)', fontFamily: 'var(--font-display)', lineHeight: '1', marginBottom: '16px' }}>0</div><div className="lbl" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>load time optimization across the board</div></div>
           </div>
         </div>
       </section>
@@ -483,8 +490,8 @@ export default function WebDesign() {
       {/* ========== FINAL CTA ========== */}
       <section className="final">
         <canvas id="waveCanvas"></canvas>
-        <div className="final-in" data-reveal>
-          <span className="label">Are you losing tours online?</span>
+        <div className="container" data-reveal style={{ textAlign: 'center' }}>
+          <span className="label" style={{ display: 'inline-block', marginBottom: '24px' }}>Are you losing tours online?</span>
           <h2>See how your website really <span className="accent">performs.</span></h2>
           <p className="sub">Let's look at your current site. We'll show you where you're losing traffic, how families perceive your brand online, and exactly how we'd fix it.</p>
           <Link href="/contact" className="btn btn-light">Get Your Free Website Audit</Link>
