@@ -186,15 +186,15 @@ export default function DesignPrint() {
         </p>
       </div>
 
-      <section className="panel sec-pad dp-why">
+      <section className="panel sec-pad dp-why" style={{ paddingTop: '60px', paddingBottom: '60px' }}>
         <div className="container">
-            <div className="sec-head center" data-reveal style={{ maxWidth: '800px', margin: '0 auto 60px' }}>
+            <div className="sec-head center" data-reveal style={{ maxWidth: '800px', margin: '0 auto 40px' }}>
               <span className="label">Why Design & Print Matters</span>
               <h2 style={{ whiteSpace: 'nowrap', fontSize: 'clamp(18px, 4vw, 48px)' }}>First impressions are <span className="accent">physical.</span></h2>
-              <p className="lead" style={{ marginTop: '24px' }}>Families often form opinions about your facility before they ever speak with your team. Professional design creates confidence, improves communication, and makes sure every touchpoint reflects the quality of care you provide.</p>
+              <p className="lead" style={{ marginTop: '16px' }}>Families often form opinions about your facility before they ever speak with your team. Professional design creates confidence, improves communication, and makes sure every touchpoint reflects the quality of care you provide.</p>
             </div>
           <div className="ba-slider" ref={sliderRef} 
-               style={{ maxWidth: '720px', margin: '0 auto' }}
+               style={{ maxWidth: '640px', margin: '0 auto' }}
                onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); handleBaDrag(e); }}
                onPointerMove={(e) => { if (e.buttons > 0) handleBaDrag(e); }}
                data-reveal>
@@ -205,23 +205,12 @@ export default function DesignPrint() {
             <div className="ba-handle" style={{ left: `${baPos}%` }}></div>
             <div className="ba-tags"><span className="btag">BEFORE</span><span className="atag">AFTER</span></div>
           </div>
-          <p className="ba-caption" data-reveal style={{ marginTop: '24px' }}>Drag — left is a typical flyer, right is a professionally designed piece.</p>
+          <p className="ba-caption" data-reveal style={{ marginTop: '16px' }}>Drag — left is a typical flyer, right is a professionally designed piece.</p>
 
-          <div className="dp-stats-bar stagger" data-reveal>
-             <div className="dp-stats-inner">
-                <div className="dp-stat">
-                   <div className="dp-stat-num">60%</div>
-                   <div className="dp-stat-label">Of families judge care quality by marketing materials</div>
-                </div>
-                <div className="dp-stat">
-                   <div className="dp-stat-num">2x</div>
-                   <div className="dp-stat-label">Higher conversion with professional admissions packets</div>
-                </div>
-                <div className="dp-stat">
-                   <div className="dp-stat-num">100%</div>
-                   <div className="dp-stat-label">Tailored to senior care and medical practices</div>
-                </div>
-             </div>
+          <div className="stats stagger" style={{ maxWidth: '900px', margin: '40px auto 0' }}>
+            <div className="stat"><div className="num" data-count="60" data-suffix="%">0</div><div className="cap">of families judge care quality by marketing materials</div></div>
+            <div className="stat"><div className="num" data-count="2" data-suffix="x">0</div><div className="cap">higher conversion with professional admissions packets</div></div>
+            <div className="stat"><div className="num" data-count="100" data-suffix="%">0</div><div className="cap">tailored to senior care and medical practices</div></div>
           </div>
         </div>
       </section>
