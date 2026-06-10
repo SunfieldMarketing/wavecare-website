@@ -30,15 +30,20 @@ function initReveals(){
 
 /* ---- count-up (IntersectionObserver, library-independent) ---- */
 function initCount(){
-  const els=document.querySelectorAll('[data-count]');
-  if(!('IntersectionObserver' in window)){ els.forEach(el=>{const c=el.dataset.comma==='1',t=+el.dataset.count; el.textContent=c?t.toLocaleString():t;}); return; }
-  const io=new IntersectionObserver(es=>{ es.forEach(en=>{ if(!en.isIntersecting)return; const el=en.target; io.unobserve(el);
-    const target=+el.dataset.count,comma=el.dataset.comma==='1',dur=reduceMotion?0:1700,t0=performance.now();
-    (function step(now){ const k=dur?Math.min((now-t0)/dur,1):1; const e=1-Math.pow(1-k,3); const v=Math.floor(target*e);
-      el.textContent=comma?v.toLocaleString():v; if(k<1)requestAnimationFrame(step); else el.textContent=comma?target.toLocaleString():target; })(performance.now());
-  }); },{threshold:0.25});
-  els.forEach(el=>io.observe(el));
-}
+    const els=document.querySelectorAll('[data-count]');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!('IntersectionObserver' in window)){ els.forEach(el=>{const c=el.getAttribute('data-comma')==='1',t=+el.getAttribute('data-count'); 
+const p=el.getAttribute('data-prefix')||'',s=el.getAttribute('data-suffix')||''; el.textContent=p+(c?t.toLocaleString():t)+s;}); return; }
+    const io=new IntersectionObserver(es=>{ es.forEach(en=>{ if(!en.isIntersecting)return; const el=en.target as HTMLElement; 
+io.unobserve(el);
+      const target=+(el.getAttribute('data-count')||0),comma=el.getAttribute('data-comma')==='1',dur=reduceMotion?0:1700,t0=performance.now();
+      const p=el.getAttribute('data-prefix')||'', s=el.getAttribute('data-suffix')||'';
+      (function step(now){ const k=dur?Math.min((now-t0)/dur,1):1; const e=1-Math.pow(1-k,3); const v=Math.floor(target*e);
+        el.textContent=p+(comma?v.toLocaleString():v)+s; if(k<1)requestAnimationFrame(step); else 
+el.textContent=p+(comma?target.toLocaleString():target)+s; })(performance.now());
+    }); },{threshold:0.25});
+    els.forEach(el=>io.observe(el));
+  }
 
 /* ---- nav + progress ---- */
 function initChrome(){

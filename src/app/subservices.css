@@ -759,17 +759,27 @@
 }
 
 .hero-device.laptop {
-  width: 600px;
-  height: 380px;
+  width: 480px;
+  height: 300px;
   border-width: 14px;
-  border-bottom-width: 18px;
-  border-radius: 12px;
+  border-bottom-width: 20px;
+  border-radius: 12px 12px 0 0;
 }
 .hero-device.laptop::after {
   content: "";
   position: absolute;
-  bottom: -18px; left: 50%; transform: translateX(-50%);
-  width: 140px; height: 6px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 4px 4px 0 0;
+  bottom: -30px; left: 50%; transform: translateX(-50%);
+  width: calc(100% + 60px); height: 10px;
+  background: linear-gradient(to bottom, #dcdcdc 0%, #999 100%);
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+.hero-device.laptop::before {
+  content: "";
+  position: absolute;
+  bottom: -20px; left: 50%; transform: translateX(-50%);
+  width: 70px; height: 6px;
+  background: #666;
+  border-radius: 0 0 6px 6px;
+  z-index: 2;
 }

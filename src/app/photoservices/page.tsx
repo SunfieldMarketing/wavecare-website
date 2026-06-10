@@ -434,8 +434,7 @@ export default function PhotoServices() {
       {/* ========== CTA ========== */}
       <section className="final">
         <canvas id="waveCanvas"></canvas>
-        <canvas id="waveCanvas"></canvas>
-        <div className="final-in" data-reveal style={{ position: 'relative', zIndex: 1 }}>
+<div className="final-in" data-reveal style={{ position: 'relative', zIndex: 1 }}>
           <span className="label">A clearer picture of your care</span>
           <h2>Give families a clearer <span className="accent">picture</span> of your care.</h2>
           <p className="sub">We capture the spaces, people, and moments that make your facility feel professional, welcoming, and trustworthy.</p>

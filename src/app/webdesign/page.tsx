@@ -74,36 +74,28 @@ export default function WebDesign() {
         .mock-top span { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.2); }
         
         .anim-design { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; height: 100%; padding-top: 12px; }
-        .anim-design div { background: rgba(95,208,191,0.1); border-radius: 4px; animation: pulseOp 2s infinite alternate; }
-        .anim-design div:first-child { grid-column: span 2; height: 30px; }
-        @keyframes pulseOp { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+        .anim-design div { background: rgba(255,255,255,0.05); border-radius: 4px; }
+        .anim-design div.top { grid-column: span 2; height: 24px; }
         
-        .anim-dev { padding-top: 12px; }
-        .anim-dev .line { height: 6px; background: rgba(255,255,255,0.1); margin-bottom: 8px; border-radius: 3px; width: 0%; animation: typeOut 3s infinite; }
-        .anim-dev .line:nth-child(2) { width: 60%; animation-delay: 0.2s; background: rgba(95,208,191,0.2); }
-        .anim-dev .line:nth-child(3) { width: 80%; animation-delay: 0.4s; }
-        @keyframes typeOut { 0% { width: 0%; } 50%, 100% { width: 100%; } }
-        
-        .anim-seo { display: flex; align-items: flex-end; justify-content: center; gap: 8px; height: 100%; padding-top: 20px; }
-        .anim-seo .bar { width: 16px; background: var(--teal-bright); border-radius: 4px 4px 0 0; transform-origin: bottom; animation: growBar 2s infinite alternate; }
-        .anim-seo .bar:nth-child(1) { height: 30%; animation-delay: 0s; }
-        .anim-seo .bar:nth-child(2) { height: 50%; animation-delay: 0.2s; }
-        .anim-seo .bar:nth-child(3) { height: 40%; animation-delay: 0.4s; }
-        .anim-seo .bar:nth-child(4) { height: 80%; animation-delay: 0.6s; }
-        @keyframes growBar { 0% { transform: scaleY(0.2); } 100% { transform: scaleY(1); } }
-        
-        .anim-hosting { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 12px; }
-        .anim-hosting .url { font-family: monospace; font-size: 10px; color: rgba(255,255,255,0.5); }
-        .anim-hosting .status { width: 24px; height: 24px; border-radius: 50%; background: var(--teal-bright); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(95,208,191,0.4); animation: pulseGreen 2s infinite; }
-        @keyframes pulseGreen { 0% { box-shadow: 0 0 0 0 rgba(95,208,191,0.4); } 70% { box-shadow: 0 0 0 10px rgba(95,208,191,0); } 100% { box-shadow: 0 0 0 0 rgba(95,208,191,0); } }
-        
-        .anim-content { padding-top: 12px; }
-        .anim-content .par { margin-bottom: 12px; }
-        .anim-content .par .l { height: 4px; background: rgba(255,255,255,0.1); margin-bottom: 4px; border-radius: 2px; }
-        
-        .anim-manage { display: flex; align-items: center; justify-content: center; height: 100%; padding-top: 12px; }
-        .anim-manage .circle { width: 40px; height: 40px; border: 4px dashed rgba(95,208,191,0.4); border-radius: 50%; animation: spinSlow 6s linear infinite; }
-        @keyframes spinSlow { 100% { transform: rotate(360deg); } }
+        .anim-dev { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; height: 100%; padding-top: 12px; }
+        .anim-dev div { background: rgba(255,255,255,0.05); border-radius: 4px; }
+        .anim-dev div.top { grid-column: span 2; height: 24px; }
+
+        .anim-manage { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; height: 100%; padding-top: 12px; }
+        .anim-manage div { background: rgba(255,255,255,0.05); border-radius: 4px; position: relative; }
+        .anim-manage div.top { grid-column: span 2; height: 24px; background: linear-gradient(90deg, rgba(95,208,191,0.2) 0%, rgba(95,208,191,0.6) 100%); }
+        .anim-manage .cir { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; border-radius: 50%; border: 1px dashed rgba(255,255,255,0.4); display: flex; align-items: center; justify-content: center; background: transparent !important; }
+        .anim-manage .cir::after { content: ''; width: 4px; height: 4px; background: #fff; border-radius: 50%; }
+
+        .anim-seo { display: flex; align-items: center; justify-content: center; gap: 8px; height: 100%; padding-top: 12px; }
+        .anim-seo .bar { width: 24px; height: 8px; background: var(--teal-bright); border-radius: 4px; }
+
+        .anim-content { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; height: 100%; padding-top: 12px; }
+        .anim-content div { background: rgba(255,255,255,0.05); border-radius: 4px; }
+        .anim-content div.top { grid-column: span 2; height: 24px; }
+
+        .anim-hosting { display: flex; align-items: center; justify-content: center; height: 100%; padding-top: 12px; }
+        .anim-hosting .circle { width: 40px; height: 40px; background: var(--teal-bright); border-radius: 50%; }
       
         /* Wireframes for Before/After */
         .wire-bg { width: 100%; height: 100%; background: #fff; padding: 20px; border-radius: 8px; }
@@ -225,47 +217,44 @@ export default function WebDesign() {
             <div className="tcard" data-cat="all">
               <div className="thumb mock-window" data-label="design">
                  <div className="mock-top"><span></span><span></span><span></span></div>
-                 <div className="anim-design"><div></div><div></div><div></div></div>
+                 <div className="anim-design"><div className="top"></div><div></div><div></div></div>
               </div>
-              <div className="body"><h3>Website Design</h3><p>Beautiful, modern interfaces that reflect the quality of your care.</p></div>
+              <div className="body"><h3>Website Design</h3><p>Custom healthcare-focused design built around your brand and goals.</p></div>
             </div>
             <div className="tcard" data-cat="all">
               <div className="thumb mock-window" data-label="dev">
                  <div className="mock-top"><span></span><span></span><span></span></div>
-                 <div className="anim-dev"><div className="line"></div><div className="line"></div><div className="line"></div></div>
+                 <div className="anim-dev"><div className="top"></div><div></div><div></div></div>
               </div>
-              <div className="body"><h3>Website Development</h3><p>Robust, clean code built on modern frameworks for speed and reliability.</p></div>
+              <div className="body"><h3>Website Development</h3><p>Fast, responsive websites optimized for desktop, tablet, and mobile.</p></div>
             </div>
             <div className="tcard" data-cat="all">
               <div className="thumb mock-window" data-label="management">
                  <div className="mock-top"><span></span><span></span><span></span></div>
-                 <div className="anim-manage"><div className="circle"></div></div>
+                 <div className="anim-manage"><div className="top"></div><div></div><div><div className="cir"></div></div></div>
               </div>
-              <div className="body"><h3>Website Management</h3><p>We keep your site secure, up-to-date, and performing smoothly.</p></div>
+              <div className="body"><h3>Website Management</h3><p>Ongoing updates, content changes, maintenance, and support.</p></div>
             </div>
             <div className="tcard" data-cat="all">
               <div className="thumb mock-window" data-label="seo">
                  <div className="mock-top"><span></span><span></span><span></span></div>
-                 <div className="anim-seo"><div className="bar"></div><div className="bar"></div><div className="bar"></div><div className="bar"></div></div>
+                 <div className="anim-seo"><div className="bar"></div><div className="bar"></div><div className="bar"></div><div className="bar"></div><div className="bar"></div></div>
               </div>
-              <div className="body"><h3>SEO Foundations</h3><p>Built from the ground up to rank in local searches for senior care.</p></div>
+              <div className="body"><h3>SEO Foundations</h3><p>Technical setup and optimization to help improve search visibility.</p></div>
             </div>
             <div className="tcard" data-cat="all">
               <div className="thumb mock-window" data-label="content">
                  <div className="mock-top"><span></span><span></span><span></span></div>
-                 <div className="anim-content"><div className="par"><div className="l"></div><div className="l" style={{ width: '80%' }}></div></div><div className="par"><div className="l"></div><div className="l" style={{ width: '60%' }}></div></div></div>
+                 <div className="anim-content"><div className="top"></div><div></div><div></div></div>
               </div>
-              <div className="body"><h3>Content Strategy</h3><p>Copywriting that speaks to families' concerns and drives them to book a tour.</p></div>
+              <div className="body"><h3>Content Strategy</h3><p>Clear messaging that helps families quickly find what they need.</p></div>
             </div>
             <div className="tcard" data-cat="all">
-              <div className="thumb mock-window" style={{ background: '#08211c' }} data-label="hosting">
+              <div className="thumb mock-window" data-label="hosting">
                  <div className="mock-top"><span></span><span></span><span></span></div>
-                 <div className="anim-hosting">
-                    <div className="url">www.website.com</div>
-                    <div className="status"><svg viewBox="0 0 24 24" width="12" height="12" stroke="white" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-                 </div>
+                 <div className="anim-hosting"><div className="circle"></div></div>
               </div>
-              <div className="body"><h3>Hosting &amp; Performance</h3><p>Enterprise-grade hosting with global CDNs for lightning-fast load times.</p></div>
+              <div className="body"><h3>Hosting &amp; Performance</h3><p>Reliable hosting and monitoring to keep your site running smoothly.</p></div>
             </div>
           </div>
         </div>
@@ -328,15 +317,15 @@ export default function WebDesign() {
           </div>
 
           <div className="stats stagger" style={{ maxWidth: '900px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '30px', textAlign: 'center' }}>
-            <div className="stat"><div className="num" style={{ fontSize: 'clamp(36px, 4.5vw, 60px)', color: 'var(--teal-bright)', fontFamily: 'var(--font-display)', lineHeight: '1', marginBottom: '16px' }}><span data-count="3">0</span>.5x</div><div className="lbl" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>more organic traffic after a professional rebuild</div></div>
-            <div className="stat"><div className="num" style={{ fontSize: 'clamp(36px, 4.5vw, 60px)', color: 'var(--teal-bright)', fontFamily: 'var(--font-display)', lineHeight: '1', marginBottom: '16px' }}><span data-count="72">0</span>%</div><div className="lbl" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>of tours start from a mobile device</div></div>
-            <div className="stat"><div className="num" style={{ fontSize: 'clamp(36px, 4.5vw, 60px)', color: 'var(--teal-bright)', fontFamily: 'var(--font-display)', lineHeight: '1', marginBottom: '16px' }}>&lt;<span data-count="2">0</span>s</div><div className="lbl" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>load time optimization across the board</div></div>
+            <div className="stat"><div className="num" style={{ fontSize: 'clamp(36px, 4.5vw, 60px)', color: 'var(--teal-bright)', fontFamily: 'var(--font-display)', lineHeight: '1', marginBottom: '16px' }}><span data-count="3" data-suffix=".5x">0</span></div><div className="lbl" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>more organic traffic after a professional rebuild</div></div>
+            <div className="stat"><div className="num" style={{ fontSize: 'clamp(36px, 4.5vw, 60px)', color: 'var(--teal-bright)', fontFamily: 'var(--font-display)', lineHeight: '1', marginBottom: '16px' }}><span data-count="72" data-suffix="%">0</span></div><div className="lbl" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>of tours start from a mobile device</div></div>
+            <div className="stat"><div className="num" style={{ fontSize: 'clamp(36px, 4.5vw, 60px)', color: 'var(--teal-bright)', fontFamily: 'var(--font-display)', lineHeight: '1', marginBottom: '16px' }}><span data-prefix="&lt;" data-count="2" data-suffix="s">0</span></div><div className="lbl" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>load time optimization across the board</div></div>
           </div>
         </div>
       </section>
 
       {/* ========== PROCESS ========== */}
-      <section className="panel ink sec-pad">
+      <section className="panel ink sec-pad" style={{ backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px)', backgroundSize: '40px 40px', backgroundPosition: 'center' }}>
         <div className="container">
           <div className="sec-head" data-reveal>
             <span className="label">Our Process</span>
@@ -377,7 +366,7 @@ export default function WebDesign() {
               </div>
               
               <div className="proc-screen">
-                <div className="frame" style={{ opacity: 1, position: 'relative', overflow: 'hidden', background: '#062A24', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px' }}>
+                <div className="frame" style={{ opacity: 1, position: 'relative', overflow: 'hidden', background: '#062A24', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', height: '100%', minHeight: '360px' }}>
                    {/* Shared Browser Top */}
                    <div className="mock-top" style={{ position: 'relative' }}>
                       <span></span><span></span><span></span>
@@ -459,29 +448,29 @@ export default function WebDesign() {
           </div>
           <div className="feat-grid stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '30px', marginBottom: '40px' }}>
             <div className="feat-card" style={{ background: 'transparent' }}>
-              <div className="mock-window" style={{ aspectRatio: '16/10', padding: '24px', background: '#0a3a32' }}>
+              <div className="mock-window" style={{ position: 'relative', aspectRatio: '16/10', background: 'radial-gradient(circle at center, rgba(95,208,191,0.15) 0%, #062a24 70%)', overflow: 'hidden' }}>
                 <div className="mock-top">
                   <span></span><span></span><span></span>
                   <div style={{ marginLeft: '12px', fontSize: '9px', fontFamily: 'monospace', color: 'rgba(255,255,255,0.5)' }}>[REPLACE - project URL]</div>
                 </div>
-                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.2)', fontSize: '12px', letterSpacing: '1px' }}>HOMEPAGE SCREENSHOT [REPLACE]</div>
-              </div>
-              <div style={{ marginTop: '20px' }}>
-                <h3 style={{ fontSize: '20px', marginBottom: '8px' }}>[REPLACE &mdash; Facility name]</h3>
-                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>Website Design &amp; Build &middot; [REPLACE summary]</p>
+                <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.2)', fontSize: '12px', letterSpacing: '1px' }}>HOMEPAGE SCREENSHOT [REPLACE]</div>
+                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '32px 24px 24px', background: 'linear-gradient(to top, rgba(6,42,36,0.95) 0%, transparent 100%)' }}>
+                  <h3 style={{ fontSize: '20px', marginBottom: '8px', color: '#fff' }}>[REPLACE &mdash; Facility name]</h3>
+                  <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>Website Design &amp; Build &middot; [REPLACE summary]</p>
+                </div>
               </div>
             </div>
             <div className="feat-card" style={{ background: 'transparent' }}>
-              <div className="mock-window" style={{ aspectRatio: '16/10', padding: '24px', background: '#0a3a32' }}>
+              <div className="mock-window" style={{ position: 'relative', aspectRatio: '16/10', background: 'radial-gradient(circle at center, rgba(95,208,191,0.15) 0%, #062a24 70%)', overflow: 'hidden' }}>
                 <div className="mock-top">
                   <span></span><span></span><span></span>
                   <div style={{ marginLeft: '12px', fontSize: '9px', fontFamily: 'monospace', color: 'rgba(255,255,255,0.5)' }}>[REPLACE - project URL]</div>
                 </div>
-                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.2)', fontSize: '12px', letterSpacing: '1px' }}>HOMEPAGE SCREENSHOT [REPLACE]</div>
-              </div>
-              <div style={{ marginTop: '20px' }}>
-                <h3 style={{ fontSize: '20px', marginBottom: '8px' }}>[REPLACE &mdash; Facility name]</h3>
-                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>Website Design &amp; Build &middot; [REPLACE summary]</p>
+                <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.2)', fontSize: '12px', letterSpacing: '1px' }}>HOMEPAGE SCREENSHOT [REPLACE]</div>
+                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '32px 24px 24px', background: 'linear-gradient(to top, rgba(6,42,36,0.95) 0%, transparent 100%)' }}>
+                  <h3 style={{ fontSize: '20px', marginBottom: '8px', color: '#fff' }}>[REPLACE &mdash; Facility name]</h3>
+                  <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>Website Design &amp; Build &middot; [REPLACE summary]</p>
+                </div>
               </div>
             </div>
           </div>
