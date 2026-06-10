@@ -82,7 +82,7 @@ export default function WebDesign() {
         const canvas = document.getElementById('waveCanvas') as HTMLCanvasElement;
         // @ts-ignore
         if (!canvas || !window.THREE) { if(canvas) canvas.style.background='radial-gradient(ellipse at center,rgba(42,157,143,0.25),transparent 70%)'; return; }
-        let renderer; 
+        let renderer: any; 
         try { 
           // @ts-ignore
           renderer = new window.THREE.WebGLRenderer({canvas, antialias:true, alpha:true}); 
