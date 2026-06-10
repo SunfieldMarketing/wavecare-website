@@ -153,40 +153,83 @@ export default function WebDesign() {
   return (
     <>
       <style dangerouslySetInnerHTML={{__html: `
-        .mock-window { width: 100%; height: 180px; background: transparent; padding: 20px 16px; position: relative; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .mock-window { width: 100%; height: 100%; background: transparent; padding: 20px 16px; position: relative; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .tcard .mock-window { height: 180px; }
         .mock-top { position: absolute; top: 0; left: 0; right: 0; height: 16px; background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; padding-left: 8px; gap: 4px; }
         .mock-top span { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.2); }
         
-        .anim-design { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; height: 100%; padding-top: 12px; }
-        .anim-design div { background: rgba(255,255,255,0.05); border-radius: 4px; }
-        .anim-design div.top { grid-column: span 2; height: 24px; }
-        
-        .anim-dev { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; height: 100%; padding-top: 12px; }
-        .anim-dev div { background: rgba(255,255,255,0.05); border-radius: 4px; }
-        .anim-dev div.top { grid-column: span 2; height: 24px; }
+        .anim-design { display: flex; gap: 8px; height: 100%; padding: 12px; }
+        .anim-design .sidebar { width: 30%; background: rgba(255,255,255,0.05); border-radius: 4px; height: 100%; transition: all 0.4s; }
+        .anim-design .main { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+        .anim-design .header { height: 24px; background: rgba(255,255,255,0.05); border-radius: 4px; transition: all 0.4s 0.1s; }
+        .anim-design .grid-boxes { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; flex: 1; }
+        .anim-design .grid-boxes div { background: rgba(255,255,255,0.02); border-radius: 4px; transition: all 0.4s 0.2s; }
 
-        .anim-manage { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; height: 100%; padding-top: 12px; }
-        .anim-manage div { background: rgba(255,255,255,0.05); border-radius: 4px; position: relative; }
-        .anim-manage div.top { grid-column: span 2; height: 24px; background: linear-gradient(90deg, rgba(95,208,191,0.2) 0%, rgba(95,208,191,0.6) 100%); }
-        .anim-manage .cir { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+        .anim-dev { display: flex; flex-direction: column; gap: 6px; height: 100%; padding: 16px; position: relative; overflow: hidden; }
+        .anim-dev .code-line { height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; transition: all 0.3s; }
+        .anim-dev .w-full { width: 100%; } .anim-dev .w-2-3 { width: 66%; } .anim-dev .w-1-2 { width: 50%; } .anim-dev .w-1-3 { width: 33%; } .anim-dev .w-3-4 { width: 75%; }
+        .anim-dev .ml-4 { margin-left: 12px; } .anim-dev .ml-8 { margin-left: 24px; }
+        .anim-dev .code-brackets { position: absolute; right: 16px; bottom: 16px; font-family: monospace; font-size: 24px; color: rgba(255,255,255,0.1); transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
 
-        .anim-seo { position: relative; height: 100%; padding-top: 12px; }
-        .anim-seo .bars { display: flex; align-items: flex-end; gap: 6px; height: 40px; margin-top: 10px; padding-left: 8px; }
+        .anim-manage { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 12px; }
+        .anim-manage .gear-icon { color: rgba(255,255,255,0.2); transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .anim-manage .status-badge { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.4); padding: 4px 12px; border-radius: 12px; font-size: 10px; font-weight: bold; text-transform: uppercase; transition: all 0.4s; }
+
+        .anim-seo { display: flex; align-items: center; justify-content: center; height: 100%; position: relative; }
+        .anim-seo .bars { display: flex; align-items: flex-end; gap: 6px; height: 44px; margin-bottom: 12px; }
         .anim-seo .bar { width: 14px; background: rgba(255,255,255,0.1); border-radius: 3px 3px 0 0; }
         .anim-seo .bar:nth-child(1) { height: 30%; }
         .anim-seo .bar:nth-child(2) { height: 45%; }
         .anim-seo .bar:nth-child(3) { height: 60%; }
         .anim-seo .bar:nth-child(4) { height: 80%; }
         .anim-seo .bar:nth-child(5) { height: 100%; }
-        .anim-seo .cursor-arrow { position: absolute; bottom: 10px; right: 20px; transform: rotate(-15deg); }
+        .anim-seo .cursor-arrow { position: absolute; bottom: 15px; right: 30px; transform: rotate(-15deg); }
 
-        .anim-content { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; height: 100%; padding-top: 12px; }
-        .anim-content div { background: rgba(255,255,255,0.05); border-radius: 4px; }
-        .anim-content div.top { grid-column: span 2; height: 24px; }
+        .anim-content { display: flex; align-items: center; justify-content: center; height: 100%; gap: 16px; padding: 0 16px; }
+        .anim-content .content-lines { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+        .anim-content .cline { height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; transition: all 0.4s; }
+        .anim-content .w-3-4 { width: 75%; } .anim-content .w-full { width: 100%; } .anim-content .w-5-6 { width: 83%; }
+        .anim-content .content-img { width: 36px; height: 36px; background: rgba(255,255,255,0.05); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.2); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
 
-        .anim-hosting { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 16px; padding-top: 10px; }
-        .anim-hosting .url-bar { background: rgba(255,255,255,0.05); padding: 8px 16px; border-radius: 20px; font-size: 11px; color: rgba(255,255,255,0.6); font-family: monospace; border: 1px solid rgba(255,255,255,0.08); }
-        .anim-hosting .check-mark { color: var(--teal-bright); display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: rgba(95,208,191,0.1); border-radius: 50%; border: 1px solid rgba(95,208,191,0.2); }
+        .anim-hosting { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 12px; position: relative; }
+        .anim-hosting .url-bar { background: rgba(255,255,255,0.05); padding: 8px 16px; border-radius: 20px; font-size: 11px; color: rgba(255,255,255,0.6); font-family: monospace; border: 1px solid rgba(255,255,255,0.08); transition: all 0.3s; z-index: 2; }
+        .anim-hosting .server-icon { color: rgba(255,255,255,0.4); position: absolute; bottom: 20px; transition: all 0.3s; z-index: 1; }
+        .anim-hosting .check-mark { position: absolute; bottom: 16px; color: var(--teal-bright); display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: rgba(95,208,191,0.1); border-radius: 50%; border: 1px solid rgba(95,208,191,0.2); transform: scale(0); opacity: 0; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s; z-index: 1; }
+
+        /* Hover animations */
+        .tcard:hover .anim-design .sidebar { background: rgba(95,208,191,0.2); width: 35%; }
+        .tcard:hover .anim-design .header { background: rgba(95,208,191,0.15); }
+        .tcard:hover .anim-design .grid-boxes div { background: rgba(95,208,191,0.1); }
+        .tcard:hover .anim-design .grid-boxes div:nth-child(odd) { transform: translateY(-4px); }
+        .tcard:hover .anim-design .grid-boxes div:nth-child(even) { transform: translateY(4px); }
+
+        .tcard:hover .anim-dev .code-line { background: rgba(95,208,191,0.3); transform: translateX(8px); }
+        .tcard:hover .anim-dev .code-line:nth-child(2) { transition-delay: 0.05s; }
+        .tcard:hover .anim-dev .code-line:nth-child(3) { transition-delay: 0.1s; }
+        .tcard:hover .anim-dev .code-line:nth-child(4) { transition-delay: 0.15s; }
+        .tcard:hover .anim-dev .code-line:nth-child(5) { transition-delay: 0.2s; }
+        .tcard:hover .anim-dev .code-brackets { color: var(--teal-bright); transform: scale(1.4) rotate(-10deg); }
+
+        .tcard:hover .anim-manage .gear-icon { color: var(--teal-bright); transform: rotate(180deg) scale(1.2); }
+        .tcard:hover .anim-manage .status-badge { background: rgba(95,208,191,0.15); color: var(--teal-bright); box-shadow: 0 0 10px rgba(95,208,191,0.3); }
+
+        .tcard:hover .anim-seo .bar { background: var(--teal-bright); }
+        .tcard:hover .anim-seo .bar:nth-child(1) { transition-delay: 0s; }
+        .tcard:hover .anim-seo .bar:nth-child(2) { transition-delay: 0.05s; }
+        .tcard:hover .anim-seo .bar:nth-child(3) { transition-delay: 0.1s; }
+        .tcard:hover .anim-seo .bar:nth-child(4) { transition-delay: 0.15s; }
+        .tcard:hover .anim-seo .bar:nth-child(5) { transition-delay: 0.2s; }
+        .tcard:hover .anim-seo .cursor-arrow { transform: translate(-8px, -8px) scale(0.9); }
+
+        .tcard:hover .anim-content .cline { background: rgba(95,208,191,0.4); }
+        .tcard:hover .anim-content .cline:nth-child(1) { width: 100%; transition-delay: 0s; }
+        .tcard:hover .anim-content .cline:nth-child(2) { width: 85%; transition-delay: 0.1s; }
+        .tcard:hover .anim-content .cline:nth-child(3) { width: 90%; transition-delay: 0.2s; }
+        .tcard:hover .anim-content .content-img { background: rgba(95,208,191,0.15); color: var(--teal-bright); transform: scale(1.15) rotate(5deg); }
+
+        .tcard:hover .anim-hosting .server-icon { transform: scale(0); opacity: 0; }
+        .tcard:hover .anim-hosting .check-mark { transform: scale(1); opacity: 1; }
+        .tcard:hover .anim-hosting .url-bar { background: rgba(95,208,191,0.1); border-color: rgba(95,208,191,0.3); color: #fff; transform: translateY(-8px); }
       
         /* Wireframes for Before/After */
         .wire-bg { width: 100%; height: 100%; background: #fff; padding: 20px; border-radius: 8px; }
@@ -213,7 +256,7 @@ export default function WebDesign() {
       {/* ========== HERO ========== */}
       <section className="phero">
         <div className="phero-bg">
-          <canvas id="waveCanvas" style={{ width: '100%', height: '100%' }}></canvas>
+          <div className="placeholder" style={{ width: '100%', height: '100%', background: '#062A24' }}></div>
         </div>
         <div className="container">
           <div className="phero-in">
@@ -289,9 +332,9 @@ export default function WebDesign() {
                 </div>
               </div>
               <div className="ba-tags"><span className="btag">BEFORE</span><span className="atag">AFTER</span></div>
+              <p className="ba-caption center" data-reveal style={{ marginTop: '24px', fontSize: '11px', textAlign: 'center', opacity: 0.6 }}>Drag &mdash; left is a typical dated healthcare site, right is a modern Wavecare build.</p>
             </div>
           </div>
-          <p className="ba-caption center" data-reveal style={{ marginTop: '24px', fontSize: '11px', textAlign: 'center' }}>Drag — left is a typical dated healthcare site, right is a modern Wavecare build.</p>
         </div>
       </section>
 
@@ -307,21 +350,41 @@ export default function WebDesign() {
             <div className="tcard" data-cat="all">
               <div className="thumb mock-window" data-label="design">
                  <div className="mock-top"><span></span><span></span><span></span></div>
-                 <div className="anim-design"><div className="top"></div><div></div><div></div></div>
+                 <div className="anim-design">
+                   <div className="sidebar"></div>
+                   <div className="main">
+                     <div className="header"></div>
+                     <div className="grid-boxes">
+                       <div></div><div></div><div></div><div></div>
+                     </div>
+                   </div>
+                 </div>
               </div>
               <div className="body"><h3>Website Design</h3><p>Custom healthcare-focused design built around your brand and goals.</p></div>
             </div>
             <div className="tcard" data-cat="all">
               <div className="thumb mock-window" data-label="dev">
                  <div className="mock-top"><span></span><span></span><span></span></div>
-                 <div className="anim-dev"><div className="top"></div><div></div><div></div></div>
+                 <div className="anim-dev">
+                   <div className="code-line w-full"></div>
+                   <div className="code-line w-2-3 ml-4"></div>
+                   <div className="code-line w-1-2 ml-8"></div>
+                   <div className="code-line w-1-3 ml-8"></div>
+                   <div className="code-line w-3-4 ml-4"></div>
+                   <div className="code-brackets">{'</>'}</div>
+                 </div>
               </div>
               <div className="body"><h3>Website Development</h3><p>Fast, responsive websites optimized for desktop, tablet, and mobile.</p></div>
             </div>
             <div className="tcard" data-cat="all">
               <div className="thumb mock-window" data-label="management">
                  <div className="mock-top"><span></span><span></span><span></span></div>
-                 <div className="anim-manage"><div className="top"></div><div></div><div><div className="cir"></div></div></div>
+                 <div className="anim-manage">
+                   <div className="gear-icon">
+                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                   </div>
+                   <div className="status-badge">Healthy</div>
+                 </div>
               </div>
               <div className="body"><h3>Website Management</h3><p>Ongoing updates, content changes, maintenance, and support.</p></div>
             </div>
@@ -342,7 +405,16 @@ export default function WebDesign() {
             <div className="tcard" data-cat="all">
               <div className="thumb mock-window" data-label="content">
                  <div className="mock-top"><span></span><span></span><span></span></div>
-                 <div className="anim-content"><div className="top"></div><div></div><div></div></div>
+                 <div className="anim-content">
+                   <div className="content-lines">
+                     <div className="cline w-3-4"></div>
+                     <div className="cline w-full"></div>
+                     <div className="cline w-5-6"></div>
+                   </div>
+                   <div className="content-img">
+                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                   </div>
+                 </div>
               </div>
               <div className="body"><h3>Content Strategy</h3><p>Clear messaging that helps families quickly find what they need.</p></div>
             </div>
@@ -351,6 +423,9 @@ export default function WebDesign() {
                  <div className="mock-top"><span></span><span></span><span></span></div>
                  <div className="anim-hosting">
                    <div className="url-bar">https://yourfacility.com</div>
+                   <div className="server-icon">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                   </div>
                    <div className="check-mark">
                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                    </div>
