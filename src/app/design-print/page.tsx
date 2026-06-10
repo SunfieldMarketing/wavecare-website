@@ -156,7 +156,7 @@ export default function DesignPrint() {
               <div className="brcm">
                 <Link href="/">Home</Link> <span>/</span> <Link href="/services">Services</Link> <span>/</span> <span>Design & Print</span>
               </div>
-              <h1 style={{ whiteSpace: 'nowrap', fontSize: 'clamp(24px, 4.2vw, 64px)' }}>Healthcare <span className="accent" style={{ fontWeight: '800' }}>Design & Print</span></h1>
+              <h1>Healthcare<br/><span className="accent" style={{ fontWeight: '800' }}>Design & Print</span></h1>
               <p className="sub">Professional design and print for senior care facilities and medical practices. Brochures, admissions packets, signage, and branded materials that build trust at every touchpoint.</p>
               
               <div className="trust-list" style={{ marginTop: '32px', display: 'flex', flexWrap: 'wrap', gap: '16px 24px', opacity: 0.8, fontSize: '0.85rem', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--teal-bright)' }}>
@@ -188,11 +188,11 @@ export default function DesignPrint() {
 
       <section className="panel sec-pad dp-why">
         <div className="container">
-          <div className="sec-head center" data-reveal style={{ maxWidth: '800px', margin: '0 auto 60px' }}>
-            <span className="label">Why Design & Print Matters</span>
-            <h2>First impressions are <span className="accent">physical.</span></h2>
-            <p className="lead" style={{ marginTop: '24px' }}>Families often form opinions about your facility before they ever speak with your team. Professional design creates confidence, improves communication, and makes sure every touchpoint reflects the quality of care you provide.</p>
-          </div>
+            <div className="sec-head center" data-reveal style={{ maxWidth: '800px', margin: '0 auto 60px' }}>
+              <span className="label">Why Design & Print Matters</span>
+              <h2 style={{ whiteSpace: 'nowrap', fontSize: 'clamp(18px, 4vw, 48px)' }}>First impressions are <span className="accent">physical.</span></h2>
+              <p className="lead" style={{ marginTop: '24px' }}>Families often form opinions about your facility before they ever speak with your team. Professional design creates confidence, improves communication, and makes sure every touchpoint reflects the quality of care you provide.</p>
+            </div>
           <div className="ba-slider" ref={sliderRef} 
                style={{ maxWidth: '720px', margin: '0 auto' }}
                onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); handleBaDrag(e); }}
@@ -218,12 +218,13 @@ export default function DesignPrint() {
       </section>
 
       <section className="panel deep sec-pad dp-services">
-        <div className="container">
-          <div className="sec-head" data-reveal>
-            <span className="label">Design & Print Services</span>
-            <h2>Everything your facility hands over.</h2>
-          </div>
-          <div className="ds-grid stagger">
+          <div className="container">
+            <div className="sec-head" data-reveal>
+              <span className="label">Design & Print Services</span>
+              <h2 style={{ whiteSpace: 'nowrap', fontSize: 'clamp(14px, 3.5vw, 48px)' }}>Everything your facility hands over.</h2>
+              <p className="sub" style={{ marginTop: '16px', maxWidth: '640px' }}>We design and format all the essential marketing collateral and operational materials your team needs to succeed.</p>
+            </div>
+            <div className="ds-grid stagger">
             <article className="ds-card">
               <div className="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div>
               <span className="num">01</span>
@@ -268,10 +269,10 @@ export default function DesignPrint() {
 
       <section className="panel sec-pad dp-process">
           <div className="container">
-            <div className="sec-head" data-reveal>
+            <div className="sec-head center" data-reveal>
               <span className="label">Our Process</span>
-              <h2>From blank page to <span className="accent">press-ready.</span></h2>
-              <p className="sub" style={{ maxWidth: '400px', margin: '0' }}>Hover a phase — watch a piece go from wireframe to a print-ready proof.</p>
+              <h2 style={{ whiteSpace: 'nowrap', fontSize: 'clamp(16px, 3.8vw, 48px)' }}>From blank page to <span className="accent">press-ready.</span></h2>
+              <p className="sub" style={{ maxWidth: '400px', margin: '16px auto 0' }}>Hover a phase — watch a piece go from wireframe to a print-ready proof.</p>
             </div>
             
             <div className="ip-tabs stagger">
@@ -326,7 +327,7 @@ export default function DesignPrint() {
           <div className="container">
             <div className="sec-head" data-reveal>
               <span className="label">What You&apos;ll Receive</span>
-              <h2>Finished, formatted, <span className="lite">ready to print.</span></h2>
+              <h2 style={{ whiteSpace: 'nowrap', fontSize: 'clamp(15px, 3.6vw, 48px)' }}>Finished, formatted, <span className="lite">ready to print.</span></h2>
             </div>
             <div className="rx-grid stagger" style={{ marginTop: '40px' }}>
                <div className="rx-item">
