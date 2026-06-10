@@ -211,7 +211,6 @@ export default function DesignPrint() {
         <p style={{textAlign: 'center', opacity: 0.6, marginTop: '24px', fontSize: '0.9rem', width: '100%'}} data-reveal>Drag — left is a typical flyer, right is a professionally designed piece.</p>
 
         <div className="container" style={{ position: 'relative', zIndex: 2, marginTop: '100px' }}>
-          <div className="sec-head center" data-reveal><span className="label">A Decade of Results</span><h2>The numbers behind the work.</h2></div>
           <div className="stats stagger" style={{ maxWidth: '900px', margin: '0 auto' }}>
             <div className="stat"><div className="num" data-count="60" data-suffix="%">0</div><div className="cap">of families judge care quality by marketing materials</div></div>
             <div className="stat"><div className="num" data-count="2" data-suffix="x">0</div><div className="cap">higher conversion with professional admissions packets</div></div>
@@ -325,6 +324,68 @@ export default function DesignPrint() {
           </div>
         </section>
 
+        <section className="panel deep sec-pad dp-sig">
+          <div className="container">
+            <div className="sig-wrapper stagger">
+               <div>
+                  <span className="label">Signature Product</span>
+                  <h2>The Video Brochure</h2>
+                  <p className="lead">Combine the impact of our cinematic video production with the tangibility of a premium print piece. A physical brochure that opens to reveal an embedded HD screen automatically playing your facility&apos;s film.</p>
+                  <Link href="/contact" className="btn" style={{ marginTop: '24px' }}>Get a Quote</Link>
+               </div>
+               <div className="sig-vid">
+                  <div className="sig-play">▶</div>
+               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="panel sec-pad">
+          <div className="container">
+            <div className="sec-head center" data-reveal style={{ maxWidth: '1000px', margin: '0 auto 40px' }}>
+               <span className="label">Recent Print Projects</span>
+               <h2 style={{ textWrap: 'unset' }}>A look at the collateral.</h2>
+               <p className="sub" style={{ marginTop: '16px', maxWidth: '1000px', margin: '16px auto 0' }}>
+                 A look at the collateral and materials we&apos;ve designed and printed.
+               </p>
+            </div>
+            <div className="mason stagger">
+               <div className="m" style={{ aspectRatio: '1.4', position: 'relative' }}>
+                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
+                 <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Tri-Fold</div>
+               </div>
+               <div className="m" style={{ aspectRatio: '0.8', position: 'relative' }}>
+                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
+                 <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Brochure</div>
+               </div>
+               <div className="m" style={{ aspectRatio: '1', position: 'relative' }}>
+                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
+                 <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Folder</div>
+               </div>
+               <div className="m" style={{ aspectRatio: '1.2', position: 'relative' }}>
+                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
+                 <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Banner</div>
+               </div>
+               <div className="m" style={{ aspectRatio: '0.9', position: 'relative' }}>
+                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
+                 <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Postcard</div>
+               </div>
+               <div className="m" style={{ aspectRatio: '1.5', position: 'relative' }}>
+                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
+                 <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Signage</div>
+               </div>
+               <div className="m" style={{ aspectRatio: '1.1', position: 'relative' }}>
+                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
+                 <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Menu</div>
+               </div>
+               <div className="m" style={{ aspectRatio: '0.85', position: 'relative' }}>
+                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
+                 <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Stationery</div>
+               </div>
+            </div>
+          </div>
+        </section>
+
         <section className="panel ink sec-pad">
           <div className="container">
             <div className="sec-head" data-reveal>
@@ -351,48 +412,6 @@ export default function DesignPrint() {
                   <div className="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
                   <h4>Production Coordination</h4>
                   <p>We can work directly with your print vendor to ensure flawless execution.</p>
-               </div>
-            </div>
-          </div>
-        </section>
-  
-        <section className="panel ink sec-pad dp-sig" style={{ paddingTop: 0 }}>
-          <div className="container">
-            <div className="sig-wrapper stagger">
-               <div>
-                  <span className="label">Signature Product</span>
-                  <h2>The Video Brochure</h2>
-                  <p className="lead">Combine the impact of our cinematic video production with the tangibility of a premium print piece. A physical brochure that opens to reveal an embedded HD screen automatically playing your facility&apos;s film.</p>
-                  <Link href="/contact" className="btn" style={{ marginTop: '24px' }}>Get a Quote</Link>
-               </div>
-               <div className="sig-vid">
-                  <div className="sig-play">▶</div>
-               </div>
-            </div>
-            
-            <div className="sec-head center" data-reveal style={{ maxWidth: '1000px', margin: '120px auto 40px' }}>
-               <span className="label">Recent Print Projects</span>
-               <h2 style={{ textWrap: 'unset' }}>A look at the collateral.</h2>
-               <p className="sub" style={{ marginTop: '16px', maxWidth: '1000px', margin: '16px auto 0' }}>
-                 A look at the collateral and materials we&apos;ve designed and printed.
-               </p>
-            </div>
-            <div className="mason stagger">
-               <div className="m" style={{ aspectRatio: '1.4', position: 'relative' }}>
-                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
-                 <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Tri-Fold</div>
-               </div>
-               <div className="m" style={{ aspectRatio: '0.8', position: 'relative' }}>
-                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
-                 <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Brochure</div>
-               </div>
-               <div className="m" style={{ aspectRatio: '1', position: 'relative' }}>
-                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
-                 <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Folder</div>
-               </div>
-               <div className="m" style={{ aspectRatio: '1.2', position: 'relative' }}>
-                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
-                 <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Banner</div>
                </div>
             </div>
           </div>
