@@ -44,14 +44,15 @@ export default function DesignPrint() {
 
       function initCount() {
         const els = document.querySelectorAll('[data-count]');
-        if (!('IntersectionObserver' in window)) {
-          els.forEach(el => {
-            const c = (el as HTMLElement).dataset.comma === '1';
-            const t = +(el as HTMLElement).dataset.count!;
-            el.textContent = c ? t.toLocaleString() : t.toString();
-          });
-          return;
-        }
+          if (!('IntersectionObserver' in window)) {
+            els.forEach(el => {
+              const c = (el as HTMLElement).dataset.comma === '1';
+              const t = +(el as HTMLElement).dataset.count!;
+              const suf = (el as HTMLElement).dataset.suffix || '';
+              el.textContent = (c ? t.toLocaleString() : t.toString()) + suf;
+            });
+            return;
+          }
         const io = new IntersectionObserver(es => {
           es.forEach(en => {
             if (!en.isIntersecting) return;
@@ -59,11 +60,12 @@ export default function DesignPrint() {
             io.unobserve(el);
             const target = +el.dataset.count!, comma = el.dataset.comma === '1', dur = reduceMotion ? 0 : 1700, t0 = performance.now();
             (function step(now) {
-              const k = dur ? Math.min((now - t0) / dur, 1) : 1;
-              const e = 1 - Math.pow(1 - k, 3);
-              const v = Math.floor(target * e);
-              el.textContent = comma ? v.toLocaleString() : v.toString();
-              if (k < 1) requestAnimationFrame(step); else el.textContent = comma ? target.toLocaleString() : target.toString();
+                const k = dur ? Math.min((now - t0) / dur, 1) : 1;
+                const e = 1 - Math.pow(1 - k, 3);
+                const v = Math.floor(target * e);
+                const suf = el.dataset.suffix || '';
+                el.textContent = (comma ? v.toLocaleString() : v.toString()) + suf;
+                if (k < 1) requestAnimationFrame(step); else el.textContent = (comma ? target.toLocaleString() : target.toString()) + suf;
             })(performance.now());
           });
         }, { threshold: 0.25 });
@@ -148,21 +150,31 @@ export default function DesignPrint() {
   return (
     <>
       <section className="phero">
-        <div className="container" style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '60px', alignItems: 'center', minHeight: '80vh' }}>
-          <div data-reveal>
-            <div className="brcm">
-              <Link href="/">Home</Link> <span>/</span> <Link href="/services">Services</Link> <span>/</span> <span>Design & Print</span>
+        <div className="container">
+          <div className="phero-in">
+            <div data-reveal>
+              <div className="brcm">
+                <Link href="/">Home</Link> <span>/</span> <Link href="/services">Services</Link> <span>/</span> <span>Design & Print</span>
+              </div>
+              <h1>Healthcare<br/><i style={{fontStyle: 'italic', color: 'var(--teal-primary)'}}>Design & Print</i></h1>
+              <p className="sub">Professional design and print for senior care facilities and medical practices. Brochures, admissions packets, signage, and branded materials that build trust at every touchpoint.</p>
+              
+              <div className="trust-list" style={{ marginTop: '32px', display: 'flex', flexWrap: 'wrap', gap: '16px 24px', opacity: 0.8, fontSize: '0.85rem', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--teal-bright)' }}>
+                 <span>✓ ADMISSIONS MATERIALS</span>
+                 <span>✓ FACILITY SIGNAGE</span>
+                 <span>✓ VIDEO BROCHURES</span>
+              </div>
+              <div className="btn-group" style={{ marginTop: '40px' }}>
+                <Link href="/contact" className="btn">Start a Design Project &rarr;</Link>
+              </div>
             </div>
-            <h1>Materials that represent your facility.</h1>
-            <p className="sub">Brochures, admissions packets, and banners designed specifically for healthcare — giving families the right first impression.</p>
-            <div className="btn-group" style={{ marginTop: '32px' }}>
-              <Link href="/contact" className="btn">Start a Project</Link>
+            
+            <div className="phero-wall stagger" data-reveal>
+               <div className="cell c1"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)', borderRadius: '8px' }}></div></div>
+               <div className="cell c2"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)', borderRadius: '8px' }}></div></div>
+               <div className="cell c3"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)', borderRadius: '8px' }}></div></div>
+               <div className="cell c4"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)', borderRadius: '8px' }}></div></div>
             </div>
-          </div>
-          <div className="phero-3d stagger" data-reveal>
-            <div className="ph3-card ph3-c1"><img src="/images/design_print_2.jpg" alt="Print Example 1" /></div>
-            <div className="ph3-card ph3-c2"><img src="/images/brochure_cover.jpg" alt="Print Example 2" /></div>
-            <div className="ph3-card ph3-c3"><img src="/images/img_4.jpeg" alt="Print Example 3" /></div>
           </div>
         </div>
       </section>
@@ -197,10 +209,8 @@ export default function DesignPrint() {
           </div>
         </div>
         <p style={{textAlign: 'center', opacity: 0.6, marginTop: '24px', fontSize: '0.9rem', width: '100%'}} data-reveal>Drag — left is a typical flyer, right is a professionally designed piece.</p>
-      </section>
 
-      <section className="deep sec-pad" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+        <div className="container" style={{ position: 'relative', zIndex: 2, marginTop: '100px' }}>
           <div className="sec-head center" data-reveal><span className="label">A Decade of Results</span><h2>The numbers behind the work.</h2></div>
           <div className="stats stagger" style={{ maxWidth: '900px', margin: '0 auto' }}>
             <div className="stat"><div className="num" data-count="60" data-suffix="%">0</div><div className="cap">of families judge care quality by marketing materials</div></div>
@@ -233,164 +243,158 @@ export default function DesignPrint() {
             </article>
             <article className="ds-card">
               <div className="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="5" width="16" height="14" rx="2" ry="2"></rect><line x1="12" y1="19" x2="12" y2="22"></line><line x1="8" y1="22" x2="16" y2="22"></line><line x1="8" y1="5" x2="8" y2="19"></line></svg></div>
-              <span className="num">03</span>
               <h3>Banners & Signage</h3>
               <p>Pull-up banners, event signage, and facility posters that align perfectly with your brand identity.</p>
               <Link href="#" className="btn-text" style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start', marginTop: '24px' }}>See examples &rarr;</Link>
             </article>
             <article className="ds-card">
               <div className="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="18"></line><line x1="12" y1="14" x2="12" y2="14"></line><line x1="12" y1="10" x2="12" y2="10"></line></svg></div>
-              <span className="num">04</span>
               <h3>Menus & Activities</h3>
               <p>Elevate your dining and recreation experience with beautifully formatted and easy-to-read daily or weekly layouts.</p>
               <Link href="#" className="btn-text" style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start', marginTop: '24px' }}>See examples &rarr;</Link>
             </article>
             <article className="ds-card">
               <div className="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg></div>
-              <span className="num">05</span>
               <h3>Stationery & Cards</h3>
               <p>Business cards for your liaisons and leadership, letterheads, and custom envelopes.</p>
               <Link href="#" className="btn-text" style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start', marginTop: '24px' }}>See examples &rarr;</Link>
             </article>
             <article className="ds-card">
               <div className="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></div>
-              <span className="num">06</span>
               <h3>Event Collateral</h3>
               <p>Invitations, schedules, and custom promo items designed specifically for your community events or open houses.</p>
               <Link href="#" className="btn-text" style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start', marginTop: '24px' }}>See examples &rarr;</Link>
             </article>
           </div>
         </div>
-      </section>
-
-      <section className="panel ink sec-pad">
-        <div className="container">
-          <div className="sec-head" data-reveal>
-            <span className="label">What You'll Receive</span>
-            <h2>Finished, formatted, <span className="lite">ready to print.</span></h2>
-          </div>
-          <div className="rx-grid stagger" style={{ marginTop: '40px' }}>
-             <div className="rx-item">
-                <div className="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-                <h4>Print-Ready Files</h4>
-                <p>Delivered with proper bleeds, crop marks, and CMYK color profiles.</p>
-             </div>
-             <div className="rx-item">
-                <div className="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-                <h4>Reliable Source</h4>
-                <p>We supply source files so you always have access to your assets.</p>
-             </div>
-             <div className="rx-item">
-                <div className="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-                <h4>Stock & Finish Specs</h4>
-                <p>Recommendations for paper weight, coating, and bindings.</p>
-             </div>
-             <div className="rx-item">
-                <div className="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-                <h4>Production Coordination</h4>
-                <p>We can work directly with your print vendor to ensure flawless execution.</p>
-             </div>
-          </div>
-        </div>
-      </section>
-      
-      <section className="panel sec-pad dp-process">
-        <div className="container">
-          <div className="sec-head" data-reveal>
-            <span className="label">Our Process</span>
-            <h2>From blank page to <span className="accent">press-ready.</span></h2>
-            <p className="sub" style={{ maxWidth: '400px', margin: '0' }}>Hover a phase — watch a piece go from wireframe to a print-ready proof.</p>
-          </div>
-          
-          <div className="ip-tabs stagger">
-            {procData.map((tab, i) => (
-              <div key={i} className={`ip-tab ${procTab === i ? 'on' : ''}`} onMouseEnter={() => setProcTab(i)}>
-                <span className="num">0{i + 1}</span>
-                <span className="name">{tab.name}</span>
-                <div className="circ"></div>
-              </div>
-            ))}
-          </div>
-          
-          <div className="ip-panel stagger">
-            <div className="ip-text" key={procTab}>
-              <h3>{procData[procTab].title}</h3>
-              <p>{procData[procTab].desc}</p>
+        <section className="panel sec-pad dp-process">
+          <div className="container">
+            <div className="sec-head" data-reveal>
+              <span className="label">Our Process</span>
+              <h2>From blank page to <span className="accent">press-ready.</span></h2>
+              <p className="sub" style={{ maxWidth: '400px', margin: '0' }}>Hover a phase — watch a piece go from wireframe to a print-ready proof.</p>
             </div>
-            <div className="ip-viz">
-              <div className="ip-badge">
-                {procTab === 0 ? 'Wireframe' : procTab === 1 ? 'Flat Comp' : procTab === 2 ? 'Revision' : 'Press-Ready'}
+            
+            <div className="ip-tabs stagger">
+              {procData.map((tab, i) => (
+                <div key={i} className={`ip-tab ${procTab === i ? 'on' : ''}`} onMouseEnter={() => setProcTab(i)}>
+                  <span className="num">0{i + 1}</span>
+                  <span className="name">{tab.name}</span>
+                  <div className="circ"></div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="ip-panel stagger">
+              <div className="ip-text" key={procTab}>
+                <h3>{procData[procTab].title}</h3>
+                <p>{procData[procTab].desc}</p>
               </div>
-              <div className={`viz-doc viz-mode-${procTab}`} key={`viz-${procTab}`}>
-                 <div className="top-part">
-                    {procTab === 3 && <div className="logo-circle"></div>}
-                    {procTab === 2 && <div className="red-circle"><div className="rev-tag t1">tighten logo</div></div>}
-                    <div className="hero-box"></div>
-                 </div>
-                 <div className="bot-part">
-                    <div className="line"></div>
-                    <div className="line short"></div>
-                    <div className="box">
-                      {procTab === 2 && <div className="rev-tag t2">swap photo</div>}
-                    </div>
-                    <div className="line"></div>
-                    <div className="line short"></div>
-                 </div>
-                 {procTab === 3 && (
-                   <div className="cmyk-bar">
-                      <div className="cmyk-dot cmyk-c"></div>
-                      <div className="cmyk-dot cmyk-m"></div>
-                      <div className="cmyk-dot cmyk-y"></div>
-                      <div className="cmyk-dot cmyk-k"></div>
+              <div className="ip-viz">
+                <div className="ip-badge">
+                  {procTab === 0 ? 'Wireframe' : procTab === 1 ? 'Flat Comp' : procTab === 2 ? 'Revision' : 'Press-Ready'}
+                </div>
+                <div className={`viz-doc viz-mode-${procTab}`} key={`viz-${procTab}`}>
+                   <div className="top-part">
+                      {procTab === 3 && <div className="logo-circle"></div>}
+                      {procTab === 2 && <div className="red-circle"><div className="rev-tag t1">tighten logo</div></div>}
+                      <div className="hero-box"></div>
                    </div>
-                 )}
+                   <div className="bot-part">
+                      <div className="line"></div>
+                      <div className="line short"></div>
+                      <div className="box">
+                        {procTab === 2 && <div className="rev-tag t2">swap photo</div>}
+                      </div>
+                      <div className="line"></div>
+                      <div className="line short"></div>
+                   </div>
+                   {procTab === 3 && (
+                     <div className="cmyk-bar">
+                        <div className="cmyk-dot cmyk-c"></div>
+                        <div className="cmyk-dot cmyk-m"></div>
+                        <div className="cmyk-dot cmyk-y"></div>
+                        <div className="cmyk-dot cmyk-k"></div>
+                     </div>
+                   )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="panel ink sec-pad dp-sig">
-        <div className="container">
-          <div className="sig-wrapper stagger">
-             <div>
-                <span className="label">Signature Product</span>
-                <h2>The Video Brochure</h2>
-                <p className="lead">Combine the impact of our cinematic video production with the tangibility of a premium print piece. A physical brochure that opens to reveal an embedded HD screen automatically playing your facility's film.</p>
-                <Link href="/contact" className="btn" style={{ marginTop: '24px' }}>Get a Quote</Link>
-             </div>
-             <div className="sig-vid">
-                <div className="sig-play">▶</div>
-             </div>
+        <section className="panel ink sec-pad">
+          <div className="container">
+            <div className="sec-head" data-reveal>
+              <span className="label">What You'll Receive</span>
+              <h2>Finished, formatted, <span className="lite">ready to print.</span></h2>
+            </div>
+            <div className="rx-grid stagger" style={{ marginTop: '40px' }}>
+               <div className="rx-item">
+                  <div className="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div>
+                  <h4>Print-Ready Files</h4>
+                  <p>Delivered with proper bleeds, crop marks, and CMYK color profiles.</p>
+               </div>
+               <div className="rx-item">
+                  <div className="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg></div>
+                  <h4>Reliable Source</h4>
+                  <p>We supply source files so you always have access to your assets.</p>
+               </div>
+               <div className="rx-item">
+                  <div className="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg></div>
+                  <h4>Stock & Finish Specs</h4>
+                  <p>Recommendations for paper weight, coating, and bindings.</p>
+               </div>
+               <div className="rx-item">
+                  <div className="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+                  <h4>Production Coordination</h4>
+                  <p>We can work directly with your print vendor to ensure flawless execution.</p>
+               </div>
+            </div>
           </div>
-          
-          <div className="sec-head center" data-reveal style={{ maxWidth: '1000px', margin: '0 auto 40px' }}>
-             <span className="label">Recent Print Projects</span>
-             <h2 style={{ textWrap: 'unset' }}>A look at the collateral.</h2>
-             <p className="sub" style={{ marginTop: '16px', maxWidth: '1000px', margin: '16px auto 0' }}>
-               A look at the collateral and materials we've designed and printed.
-             </p>
+        </section>
+  
+        <section className="panel ink sec-pad dp-sig" style={{ paddingTop: 0 }}>
+          <div className="container">
+            <div className="sig-wrapper stagger">
+               <div>
+                  <span className="label">Signature Product</span>
+                  <h2>The Video Brochure</h2>
+                  <p className="lead">Combine the impact of our cinematic video production with the tangibility of a premium print piece. A physical brochure that opens to reveal an embedded HD screen automatically playing your facility's film.</p>
+                  <Link href="/contact" className="btn" style={{ marginTop: '24px' }}>Get a Quote</Link>
+               </div>
+               <div className="sig-vid">
+                  <div className="sig-play">▶</div>
+               </div>
+            </div>
+            
+            <div className="sec-head center" data-reveal style={{ maxWidth: '1000px', margin: '120px auto 40px' }}>
+               <span className="label">Recent Print Projects</span>
+               <h2 style={{ textWrap: 'unset' }}>A look at the collateral.</h2>
+               <p className="sub" style={{ marginTop: '16px', maxWidth: '1000px', margin: '16px auto 0' }}>
+                 A look at the collateral and materials we've designed and printed.
+               </p>
+            </div>
+            <div className="mason stagger">
+               <div className="m" style={{ aspectRatio: '1.4', position: 'relative' }}>
+                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
+                 <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Tri-Fold</div>
+               </div>
+               <div className="m" style={{ aspectRatio: '0.8', position: 'relative' }}>
+                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
+                 <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Brochure</div>
+               </div>
+               <div className="m" style={{ aspectRatio: '1', position: 'relative' }}>
+                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
+                 <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Folder</div>
+               </div>
+               <div className="m" style={{ aspectRatio: '1.2', position: 'relative' }}>
+                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
+                 <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Banner</div>
+               </div>
+            </div>
           </div>
-          <div className="mason stagger">
-             <div className="m" style={{ aspectRatio: '1.4', position: 'relative' }}>
-               <img src="/images/design_print_2.jpg" alt="Tri-Fold" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-               <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Tri-Fold</div>
-             </div>
-             <div className="m" style={{ aspectRatio: '0.8', position: 'relative' }}>
-               <img src="/images/brochure_inside.png" alt="Brochure" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-               <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Brochure</div>
-             </div>
-             <div className="m" style={{ aspectRatio: '1', position: 'relative' }}>
-               <img src="/images/brochure_cover.jpg" alt="Folder" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-               <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Folder</div>
-             </div>
-             <div className="m" style={{ aspectRatio: '1.2', position: 'relative' }}>
-               <img src="/images/img_4.jpeg" alt="Banner" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-               <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Banner</div>
-             </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
       <section className="final">
         <canvas id="waveCanvas"></canvas>
