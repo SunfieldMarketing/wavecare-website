@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import Script from 'next/script';
 import { useEffect, useState, FormEvent } from 'react';
 import './contact.css';
 
@@ -220,11 +221,15 @@ export default function Contact() {
               Book a call that fits your schedule.<br/>Pick a slot and we'll come prepared with ideas specific to your facility.
             </p>
           </div>
-          <div className="cal-wrap reveal">
-            <div className="cal-fallback">
-              <p>Calendar integration would load here.</p>
-              <a href="mailto:info@wavecare.io" className="btn">Email Us Instead</a>
-            </div>
+          <div className="cal-wrap reveal" style={{ minHeight: '600px', width: '100%', position: 'relative' }}>
+            <iframe
+              src="https://api.leadconnectorhq.com/widget/booking/BihxiP7RLvybBcV9yUHJ"
+              style={{ width: '100%', border: 'none', overflow: 'hidden', minHeight: '600px' }}
+              scrolling="no"
+              id="BihxiP7RLvybBcV9yUHJ"
+              title="Book a Call"
+            ></iframe>
+            <Script src="https://api.leadconnectorhq.com/js/form_embed.js" strategy="lazyOnload" />
           </div>
         </div>
       </section>
