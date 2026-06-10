@@ -186,12 +186,12 @@ export default function DesignPrint() {
         </p>
       </div>
 
-      <section className="panel sec-pad dp-why" style={{ paddingTop: '60px', paddingBottom: '60px' }}>
+      <section className="panel dp-why" style={{ padding: '40px 0' }}>
         <div className="container">
-            <div className="sec-head center" data-reveal style={{ maxWidth: '800px', margin: '0 auto 40px' }}>
+            <div className="sec-head center" data-reveal style={{ maxWidth: '880px', margin: '0 auto 24px' }}>
               <span className="label">Why Design & Print Matters</span>
               <h2 style={{ whiteSpace: 'nowrap', fontSize: 'clamp(18px, 4vw, 48px)' }}>First impressions are <span className="accent">physical.</span></h2>
-              <p className="lead" style={{ marginTop: '16px' }}>Families often form opinions about your facility before they ever speak with your team. Professional design creates confidence, improves communication, and makes sure every touchpoint reflects the quality of care you provide.</p>
+              <p className="lead" style={{ margin: '12px auto 0', maxWidth: '100%', textWrap: 'balance' }}>Families often form opinions about your facility before they ever speak with your team. Professional design creates confidence, improves communication, and makes sure every touchpoint reflects the quality of care you provide.</p>
             </div>
           <div className="ba-slider" ref={sliderRef} 
                style={{ maxWidth: '640px', margin: '0 auto' }}
@@ -207,7 +207,7 @@ export default function DesignPrint() {
           </div>
           <p className="ba-caption" data-reveal style={{ marginTop: '16px' }}>Drag — left is a typical flyer, right is a professionally designed piece.</p>
 
-          <div className="stats stagger" style={{ maxWidth: '900px', margin: '40px auto 0' }}>
+          <div className="stats stagger" style={{ maxWidth: '900px', margin: '32px auto 0' }}>
             <div className="stat"><div className="num" data-count="60" data-suffix="%">0</div><div className="cap">of families judge care quality by marketing materials</div></div>
             <div className="stat"><div className="num" data-count="2" data-suffix="x">0</div><div className="cap">higher conversion with professional admissions packets</div></div>
             <div className="stat"><div className="num" data-count="100" data-suffix="%">0</div><div className="cap">tailored to senior care and medical practices</div></div>
