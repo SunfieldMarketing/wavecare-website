@@ -428,7 +428,7 @@ export default function VideoServices() {
             <span className="label">Featured Work</span>
             <h2>Recent <span className="accent">healthcare</span> films.</h2>
           </div>
-          <div className="fw-grid stagger" style={{ alignItems: 'start' }}>
+          <div className="fw-grid stagger" style={{ alignItems: 'center' }}>
             <div className="fw-card hero" onClick={() => setActiveVideo('906115435')} style={{ cursor: 'pointer', border: 'none', aspectRatio: '16/9', minHeight: 'auto', height: 'auto' }}>
               <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(https://i.vimeocdn.com/video/1787724682-99c5f028f168e64a7c91d011cf8d19a16d4453e95b0911be06e755c443218d36-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center', zIndex: 0 }} />
               <iframe src="https://player.vimeo.com/video/906115435?background=1&autoplay=1&loop=1&muted=1&transparent=1" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 1 }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
