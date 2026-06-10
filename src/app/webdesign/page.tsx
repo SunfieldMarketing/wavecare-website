@@ -334,7 +334,7 @@ export default function WebDesign() {
                   </div>
                   <div className="ba-tags"><span className="btag">BEFORE</span><span className="atag">AFTER</span></div>
                 </div>
-                <p className="ba-caption center" data-reveal style={{ marginTop: '24px', fontSize: '11px', textAlign: 'center', opacity: 0.6 }}>Drag &mdash; left is a typical dated healthcare site, right is a modern Wavecare build.</p>
+                <p className="ba-caption" data-reveal style={{ marginTop: '24px', fontSize: '11px', textAlign: 'center', opacity: 0.6 }}>Drag &mdash; left is a typical dated healthcare site, right is a modern Wavecare build.</p>
               </div>
           </div>
         </div>
