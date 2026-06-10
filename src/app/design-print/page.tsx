@@ -156,7 +156,7 @@ export default function DesignPrint() {
               <div className="brcm">
                 <Link href="/">Home</Link> <span>/</span> <Link href="/services">Services</Link> <span>/</span> <span>Design & Print</span>
               </div>
-              <h1>Healthcare<br/><span className="accent" style={{ fontWeight: '800' }}>Design & Print</span></h1>
+              <h1 style={{ whiteSpace: 'nowrap', fontSize: 'clamp(24px, 4.2vw, 64px)' }}>Healthcare <span className="accent" style={{ fontWeight: '800' }}>Design & Print</span></h1>
               <p className="sub">Professional design and print for senior care facilities and medical practices. Brochures, admissions packets, signage, and branded materials that build trust at every touchpoint.</p>
               
               <div className="trust-list" style={{ marginTop: '32px', display: 'flex', flexWrap: 'wrap', gap: '16px 24px', opacity: 0.8, fontSize: '0.85rem', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--teal-bright)' }}>
@@ -170,10 +170,10 @@ export default function DesignPrint() {
             </div>
             
             <div className="phero-wall stagger" data-reveal>
-               <div className="cell c1"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)', borderRadius: '8px' }}></div></div>
-               <div className="cell c2"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)', borderRadius: '8px' }}></div></div>
-               <div className="cell c3"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)', borderRadius: '8px' }}></div></div>
-               <div className="cell c4"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)', borderRadius: '8px' }}></div></div>
+               <div className="cell c1"><img src="/images/harvest_acres_brochure.jpg" alt="Brochure" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+               <div className="cell c2"><img src="/images/Woodland manor signage.jpg" alt="Signage" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+               <div className="cell c3"><img src="/images/inner roots business card.png" alt="Business Card" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+               <div className="cell c4"><img src="/images/Athens roadside billboard style print ad.jpg" alt="Billboard" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
             </div>
           </div>
         </div>
@@ -194,7 +194,7 @@ export default function DesignPrint() {
             <p className="lead" style={{ marginTop: '24px' }}>Families often form opinions about your facility before they ever speak with your team. Professional design creates confidence, improves communication, and makes sure every touchpoint reflects the quality of care you provide.</p>
           </div>
           <div className="ba-slider" ref={sliderRef} 
-               style={{ maxWidth: '1000px', margin: '0 auto' }}
+               style={{ maxWidth: '720px', margin: '0 auto' }}
                onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); handleBaDrag(e); }}
                onPointerMove={(e) => { if (e.buttons > 0) handleBaDrag(e); }}
                data-reveal>
