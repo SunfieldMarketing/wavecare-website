@@ -363,7 +363,7 @@ export default function DesignPrint() {
                   <Link href="/contact" className="btn" style={{ marginTop: '24px' }}>Get a Quote</Link>
                </div>
                <div className="sig-vid">
-                  <div className="sig-play">▶</div>
+                  <video src="/videos/Brochure wavecare video.mp4" autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }}></video>
                </div>
             </div>
           </div>
@@ -380,36 +380,36 @@ export default function DesignPrint() {
             </div>
             <div className="mason stagger">
                <div className="m" style={{ aspectRatio: '1.4', position: 'relative' }}>
-                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
+                 <img src="/images/River ridge tri fold brochure.png" alt="Tri-Fold" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                  <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Tri-Fold</div>
                </div>
                <div className="m" style={{ aspectRatio: '0.8', position: 'relative' }}>
-                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
+                 <img src="/images/harvest_acres_brochure.jpg" alt="Brochure" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                  <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Brochure</div>
                </div>
                <div className="m" style={{ aspectRatio: '1', position: 'relative' }}>
-                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
-                 <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Folder</div>
+                 <img src="/images/Athens roadside billboard style print ad.jpg" alt="Billboard" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                 <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Billboard</div>
                </div>
                <div className="m" style={{ aspectRatio: '1.2', position: 'relative' }}>
-                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
+                 <img src="/images/harvest acres pull up banner.png" alt="Banner" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                  <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Banner</div>
                </div>
                <div className="m" style={{ aspectRatio: '0.9', position: 'relative' }}>
-                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
+                 <img src="/images/Neffsville postcard.png" alt="Postcard" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                  <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Postcard</div>
                </div>
                <div className="m" style={{ aspectRatio: '1.5', position: 'relative' }}>
-                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
+                 <img src="/images/Woodland manor signage.jpg" alt="Signage" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                  <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Signage</div>
                </div>
                <div className="m" style={{ aspectRatio: '1.1', position: 'relative' }}>
-                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
-                 <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Menu</div>
+                 <img src="/images/Kendallville manor signage.png" alt="Outdoor Signage" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                 <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Signage</div>
                </div>
                <div className="m" style={{ aspectRatio: '0.85', position: 'relative' }}>
-                 <div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div>
-                 <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Stationery</div>
+                 <img src="/images/inner roots business card.png" alt="Business Card" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                 <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Business Card</div>
                </div>
             </div>
           </div>
