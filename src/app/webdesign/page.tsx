@@ -69,19 +69,33 @@ export default function WebDesign() {
                 <path d="M2,12 Q12,2 20,12 T38,12 T56,12 T72,12"></path>
               </svg>
               <h1>Websites that earn trust and drive <span className="accent">admissions.</span></h1>
-              <p className="phero-sub">Your website is your digital front door. Make sure families see a facility they can trust.</p>
-              <div className="trust-list" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '34px' }}>
-                <span className="label" style={{ marginBottom: 0 }}>✓ Conversion Focused</span>
-                <span className="label" style={{ marginBottom: 0 }}>✓ Mobile Optimized</span>
-                <span className="label" style={{ marginBottom: 0 }}>✓ Fast &amp; Secure</span>
+              <p className="phero-sub">Modern healthcare websites designed specifically for nursing homes, assisted living communities, rehabilitation centers, and healthcare organizations.</p>
+              <div className="btn-group" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+                <Link href="/contact" className="btn">Get a Website Audit &rarr;</Link>
+                <Link href="#portfolio" className="btn btn-ghost" style={{ background: 'transparent', border: '1px solid rgba(255,255,255,0.2)' }}>View Website Examples</Link>
               </div>
-              <Link href="/contact" className="btn">Get a Free Website Audit</Link>
             </div>
-            <div className="phero-wall">
-              <div className="cell c1"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div></div>
-              <div className="cell c2"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div></div>
-              <div className="cell c3"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div></div>
-              <div className="cell c4"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div></div>
+            <div className="hero-device-wrap" data-reveal>
+              <div className="hero-device">
+                <div className="resp-tag">Responsive</div>
+                <div className="dev-header">
+                  <div className="logo"></div>
+                  <div className="menu"><span></span><span></span><span></span></div>
+                </div>
+                <div className="dev-hero">
+                  <div className="text">
+                    <div className="line"></div>
+                    <div className="line short"></div>
+                    <div className="line dim"></div>
+                  </div>
+                  <div className="img"></div>
+                </div>
+                <div className="dev-cards">
+                  <div className="card"></div>
+                  <div className="card"></div>
+                </div>
+                <div className="dev-footer"></div>
+              </div>
             </div>
           </div>
         </div>
