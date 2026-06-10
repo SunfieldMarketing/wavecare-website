@@ -318,22 +318,24 @@ export default function WebDesign() {
                 An outdated website creates uncertainty. A professional one builds confidence before the first phone call &mdash; it should build trust immediately, communicate services clearly, showcase your team, improve search visibility, and generate more inquiries.
               </p>
             </div>
-            <div className="ba-slider" ref={sliderRef} style={{ maxWidth: '560px', margin: '0 auto', aspectRatio: '16/10' }} onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); handleBaDrag(e); }} onPointerMove={(e) => { if (e.buttons > 0) handleBaDrag(e); }} data-reveal>
-              <div className="ba-before">
-                <img src="/images/evolve-before.png" alt="Evolve Therapy Services Before Website" style={{ width: '100%' }} />
-              </div>
-              <div className="ba-after" style={{ clipPath: `inset(0 0 0 ${baPos}%)` }}>
-                <img src="/images/evolve-after.png" alt="Evolve Therapy Services After Website" style={{ width: '100%' }} />
-              </div>
-              <div className="ba-handle" style={{ left: `${baPos}%` }}>
-                <div className="ba-handle-line"></div>
-                <div className="ba-handle-button">
-                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5l7 7-7 7M5 12h14"/></svg>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <div className="ba-slider" ref={sliderRef} style={{ maxWidth: '560px', width: '100%', margin: '0 auto', aspectRatio: '16/10' }} onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); handleBaDrag(e); }} onPointerMove={(e) => { if (e.buttons > 0) handleBaDrag(e); }} data-reveal>
+                  <div className="ba-before">
+                    <img src="/images/evolve-before.png" alt="Evolve Therapy Services Before Website" style={{ width: '100%' }} />
+                  </div>
+                  <div className="ba-after" style={{ clipPath: `inset(0 0 0 ${baPos}%)` }}>
+                    <img src="/images/evolve-after.png" alt="Evolve Therapy Services After Website" style={{ width: '100%' }} />
+                  </div>
+                  <div className="ba-handle" style={{ left: `${baPos}%` }}>
+                    <div className="ba-handle-line"></div>
+                    <div className="ba-handle-button">
+                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5l7 7-7 7M5 12h14"/></svg>
+                    </div>
+                  </div>
+                  <div className="ba-tags"><span className="btag">BEFORE</span><span className="atag">AFTER</span></div>
                 </div>
+                <p className="ba-caption center" data-reveal style={{ marginTop: '24px', fontSize: '11px', textAlign: 'center', opacity: 0.6 }}>Drag &mdash; left is a typical dated healthcare site, right is a modern Wavecare build.</p>
               </div>
-              <div className="ba-tags"><span className="btag">BEFORE</span><span className="atag">AFTER</span></div>
-              <p className="ba-caption center" data-reveal style={{ marginTop: '24px', fontSize: '11px', textAlign: 'center', opacity: 0.6 }}>Drag &mdash; left is a typical dated healthcare site, right is a modern Wavecare build.</p>
-            </div>
           </div>
         </div>
       </section>
