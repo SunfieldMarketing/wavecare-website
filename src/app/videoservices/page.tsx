@@ -429,18 +429,24 @@ export default function VideoServices() {
             <h2>Recent <span className="accent">healthcare</span> films.</h2>
           </div>
           <div className="fw-grid stagger">
-            <div className="fw-card hero" onClick={() => setActiveVideo('906115435')} style={{ overflow: 'hidden', cursor: 'pointer', border: 'none', position: 'relative' }}>
-              <iframe src="https://player.vimeo.com/video/906115435?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=1080p" style={{ position: 'absolute', top: '50%', left: '50%', width: '115%', height: '115%', transform: 'translate(-50%, -50%)', pointerEvents: 'none', zIndex: 0 }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
-              <div className="fw-meta" style={{ pointerEvents: 'none', zIndex: 2 }}><span className="tag">Commercial</span><span className="title">Link Homecare - Zsanet &amp; Terry</span></div>
+            <div className="fw-card hero" onClick={() => setActiveVideo('906115435')} style={{ cursor: 'pointer', border: 'none', aspectRatio: '16/9' }}>
+              <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(https://i.vimeocdn.com/video/1787724682-99c5f028f168e64a7c91d011cf8d19a16d4453e95b0911be06e755c443218d36-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center', zIndex: 0 }} />
+              <iframe src="https://player.vimeo.com/video/906115435?background=1&autoplay=1&loop=1&muted=1&transparent=1" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 1 }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
+              <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(to top, rgba(10, 58, 50, 0.9) 0%, rgba(10, 58, 50, 0) 40%)', pointerEvents: 'none', zIndex: 1 }} />
+              <div className="fw-meta"><span className="tag">Commercial</span><span className="title">Link Homecare - Zsanet &amp; Terry</span></div>
             </div>
             <div className="fw-side">
-              <div className="fw-card small" onClick={() => setActiveVideo('1183056612')} style={{ overflow: 'hidden', cursor: 'pointer', border: 'none', position: 'relative' }}>
-                <iframe src="https://player.vimeo.com/video/1183056612?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=1080p" style={{ position: 'absolute', top: '50%', left: '50%', width: '115%', height: '115%', transform: 'translate(-50%, -50%)', pointerEvents: 'none', zIndex: 0 }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
-                <div className="fw-meta" style={{ pointerEvents: 'none', zIndex: 2 }}><span className="tag">Virtual Tour</span><span className="title">Park Gardens Tour</span></div>
+              <div className="fw-card small" onClick={() => setActiveVideo('1183056612')} style={{ cursor: 'pointer', border: 'none', aspectRatio: '16/9' }}>
+                <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(https://i.vimeocdn.com/video/2145807255-3028a1cb240082c2500af287b5f93ca2c503d1d0c131602574bc88e4976ed1f5-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center', zIndex: 0 }} />
+                <iframe src="https://player.vimeo.com/video/1183056612?background=1&autoplay=1&loop=1&muted=1&transparent=1" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 1 }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
+                <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(to top, rgba(10, 58, 50, 0.9) 0%, rgba(10, 58, 50, 0) 40%)', pointerEvents: 'none', zIndex: 1 }} />
+                <div className="fw-meta"><span className="tag">Virtual Tour</span><span className="title">Park Gardens Tour</span></div>
               </div>
-              <div className="fw-card small" onClick={() => setActiveVideo('930394765')} style={{ overflow: 'hidden', cursor: 'pointer', border: 'none', position: 'relative' }}>
-                <iframe src="https://player.vimeo.com/video/930394765?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=1080p" style={{ position: 'absolute', top: '50%', left: '50%', width: '115%', height: '115%', transform: 'translate(-50%, -50%)', pointerEvents: 'none', zIndex: 0 }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
-                <div className="fw-meta" style={{ pointerEvents: 'none', zIndex: 2 }}><span className="tag">Virtual Tour</span><span className="title">River Ridge Tour</span></div>
+              <div className="fw-card small" onClick={() => setActiveVideo('930394765')} style={{ cursor: 'pointer', border: 'none', aspectRatio: '16/9' }}>
+                <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(https://i.vimeocdn.com/video/1827081869-f1d75fd0450accdafec4e7b7c8368040ea48a3450daf1cd9b6f636ef56ec7e39-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center', zIndex: 0 }} />
+                <iframe src="https://player.vimeo.com/video/930394765?background=1&autoplay=1&loop=1&muted=1&transparent=1" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 1 }} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
+                <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(to top, rgba(10, 58, 50, 0.9) 0%, rgba(10, 58, 50, 0) 40%)', pointerEvents: 'none', zIndex: 1 }} />
+                <div className="fw-meta"><span className="tag">Virtual Tour</span><span className="title">River Ridge Tour</span></div>
               </div>
             </div>
           </div>
