@@ -345,77 +345,60 @@ export default function VideoServices() {
           </div>
           
           <div className="types-grid stagger" id="typesGrid">
-            <div className="tcard" data-cat="family" onClick={() => setActiveVideo('906115435')} style={{ cursor: 'pointer' }}>
-              <div className="thumb" data-label="brand film" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/1787724682-99c5f028f168e64a7c91d011cf8d19a16d4453e95b0911be06e755c443218d36-d_640?region=us)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <div className="tcard" data-cat="Virtual Tour" onClick={() => setActiveVideo('1183669641')} style={{ cursor: 'pointer' }}>
+              <div className="thumb" data-label="Virtual Tour" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/2146609771-407fb9135b97c639b345fa94bd14f38ebaaf81564e6fed050878482b77d99ab0-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="play"><span>&#9654;</span></div>
               </div>
-              <div className="body"><h3>Hero Brand Film</h3><p>The centerpiece of your website. Tells your full story, showcases the facility, and builds deep trust.</p><div className="where">Homepage &middot; Ads</div></div>
+              <div className="body"><h3>Waterview Nursing &amp; Rehab</h3><p>Discover our newly redesigned Flushing facility featuring panoramic Manhattan skyline views and state-of-the-art care.</p><div className="where">Virtual Tour</div></div>
             </div>
-            <div className="tcard" data-cat="family" onClick={() => setActiveVideo('1183056612')} style={{ cursor: 'pointer' }}>
-              <div className="thumb" data-label="virtual tour" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/2145807255-3028a1cb240082c2500af287b5f93ca2c503d1d0c131602574bc88e4976ed1f5-d_640?region=us)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+
+            <div className="tcard" data-cat="Virtual Tour" onClick={() => setActiveVideo('1183056612')} style={{ cursor: 'pointer' }}>
+              <div className="thumb" data-label="Virtual Tour" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/2145807255-3028a1cb240082c2500af287b5f93ca2c503d1d0c131602574bc88e4976ed1f5-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="play"><span>&#9654;</span></div>
               </div>
-              <div className="body"><h3>Guided Virtual Tour</h3><p>Walk families through your community when they can't be there in person.</p><div className="where">Website &middot; Email follow-ups</div></div>
+              <div className="body"><h3>Park Gardens</h3><p>Explore our beautifully renovated Bronx facility offering private, semi-private, and suite accommodations in Riverdale.</p><div className="where">Virtual Tour</div></div>
             </div>
-            <div className="tcard" data-cat="family" onClick={() => setActiveVideo('1183669641')} style={{ cursor: 'pointer' }}>
-              <div className="thumb" data-label="service line video" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/2146609771-407fb9135b97c639b345fa94bd14f38ebaaf81564e6fed050878482b77d99ab0-d_640?region=us)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+
+            <div className="tcard" data-cat="Commercial" onClick={() => setActiveVideo('906115435')} style={{ cursor: 'pointer' }}>
+              <div className="thumb" data-label="Commercial" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/1787724682-99c5f028f168e64a7c91d011cf8d19a16d4453e95b0911be06e755c443218d36-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="play"><span>&#9654;</span></div>
               </div>
-              <div className="body"><h3>Service Line Spot</h3><p>Focused pieces for memory care, rehab, hospice, or key service lines.</p><div className="where">Service pages &middot; Ads</div></div>
+              <div className="body"><h3>Link Homecare</h3><p>A personal story of family-provided in-home care, highlighting the comfort of having a loved one as a certified home attendant.</p><div className="where">Commercial</div></div>
             </div>
-            <div className="tcard" data-cat="recruit" onClick={() => setActiveVideo('930394765')} style={{ cursor: 'pointer' }}>
-              <div className="thumb" data-label="recruitment" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/1827081869-f1d75fd0450accdafec4e7b7c8368040ea48a3450daf1cd9b6f636ef56ec7e39-d_640?region=us)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+
+            <div className="tcard" data-cat="Virtual Tour" onClick={() => setActiveVideo('930394765')} style={{ cursor: 'pointer' }}>
+              <div className="thumb" data-label="Virtual Tour" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/1827081869-f1d75fd0450accdafec4e7b7c8368040ea48a3450daf1cd9b6f636ef56ec7e39-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="play"><span>&#9654;</span></div>
               </div>
-              <div className="body"><h3>Recruitment Film</h3><p>Shows the team and culture &mdash; what the job feels like, not just what it pays.</p><div className="where">Careers page &middot; LinkedIn</div></div>
+              <div className="body"><h3>River Ridge Living Center</h3><p>Take a tranquil virtual tour of our Amsterdam facility, nestled on beautifully manicured private grounds with cozy room options.</p><div className="where">Virtual Tour</div></div>
             </div>
-            <div className="tcard" data-cat="recruit" onClick={() => setActiveVideo('856155374')} style={{ cursor: 'pointer' }}>
-              <div className="thumb" data-label="day in the life" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/1712816615-6ba0388b0b58583f381a4b3356eb9052615911745c39ee6dee971f9a310672ff-d_640?region=us)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+
+            <div className="tcard" data-cat="Virtual Tour" onClick={() => setActiveVideo('856155374')} style={{ cursor: 'pointer' }}>
+              <div className="thumb" data-label="Virtual Tour" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/1712816615-6ba0388b0b58583f381a4b3356eb9052615911745c39ee6dee971f9a310672ff-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="play"><span>&#9654;</span></div>
               </div>
-              <div className="body"><h3>Day in the Life</h3><p>Follows a caregiver through a shift to attract the right candidates.</p><div className="where">Careers page &middot; Indeed</div></div>
+              <div className="body"><h3>The Pines at Bristol</h3><p>Experience our commitment to compassion and excellence with 24/7 professional care and comfortable private recovery rooms.</p><div className="where">Virtual Tour</div></div>
             </div>
-            <div className="tcard" data-cat="recruit" onClick={() => setActiveVideo('856155997')} style={{ cursor: 'pointer' }}>
-              <div className="thumb" data-label="staff spotlight" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/1712817557-3969c28915abb77b8412e3a23078fa6d1b4bad48748312374eeff78913c6f666-d_640?region=us)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+
+            <div className="tcard" data-cat="Virtual Tour" onClick={() => setActiveVideo('856155997')} style={{ cursor: 'pointer' }}>
+              <div className="thumb" data-label="Virtual Tour" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/1712817557-3969c28915abb77b8412e3a23078fa6d1b4bad48748312374eeff78913c6f666-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="play"><span>&#9654;</span></div>
               </div>
-              <div className="body"><h3>Staff Spotlight</h3><p>Short profiles that put real faces to your employer brand.</p><div className="where">Social &middot; Careers page</div></div>
+              <div className="body"><h3>New York Congregational</h3><p>A guided walkthrough of our Brooklyn center, highlighting cozy amenities, private rooms, and a welcoming environment in Flatbush.</p><div className="where">Virtual Tour</div></div>
             </div>
-            <div className="tcard" data-cat="testimonial" onClick={() => setActiveVideo('856154806')} style={{ cursor: 'pointer' }}>
-              <div className="thumb" data-label="resident testimonial" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/1712815705-18dc757f93e75914b5eacf8f699412cbe74ee92615493cdf40b7e91c73f859d6-d_640?region=us)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+
+            <div className="tcard" data-cat="Virtual Tour" onClick={() => setActiveVideo('856154806')} style={{ cursor: 'pointer' }}>
+              <div className="thumb" data-label="Virtual Tour" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/1712815705-18dc757f93e75914b5eacf8f699412cbe74ee92615493cdf40b7e91c73f859d6-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="play"><span>&#9654;</span></div>
               </div>
-              <div className="body"><h3>Resident &amp; Family Testimonial</h3><p>Real stories from real families &mdash; the most persuasive video you can publish.</p><div className="where">Website &middot; Sales materials</div></div>
+              <div className="body"><h3>Cascades Assisted Living</h3><p>Tour our quaint, country-style assisted living community in Bethel, featuring 42 comfortable studio and apartment residences.</p><div className="where">Virtual Tour</div></div>
             </div>
-            <div className="tcard" data-cat="testimonial" onClick={() => setActiveVideo('856153642')} style={{ cursor: 'pointer' }}>
-              <div className="thumb" data-label="staff testimonial" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/1712813534-a3d2acf7cbd65f54e9171b98bf7b6c543db0cbfd52633894a64d329d0c191bf6-d_640?region=us)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+
+            <div className="tcard" data-cat="Virtual Tour" onClick={() => setActiveVideo('856153642')} style={{ cursor: 'pointer' }}>
+              <div className="thumb" data-label="Virtual Tour" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/1712813534-a3d2acf7cbd65f54e9171b98bf7b6c543db0cbfd52633894a64d329d0c191bf6-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="play"><span>&#9654;</span></div>
               </div>
-              <div className="body"><h3>Staff Testimonial</h3><p>Team members on why they stay &mdash; trust for families and recruits alike.</p><div className="where">Careers &middot; About page</div></div>
-            </div>
-            <div className="tcard" data-cat="testimonial" onClick={() => setActiveVideo('1187758900')} style={{ cursor: 'pointer' }}>
-              <div className="thumb" data-label="referral partner" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/2151846258-69725a147cd14cc6543bdfe513c74de2cad981ca2a4ade69fbb2937bd7e03ae1-d_640?region=us)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                <div className="play"><span>&#9654;</span></div>
-              </div>
-              <div className="body"><h3>Referral Partner Story</h3><p>Physicians and discharge planners on why they refer to you.</p><div className="where">Sales deck &middot; Outreach</div></div>
-            </div>
-            <div className="tcard" data-cat="social" onClick={() => setActiveVideo('1187761002')} style={{ cursor: 'pointer' }}>
-              <div className="thumb" data-label="social vertical" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/2151848765-92283b92c206bf399d7a9306eddf8e738598e9fd0e35978ea52388400de9e7c7-d_640?region=us)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                <div className="play"><span>&#9654;</span></div>
-              </div>
-              <div className="body"><h3>Social Vertical Cut</h3><p>9:16 edits of your hero footage, sized for Instagram, TikTok, and Reels.</p><div className="where">Instagram &middot; TikTok</div></div>
-            </div>
-            <div className="tcard" data-cat="social" onClick={() => setActiveVideo('1187767005')} style={{ cursor: 'pointer' }}>
-              <div className="thumb" data-label="event recap" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/2151857308-7cbb8dabf3119119afc60542317e5dae038b725aeb6fe8fa66e69b4cdaf8a091-d_640?region=us)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                <div className="play"><span>&#9654;</span></div>
-              </div>
-              <div className="body"><h3>Event Recap</h3><p>Quick highlight reels from community events and open houses.</p><div className="where">Facebook &middot; Instagram</div></div>
-            </div>
-            <div className="tcard" data-cat="social" onClick={() => setActiveVideo('906115435')} style={{ cursor: 'pointer' }}>
-              <div className="thumb" data-label="seasonal short" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/1787724682-99c5f028f168e64a7c91d011cf8d19a16d4453e95b0911be06e755c443218d36-d_640?region=us)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                <div className="play"><span>&#9654;</span></div>
-              </div>
-              <div className="body"><h3>Seasonal Short</h3><p>Holiday and milestone moments that keep your feed warm and active.</p><div className="where">Social feeds</div></div>
+              <div className="body"><h3>Complete Care Green Acres</h3><p>An inside look at our 5-star rated skilled nursing facility in Toms River, NJ, featuring 162 beds and 33 private suites.</p><div className="where">Virtual Tour</div></div>
             </div>
           </div>
         </div>
