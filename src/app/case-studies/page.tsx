@@ -255,7 +255,7 @@ export default function CaseStudies() {
       </section>
 
       <section className="final">
-        <div className="final-fallback"></div>
+        <canvas id="waveCanvas"></canvas>
         <canvas id="waveCanvas"></canvas>
         <div className="container" data-reveal style={{ textAlign: 'center' }}>
           <div className="label" style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '24px', display: 'inline-flex', justifyContent: 'center' }}>YOUR FACILITY, SEEN THE RIGHT WAY</div>

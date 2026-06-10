@@ -112,7 +112,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
 
       {/* CTA */}
       <section className="final">
-        <div className="final-fallback"></div>
+        <canvas id="waveCanvas"></canvas>
         <div className="final-in">
           <span className="label">Ready for results like this?</span>
           <h2>Let's build your success story.</h2>
