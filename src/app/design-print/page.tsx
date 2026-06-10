@@ -267,7 +267,9 @@ export default function DesignPrint() {
             </article>
           </div>
         </div>
-        <section className="panel sec-pad dp-process">
+      </section>
+
+      <section className="panel sec-pad dp-process">
           <div className="container">
             <div className="sec-head" data-reveal>
               <span className="label">Our Process</span>
@@ -326,7 +328,7 @@ export default function DesignPrint() {
         <section className="panel ink sec-pad">
           <div className="container">
             <div className="sec-head" data-reveal>
-              <span className="label">What You'll Receive</span>
+              <span className="label">What You&apos;ll Receive</span>
               <h2>Finished, formatted, <span className="lite">ready to print.</span></h2>
             </div>
             <div className="rx-grid stagger" style={{ marginTop: '40px' }}>
@@ -360,7 +362,7 @@ export default function DesignPrint() {
                <div>
                   <span className="label">Signature Product</span>
                   <h2>The Video Brochure</h2>
-                  <p className="lead">Combine the impact of our cinematic video production with the tangibility of a premium print piece. A physical brochure that opens to reveal an embedded HD screen automatically playing your facility's film.</p>
+                  <p className="lead">Combine the impact of our cinematic video production with the tangibility of a premium print piece. A physical brochure that opens to reveal an embedded HD screen automatically playing your facility&apos;s film.</p>
                   <Link href="/contact" className="btn" style={{ marginTop: '24px' }}>Get a Quote</Link>
                </div>
                <div className="sig-vid">
@@ -372,7 +374,7 @@ export default function DesignPrint() {
                <span className="label">Recent Print Projects</span>
                <h2 style={{ textWrap: 'unset' }}>A look at the collateral.</h2>
                <p className="sub" style={{ marginTop: '16px', maxWidth: '1000px', margin: '16px auto 0' }}>
-                 A look at the collateral and materials we've designed and printed.
+                 A look at the collateral and materials we&apos;ve designed and printed.
                </p>
             </div>
             <div className="mason stagger">
