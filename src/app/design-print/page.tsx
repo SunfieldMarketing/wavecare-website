@@ -363,7 +363,7 @@ export default function DesignPrint() {
                   <Link href="/contact" className="btn" style={{ marginTop: '24px' }}>Get a Quote</Link>
                </div>
                <div className="sig-vid">
-                  <video src="/videos/Brochure wavecare video.mp4" autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }}></video>
+                  <video src="/videos/1 Wavecare Photo Ad (HQ).mp4" autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }}></video>
                </div>
             </div>
           </div>
