@@ -7,8 +7,8 @@ export const metadata = {
 
 export default function PrivacyPolicy() {
   return (
-    <div className="legal-page">
-      <div className="container">
+    <section className="sec-pad ink" style={{ paddingTop: '160px', minHeight: '100vh' }}>
+      <div className="container" style={{ maxWidth: '800px', margin: '0 auto' }}>
         <h1>Privacy Policy</h1>
         <p><strong>Effective Date: June 15, 2026</strong></p>
         
@@ -91,6 +91,6 @@ export default function PrivacyPolicy() {
           <Link href="/">&larr; Back to Home</Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -262,9 +262,6 @@ export default function WebDesign() {
         <div className="container">
           <div className="phero-in">
             <div data-reveal>
-              <svg className="wave-accent" viewBox="0 0 74 24">
-                <path d="M2,12 Q12,2 20,12 T38,12 T56,12 T72,12"></path>
-              </svg>
               <h1>Websites that earn trust and drive <span className="accent">admissions.</span></h1>
               <p className="phero-sub">Modern healthcare websites designed specifically for nursing homes, assisted living communities, rehabilitation centers, and healthcare organizations.</p>
               <div className="btn-group" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>

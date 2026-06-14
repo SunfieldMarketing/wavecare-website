@@ -188,9 +188,6 @@ export default function PhotoServices() {
         </div>
         <div className="container">
           <div className="phero-center" data-reveal>
-            <svg className="wave-accent" viewBox="0 0 74 24" style={{ marginBottom: '24px' }}>
-              <path d="M2,12 Q12,2 20,12 T38,12 T56,12 T72,12"></path>
-            </svg>
             <h1>Professional photography that <span className="accent">builds trust.</span></h1>
             <p className="phero-sub">Showcase your facility, staff, residents, and care environment with authentic imagery built for websites, social media, admissions materials, and marketing campaigns.</p>
             <div className="btn-group">

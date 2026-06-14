@@ -188,6 +188,25 @@ export default function CaseStudies() {
                 </div>
               </div>
             </div>
+
+            <div className="cs-card">
+              <div className="cs-media">
+                <div className="ph"><span>HEALTHCARE CENTER HERO</span></div>
+                <div className="cs-tag">
+                  <span>Web Design</span>
+                  <span>Photo</span>
+                </div>
+              </div>
+              <div className="cs-body">
+                <span className="cs-client">A rehabilitation center in New Jersey</span>
+                <h3>Transforming online perception to match their quality of care</h3>
+                <p className="cs-desc">By combining high-quality facility photography with a modern, conversion-focused website, we helped this facility increase their online inquiries significantly.</p>
+                <div className="cs-result">
+                  <span className="num">72%</span>
+                  <span className="lbl">Increase in web inquiries</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -48,7 +48,6 @@ export const metadata: Metadata = {
 
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import CookieBanner from '@/components/CookieBanner';
 import { Analytics } from '@vercel/analytics/react';
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import Script from 'next/script';
@@ -76,7 +75,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Navbar />
         {children}
         <Footer />
-        <CookieBanner />
         <Analytics />
         {/* Placeholders for production - replace G-XXXXXXX and GTM-XXXXXXX with actual IDs */}
         <GoogleAnalytics gaId="G-XXXXXXXXXX" />

@@ -7,15 +7,15 @@ export const metadata = {
 
 export default function NotFound() {
   return (
-    <div className="error-page">
+    <section className="sec-pad ink" style={{ paddingTop: '160px', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
       <div className="container">
-        <h1>404</h1>
-        <h2>Page Not Found</h2>
-        <p>The page you are looking for doesn't exist or has been moved.</p>
-        <Link href="/" className="btn btn-primary" data-cursor>
+        <h1 style={{ fontSize: 'clamp(80px, 10vw, 150px)', lineHeight: 1, marginBottom: '20px', color: 'var(--teal-bright)' }}>404</h1>
+        <h2 style={{ marginBottom: '20px' }}>Page Not Found</h2>
+        <p style={{ marginBottom: '40px', color: 'rgba(255,255,255,0.7)' }}>The page you are looking for doesn't exist or has been moved.</p>
+        <Link href="/" className="btn" data-cursor>
           Return Home
         </Link>
       </div>
-    </div>
+    </section>
   );
 }

@@ -157,9 +157,6 @@ export default function VideoServices() {
         <div className="container">
           <div className="phero-in">
             <div data-reveal>
-              <svg className="wave-accent" viewBox="0 0 74 24">
-                <path d="M2,12 Q12,2 20,12 T38,12 T56,12 T72,12"></path>
-              </svg>
               <h1>Healthcare <span className="accent">Video Production</span></h1>
               <p className="phero-sub">Strategic healthcare video that highlights your team, facility, services, and resident experience — built to earn trust before families ever walk through your doors.</p>
               <div className="trust-list" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '34px' }}>

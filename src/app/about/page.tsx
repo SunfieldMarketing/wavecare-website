@@ -219,7 +219,7 @@ export default function About() {
           <div style={{ position: 'absolute', inset: 0, background: 'rgba(6, 42, 36, 0.65)' }}></div>
         </div>
         <div className="container hero-inner" style={{ maxWidth: '1000px' }}>
-          <svg className="wave-accent" viewBox="0 0 78 26"><path d="M2 13 Q 12 2, 21 13 T 40 13 T 59 13 T 76 11"/></svg>
+
           <span className="label" data-hero>About Wavecare</span>
           <h1 style={{ fontSize: 'clamp(42px, 6.5vw, 84px)', lineHeight: '1.1' }} data-hero>
             Your facility gets judged in seconds.<br />

@@ -309,7 +309,6 @@ export default function Home() {
       </header>
 
       <section className="ink sec-pad">
-        <div className="glow" style={{ width: '520px', height: '520px', background: 'var(--teal-primary)', top: '-120px', left: '-140px' }}></div>
         <div className="container">
           <div className="showreel">
             <div data-reveal>
