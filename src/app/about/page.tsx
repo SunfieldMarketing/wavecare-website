@@ -247,7 +247,7 @@ export default function About() {
               <Link href="#services" className="btn" data-magnetic data-cursor style={{ marginTop: '14px' }}>What We Do</Link>
             </div>
             <div className="story-img" data-reveal data-cursor>
-              <Image src="/images/img_3.jpeg" alt="Caregiver supporting a resident" width={800} height={600} style={{ width: '100%', height: 'auto' }} />
+              <Image src="/images/video_production.jpg" alt="Video production and storytelling" width={800} height={600} style={{ width: '100%', height: 'auto' }} />
             </div>
           </div>
         </div>
