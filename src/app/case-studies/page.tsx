@@ -139,7 +139,7 @@ export default function CaseStudies() {
                     <div className="cs-grid stagger">
             <div className="cs-card">
               <div className="cs-media">
-                <div className="ph"><span>HEALTHCARE NETWORK HERO</span></div>
+                <Image src="/images/cs_medical_group.png" alt="Healthcare network rebrand" fill style={{ objectFit: 'cover' }} />
                 <div className="cs-tag">
                   <span>Full Service</span>
                 </div>
@@ -157,7 +157,7 @@ export default function CaseStudies() {
 
             <div className="cs-card">
               <div className="cs-media">
-                <div className="ph"><span>SNF NYC HERO</span></div>
+                <Image src="/images/cs_nursing_home.png" alt="Skilled nursing facility NYC" fill style={{ objectFit: 'cover' }} />
                 <div className="cs-tag">
                   <span>Web Design</span>
                   <span>SEO</span>
@@ -172,7 +172,7 @@ export default function CaseStudies() {
             
             <div className="cs-card">
               <div className="cs-media">
-                <div className="ph"><span>HEALTHCARE FACILITY QUEENS HERO</span></div>
+                <Image src="/images/cs_assisted_living.png" alt="Healthcare facility Queens" fill style={{ objectFit: 'cover' }} />
                 <div className="cs-tag">
                   <span>Video</span>
                   <span>Photo</span>
@@ -191,7 +191,7 @@ export default function CaseStudies() {
 
             <div className="cs-card">
               <div className="cs-media">
-                <div className="ph"><span>HEALTHCARE CENTER HERO</span></div>
+                <Image src="/images/cs_rehab_center.png" alt="Rehabilitation center New Jersey" fill style={{ objectFit: 'cover' }} />
                 <div className="cs-tag">
                   <span>Web Design</span>
                   <span>Photo</span>
