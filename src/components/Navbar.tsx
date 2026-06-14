@@ -18,7 +18,7 @@ export default function Navbar() {
         <div className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
           <Link href="/" data-cursor onClick={() => setMobileMenuOpen(false)}>Home</Link>
           <div className="nav-dropdown">
-            <Link href="/services" data-cursor>Services ▾</Link>
+            <Link href="/services" data-cursor onClick={() => setMobileMenuOpen(false)}>Services ▾</Link>
             <div className="dropdown-content">
               <Link href="/photoservices" data-cursor onClick={() => setMobileMenuOpen(false)}>Brand & Photoshoots</Link>
               <Link href="/videoservices" data-cursor onClick={() => setMobileMenuOpen(false)}>Video Production</Link>
