@@ -62,20 +62,18 @@ function initLenis(){
   document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const el=document.querySelector(a.getAttribute('href')); if(el){e.preventDefault(); lenis.scrollTo(el,{offset:-20});}}));
 }
 
-/* ---- hero entrance + wave-accent draw ---- */
+/* ---- hero entrance ---- */
 function initHero(){
-  const wp=document.querySelector('.wave-accent path');
   if(window.gsap){
     gsap.set('[data-hero]',{opacity:0,y:38});
     gsap.to('[data-hero]',{opacity:1,y:0,duration:1,stagger:0.12,ease:'power3.out',delay:0.15});
-    if(wp) gsap.to(wp,{strokeDashoffset:0,duration:1.4,ease:'power2.out',delay:0.4});
     gsap.to('.hero-bg img',{scale:1,duration:2.4,ease:'power2.out'});
     if(window.ScrollTrigger){
       gsap.to('.hero-inner',{yPercent:-16,opacity:0,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
       gsap.to('.hero-bg img',{yPercent:14,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
       gsap.to('.scroll-cue',{opacity:0,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'14% top',scrub:true}});
     }
-  } else { document.querySelectorAll('[data-hero]').forEach(e=>{e.style.opacity=1;e.style.transform='none';}); if(wp) wp.style.strokeDashoffset=0; }
+  } else { document.querySelectorAll('[data-hero]').forEach(e=>{e.style.opacity=1;e.style.transform='none';}); }
 }
 
 /* ---- SERVICES draggable carousel (no scroll-jacking) ---- */

@@ -87,11 +87,9 @@ export default function About() {
       }
 
       function initHero() {
-        const wp = document.querySelector('.wave-accent path') as SVGPathElement;
         if (gsap) {
           gsap.set('[data-hero]', { opacity: 0, y: 38 });
           gsap.to('[data-hero]', { opacity: 1, y: 0, duration: 1, stagger: 0.12, ease: 'power3.out', delay: 0.15 });
-          if (wp) gsap.to(wp, { strokeDashoffset: 0, duration: 1.4, ease: 'power2.out', delay: 0.4 });
           gsap.to('.hero-bg img', { scale: 1, duration: 2.4, ease: 'power2.out' });
           if (ScrollTrigger) {
             gsap.to('.hero-inner', { yPercent: -16, opacity: 0, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
@@ -100,7 +98,6 @@ export default function About() {
           }
         } else {
           document.querySelectorAll('[data-hero]').forEach(e => { (e as HTMLElement).style.opacity = '1'; (e as HTMLElement).style.transform = 'none'; });
-          if (wp) wp.style.strokeDashoffset = '0';
         }
       }
 

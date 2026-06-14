@@ -117,11 +117,9 @@ export default function Home() {
       }
 
       function initHero() {
-        const wp = document.querySelector('.wave-accent path') as SVGPathElement;
         if (gsap) {
           gsap.set('[data-hero]', { opacity: 0, y: 38 });
           gsap.to('[data-hero]', { opacity: 1, y: 0, duration: 1, stagger: 0.12, ease: 'power3.out', delay: 0.15 });
-          if (wp) gsap.to(wp, { strokeDashoffset: 0, duration: 1.4, ease: 'power2.out', delay: 0.4 });
           gsap.to('.hero-bg img', { scale: 1, duration: 2.4, ease: 'power2.out' });
           if (ScrollTrigger) {
             gsap.to('.hero-inner', { yPercent: -16, opacity: 0, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
@@ -130,7 +128,6 @@ export default function Home() {
           }
         } else {
           document.querySelectorAll('[data-hero]').forEach(e => { (e as HTMLElement).style.opacity = '1'; (e as HTMLElement).style.transform = 'none'; });
-          if (wp) wp.style.strokeDashoffset = '0';
         }
       }
 
@@ -285,9 +282,7 @@ export default function Home() {
           <Image src="/images/img_3.jpeg" alt="Caregiver with resident at a senior care facility" layout="fill" objectFit="cover" priority />
         </div>
         <div className="container hero-inner">
-          <svg className="wave-accent" viewBox="0 0 78 26">
-            <path d="M2 13 Q 12 2, 21 13 T 40 13 T 59 13 T 76 11" />
-          </svg>
+
           <span className="label" data-hero>Healthcare Marketing Agency</span>
           <h1>
             <span className="line" data-hero><span>Built for</span></span>

@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="f-grid">
           <div className="f-col f-brand">
             <div className="f-logo-row">
-              <Image src="/wavecare-marketing-logo.png" alt="Wavecare Marketing" width={300} height={400} style={{ height: '60px', width: 'auto' }} />
+              <Image src="/wavecare-marketing-logo.png" alt="Wavecare Marketing" width={300} height={400} style={{ height: '100px', width: 'auto' }} />
             </div>
             <p>Healthcare marketing that helps facilities look as good as the care they provide. Built for Healthcare.</p>
           </div>
@@ -32,7 +32,11 @@ export default function Footer() {
         </div>
         <div className="f-bottom">
           <div>&copy; 2026 Wavecare Marketing &middot; Miami, FL</div>
-          <div>wavecare.io</div>
+          <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+            <Link href="/terms-of-service" style={{ color: 'inherit' }}>Terms of Service</Link>
+            <Link href="/privacy-policy" style={{ color: 'inherit' }}>Privacy Policy</Link>
+            <span>wavecare.io</span>
+          </div>
         </div>
       </div>
     </footer>
