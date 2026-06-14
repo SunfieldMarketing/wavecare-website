@@ -170,10 +170,10 @@ export default function DesignPrint() {
             </div>
             
             <div className="phero-wall stagger" data-reveal>
-               <div className="cell c1"><img src="/images/harvest_acres_brochure.jpg" alt="Brochure" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-               <div className="cell c2"><img src="/images/Woodland manor signage.jpg" alt="Signage" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-               <div className="cell c3"><img src="/images/inner roots business card.png" alt="Business Card" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-               <div className="cell c4"><img src="/images/Athens roadside billboard style print ad.jpg" alt="Billboard" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+               <div className="cell c1"><Image src="/images/harvest_acres_brochure.jpg" alt="Brochure" width={400} height={400} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+               <div className="cell c2"><Image src="/images/Woodland manor signage.jpg" alt="Signage" width={400} height={400} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+               <div className="cell c3"><Image src="/images/inner roots business card.png" alt="Business Card" width={400} height={400} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+               <div className="cell c4"><Image src="/images/Athens roadside billboard style print ad.jpg" alt="Billboard" width={400} height={400} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
             </div>
           </div>
         </div>
@@ -198,9 +198,9 @@ export default function DesignPrint() {
                onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); handleBaDrag(e); }}
                onPointerMove={(e) => { if (e.buttons > 0) handleBaDrag(e); }}
                data-reveal>
-            <div className="ba-after"><img src="/images/brochure_inside.png" alt="After" /></div>
+            <div className="ba-after"><Image src="/images/brochure_inside.png" alt="After" width={1000} height={600} style={{ width: '100%', height: 'auto' }} /></div>
             <div className="ba-before" style={{ width: `${baPos}%` }}>
-               <img src="/images/harvest_acres_brochure.jpg" alt="Before" style={{ width: `${10000/baPos}%` }} />
+               <Image src="/images/harvest_acres_brochure.jpg" alt="Before" width={1000} height={600} style={{ width: `${10000/baPos}%`, height: 'auto' }} />
             </div>
             <div className="ba-handle" style={{ left: `${baPos}%` }}></div>
             <div className="ba-tags"><span className="btag">BEFORE</span><span className="atag">AFTER</span></div>
@@ -383,15 +383,15 @@ export default function DesignPrint() {
                  <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Tri-Fold</div>
                </div>
                <div className="m" style={{ position: 'relative' }}>
-                 <img src="/images/harvest_acres_brochure.jpg" alt="Brochure" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                 <Image src="/images/harvest_acres_brochure.jpg" alt="Brochure" width={800} height={600} style={{ width: '100%', height: 'auto', display: 'block' }} />
                  <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Brochure</div>
                </div>
                <div className="m" style={{ position: 'relative' }}>
-                 <img src="/images/Athens roadside billboard style print ad.jpg" alt="Billboard" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                 <Image src="/images/Athens roadside billboard style print ad.jpg" alt="Billboard" width={800} height={600} style={{ width: '100%', height: 'auto', display: 'block' }} />
                  <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Billboard</div>
                </div>
                <div className="m" style={{ position: 'relative' }}>
-                 <img src="/images/harvest acres pull up banner.png" alt="Banner" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                 <Image src="/images/harvest acres pull up banner.png" alt="Banner" width={800} height={600} style={{ width: '100%', height: 'auto', display: 'block' }} />
                  <div className="fwt" style={{ position: 'absolute', top: '12px', left: '16px', fontSize: '0.65rem', letterSpacing: '1px', textTransform: 'uppercase', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '4px', color: '#fff' }}>Banner</div>
                </div>
                <div className="m" style={{ position: 'relative' }}>

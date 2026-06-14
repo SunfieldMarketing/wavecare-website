@@ -117,7 +117,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           <span className="label">Ready for results like this?</span>
           <h2>Let's build your success story.</h2>
           <p className="sub">Book a free discovery call and we'll map out exactly what we'd build for your facility.</p>
-          <Link href="/contact" className="btn">Book a Call</Link>
+          <Link href="/contact" className="btn">Book a Demo</Link>
         </div>
       </section>
     </>

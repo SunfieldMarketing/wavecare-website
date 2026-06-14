@@ -298,7 +298,7 @@ export default function Home() {
             provide — branding, video, print, and websites that turn attention into booked tours.
           </p>
           <div className="hero-actions" data-hero>
-            <Link href="/contact" className="btn" data-magnetic data-cursor>Book a Call</Link>
+            <Link href="/contact" className="btn" data-magnetic data-cursor>Book a Demo</Link>
             <Link href="#services" className="btn btn-ghost" data-magnetic data-cursor>See What We Do</Link>
           </div>
         </div>
@@ -317,7 +317,7 @@ export default function Home() {
               <h2>Marketing that earns trust before the first tour.</h2>
               <p>A youthful, yet experienced healthcare marketing agency with bespoke solutions and tailored strategies — built around the sensitivity, compliance, and speed that senior care actually requires.</p>
               <p>See the work for yourself.</p>
-              <Link href="/contact" className="btn" data-magnetic data-cursor style={{ marginTop: '14px' }}>Book a Call</Link>
+              <Link href="/contact" className="btn" data-magnetic data-cursor style={{ marginTop: '14px' }}>Book a Demo</Link>
             </div>
             <div className="reel-frame" data-reveal data-cursor>
               <iframe src="https://player.vimeo.com/video/1187767005?title=0&byline=0&portrait=0&quality=1080p" allow="autoplay; fullscreen; picture-in-picture" title="Wavecare Commercial"></iframe>
@@ -439,13 +439,13 @@ export default function Home() {
         </div>
         <div className="marquee">
           <div className="marquee-row" id="marqueeRow">
-            <div className="m-logo"><img src="/images/logos/logo2.png" alt="The Enclave at Rye" className="scale-up" /></div>
-            <div className="m-logo"><img src="/images/logos/logo3.png" alt="Heart Shield" /></div>
-            <div className="m-logo"><img src="/images/logos/logo4.png" alt="Silverstream" /></div>
-            <div className="m-logo"><img src="/images/logos/logo5.png" alt="Nyack Ridge" /></div>
-            <div className="m-logo"><img src="/images/logos/logo6.png" alt="Galloway" /></div>
-            <div className="m-logo"><img src="/images/logos/logo7.png" alt="South Shore" /></div>
-            <div className="m-logo"><img src="/images/logos/logo8.png" alt="Link Homecare" className="invert" /></div>
+            <div className="m-logo"><Image src="/images/logos/logo2.png" alt="The Enclave at Rye" className="scale-up" width={200} height={100} style={{ width: '100%', height: 'auto', objectFit: 'contain' }} /></div>
+            <div className="m-logo"><Image src="/images/logos/logo3.png" alt="Heart Shield" width={200} height={100} style={{ width: '100%', height: 'auto', objectFit: 'contain' }} /></div>
+            <div className="m-logo"><Image src="/images/logos/logo4.png" alt="Silverstream" width={200} height={100} style={{ width: '100%', height: 'auto', objectFit: 'contain' }} /></div>
+            <div className="m-logo"><Image src="/images/logos/logo5.png" alt="Nyack Ridge" width={200} height={100} style={{ width: '100%', height: 'auto', objectFit: 'contain' }} /></div>
+            <div className="m-logo"><Image src="/images/logos/logo6.png" alt="Galloway" width={200} height={100} style={{ width: '100%', height: 'auto', objectFit: 'contain' }} /></div>
+            <div className="m-logo"><Image src="/images/logos/logo7.png" alt="South Shore" width={200} height={100} style={{ width: '100%', height: 'auto', objectFit: 'contain' }} /></div>
+            <div className="m-logo"><Image src="/images/logos/logo8.png" alt="Link Homecare" className="invert" width={200} height={100} style={{ width: '100%', height: 'auto', objectFit: 'contain' }} /></div>
           </div>
         </div>
       </section>
@@ -526,7 +526,7 @@ export default function Home() {
           <span className="label" style={{ justifyContent: 'center' }} data-reveal>Get Started</span>
           <h2 data-reveal>Ready to look as good as<br />the <span className="accent">care</span> you provide?</h2>
           <p className="sub" data-reveal>Tell us about your facility and we&apos;ll show you exactly what we&apos;d build, capture, or design to start bringing in more qualified inquiries.</p>
-          <div data-reveal><Link href="/contact" className="btn btn-light" data-magnetic data-cursor>Book a Call</Link></div>
+          <div data-reveal><Link href="/contact" className="btn btn-light" data-magnetic data-cursor>Book a Demo</Link></div>
         </div>
       </section>
     </>

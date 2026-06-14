@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import '../subservices.css';
 
 export default function WebDesign() {
@@ -321,10 +322,10 @@ export default function WebDesign() {
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <div className="ba-slider" ref={sliderRef} style={{ maxWidth: '560px', width: '100%', margin: '0 auto', aspectRatio: '16/10' }} onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); handleBaDrag(e); }} onPointerMove={(e) => { if (e.buttons > 0) handleBaDrag(e); }} data-reveal>
                   <div className="ba-before">
-                    <img src="/images/evolve-before.png" alt="Evolve Therapy Services Before Website" style={{ width: '100%' }} />
+                    <Image src="/images/evolve-before.png" alt="Evolve Therapy Services Before Website" width={1200} height={800} style={{ width: '100%', height: 'auto' }} />
                   </div>
                   <div className="ba-after" style={{ clipPath: `inset(0 0 0 ${baPos}%)` }}>
-                    <img src="/images/evolve-after.png" alt="Evolve Therapy Services After Website" style={{ width: '100%' }} />
+                    <Image src="/images/evolve-after.png" alt="Evolve Therapy Services After Website" width={1200} height={800} style={{ width: '100%', height: 'auto' }} />
                   </div>
                   <div className="ba-handle" style={{ left: `${baPos}%` }}>
                     <div className="ba-handle-line"></div>

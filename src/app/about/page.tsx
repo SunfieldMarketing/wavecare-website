@@ -215,7 +215,7 @@ export default function About() {
     <>
       <header className="hero">
         <div className="hero-bg">
-          <img src="/images/img_3.jpeg" alt="Caregiver with resident at a senior care facility" />
+          <Image src="/images/img_3.jpeg" alt="Caregiver with resident at a senior care facility" width={800} height={600} style={{ width: '100%', height: 'auto' }} />
           <div style={{ position: 'absolute', inset: 0, background: 'rgba(6, 42, 36, 0.65)' }}></div>
         </div>
         <div className="container hero-inner" style={{ maxWidth: '1000px' }}>
@@ -230,7 +230,7 @@ export default function About() {
             seen the way they deserve to be seen. This is why we built Wavecare.
           </p>
           <div className="hero-actions" data-hero>
-            <Link href="/contact" className="btn" data-magnetic data-cursor>Book a Call</Link>
+            <Link href="/contact" className="btn" data-magnetic data-cursor>Book a Demo</Link>
             <Link href="#story" className="btn btn-ghost" data-magnetic data-cursor>Our Story</Link>
           </div>
         </div>
@@ -250,7 +250,7 @@ export default function About() {
               <Link href="#services" className="btn" data-magnetic data-cursor style={{ marginTop: '14px' }}>What We Do</Link>
             </div>
             <div className="story-img" data-reveal data-cursor>
-              <img src="/images/img_3.jpeg" alt="Caregiver supporting a resident" />
+              <Image src="/images/img_3.jpeg" alt="Caregiver supporting a resident" width={800} height={600} style={{ width: '100%', height: 'auto' }} />
             </div>
           </div>
         </div>
@@ -309,7 +309,7 @@ export default function About() {
           </div>
           <div className="accordion" id="accordion">
             <article className="acc-panel active" data-cursor>
-              <img src="/images/brand_photoshoots.jpg" alt="Brand & photoshoots" /><span className="acc-num">01</span>
+              <Image src="/images/brand_photoshoots.jpg" alt="Brand & photoshoots" width={600} height={400} style={{ width: '100%', height: 'auto' }} /><span className="acc-num">01</span>
               <div className="acc-content">
                 <div className="acc-title">Brand &amp; Photoshoots</div>
                 <div className="acc-body-wrap">
@@ -320,7 +320,7 @@ export default function About() {
               </div>
             </article>
             <article className="acc-panel" data-cursor>
-              <img src="/images/video_production.jpg" alt="Video production" /><span className="acc-num">02</span>
+              <Image src="/images/video_production.jpg" alt="Video production" width={600} height={400} style={{ width: '100%', height: 'auto' }} /><span className="acc-num">02</span>
               <div className="acc-content">
                 <div className="acc-title">Video Production</div>
                 <div className="acc-body-wrap">
@@ -331,7 +331,7 @@ export default function About() {
               </div>
             </article>
             <article className="acc-panel" data-cursor>
-              <img src="/images/design_print_2.jpg" alt="Design & print" /><span className="acc-num">03</span>
+              <Image src="/images/design_print_2.jpg" alt="Design & print" width={600} height={400} style={{ width: '100%', height: 'auto' }} /><span className="acc-num">03</span>
               <div className="acc-content">
                 <div className="acc-title">Design &amp; Print</div>
                 <div className="acc-body-wrap">
@@ -342,7 +342,7 @@ export default function About() {
               </div>
             </article>
             <article className="acc-panel" data-cursor>
-              <img src="/images/img_6.jpeg" alt="Web design & management" /><span className="acc-num">04</span>
+              <Image src="/images/img_6.jpeg" alt="Web design & management" width={600} height={400} style={{ width: '100%', height: 'auto' }} /><span className="acc-num">04</span>
               <div className="acc-content">
                 <div className="acc-title">Web Design &amp; Management</div>
                 <div className="acc-body-wrap">
@@ -393,7 +393,7 @@ export default function About() {
           <span className="label" style={{ justifyContent: 'center' }} data-reveal>Get Started</span>
           <h2 data-reveal>Let's make your<br />seconds <span className="accent">count.</span></h2>
           <p className="sub" data-reveal>Tell us about your facility and we'll show you exactly what we'd build, capture, or design to start bringing the right families through your doors.</p>
-          <div data-reveal><Link href="/contact" className="btn btn-light" data-magnetic data-cursor>Book a Call</Link></div>
+          <div data-reveal><Link href="/contact" className="btn btn-light" data-magnetic data-cursor>Book a Demo</Link></div>
         </div>
       </section>
     </>

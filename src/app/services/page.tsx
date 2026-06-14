@@ -102,7 +102,7 @@ export default function Services() {
               online as they are in person.
             </p>
             <div className="hero-actions reveal delay-3">
-              <Link href="/contact" className="btn btn-light">Book a Call</Link>
+              <Link href="/contact" className="btn btn-light">Book a Demo</Link>
               <Link href="#services" className="btn btn-ghost" style={{ background: 'transparent' }}>See Our Services</Link>
             </div>
           </div>
@@ -302,13 +302,13 @@ export default function Services() {
         </div>
         <div className="marquee">
           <div className="marquee-row" id="marqueeRow">
-            <div className="m-logo"><img src="/images/logos/logo2.png" alt="The Enclave at Rye" className="scale-up" /></div>
-            <div className="m-logo"><img src="/images/logos/logo3.png" alt="Heart Shield" /></div>
-            <div className="m-logo"><img src="/images/logos/logo4.png" alt="Silverstream" /></div>
-            <div className="m-logo"><img src="/images/logos/logo5.png" alt="Nyack Ridge" /></div>
-            <div className="m-logo"><img src="/images/logos/logo6.png" alt="Galloway" /></div>
-            <div className="m-logo"><img src="/images/logos/logo7.png" alt="South Shore" /></div>
-            <div className="m-logo"><img src="/images/logos/logo8.png" alt="Link Homecare" className="invert" /></div>
+            <div className="m-logo"><Image src="/images/logos/logo2.png" alt="The Enclave at Rye" className="scale-up" width={200} height={100} style={{ width: '100%', height: 'auto', objectFit: 'contain' }} /></div>
+            <div className="m-logo"><Image src="/images/logos/logo3.png" alt="Heart Shield" width={200} height={100} style={{ width: '100%', height: 'auto', objectFit: 'contain' }} /></div>
+            <div className="m-logo"><Image src="/images/logos/logo4.png" alt="Silverstream" width={200} height={100} style={{ width: '100%', height: 'auto', objectFit: 'contain' }} /></div>
+            <div className="m-logo"><Image src="/images/logos/logo5.png" alt="Nyack Ridge" width={200} height={100} style={{ width: '100%', height: 'auto', objectFit: 'contain' }} /></div>
+            <div className="m-logo"><Image src="/images/logos/logo6.png" alt="Galloway" width={200} height={100} style={{ width: '100%', height: 'auto', objectFit: 'contain' }} /></div>
+            <div className="m-logo"><Image src="/images/logos/logo7.png" alt="South Shore" width={200} height={100} style={{ width: '100%', height: 'auto', objectFit: 'contain' }} /></div>
+            <div className="m-logo"><Image src="/images/logos/logo8.png" alt="Link Homecare" className="invert" width={200} height={100} style={{ width: '100%', height: 'auto', objectFit: 'contain' }} /></div>
           </div>
         </div>
       </section>
@@ -358,7 +358,7 @@ export default function Services() {
             Schedule a free discovery call to see how we can transform your facility's marketing.
           </p>
           <div className="reveal delay-3">
-            <Link href="/contact" className="btn btn-light">Book a Call</Link>
+            <Link href="/contact" className="btn btn-light">Book a Demo</Link>
           </div>
         </div>
       </section>

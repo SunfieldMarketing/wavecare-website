@@ -136,93 +136,58 @@ export default function CaseStudies() {
             </p>
           </div>
 
-          <div className="cs-grid stagger">
-            <Link href="/case-studies/oakwood" className="cs-card">
+                    <div className="cs-grid stagger">
+            <div className="cs-card">
               <div className="cs-media">
-                <div className="ph"><span>OAKWOOD HERO IMAGE</span></div>
-                <div className="cs-tag">
-                  <span>Web Design</span>
-                  <span>Video</span>
-                </div>
-              </div>
-              <div className="cs-body">
-                <span className="cs-client">Oakwood Senior Living</span>
-                <h3>How a modern website and facility tour video increased bookings by 42%</h3>
-                <p className="cs-desc">Oakwood was losing out to newer competitors despite offering better care. We completely overhauled their digital presence.</p>
-                <div className="cs-result">
-                  <span className="num">42%</span>
-                  <span className="lbl">Increase in qualified tours</span>
-                </div>
-                <div className="cs-go">
-                  Read Case Study
-                </div>
-              </div>
-            </Link>
-
-            <Link href="/case-studies/pinnacle" className="cs-card">
-              <div className="cs-media">
-                <div className="ph"><span>THE PINNACLE HERO</span></div>
-                <div className="cs-tag">
-                  <span>Photography</span>
-                  <span>Print</span>
-                </div>
-              </div>
-              <div className="cs-body">
-                <span className="cs-client">The Pinnacle</span>
-                <h3>Elevating a luxury memory care brand through premium visuals</h3>
-                <p className="cs-desc">We replaced outdated stock imagery with authentic, sensitive photography that captures the true quality of their care.</p>
-                <div className="cs-result">
-                  <span className="num">3X</span>
-                  <span className="lbl">Higher engagement on ads</span>
-                </div>
-                <div className="cs-go">
-                  Read Case Study
-                </div>
-              </div>
-            </Link>
-            
-            <Link href="/case-studies/harmony" className="cs-card">
-              <div className="cs-media">
-                <div className="ph"><span>HARMONY CARE HERO</span></div>
+                <div className="ph"><span>HEALTHCARE NETWORK HERO</span></div>
                 <div className="cs-tag">
                   <span>Full Service</span>
                 </div>
               </div>
               <div className="cs-body">
-                <span className="cs-client">Harmony Care</span>
+                <span className="cs-client">A national healthcare network</span>
                 <h3>A ground-up rebrand for a growing regional provider</h3>
-                <p className="cs-desc">From the logo and messaging to the website and print collateral, we built a cohesive brand system ready to scale.</p>
+                <p className="cs-desc">From fresh media assets to physical print marketing assets, we rebuilt their online presence through impactful branding and a new website video.</p>
                 <div className="cs-result">
-                  <span className="num">15</span>
+                  <span className="num">48</span>
                   <span className="lbl">Facilities launched</span>
                 </div>
-                <div className="cs-go">
-                  Read Case Study
-                </div>
               </div>
-            </Link>
+            </div>
 
-            <Link href="/case-studies/mercy" className="cs-card">
+            <div className="cs-card">
               <div className="cs-media">
-                <div className="ph"><span>MERCY HEALTH HERO</span></div>
+                <div className="ph"><span>SNF NYC HERO</span></div>
                 <div className="cs-tag">
                   <span>Web Design</span>
                   <span>SEO</span>
                 </div>
               </div>
               <div className="cs-body">
-                <span className="cs-client">Mercy Health Partners</span>
-                <h3>Dominating local search with a conversion-first medical site</h3>
-                <p className="cs-desc">We structured their multi-location practice website to rank locally, resulting in a massive influx of organic patient leads.</p>
-                <div className="cs-result">
-                  <span className="num">+210%</span>
-                  <span className="lbl">Organic search traffic</span>
-                </div>
-                <div className="cs-go">
-                  Read Case Study
+                <span className="cs-client">A skilled nursing facility in New York City</span>
+                <h3>Dominating local search with clear and consistent messaging and visuals</h3>
+                <p className="cs-desc">We restructured their entire online brand and messaging through cohesive storytelling, marketing assets, and paid search.</p>
+              </div>
+            </div>
+            
+            <div className="cs-card">
+              <div className="cs-media">
+                <div className="ph"><span>HEALTHCARE FACILITY QUEENS HERO</span></div>
+                <div className="cs-tag">
+                  <span>Video</span>
+                  <span>Photo</span>
                 </div>
               </div>
-            </Link>
+              <div className="cs-body">
+                <span className="cs-client">A healthcare facility in Queens, New York</span>
+                <h3>Creating a high-level production for a prominent healthcare brand, boosting visibility by 42%</h3>
+                <p className="cs-desc">This group of facilities benefited from cohesive brand messaging and cinematic high-level video production through real testimonials and stories.</p>
+                <div className="cs-result">
+                  <span className="num">56%</span>
+                  <span className="lbl">Increased and qualified tours</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -260,7 +225,7 @@ export default function CaseStudies() {
           <div className="label" style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '24px', display: 'inline-flex', justifyContent: 'center' }}>YOUR FACILITY, SEEN THE RIGHT WAY</div>
           <h2>Ready to be the next <em style={{ color: 'var(--teal-bright)', fontStyle: 'italic' }}>case study?</em></h2>
           <p className="sub" style={{ margin: '0 auto 40px', maxWidth: '600px' }}>Tell us about your facility. We'll show you exactly what a Wavecare rebuild could look like — and what it could do for your inquiries.</p>
-          <Link href="/contact" className="btn btn-light">Book a Call</Link>
+          <Link href="/contact" className="btn btn-light">Book a Demo</Link>
         </div>
       </section>
     </>

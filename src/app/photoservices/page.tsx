@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import '../subservices.css';
 import BeforeAfterSlider from '@/components/BeforeAfterSlider';
 
@@ -179,7 +180,7 @@ export default function PhotoServices() {
               const webpName = photo.replace(/\.(jpg|jpeg|png)$/i, '.webp');
               return (
                 <div key={i} className="cell" style={{ padding: 0, overflow: 'hidden' }}>
-                  <img src={`/images/gallery/thumbs/${encodeURIComponent(webpName)}`} alt="Selected Work Background" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%) opacity(0.3)' }} loading="lazy" />
+                  <Image src={`/images/gallery/thumbs/${encodeURIComponent(webpName)}`} alt="Selected Work Background" width={800} height={600} style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%) opacity(0.3)' }} loading="lazy" />
                 </div>
               );
             })}
@@ -296,7 +297,7 @@ export default function PhotoServices() {
                   <div className="mock-web" style={{ maxWidth: '600px', width: '100%' }}>
                     <div className="bar"><i></i><i></i><i></i></div>
                     <div className="shot" style={{ aspectRatio: '16/10' }}>
-                      <img src="/images/website.png" alt="Website" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
+                      <Image src="/images/website.png" alt="Website" width={800} height={600} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
                     </div>
                     <div className="lines"><span></span><span></span><span></span></div>
                   </div>
@@ -304,17 +305,17 @@ export default function PhotoServices() {
                 <div className={`ctx-scene ${ctxTab === 1 ? 'on' : ''}`}>
                   <div className="mock-bro" style={{ maxWidth: '600px', width: '100%', gap: '16px', transform: 'none' }}>
                     <div className="pg" style={{ padding: 0, overflow: 'hidden', aspectRatio: '4/5' }}>
-                      <img src="/images/brochure_inside.png" alt="Brochure Cover" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <Image src="/images/brochure_inside.png" alt="Brochure Cover" width={800} height={600} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     </div>
                     <div className="pg" style={{ padding: 0, overflow: 'hidden', aspectRatio: '4/5' }}>
-                      <img src="/images/brochure_cover.jpg" alt="Brochure Inside" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <Image src="/images/brochure_cover.jpg" alt="Brochure Inside" width={800} height={600} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     </div>
                   </div>
                 </div>
                 <div className={`ctx-scene ${ctxTab === 2 ? 'on' : ''}`}>
                   <div className="mock-goo" style={{ maxWidth: '600px', width: '100%' }}>
                     <div className="shot" style={{ aspectRatio: '16/10' }}>
-                      <img src="/images/gallery/Caregiver%20with%20elderly%20women.jpeg" alt="Google Business Profile Photo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <Image src="/images/gallery/Caregiver%20with%20elderly%20women.jpeg" alt="Google Business Profile Photo" width={800} height={600} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     </div>
                     <div className="info"><div className="name">Park Gardens &middot; Senior Living</div><div className="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div className="meta"></div></div>
                   </div>
@@ -377,7 +378,7 @@ export default function PhotoServices() {
                   '/images/proc_6.png'
                 ].map((src, idx) => (
                   <div className="frame" key={idx}>
-                    <img className="pho" src={src} alt="Process mockup" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <Image className="pho" src={src} alt="Process mockup" width={800} height={600} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     <div className="pick"></div>
                   </div>
                 ))}
@@ -421,7 +422,7 @@ export default function PhotoServices() {
                 }} 
                 key={activeFilter + item.src}
               >
-                <img src={item.src} alt="Selected Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <Image src={item.src} alt="Selected Work" width={800} height={600} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
             ))}
           </div>

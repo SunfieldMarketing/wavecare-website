@@ -126,7 +126,7 @@ export default function Contact() {
               <div className={`form-card ${status === 'success' ? 'done' : ''}`} style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <form className={`form ${status === 'sending' ? 'sending' : ''}`} onSubmit={handleSubmit}>
                   <h2>Send us a message</h2>
-                  <p className="fsub">Prefer to talk? <Link href="#calendar" style={{ color: 'var(--teal-bright)', textDecoration: 'none' }}>Book a call instead &rarr;</Link></p>
+                  <p className="fsub">Prefer to talk? <Link href="#calendar" style={{ color: 'var(--teal-bright)', textDecoration: 'none' }}>Book a demo instead &rarr;</Link></p>
 
                   <div className="field">
                     <label>Name <span className="req">*</span></label>
@@ -218,7 +218,7 @@ export default function Contact() {
           <div className="sec-head center reveal" id="calendar">
             <h2>Rather Just Grab a Time?</h2>
             <p className="lead" style={{ margin: '20px auto 0', maxWidth: '600px', textAlign: 'center', color: 'var(--on-dark)' }}>
-              Book a call that fits your schedule.<br/>Pick a slot and we'll come prepared with ideas specific to your facility.
+              Book a demo that fits your schedule.<br/>Pick a slot and we'll come prepared with ideas specific to your facility.
             </p>
           </div>
           <div className="cal-wrap reveal" style={{ minHeight: '600px', width: '100%', position: 'relative' }}>
@@ -227,7 +227,7 @@ export default function Contact() {
               style={{ width: '100%', border: 'none', overflow: 'hidden', minHeight: '600px' }}
               scrolling="no"
               id="BihxiP7RLvybBcV9yUHJ"
-              title="Book a Call"
+              title="Book a Demo"
             ></iframe>
             <Script src="https://api.leadconnectorhq.com/js/form_embed.js" strategy="lazyOnload" />
           </div>
