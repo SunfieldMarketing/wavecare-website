@@ -7,6 +7,11 @@ export const metadata: Metadata = {
   authors: [{ name: 'Wavecare Marketing' }],
   creator: 'Wavecare Marketing',
   publisher: 'Wavecare Marketing',
+  icons: {
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
+  },
   formatDetection: {
     email: false,
     address: false,
@@ -19,7 +24,7 @@ export const metadata: Metadata = {
     siteName: 'Wavecare Marketing',
     images: [
       {
-        url: '/wavecare-marketing-logo.png', // Fallback, will ideally be an og-image later
+        url: '/wavecare-marketing-logo.png',
         width: 1200,
         height: 630,
       },

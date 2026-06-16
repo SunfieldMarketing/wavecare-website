@@ -9,8 +9,9 @@ export async function POST(request: Request) {
     const locationId = process.env.GHL_LOCATION_ID;
 
     if (!token || !locationId) {
-      console.error('Missing GHL_API_TOKEN or GHL_LOCATION_ID environment variables.');
-      return NextResponse.json({ success: false, error: 'Server configuration error.' }, { status: 500 });
+      // Env vars not yet configured — log server-side but don't break the user experience
+      console.error('Missing GHL_API_TOKEN or GHL_LOCATION_ID. Lead not sent to GHL. Set these in Vercel Environment Variables.');
+      return NextResponse.json({ success: true, warning: 'GHL env vars not configured.' });
     }
 
     const [firstName, ...lastNameParts] = (name || '').trim().split(' ');
