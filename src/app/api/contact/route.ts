@@ -62,8 +62,12 @@ export async function POST(request: Request) {
   }
 
   if (!contactRes.ok) {
-    console.error('[GHL] Contact creation failed:', JSON.stringify(contactData));
-    return NextResponse.json({ success: false, error: 'Your message could not be submitted right now. Please email us directly at info@wavecare.io.' }, { status: 500 });
+    console.error('[GHL] Contact creation failed. Status:', contactRes.status, 'Body:', JSON.stringify(contactData));
+    console.error('[GHL] Token prefix used:', token.substring(0, 8), '| LocationId used:', locationId);
+    return NextResponse.json({ 
+      success: false, 
+      error: `Submission failed (GHL error ${contactRes.status}). Please email us directly at hello@wavecare.io.` 
+    }, { status: 500 });
   }
 
   const contactId = contactData?.contact?.id;
