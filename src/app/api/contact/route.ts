@@ -66,9 +66,10 @@ export async function POST(request: Request) {
   if (!contactRes.ok) {
     console.error('[GHL] Contact creation failed. Status:', contactRes.status, 'Body:', JSON.stringify(contactData));
     console.error('[GHL] Token prefix used:', token.substring(0, 8), '| LocationId used:', locationId);
+    const ghlError = contactData?.message || contactData?.error || JSON.stringify(contactData);
     return NextResponse.json({ 
       success: false, 
-      error: `Submission failed (GHL error ${contactRes.status}). Please email us directly at hello@wavecare.io.` 
+      error: `GHL Error ${contactRes.status}: ${ghlError}` 
     }, { status: 500 });
   }
 
