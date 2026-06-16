@@ -212,8 +212,7 @@ export default function About() {
     <>
       <header className="hero">
         <div className="hero-bg">
-          <Image src="/images/img_3.jpeg" alt="Caregiver with resident at a senior care facility" width={800} height={600} style={{ width: '100%', height: 'auto' }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'rgba(6, 42, 36, 0.65)' }}></div>
+          <Image src="/images/img_3.jpeg" alt="Caregiver with resident at a senior care facility" fill sizes="100vw" style={{ objectFit:'cover', objectPosition:'center center' }} priority />
         </div>
         <div className="container hero-inner" style={{ maxWidth: '1000px' }}>
 
