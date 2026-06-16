@@ -6,11 +6,13 @@ import { useEffect, useState, FormEvent } from 'react';
 import './contact.css';
 
 export default function Contact() {
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success'>('idle');
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState<string>('');
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('sending');
+    setErrorMsg('');
     const formData = new FormData(e.currentTarget);
     
     const data = {
@@ -27,15 +29,16 @@ export default function Contact() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       });
-      if (res.ok) {
+      const json = await res.json();
+      if (res.ok && json.success) {
         setStatus('success');
       } else {
-        setStatus('idle');
-        alert('There was an error sending your message. Please try again.');
+        setErrorMsg(json.error || 'Something went wrong. Please try again.');
+        setStatus('error');
       }
     } catch (err) {
-      setStatus('idle');
-      alert('There was an error sending your message. Please try again.');
+      setErrorMsg('Could not connect to our servers. Please check your internet connection and try again.');
+      setStatus('error');
     }
   };
 
@@ -185,9 +188,17 @@ export default function Contact() {
                     <textarea name="message" placeholder="A sentence or two about what you're working on..."></textarea>
                   </div>
 
-                  <button type="submit" className="btn submit-btn" disabled={status === 'sending'}>
+                  {status === 'error' && (
+                    <div className="form-error-msg">
+                      <span className="form-error-icon">⚠</span>
+                      <span>{errorMsg}</span>
+                    </div>
+                  )}
+
+                  <button type="submit" className="btn submit-btn" disabled={status === 'sending' || status === 'error'}
+                    onClick={status === 'error' ? () => setStatus('idle') : undefined}>
                     <span className="spinner"></span>
-                    <span className="txt">Send Message</span>
+                    <span className="txt">{status === 'error' ? 'Try Again' : 'Send Message'}</span>
                   </button>
                   <p className="form-note">Your information is secure and will never be shared.</p>
                 </form>

@@ -62,14 +62,16 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <head>
+        {/* Fonts — preconnect then load async */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-        
-        <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" strategy="beforeInteractive" />
-        <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" strategy="beforeInteractive" />
-        <Script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" strategy="beforeInteractive" />
-        <Script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" strategy="beforeInteractive" />
+
+        {/* Core animation libs — load after page paint so they don't block preloads */}
+        <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" strategy="afterInteractive" />
+        <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" strategy="afterInteractive" />
+        <Script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" strategy="afterInteractive" />
+        <Script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" strategy="afterInteractive" />
       </head>
       <body>
         <div className="grain"></div>
@@ -80,25 +82,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Navbar />
         {children}
         <Footer />
-        <Analytics />
-        {/* Placeholders for production - replace G-XXXXXXX and GTM-XXXXXXX with actual IDs */}
-        <GoogleAnalytics gaId="G-XXXXXXXXXX" />
-        <GoogleTagManager gtmId="GTM-XXXXXXX" />
-        {/* Meta Pixel Placeholder */}
-        <Script id="meta-pixel" strategy="afterInteractive">
-          {`
-            !function(f,b,e,v,n,t,s)
-            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)}(window, document,'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', 'XXXXXXXXXXXXXXXX'); // Replace with actual Pixel ID
-            fbq('track', 'PageView');
-          `}
-        </Script>
+        {/* Add Google Analytics, GTM, and Meta Pixel IDs here when ready:
+             GA:  <GoogleAnalytics gaId="G-YOURCODE" />
+             GTM: <GoogleTagManager gtmId="GTM-YOURCODE" />
+             Pixel: uncomment and set real ID in the script below
+        */}
       </body>
     </html>
   );
