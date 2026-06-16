@@ -195,8 +195,7 @@ export default function Contact() {
                     </div>
                   )}
 
-                  <button type="submit" className="btn submit-btn" disabled={status === 'sending' || status === 'error'}
-                    onClick={status === 'error' ? () => setStatus('idle') : undefined}>
+                  <button type="submit" className="btn submit-btn" disabled={status === 'sending'}>
                     <span className="spinner"></span>
                     <span className="txt">{status === 'error' ? 'Try Again' : 'Send Message'}</span>
                   </button>
