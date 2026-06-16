@@ -133,13 +133,16 @@
       transform:none; /* remove scale — it was pushing image out of bounds on mobile */
     }
 
-    /* Lighter overlay so the photo actually shows through */
-    .hero-bg::after{
+    /* Darker overlay so text is highly readable but photo still shows */
+    .hero-bg::after, .chero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
       background:
         linear-gradient(180deg,
-          rgba(6,42,36,0.60) 0%,
-          rgba(6,42,36,0.35) 45%,
-          rgba(6,42,36,0.72) 100%);
+          rgba(6,42,36,0.85) 0%,
+          rgba(6,42,36,0.65) 45%,
+          rgba(6,42,36,0.95) 100%);
     }
 
     /* Push content down from top navbar + give bottom breathing room */
