@@ -47,7 +47,7 @@ export async function POST(request: Request) {
   let contactData: any;
 
   try {
-    contactRes = await fetch('https://services.leadconnectorhq.com/contacts/', {
+    contactRes = await fetch('https://services.leadconnectorhq.com/contacts/upsert', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
