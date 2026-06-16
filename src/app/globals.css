@@ -112,27 +112,86 @@
 
   /* ===== MOBILE HERO FIXES ===== */
   @media (max-width:768px){
-    .hero{min-height:100svh; padding:140px 0 120px; align-items:flex-start;}
-    .hero-bg img{object-position:60% center;}
-    .hero-bg::after{
-      background:linear-gradient(180deg, rgba(6,42,36,0.75) 0%, rgba(6,42,36,0.55) 40%, rgba(6,42,36,0.82) 100%),
-                 linear-gradient(90deg, rgba(6,42,36,0.7) 0%, transparent 100%);
+    /* Hero section fills full mobile viewport height */
+    .hero{
+      min-height:100dvh; /* dvh = dynamic viewport height, accounts for mobile browser chrome */
+      height:100dvh;
+      padding:0;
+      align-items:center;
+      display:flex;
     }
-    .hero h1{font-size:clamp(40px,11vw,64px);}
-    .hero-sub{font-size:16px; max-width:100%;}
-    .hero-actions{flex-direction:column; align-items:flex-start; gap:12px;}
-    .scroll-cue{display:none;} /* hide on mobile — no room and conflicts with content */
 
-    /* Sub-page heroes (phero) */
-    .phero{min-height:70svh; padding:120px 0 60px; align-items:flex-start;}
-    .phero-bg img{object-position:60% center;}
-    .phero-bg::after{background:linear-gradient(180deg, rgba(6,42,36,0.85) 0%, rgba(6,42,36,0.7) 100%);}
+    /* Background image — fill the full section, no scale transform on mobile */
+    .hero-bg{position:absolute; inset:0; width:100%; height:100%;}
+    .hero-bg img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center center;
+      transform:none; /* remove scale — it was pushing image out of bounds on mobile */
+    }
+
+    /* Lighter overlay so the photo actually shows through */
+    .hero-bg::after{
+      background:
+        linear-gradient(180deg,
+          rgba(6,42,36,0.60) 0%,
+          rgba(6,42,36,0.35) 45%,
+          rgba(6,42,36,0.72) 100%);
+    }
+
+    /* Push content down from top navbar + give bottom breathing room */
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      padding:100px 22px 80px;
+      width:100%;
+    }
+
+    .hero h1{font-size:clamp(38px,10.5vw,58px); line-height:1.05;}
+    .hero-sub{font-size:16px; max-width:100%; line-height:1.65;}
+    .hero-actions{flex-direction:column; align-items:flex-start; gap:12px; margin-top:32px;}
+    .scroll-cue{display:none;}
+
+    /* Sub-page heroes (phero) — also fill height properly */
+    .phero{
+      min-height:70dvh;
+      padding:0;
+      align-items:center;
+      display:flex;
+    }
+    .phero-bg{position:absolute; inset:0; width:100%; height:100%;}
+    .phero-bg img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center center;
+    }
+    .phero-bg::after{
+      background:linear-gradient(180deg,
+        rgba(6,42,36,0.75) 0%,
+        rgba(6,42,36,0.50) 50%,
+        rgba(6,42,36,0.80) 100%);
+    }
+    .phero .container{padding-top:120px; padding-bottom:60px;}
     .phero-in{grid-template-columns:1fr; gap:30px;}
-    .phero-wall{display:none;} /* hide image grid wall on mobile, keep clean */
+    .phero-wall{display:none;}
 
     /* Contact hero */
     .chero{min-height:auto; padding-bottom:40px;}
-    .chero-bg img{object-position:center center;}
+    .chero-bg{position:absolute; inset:0; width:100%; height:100%;}
+    .chero-bg img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center center;
+    }
     .chero-grid{grid-template-columns:1fr; gap:40px;}
   }
 
