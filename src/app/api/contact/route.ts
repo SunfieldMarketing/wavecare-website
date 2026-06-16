@@ -73,13 +73,16 @@ export async function POST(request: Request) {
     }, { status: 500 });
   }
 
-  const contactId = contactData?.contact?.id;
+  const contactId = contactData?.contact?.id || contactData?.id;
 
   // Add message as a note — non-critical, don't fail if this errors
-  if (contactId && message && message.trim()) {
+  if (contactId && (message?.trim() || (services && services.length > 0))) {
     try {
-      const noteBody = `--- Message from Website ---\n\nServices: ${services?.join(', ') || 'Not specified'}\n\n${message.trim()}`;
-      await fetch(`https://services.leadconnectorhq.com/contacts/${contactId}/notes`, {
+      const formattedServices = services?.length > 0 ? services.join(', ') : 'Not specified';
+      const userMessage = message?.trim() ? `\n\nMessage:\n${message.trim()}` : '';
+      const noteBody = `Services Requested: ${formattedServices}${userMessage}`;
+      
+      const noteRes = await fetch(`https://services.leadconnectorhq.com/contacts/${contactId}/notes`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -87,10 +90,17 @@ export async function POST(request: Request) {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
         },
-        body: JSON.stringify({ body: noteBody, contactId }),
+        body: JSON.stringify({ body: noteBody }),
       });
+      
+      if (!noteRes.ok) {
+        const errText = await noteRes.text();
+        console.warn('[GHL] Note creation failed:', noteRes.status, errText);
+      } else {
+        console.log('[GHL] Note attached successfully to contact:', contactId);
+      }
     } catch (noteErr) {
-      console.warn('[GHL] Note creation failed (non-critical):', noteErr);
+      console.warn('[GHL] Note creation network error:', noteErr);
     }
   }
 

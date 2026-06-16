@@ -48,6 +48,7 @@
     transition:width .3s,height .3s,background .3s,border-color .3s;}
   .cring.hot{width:62px; height:62px; background:rgba(95,208,191,0.12); border-color:var(--teal-bright);}
   @media (hover:none),(pointer:coarse){ .cdot,.cring{display:none;} }
+  body:has(iframe:hover) .cdot, body:has(iframe:hover) .cring, body:has(.cal-wrap:hover) .cdot, body:has(.cal-wrap:hover) .cring { opacity: 0 !important; }
 
   /* nav */
   .nav{position:fixed; top:0; left:0; right:0; z-index:1000; padding:22px 0; transition:.4s;}
