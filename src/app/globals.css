@@ -90,9 +90,9 @@
 
   /* ===== HERO — real healthcare photo as the face ===== */
   .hero{position:relative; min-height:100svh; display:flex; align-items:center; overflow:hidden;
-    padding:clamp(120px,18vh,200px) 0 var(--pad);}
+    padding:clamp(120px,18vh,200px) 0 clamp(100px,14vh,160px);}
   .hero-bg{position:absolute; inset:0; z-index:0;}
-  .hero-bg img{width:100%; height:100%; object-fit:cover; transform:scale(1.08); transform-origin:center;}
+  .hero-bg img{width:100%; height:100%; object-fit:cover; object-position:center center; transform:scale(1.08); transform-origin:center;}
   .hero-bg::after{content:""; position:absolute; inset:0;
     background:linear-gradient(90deg, rgba(6,42,36,0.88) 0%, rgba(6,42,36,0.62) 42%, rgba(6,42,36,0.30) 100%),
                linear-gradient(0deg, rgba(6,42,36,0.55), transparent 55%);}
@@ -103,10 +103,38 @@
   .hero h1 .line>span{display:block;}
   .hero-sub{max-width:560px; font-size:clamp(16px,1.35vw,20px); line-height:1.6; color:var(--on-dark); margin-bottom:42px;}
   .hero-actions{display:flex; gap:18px; flex-wrap:wrap;}
-  .scroll-cue{position:absolute; bottom:34px; left:50%; transform:translateX(-50%); z-index:3; display:flex; flex-direction:column; align-items:center; gap:9px; color:var(--muted); font-size:11px; letter-spacing:0.25em; text-transform:uppercase;}
+
+  /* scroll-cue — sits at bottom of hero, well clear of any buttons */
+  .scroll-cue{position:absolute; bottom:28px; left:50%; transform:translateX(-50%); z-index:3; display:flex; flex-direction:column; align-items:center; gap:9px; color:var(--muted); font-size:11px; letter-spacing:0.25em; text-transform:uppercase; pointer-events:none;}
   .scroll-cue .m{width:23px; height:36px; border:1px solid rgba(255,255,255,0.35); border-radius:13px; position:relative;}
   .scroll-cue .m::after{content:""; position:absolute; top:7px; left:50%; transform:translateX(-50%); width:3px; height:7px; border-radius:2px; background:var(--teal-bright); animation:wheel 1.6s infinite;}
   @keyframes wheel{0%{opacity:1; top:7px;}100%{opacity:0; top:17px;}}
+
+  /* ===== MOBILE HERO FIXES ===== */
+  @media (max-width:768px){
+    .hero{min-height:100svh; padding:140px 0 120px; align-items:flex-start;}
+    .hero-bg img{object-position:60% center;}
+    .hero-bg::after{
+      background:linear-gradient(180deg, rgba(6,42,36,0.75) 0%, rgba(6,42,36,0.55) 40%, rgba(6,42,36,0.82) 100%),
+                 linear-gradient(90deg, rgba(6,42,36,0.7) 0%, transparent 100%);
+    }
+    .hero h1{font-size:clamp(40px,11vw,64px);}
+    .hero-sub{font-size:16px; max-width:100%;}
+    .hero-actions{flex-direction:column; align-items:flex-start; gap:12px;}
+    .scroll-cue{display:none;} /* hide on mobile — no room and conflicts with content */
+
+    /* Sub-page heroes (phero) */
+    .phero{min-height:70svh; padding:120px 0 60px; align-items:flex-start;}
+    .phero-bg img{object-position:60% center;}
+    .phero-bg::after{background:linear-gradient(180deg, rgba(6,42,36,0.85) 0%, rgba(6,42,36,0.7) 100%);}
+    .phero-in{grid-template-columns:1fr; gap:30px;}
+    .phero-wall{display:none;} /* hide image grid wall on mobile, keep clean */
+
+    /* Contact hero */
+    .chero{min-height:auto; padding-bottom:40px;}
+    .chero-bg img{object-position:center center;}
+    .chero-grid{grid-template-columns:1fr; gap:40px;}
+  }
 
   section{position:relative;}
   .deep{background:var(--teal-deep);} .primary{background:var(--teal-primary);} .ink{background:var(--ink);} .light{background:var(--teal-light); color:var(--navy);}
