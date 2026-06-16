@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Script from 'next/script';
+import '../contact/contact.css';
 
 export default function BookPage() {
   const [step, setStep] = useState(1);
@@ -79,7 +80,7 @@ export default function BookPage() {
           
           {step === 1 && (
             <div className="reveal" style={{ maxWidth: '720px', margin: '0 auto' }}>
-              <div className="form-card" style={{ padding: 'clamp(30px, 5vw, 50px)', borderRadius: '24px', background: '#fff', boxShadow: '0 24px 60px rgba(0,0,0,0.2)' }}>
+              <div className="form-card">
                 <form className={`form ${status === 'sending' ? 'sending' : ''}`} onSubmit={handleSubmit}>
                   
                   <div className="field">
