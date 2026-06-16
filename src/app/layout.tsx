@@ -8,9 +8,13 @@ export const metadata: Metadata = {
   creator: 'Wavecare Marketing',
   publisher: 'Wavecare Marketing',
   icons: {
-    icon: '/favicon.png',
+    icon: [
+      { url: '/favicon.png', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/favicon.png', type: 'image/png' },
+    ],
     shortcut: '/favicon.png',
-    apple: '/favicon.png',
   },
   formatDetection: {
     email: false,
