@@ -279,7 +279,7 @@ export default function Home() {
 
       <header className="hero">
         <div className="hero-bg">
-          <Image src="/images/img_3.jpeg" alt="Caregiver with resident at a senior care facility" layout="fill" objectFit="cover" priority />
+          <Image src="/images/img_3.jpeg" alt="Caregiver with resident at a senior care facility" fill sizes="100vw" style={{ objectFit:'cover', objectPosition:'center center' }} priority />
         </div>
         <div className="container hero-inner">
 
