@@ -1,29 +1,36 @@
 import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
+  let body: any = {};
+
   try {
-    const body = await request.json();
-    const { name, email, company, services, message } = body;
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ success: false, error: 'Invalid JSON' }, { status: 400 });
+  }
 
-    const token = process.env.GHL_API_TOKEN;
-    const locationId = process.env.GHL_LOCATION_ID;
+  const { name, email, company, services, message } = body;
 
-    if (!token || !locationId) {
-      // Env vars not yet configured — log server-side but don't break the user experience
-      console.error('Missing GHL_API_TOKEN or GHL_LOCATION_ID. Lead not sent to GHL. Set these in Vercel Environment Variables.');
-      return NextResponse.json({ success: true, warning: 'GHL env vars not configured.' });
-    }
+  // Always respond success to the user — GHL errors are logged server-side only
+  const respond = () => NextResponse.json({ success: true });
 
+  const token = process.env.GHL_API_TOKEN;
+  const locationId = process.env.GHL_LOCATION_ID;
+
+  if (!token || !locationId) {
+    console.warn('[GHL] Missing GHL_API_TOKEN or GHL_LOCATION_ID. Set these in Vercel Environment Variables.');
+    return respond();
+  }
+
+  try {
     const [firstName, ...lastNameParts] = (name || '').trim().split(' ');
     const lastName = lastNameParts.join(' ');
 
-    // Build tags from selected services + source tag
     const tags: string[] = ['Website Lead'];
     if (services && services.length > 0) {
       services.forEach((s: string) => tags.push(s));
     }
 
-    // 1. Create or update the contact
     const contactPayload = {
       firstName: firstName || '',
       lastName: lastName || '',
@@ -48,35 +55,36 @@ export async function POST(request: Request) {
     const contactData = await contactRes.json();
 
     if (!contactRes.ok) {
-      console.error('GHL Contact Creation Error:', contactData);
-      return NextResponse.json({ success: false, error: contactData.message || 'Error creating contact in GHL.' }, { status: 400 });
+      console.error('[GHL] Contact creation failed:', JSON.stringify(contactData));
+      return respond(); // Still show success to user
     }
 
     const contactId = contactData?.contact?.id;
 
-    // 2. If there is a message, add it as a note on the contact
+    // Add message as a note if present
     if (contactId && message && message.trim()) {
-      const notePayload = {
-        body: `--- Message from Website ---\n\nServices Interested In: ${services && services.length > 0 ? services.join(', ') : 'Not specified'}\n\n${message.trim()}`,
-        contactId,
-        userId: contactId, // GHL requires userId; use contactId as fallback
-      };
-
-      await fetch(`https://services.leadconnectorhq.com/contacts/${contactId}/notes`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Version': '2021-07-28',
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify(notePayload),
-      });
+      const noteBody = `--- Message from Website ---\n\nServices: ${services?.join(', ') || 'Not specified'}\n\n${message.trim()}`;
+      try {
+        await fetch(`https://services.leadconnectorhq.com/contacts/${contactId}/notes`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Version': '2021-07-28',
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify({ body: noteBody, contactId }),
+        });
+      } catch (noteErr) {
+        console.error('[GHL] Note creation failed:', noteErr);
+      }
     }
 
-    return NextResponse.json({ success: true, contactId });
-  } catch (error: any) {
-    console.error('API Route Error:', error);
-    return NextResponse.json({ success: false, error: error.message || 'Internal Server Error' }, { status: 500 });
+    console.log('[GHL] Contact created successfully:', contactId);
+    return respond();
+
+  } catch (err: any) {
+    console.error('[GHL] Unexpected error:', err?.message || err);
+    return respond(); // Always succeed for the user
   }
 }
