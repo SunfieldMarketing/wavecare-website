@@ -97,7 +97,7 @@ export default function Contact() {
     <>
       <section className="chero">
         <div className="chero-bg">
-          <Image src="/images/img_3.jpeg" alt="Background" fill style={{ objectFit: 'cover' }} />
+          <Image src="/images/img_3.jpeg" alt="Background" fill sizes="100vw" style={{ objectFit:'cover', objectPosition:'center center' }} priority />
         </div>
         <div className="container">
           <div className="chero-grid">
