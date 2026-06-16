@@ -15,31 +15,33 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: false, error: 'An email address is required to submit this form.' }, { status: 400 });
   }
 
-  const token = process.env.GHL_API_TOKEN;
-  const locationId = process.env.GHL_LOCATION_ID;
+  const token = (process.env.GHL_API_TOKEN || '').trim();
+  const locationId = (process.env.GHL_LOCATION_ID || '').trim();
 
   if (!token || !locationId) {
     console.error('[GHL] Missing GHL_API_TOKEN or GHL_LOCATION_ID — set these in Vercel Environment Variables.');
     return NextResponse.json({ success: false, error: 'Our contact system is temporarily unavailable. Please email us directly at info@wavecare.io.' }, { status: 503 });
   }
 
-  const [firstName, ...lastNameParts] = (name || '').trim().split(' ');
-  const lastName = lastNameParts.join(' ');
+  const [first, ...lastParts] = (name || '').trim().split(' ');
+  const last = lastParts.join(' ');
 
   const tags: string[] = ['Website Lead'];
   if (services && services.length > 0) {
     services.forEach((s: string) => tags.push(s));
   }
 
-  const contactPayload = {
-    firstName: firstName || '',
-    lastName: lastName || '',
-    email: email || '',
-    companyName: company || '',
+  const contactPayload: any = {
+    email: email,
     tags,
     source: 'Website Contact Form',
     locationId,
   };
+
+  if (first) contactPayload.firstName = first;
+  if (last) contactPayload.lastName = last;
+  if (company) contactPayload.companyName = company;
+
 
   let contactRes: Response;
   let contactData: any;
