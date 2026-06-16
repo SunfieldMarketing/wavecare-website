@@ -481,5 +481,9 @@
     .feat-card { padding: 24px; }
     .sec-head { padding: 0 20px; }
     .deliv { grid-template-columns: 1fr; }
-  }@ k e y f r a m e s   f a d e I n U p   {   f r o m   {   o p a c i t y :   0 ;   t r a n s f o r m :   t r a n s l a t e Y ( 2 0 p x ) ;   }   t o   {   o p a c i t y :   1 ;   t r a n s f o r m :   t r a n s l a t e Y ( 0 ) ;   }   }  
- 
+  }
+  
+@keyframes fadeInUp { 
+  from { opacity: 0; transform: translateY(20px); } 
+  to { opacity: 1; transform: translateY(0); } 
+}
