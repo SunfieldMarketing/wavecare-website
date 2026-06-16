@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Script from 'next/script';
 import '../contact/contact.css';
 
@@ -8,6 +8,19 @@ export default function BookPage() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const [selectedChips, setSelectedChips] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    const els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('in')); return; }
+    const io = new IntersectionObserver(es => {
+      es.forEach(en => { if (en.isIntersecting) en.target.classList.add('in'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -5% 0px' });
+    els.forEach(e => io.observe(e));
+    setTimeout(() => {
+      els.forEach(e => { const r = e.getBoundingClientRect(); if (r.top < innerHeight) e.classList.add('in'); });
+    }, 100);
+    return () => io.disconnect();
+  }, [step]);
 
   const toggleChip = (name: string) => {
     setSelectedChips(prev => ({
