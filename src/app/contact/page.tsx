@@ -8,13 +8,35 @@ import './contact.css';
 export default function Contact() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success'>('idle');
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('sending');
-    // Mock successful submit after 1.5s
-    setTimeout(() => {
-      setStatus('success');
-    }, 1500);
+    const formData = new FormData(e.currentTarget);
+    
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      company: formData.get('company'),
+      services: Object.keys(selectedChips).filter(k => selectedChips[k]),
+      message: formData.get('message')
+    };
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (res.ok) {
+        setStatus('success');
+      } else {
+        setStatus('idle');
+        alert('There was an error sending your message. Please try again.');
+      }
+    } catch (err) {
+      setStatus('idle');
+      alert('There was an error sending your message. Please try again.');
+    }
   };
 
   useEffect(() => {
@@ -130,17 +152,17 @@ export default function Contact() {
 
                   <div className="field">
                     <label>Name <span className="req">*</span></label>
-                    <input type="text" placeholder="John Doe" required />
+                    <input type="text" name="name" placeholder="John Doe" required />
                   </div>
 
                   <div className="field">
                     <label>Email <span className="req">*</span></label>
-                    <input type="email" placeholder="john@example.com" required />
+                    <input type="email" name="email" placeholder="john@example.com" required />
                   </div>
 
                   <div className="field">
                     <label>Facility / Company</label>
-                    <input type="text" placeholder="Oakwood Senior Living" />
+                    <input type="text" name="company" placeholder="Oakwood Senior Living" />
                   </div>
 
                   <div>
@@ -160,7 +182,7 @@ export default function Contact() {
 
                   <div className="field">
                     <label>Tell us about your facility (Optional)</label>
-                    <textarea placeholder="A sentence or two about what you're working on..."></textarea>
+                    <textarea name="message" placeholder="A sentence or two about what you're working on..."></textarea>
                   </div>
 
                   <button type="submit" className="btn submit-btn" disabled={status === 'sending'}>
