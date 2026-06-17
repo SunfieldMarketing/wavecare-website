@@ -27,9 +27,6 @@ export async function POST(request: Request) {
   const last = lastParts.join(' ');
 
   const tags: string[] = ['Website Lead'];
-  if (services && services.length > 0) {
-    services.forEach((s: string) => tags.push(s));
-  }
 
   const contactPayload: any = {
     email: email,
