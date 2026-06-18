@@ -57,7 +57,7 @@ export const metadata: Metadata = {
 
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from '@vercel/analytics/next';
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import Script from 'next/script';
 import './globals.css';
@@ -86,6 +86,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Navbar />
         {children}
         <Footer />
+        <Analytics />
         {/* Add Google Analytics, GTM, and Meta Pixel IDs here when ready:
              GA:  <GoogleAnalytics gaId="G-YOURCODE" />
              GTM: <GoogleTagManager gtmId="GTM-YOURCODE" />
