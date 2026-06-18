@@ -58,7 +58,7 @@ export const metadata: Metadata = {
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Analytics } from '@vercel/analytics/react';
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
 import './globals.css';
 
@@ -86,11 +86,28 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Navbar />
         {children}
         <Footer />
-        {/* Add Google Analytics, GTM, and Meta Pixel IDs here when ready:
-             GA:  <GoogleAnalytics gaId="G-YOURCODE" />
-             GTM: <GoogleTagManager gtmId="GTM-YOURCODE" />
-             Pixel: uncomment and set real ID in the script below
-        */}
+        {/* ── Google Analytics 4 ── */}
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
+
+        {/* ── Google Ads conversion tracking ── */}
+        {process.env.NEXT_PUBLIC_GADS_ID && (
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GADS_ID}`}
+            strategy="afterInteractive"
+          />
+        )}
+        {process.env.NEXT_PUBLIC_GADS_ID && (
+          <Script id="google-ads-config" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GADS_ID}');
+            `}
+          </Script>
+        )}
       </body>
     </html>
   );
