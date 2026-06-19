@@ -1,11 +1,10 @@
 'use client';
 
 import { usePathname, useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { usePostHog } from 'posthog-js/react';
 
-// Tracks page views on every client-side navigation
-export function PostHogPageview() {
+function PostHogPageviewInner() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const posthog = usePostHog();
@@ -21,4 +20,13 @@ export function PostHogPageview() {
   }, [pathname, searchParams, posthog]);
 
   return null;
+}
+
+// Tracks page views on every client-side navigation
+export function PostHogPageview() {
+  return (
+    <Suspense fallback={null}>
+      <PostHogPageviewInner />
+    </Suspense>
+  );
 }
