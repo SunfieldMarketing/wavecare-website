@@ -12,7 +12,7 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
     if (key && !posthog.__loaded) {
       posthog.init(key, {
         api_host: host,
-        capture_pageview: false, // we handle this manually via PostHogPageview
+        capture_pageview: true, // Let PostHog auto-capture to pass health check
         capture_pageleave: true,
         person_profiles: 'identified_only', 
       });
