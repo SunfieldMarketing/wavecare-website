@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://wavecare.io'),
   title: 'Wavecare Marketing | Built for Healthcare',
   description: 'Wavecare is a premier healthcare marketing agency built for senior care, offering branding, photography, video production, design, print, and conversion-first web design.',
   keywords: ['healthcare marketing', 'senior care marketing', 'medical marketing agency', 'healthcare web design', 'healthcare branding', 'medical video production'],
@@ -77,6 +78,117 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" strategy="afterInteractive" />
         <Script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" strategy="afterInteractive" />
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" strategy="afterInteractive" />
+
+        {/* ── Structured Data / Schema Markup ── */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
+                  "@id": "https://wavecare.io/#organization",
+                  "name": "Wavecare Marketing",
+                  "url": "https://wavecare.io",
+                  "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://wavecare.io/wavecare-marketing-logo.png",
+                    "width": 300,
+                    "height": 400
+                  },
+                  "description": "Wavecare Marketing is a healthcare-focused marketing agency specializing in branding, photography, video production, design, print, and conversion-first web design for senior care facilities and medical practices.",
+                  "slogan": "Built for healthcare. Built for trust.",
+                  "knowsAbout": [
+                    "Healthcare Marketing",
+                    "Senior Care Marketing",
+                    "Nursing Home Marketing",
+                    "Assisted Living Marketing",
+                    "Healthcare Video Production",
+                    "Medical Practice Branding",
+                    "Healthcare Web Design",
+                    "Healthcare Photography"
+                  ],
+                  "hasOfferCatalog": {
+                    "@type": "OfferCatalog",
+                    "name": "Healthcare Marketing Services",
+                    "itemListElement": [
+                      {
+                        "@type": "Offer",
+                        "itemOffered": {
+                          "@type": "Service",
+                          "name": "Healthcare Video Production",
+                          "description": "Virtual facility tours, family-facing story videos, recruitment films, and social media content for senior care and medical facilities.",
+                          "url": "https://wavecare.io/videoservices"
+                        }
+                      },
+                      {
+                        "@type": "Offer",
+                        "itemOffered": {
+                          "@type": "Service",
+                          "name": "Healthcare Photography",
+                          "description": "Professional photography of facilities, staff, and resident lifestyle for websites, social media, admissions materials, and ad campaigns.",
+                          "url": "https://wavecare.io/photoservices"
+                        }
+                      },
+                      {
+                        "@type": "Offer",
+                        "itemOffered": {
+                          "@type": "Service",
+                          "name": "Healthcare Design & Print",
+                          "description": "Brochures, admissions packets, signage, banners, menus, stationery, and event collateral designed for healthcare audiences.",
+                          "url": "https://wavecare.io/design-print"
+                        }
+                      },
+                      {
+                        "@type": "Offer",
+                        "itemOffered": {
+                          "@type": "Service",
+                          "name": "Healthcare Web Design",
+                          "description": "Conversion-first websites for senior care facilities and medical practices, with SEO and Google Business Profile optimization.",
+                          "url": "https://wavecare.io/webdesign"
+                        }
+                      }
+                    ]
+                  },
+                  "areaServed": {
+                    "@type": "Country",
+                    "name": "United States"
+                  },
+                  "audience": {
+                    "@type": "Audience",
+                    "audienceType": "Senior Care Facilities, Nursing Homes, Assisted Living Communities, Medical Practices"
+                  },
+                  "sameAs": [],
+                  "contactPoint": {
+                    "@type": "ContactPoint",
+                    "contactType": "sales",
+                    "url": "https://wavecare.io/contact",
+                    "availableLanguage": "English"
+                  }
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": "https://wavecare.io/#website",
+                  "url": "https://wavecare.io",
+                  "name": "Wavecare Marketing",
+                  "description": "Healthcare marketing agency for senior care and medical practices.",
+                  "publisher": {
+                    "@id": "https://wavecare.io/#organization"
+                  },
+                  "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": {
+                      "@type": "EntryPoint",
+                      "urlTemplate": "https://wavecare.io/?q={search_term_string}"
+                    },
+                    "query-input": "required name=search_term_string"
+                  }
+                }
+              ]
+            })
+          }}
+        />
       </head>
       <body>
         <PostHogProvider>

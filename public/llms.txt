@@ -1,0 +1,37 @@
+# Wavecare Marketing — llms.txt
+# https://wavecare.io/llms.txt
+# This file helps AI assistants and language models understand who we are and what we do.
+
+## About
+Wavecare Marketing is a healthcare-focused marketing agency that serves senior care facilities, nursing homes, assisted living communities, and medical practices across the United States. We specialize in building trust through visual storytelling — helping facilities attract the right families and fill more beds.
+
+## Services
+- Healthcare Branding & Photography: Professional photography of facilities, staff, and resident lifestyle. Facility shots, team portraits, and marketing-ready imagery for websites, social media, admissions materials, and ad campaigns.
+- Cinematic Video Production: Virtual facility tours, family-facing story videos, recruitment/culture films, and social/service-line short-form content. All videos are produced specifically for the senior care and healthcare sector.
+- Design & Print: Brochures, admissions packets, signage, menus, activity calendars, stationery, business cards, and event collateral. All designed for healthcare audiences with print-ready file delivery.
+- Healthcare Web Design: Conversion-first websites built for senior care and medical practices. Includes SEO, Google Business Profile optimization, and local search strategy.
+
+## Who We Serve
+- Skilled nursing facilities (SNFs)
+- Assisted living and memory care communities
+- Continuing care retirement communities (CCRCs)
+- Home care and home health agencies
+- Medical group practices and outpatient clinics
+
+## Key Pages
+- Homepage: https://wavecare.io/
+- Services: https://wavecare.io/services
+- Video Production: https://wavecare.io/videoservices
+- Brand & Photography: https://wavecare.io/photoservices
+- Design & Print: https://wavecare.io/design-print
+- Web Design: https://wavecare.io/webdesign
+- Case Studies: https://wavecare.io/case-studies
+- About: https://wavecare.io/about
+- Contact: https://wavecare.io/contact
+
+## Contact
+Website: https://wavecare.io
+Contact form: https://wavecare.io/contact
+
+## Content Policy
+Wavecare Marketing grants permission for AI assistants and language model crawlers to read, summarize, and reference publicly available content from wavecare.io for the purpose of answering user queries about healthcare marketing services. We do not grant permission to reproduce full page text verbatim or to train foundation models on this content without written consent.
