@@ -289,37 +289,34 @@ export default function VideoServices() {
               </div>
               <h3 style={{ fontSize: '22px', color: '#fff', marginBottom: '16px' }}>Facility Films</h3>
               <p style={{ color: 'var(--on-dark)', fontSize: '15px', lineHeight: '1.6', marginBottom: '32px', flex: 1 }}>Hero videos for homepages, virtual tours, and admissions packets are the front families watch before booking a visit.</p>
-              <Link href="#" className="btn-text" style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start' }}>View Sample &rarr;</Link>
+              <Link href="#" className="btn-text" onClick={(e) => { e.preventDefault(); setActiveVideo('1183669641'); }} style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start' }}>View Sample &rarr;</Link>
             </div>
 
-            {/* Card 2 */}
             <div className="fk-card">
               <div className="ic">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
               </div>
               <h3 style={{ fontSize: '22px', color: '#fff', marginBottom: '16px' }}>Family-Facing Stories</h3>
               <p style={{ color: 'var(--on-dark)', fontSize: '15px', lineHeight: '1.6', marginBottom: '32px', flex: 1 }}>Resident videos, resident testimonials, and care journeys that turn the abstract into the personal.</p>
-              <Link href="#" className="btn-text" style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start' }}>View Sample &rarr;</Link>
+              <Link href="#" className="btn-text" onClick={(e) => { e.preventDefault(); setActiveVideo('1183056612'); }} style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start' }}>View Sample &rarr;</Link>
             </div>
 
-            {/* Card 3 */}
             <div className="fk-card">
               <div className="ic">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
               </div>
               <h3 style={{ fontSize: '22px', color: '#fff', marginBottom: '16px' }}>Recruitment &amp; Culture</h3>
               <p style={{ color: 'var(--on-dark)', fontSize: '15px', lineHeight: '1.6', marginBottom: '32px', flex: 1 }}>Films that attract caregivers and clinical staff by showing the team and culture, not the job description.</p>
-              <Link href="#" className="btn-text" style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start' }}>View Sample &rarr;</Link>
+              <Link href="#" className="btn-text" onClick={(e) => { e.preventDefault(); setActiveVideo('930394765'); }} style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start' }}>View Sample &rarr;</Link>
             </div>
 
-            {/* Card 4 */}
             <div className="fk-card">
               <div className="ic">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
               </div>
               <h3 style={{ fontSize: '22px', color: '#fff', marginBottom: '16px' }}>Social &amp; Service Cuts</h3>
               <p style={{ color: 'var(--on-dark)', fontSize: '15px', lineHeight: '1.6', marginBottom: '32px', flex: 1 }}>Vertical cuts, service-line spots, and short-form content sized for the platforms your audience actually scrolls.</p>
-              <Link href="#" className="btn-text" style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start' }}>View Sample &rarr;</Link>
+              <Link href="#" className="btn-text" onClick={(e) => { e.preventDefault(); setActiveVideo('906115435'); }} style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start' }}>View Sample &rarr;</Link>
             </div>
           </div>
         </div>
@@ -343,56 +340,56 @@ export default function VideoServices() {
           </div>
           
           <div className="types-grid stagger" id="typesGrid">
-            <div className="tcard" data-cat="Virtual Tour" onClick={() => setActiveVideo('1183669641')} style={{ cursor: 'pointer' }}>
+            <div className="tcard" data-cat="family" onClick={() => setActiveVideo('1183669641')} style={{ cursor: 'pointer' }}>
               <div className="thumb" data-label="Virtual Tour" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/2146609771-407fb9135b97c639b345fa94bd14f38ebaaf81564e6fed050878482b77d99ab0-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="play"><span>&#9654;</span></div>
               </div>
               <div className="body"><h3>Waterview Nursing &amp; Rehab</h3><p>Discover our newly redesigned Flushing facility featuring panoramic Manhattan skyline views and state-of-the-art care.</p><div className="where">Virtual Tour</div></div>
             </div>
 
-            <div className="tcard" data-cat="Virtual Tour" onClick={() => setActiveVideo('1183056612')} style={{ cursor: 'pointer' }}>
+            <div className="tcard" data-cat="family" onClick={() => setActiveVideo('1183056612')} style={{ cursor: 'pointer' }}>
               <div className="thumb" data-label="Virtual Tour" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/2145807255-3028a1cb240082c2500af287b5f93ca2c503d1d0c131602574bc88e4976ed1f5-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="play"><span>&#9654;</span></div>
               </div>
               <div className="body"><h3>Park Gardens</h3><p>Explore our beautifully renovated Bronx facility offering private, semi-private, and suite accommodations in Riverdale.</p><div className="where">Virtual Tour</div></div>
             </div>
 
-            <div className="tcard" data-cat="Commercial" onClick={() => setActiveVideo('906115435')} style={{ cursor: 'pointer' }}>
+            <div className="tcard" data-cat="social" onClick={() => setActiveVideo('906115435')} style={{ cursor: 'pointer' }}>
               <div className="thumb" data-label="Commercial" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/1787724682-99c5f028f168e64a7c91d011cf8d19a16d4453e95b0911be06e755c443218d36-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="play"><span>&#9654;</span></div>
               </div>
               <div className="body"><h3>Link Homecare</h3><p>A personal story of family-provided in-home care, highlighting the comfort of having a loved one as a certified home attendant.</p><div className="where">Commercial</div></div>
             </div>
 
-            <div className="tcard" data-cat="Virtual Tour" onClick={() => setActiveVideo('930394765')} style={{ cursor: 'pointer' }}>
+            <div className="tcard" data-cat="family" onClick={() => setActiveVideo('930394765')} style={{ cursor: 'pointer' }}>
               <div className="thumb" data-label="Virtual Tour" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/1827081869-f1d75fd0450accdafec4e7b7c8368040ea48a3450daf1cd9b6f636ef56ec7e39-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="play"><span>&#9654;</span></div>
               </div>
               <div className="body"><h3>River Ridge Living Center</h3><p>Take a tranquil virtual tour of our Amsterdam facility, nestled on beautifully manicured private grounds with cozy room options.</p><div className="where">Virtual Tour</div></div>
             </div>
 
-            <div className="tcard" data-cat="Virtual Tour" onClick={() => setActiveVideo('856155374')} style={{ cursor: 'pointer' }}>
+            <div className="tcard" data-cat="family" onClick={() => setActiveVideo('856155374')} style={{ cursor: 'pointer' }}>
               <div className="thumb" data-label="Virtual Tour" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/1712816615-6ba0388b0b58583f381a4b3356eb9052615911745c39ee6dee971f9a310672ff-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="play"><span>&#9654;</span></div>
               </div>
               <div className="body"><h3>The Pines at Bristol</h3><p>Experience our commitment to compassion and excellence with 24/7 professional care and comfortable private recovery rooms.</p><div className="where">Virtual Tour</div></div>
             </div>
 
-            <div className="tcard" data-cat="Virtual Tour" onClick={() => setActiveVideo('856155997')} style={{ cursor: 'pointer' }}>
+            <div className="tcard" data-cat="family" onClick={() => setActiveVideo('856155997')} style={{ cursor: 'pointer' }}>
               <div className="thumb" data-label="Virtual Tour" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/1712817557-3969c28915abb77b8412e3a23078fa6d1b4bad48748312374eeff78913c6f666-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="play"><span>&#9654;</span></div>
               </div>
               <div className="body"><h3>New York Congregational</h3><p>A guided walkthrough of our Brooklyn center, highlighting cozy amenities, private rooms, and a welcoming environment in Flatbush.</p><div className="where">Virtual Tour</div></div>
             </div>
 
-            <div className="tcard" data-cat="Virtual Tour" onClick={() => setActiveVideo('856154806')} style={{ cursor: 'pointer' }}>
+            <div className="tcard" data-cat="family" onClick={() => setActiveVideo('856154806')} style={{ cursor: 'pointer' }}>
               <div className="thumb" data-label="Virtual Tour" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/1712815705-18dc757f93e75914b5eacf8f699412cbe74ee92615493cdf40b7e91c73f859d6-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="play"><span>&#9654;</span></div>
               </div>
               <div className="body"><h3>Cascades Assisted Living</h3><p>Tour our quaint, country-style assisted living community in Bethel, featuring 42 comfortable studio and apartment residences.</p><div className="where">Virtual Tour</div></div>
             </div>
 
-            <div className="tcard" data-cat="Virtual Tour" onClick={() => setActiveVideo('856153642')} style={{ cursor: 'pointer' }}>
+            <div className="tcard" data-cat="family" onClick={() => setActiveVideo('856153642')} style={{ cursor: 'pointer' }}>
               <div className="thumb" data-label="Virtual Tour" style={{ backgroundImage: 'linear-gradient(rgba(10, 58, 50, 0.2), rgba(10, 58, 50, 0.6)), url(https://i.vimeocdn.com/video/1712813534-a3d2acf7cbd65f54e9171b98bf7b6c543db0cbfd52633894a64d329d0c191bf6-d_1280)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="play"><span>&#9654;</span></div>
               </div>

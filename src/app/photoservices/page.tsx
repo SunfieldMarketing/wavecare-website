@@ -7,7 +7,7 @@ import BeforeAfterSlider from '@/components/BeforeAfterSlider';
 
 export default function PhotoServices() {
   const [ctxTab, setCtxTab] = useState(0);
-  const [procTab, setProcTab] = useState(0);
+  const [procTab, setProcTab] = useState(3);
   const [activeFilter, setActiveFilter] = useState('ALL');
 
   const galleryItems = [
@@ -180,7 +180,7 @@ export default function PhotoServices() {
               const webpName = photo.replace(/\.(jpg|jpeg|png)$/i, '.webp');
               return (
                 <div key={i} className="cell" style={{ padding: 0, overflow: 'hidden' }}>
-                  <Image src={`/images/gallery/thumbs/${encodeURIComponent(webpName)}`} alt="Selected Work Background" width={800} height={600} style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%) opacity(0.3)' }} loading="lazy" />
+                  <Image src={`/images/gallery/thumbs/${encodeURIComponent(webpName)}`} alt="Selected Work Background" width={800} height={600} style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(30%) opacity(0.55)' }} loading="lazy" />
                 </div>
               );
             })}

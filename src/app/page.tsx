@@ -290,7 +290,7 @@ export default function Home() {
           </h1>
           <p className="hero-sub" data-hero>
             We help senior care facilities and medical practices look as good as the care they
-            provide — branding, video, print, and websites that turn attention into booked tours.
+            provide: branding, video, print, and websites that turn attention into booked tours.
           </p>
           <div className="hero-actions" data-hero>
             <Link href="/contact" className="btn" data-magnetic data-cursor>Book a Demo</Link>
@@ -309,7 +309,7 @@ export default function Home() {
             <div data-reveal>
               <span className="label">Who We Are</span>
               <h2>Marketing that earns trust before the first tour.</h2>
-              <p>A youthful, yet experienced healthcare marketing agency with bespoke solutions and tailored strategies — built around the sensitivity, compliance, and speed that senior care actually requires.</p>
+              <p>A youthful, yet experienced healthcare marketing agency with bespoke solutions and tailored strategies. Built around the sensitivity, compliance, and speed that senior care actually requires.</p>
               <p>See the work for yourself.</p>
               <Link href="/contact" className="btn" data-magnetic data-cursor style={{ marginTop: '14px' }}>Book a Demo</Link>
             </div>
@@ -464,7 +464,7 @@ export default function Home() {
           <div className="sec-head" data-reveal>
             <span className="label">Why Wavecare</span>
             <h2>Built for the way<br />healthcare actually works.</h2>
-            <p className="lead">Sensitivity, compliance, and decision-makers who don&apos;t have time for back-and-forth — we built our workflows around the realities of senior care.</p>
+            <p className="lead">Sensitivity, compliance, and decision-makers who don&apos;t have time for back-and-forth. We built our workflows around the realities of senior care.</p>
           </div>
           <div className="features stagger">
             <article className="feature" data-cursor>
@@ -480,7 +480,7 @@ export default function Home() {
             <article className="feature" data-cursor>
               <div className="fn">03</div>
               <h3>Built for Decision-Makers</h3>
-              <p>Executive director, marketing manager, or owner — we communicate the way healthcare leaders work. Clear scopes, zero filler.</p>
+              <p>Executive director, marketing manager, or owner: we communicate the way healthcare leaders work. Clear scopes, zero filler.</p>
             </article>
           </div>
         </div>

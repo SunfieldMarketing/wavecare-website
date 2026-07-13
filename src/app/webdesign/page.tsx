@@ -616,7 +616,8 @@ export default function WebDesign() {
         </div>
       </section>
 
-      {/* ========== FEATURED WEBSITE SHOWCASE ========== */}
+      {/* ========== FEATURED WEBSITE SHOWCASE — hidden until real screenshots are ready ========== */}
+      {false && (
       <section className="panel sec-pad">
         <div className="container">
           <div className="sec-head center" data-reveal>
@@ -656,6 +657,7 @@ export default function WebDesign() {
           </div>
         </div>
       </section>
+      )}
 
       {/* ========== FINAL CTA ========== */}
       <section className="final">
