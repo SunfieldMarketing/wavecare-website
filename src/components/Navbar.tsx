@@ -10,7 +10,7 @@ export default function Navbar() {
     <nav className="nav" id="nav">
       <div className="nav-inner">
         <Link href="/" className="logo" data-cursor onClick={() => setMobileMenuOpen(false)}>
-          <Image src="/wavecare-marketing-logo.png" alt="Wavecare Marketing" width={300} height={400} style={{ height: '110px', width: 'auto' }} priority />
+          <Image src="/wavecare-marketing-logo.png" alt="Wavecare Marketing" width={300} height={400} style={{ height: '110px', width: 'auto', filter: 'brightness(0) invert(1)' }} priority />
         </Link>
         <button className={`mobile-toggle ${mobileMenuOpen ? 'open' : ''}`} onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
           <span></span><span></span><span></span>

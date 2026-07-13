@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="f-grid">
           <div className="f-col f-brand">
             <div className="f-logo-row">
-              <Image src="/wavecare-marketing-logo.png" alt="Wavecare Marketing" width={300} height={400} style={{ height: '140px', width: 'auto' }} />
+              <Image src="/wavecare-marketing-logo.png" alt="Wavecare Marketing" width={300} height={400} style={{ height: '140px', width: 'auto', filter: 'brightness(0) invert(1)' }} />
             </div>
             <p>Healthcare marketing that helps facilities look as good as the care they provide. Built for Healthcare.</p>
           </div>

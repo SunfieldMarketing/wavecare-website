@@ -13,13 +13,16 @@ export default function PhotoServices() {
   const galleryItems = [
     { src: '/images/gallery/Caregiver%20with%20elderly%20man%20playing%20game.jpeg', aspect: '0.75', filters: ['RESIDENT LIFESTYLE', 'ALL'] },
     { src: '/images/gallery/Elders%20cooking.jpg', aspect: '1.5', filters: ['RESIDENT LIFESTYLE', 'ALL'] },
-    { src: '/images/gallery/Employees%20laughing%20photo.jpeg', aspect: '1', filters: ['STAFF & TEAM', 'MARKETING', 'ALL'] },
+    { src: '/images/gallery/Employees%20laughing%20photo.jpeg', aspect: '1', filters: ['STAFF & TEAM', 'ALL'] },
     { src: '/images/gallery/Two%20women%20with%20notepads%20smiling.jpg', aspect: '1.3', filters: ['STAFF & TEAM', 'ALL'] },
     { src: '/images/gallery/Balloon%20activity%20photo.jpeg', aspect: '0.8', filters: ['RESIDENT LIFESTYLE', 'ALL'] },
-    { src: '/images/gallery/Catherdral%20Health%20Center%20Front%20Photo.jpeg', aspect: '1.2', filters: ['FACILITY', 'MARKETING', 'ALL'] },
+    { src: '/images/gallery/Catherdral%20Health%20Center%20Front%20Photo.jpeg', aspect: '1.2', filters: ['FACILITY', 'ALL'] },
     { src: '/images/gallery/Elderly%20doing%20puzzles%20photo.jpg', aspect: '1', filters: ['RESIDENT LIFESTYLE', 'ALL'] },
-    { src: '/images/gallery/Yorktown%20landscape%20aerial%20photo%202.jpeg', aspect: '1.4', filters: ['FACILITY', 'MARKETING', 'ALL'] },
-    { src: '/images/gallery/Employees%20smiling.jpeg', aspect: '0.9', filters: ['STAFF & TEAM', 'ALL'] }
+    { src: '/images/gallery/Yorktown%20landscape%20aerial%20photo%202.jpeg', aspect: '1.4', filters: ['FACILITY', 'ALL'] },
+    { src: '/images/gallery/Employees%20smiling.jpeg', aspect: '0.9', filters: ['STAFF & TEAM', 'ALL'] },
+    { src: '/images/brochure_cover.jpg', aspect: '1', filters: ['MARKETING', 'ALL'] },
+    { src: '/images/brochure_inside.png', aspect: '1.3', filters: ['MARKETING', 'ALL'] },
+    { src: '/images/website.png', aspect: '1.6', filters: ['MARKETING', 'ALL'] }
   ];
 
   useEffect(() => {

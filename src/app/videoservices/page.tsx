@@ -167,10 +167,10 @@ export default function VideoServices() {
               <Link href="/contact" className="btn">Book a Demo</Link>
             </div>
             <div className="phero-wall">
-              <div className="cell c1"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div></div>
-              <div className="cell c2"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div></div>
-              <div className="cell c3"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div></div>
-              <div className="cell c4"><div className="placeholder" style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #0d4a40, #13695d)' }}></div></div>
+              <div className="cell c1"><img src="/images/gallery/Caregiver with elderly man playing game.jpeg" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Behind the scenes video production" /></div>
+              <div className="cell c2"><img src="/images/gallery/Employees smiling.jpeg" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Healthcare video production" /></div>
+              <div className="cell c3"><img src="/images/gallery/Caregiver with elderly women.jpeg" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Senior care video production" /></div>
+              <div className="cell c4"><img src="/images/gallery/Two women with notepads smiling.jpg" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Medical video production" /></div>
             </div>
           </div>
         </div>
