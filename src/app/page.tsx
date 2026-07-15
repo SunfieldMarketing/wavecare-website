@@ -284,9 +284,8 @@ export default function Home() {
         <div className="container hero-inner">
 
           <span className="label" data-hero>Healthcare Marketing Agency</span>
-          <h1>
-            <span className="line" data-hero><span>Built for senior living</span></span>
-            <span className="line" data-hero><span className="accent">and skilled nursing.</span></span>
+          <h1 data-hero>
+            Built for senior living <span className="accent">and skilled nursing.</span>
           </h1>
           <p className="hero-sub" data-hero>
             Websites, photography, and video tours for senior living, assisted living, memory care, skilled nursing, independent living, hospice, and home health communities across the U.S. We work with operators of every size and plug in alongside your existing marketing team.
