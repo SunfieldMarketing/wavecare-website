@@ -143,10 +143,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 "@type": "Country",
                 "name": "United States"
               },
-              "audience": {
-                "@type": "Audience",
-                "audienceType": "Senior Care Facilities, Nursing Homes, Assisted Living Communities, Medical Practices"
-              },
               "contactPoint": [
                 {
                   "@type": "ContactPoint",
