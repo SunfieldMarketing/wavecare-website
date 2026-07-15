@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://wavecare.io'),
-  title: 'Wavecare Marketing | Built for Healthcare',
-  description: 'Wavecare is a premier healthcare marketing agency built for senior care, offering branding, photography, video production, design, print, and conversion-first web design.',
+  title: 'Marketing for Senior Living & Skilled Nursing | Wavecare',
+  description: 'Websites, photography, video tours, and branding for senior living, assisted living, and skilled nursing providers nationwide. Book a free audit.',
   keywords: ['healthcare marketing', 'senior care marketing', 'medical marketing agency', 'healthcare web design', 'healthcare branding', 'medical video production'],
   authors: [{ name: 'Wavecare Marketing' }],
   creator: 'Wavecare Marketing',
@@ -97,17 +97,21 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                     "width": 300,
                     "height": 400
                   },
+                  "areaServed": "United States",
                   "description": "Wavecare Marketing is a healthcare-focused marketing agency specializing in branding, photography, video production, design, print, and conversion-first web design for senior care facilities and medical practices.",
                   "slogan": "Built for healthcare. Built for trust.",
                   "knowsAbout": [
-                    "Healthcare Marketing",
-                    "Senior Care Marketing",
-                    "Nursing Home Marketing",
-                    "Assisted Living Marketing",
-                    "Healthcare Video Production",
-                    "Medical Practice Branding",
-                    "Healthcare Web Design",
-                    "Healthcare Photography"
+                    "senior living",
+                    "assisted living",
+                    "memory care",
+                    "skilled nursing",
+                    "independent living",
+                    "CCRC",
+                    "rehabilitation",
+                    "long-term care",
+                    "hospice",
+                    "home health",
+                    "home care"
                   ],
                   "hasOfferCatalog": {
                     "@type": "OfferCatalog",
@@ -117,36 +121,28 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                         "@type": "Offer",
                         "itemOffered": {
                           "@type": "Service",
-                          "name": "Healthcare Video Production",
-                          "description": "Virtual facility tours, family-facing story videos, recruitment films, and social media content for senior care and medical facilities.",
-                          "url": "https://wavecare.io/videoservices"
+                          "name": "Senior living website design"
                         }
                       },
                       {
                         "@type": "Offer",
                         "itemOffered": {
                           "@type": "Service",
-                          "name": "Healthcare Photography",
-                          "description": "Professional photography of facilities, staff, and resident lifestyle for websites, social media, admissions materials, and ad campaigns.",
-                          "url": "https://wavecare.io/photoservices"
+                          "name": "Facility photography and video tour production"
                         }
                       },
                       {
                         "@type": "Offer",
                         "itemOffered": {
                           "@type": "Service",
-                          "name": "Healthcare Design & Print",
-                          "description": "Brochures, admissions packets, signage, banners, menus, stationery, and event collateral designed for healthcare audiences.",
-                          "url": "https://wavecare.io/design-print"
+                          "name": "Branding and creative"
                         }
                       },
                       {
                         "@type": "Offer",
                         "itemOffered": {
                           "@type": "Service",
-                          "name": "Healthcare Web Design",
-                          "description": "Conversion-first websites for senior care facilities and medical practices, with SEO and Google Business Profile optimization.",
-                          "url": "https://wavecare.io/webdesign"
+                          "name": "Free website and Google Business Profile audit"
                         }
                       }
                     ]

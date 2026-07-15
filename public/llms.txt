@@ -12,11 +12,17 @@ Wavecare Marketing is a healthcare-focused marketing agency that serves senior c
 - Healthcare Web Design: Conversion-first websites built for senior care and medical practices. Includes SEO, Google Business Profile optimization, and local search strategy.
 
 ## Who We Serve
-- Skilled nursing facilities (SNFs)
-- Assisted living and memory care communities
-- Continuing care retirement communities (CCRCs)
-- Home care and home health agencies
-- Medical group practices and outpatient clinics
+- senior living
+- assisted living
+- memory care
+- skilled nursing / nursing homes (SNF)
+- independent living
+- continuing care retirement communities (CCRC)
+- rehabilitation and long-term care
+- hospice and palliative care
+- home health
+- home care
+- We work with operators of every size and integrate alongside a facility's existing marketing and admissions team.
 
 ## Key Pages
 - Homepage: https://wavecare.io/

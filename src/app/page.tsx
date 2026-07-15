@@ -285,12 +285,11 @@ export default function Home() {
 
           <span className="label" data-hero>Healthcare Marketing Agency</span>
           <h1>
-            <span className="line" data-hero><span>Built for</span></span>
-            <span className="line" data-hero><span className="accent">Healthcare.</span></span>
+            <span className="line" data-hero><span>Built for senior living</span></span>
+            <span className="line" data-hero><span className="accent">and skilled nursing.</span></span>
           </h1>
           <p className="hero-sub" data-hero>
-            We help senior care facilities and medical practices look as good as the care they
-            provide: branding, video, print, and websites that turn attention into booked tours.
+            Websites, photography, and video tours for senior living, assisted living, memory care, skilled nursing, independent living, hospice, and home health communities across the U.S. We work with operators of every size and plug in alongside your existing marketing team.
           </p>
           <div className="hero-actions" data-hero>
             <Link href="/contact" className="btn" data-magnetic data-cursor>Book a Demo</Link>
@@ -465,6 +464,7 @@ export default function Home() {
             <span className="label">Why Wavecare</span>
             <h2>Built for the way<br />healthcare actually works.</h2>
             <p className="lead">Sensitivity, compliance, and decision-makers who don&apos;t have time for back-and-forth. We built our workflows around the realities of senior care.</p>
+            <p className="lead" style={{ marginTop: '1rem', fontWeight: 500, color: 'var(--accent)' }}>Already have a marketing team? Perfect. We support the team you already trust, we do not replace it.</p>
           </div>
           <div className="features stagger">
             <article className="feature" data-cursor>
