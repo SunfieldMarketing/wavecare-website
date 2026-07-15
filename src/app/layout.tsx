@@ -85,103 +85,105 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@graph": [
-                {
-                  "@type": "Organization",
-                  "@id": "https://wavecare.io/#organization",
-                  "name": "Wavecare Marketing",
-                  "url": "https://wavecare.io",
-                  "logo": {
-                    "@type": "ImageObject",
-                    "url": "https://wavecare.io/wavecare-marketing-logo.png",
-                    "width": 300,
-                    "height": 400
-                  },
-                  "description": "Wavecare Marketing is a healthcare-focused marketing agency specializing in branding, photography, video production, design, print, and conversion-first web design for senior care facilities and medical practices.",
-                  "slogan": "Built for healthcare. Built for trust.",
-                  "knowsAbout": [
-                    "senior living",
-                    "assisted living",
-                    "memory care",
-                    "skilled nursing",
-                    "independent living",
-                    "CCRC",
-                    "rehabilitation",
-                    "long-term care",
-                    "hospice",
-                    "home health",
-                    "home care"
-                  ],
-                  "hasOfferCatalog": {
-                    "@type": "OfferCatalog",
-                    "name": "Healthcare Marketing Services",
-                    "itemListElement": [
-                      {
-                        "@type": "Offer",
-                        "itemOffered": {
-                          "@type": "Service",
-                          "name": "Senior living website design"
-                        }
-                      },
-                      {
-                        "@type": "Offer",
-                        "itemOffered": {
-                          "@type": "Service",
-                          "name": "Facility photography and video tour production"
-                        }
-                      },
-                      {
-                        "@type": "Offer",
-                        "itemOffered": {
-                          "@type": "Service",
-                          "name": "Branding and creative"
-                        }
-                      },
-                      {
-                        "@type": "Offer",
-                        "itemOffered": {
-                          "@type": "Service",
-                          "name": "Free website and Google Business Profile audit"
-                        }
-                      }
-                    ]
-                  },
-                  "areaServed": {
-                    "@type": "Country",
-                    "name": "United States"
-                  },
-                  "audience": {
-                    "@type": "Audience",
-                    "audienceType": "Senior Care Facilities, Nursing Homes, Assisted Living Communities, Medical Practices"
-                  },
-                  "contactPoint": [
-                    {
-                      "@type": "ContactPoint",
-                      "contactType": "sales",
-                      "url": "https://wavecare.io/contact",
-                      "availableLanguage": "English"
+              "@type": "Organization",
+              "@id": "https://wavecare.io/#organization",
+              "name": "Wavecare Marketing",
+              "url": "https://wavecare.io",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://wavecare.io/wavecare-marketing-logo.png",
+                "width": 300,
+                "height": 400
+              },
+              "description": "Wavecare Marketing is a healthcare-focused marketing agency specializing in branding, photography, video production, design, print, and conversion-first web design for senior care facilities and medical practices.",
+              "slogan": "Built for healthcare. Built for trust.",
+              "knowsAbout": [
+                "senior living",
+                "assisted living",
+                "memory care",
+                "skilled nursing",
+                "independent living",
+                "CCRC",
+                "rehabilitation",
+                "long-term care",
+                "hospice",
+                "home health",
+                "home care"
+              ],
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Healthcare Marketing Services",
+                "itemListElement": [
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Senior living website design"
                     }
-                  ]
-                },
-                {
-                  "@type": "WebSite",
-                  "@id": "https://wavecare.io/#website",
-                  "url": "https://wavecare.io",
-                  "name": "Wavecare Marketing",
-                  "description": "Healthcare marketing agency for senior care and medical practices.",
-                  "publisher": {
-                    "@id": "https://wavecare.io/#organization"
                   },
-                  "potentialAction": {
-                    "@type": "SearchAction",
-                    "target": {
-                      "@type": "EntryPoint",
-                      "urlTemplate": "https://wavecare.io/?q={search_term_string}"
-                    },
-                    "query-input": "required name=search_term_string"
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Facility photography and video tour production"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Branding and creative"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Free website and Google Business Profile audit"
+                    }
                   }
+                ]
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "United States"
+              },
+              "audience": {
+                "@type": "Audience",
+                "audienceType": "Senior Care Facilities, Nursing Homes, Assisted Living Communities, Medical Practices"
+              },
+              "contactPoint": [
+                {
+                  "@type": "ContactPoint",
+                  "contactType": "sales",
+                  "url": "https://wavecare.io/contact",
+                  "availableLanguage": "English"
                 }
               ]
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "@id": "https://wavecare.io/#website",
+              "url": "https://wavecare.io",
+              "name": "Wavecare Marketing",
+              "description": "Healthcare marketing agency for senior care and medical practices.",
+              "publisher": {
+                "@id": "https://wavecare.io/#organization"
+              },
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://wavecare.io/?q={search_term_string}"
+                },
+                "query-input": "required name=search_term_string"
+              }
             })
           }}
         />
