@@ -110,40 +110,36 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 "home health",
                 "home care"
               ],
-              "hasOfferCatalog": {
-                "@type": "OfferCatalog",
-                "name": "Healthcare Marketing Services",
-                "itemListElement": [
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "Senior living website design"
-                    }
-                  },
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "Facility photography and video tour production"
-                    }
-                  },
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "Branding and creative"
-                    }
-                  },
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "Free website and Google Business Profile audit"
-                    }
+              "makesOffer": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Senior living website design"
                   }
-                ]
-              },
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Facility photography and video tour production"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Branding and creative"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Free website and Google Business Profile audit"
+                  }
+                }
+              ],
               "areaServed": {
                 "@type": "Country",
                 "name": "United States"
