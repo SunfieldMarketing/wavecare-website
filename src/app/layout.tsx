@@ -87,7 +87,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               "@context": "https://schema.org",
               "@graph": [
                 {
-                  "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
+                  "@type": "LocalBusiness",
                   "@id": "https://wavecare.io/#organization",
                   "name": "Wavecare Marketing",
                   "url": "https://wavecare.io",
@@ -154,13 +154,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                     "@type": "Audience",
                     "audienceType": "Senior Care Facilities, Nursing Homes, Assisted Living Communities, Medical Practices"
                   },
-                  "sameAs": [],
-                  "contactPoint": {
-                    "@type": "ContactPoint",
-                    "contactType": "sales",
-                    "url": "https://wavecare.io/contact",
-                    "availableLanguage": "English"
-                  }
+                  "contactPoint": [
+                    {
+                      "@type": "ContactPoint",
+                      "contactType": "sales",
+                      "url": "https://wavecare.io/contact",
+                      "availableLanguage": "English"
+                    }
+                  ]
                 },
                 {
                   "@type": "WebSite",
