@@ -86,7 +86,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "@id": "https://wavecare.io/#organization",
               "name": "Wavecare Marketing",
               "url": "https://wavecare.io",
               "logo": {
@@ -165,13 +164,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "@id": "https://wavecare.io/#website",
               "url": "https://wavecare.io",
               "name": "Wavecare Marketing",
               "description": "Healthcare marketing agency for senior care and medical practices.",
-              "publisher": {
-                "@id": "https://wavecare.io/#organization"
-              },
               "potentialAction": {
                 "@type": "SearchAction",
                 "target": {
