@@ -87,7 +87,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               "@context": "https://schema.org",
               "@graph": [
                 {
-                  "@type": "LocalBusiness",
+                  "@type": "Organization",
                   "@id": "https://wavecare.io/#organization",
                   "name": "Wavecare Marketing",
                   "url": "https://wavecare.io",
