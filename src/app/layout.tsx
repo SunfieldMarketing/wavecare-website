@@ -97,7 +97,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                     "width": 300,
                     "height": 400
                   },
-                  "areaServed": "United States",
                   "description": "Wavecare Marketing is a healthcare-focused marketing agency specializing in branding, photography, video production, design, print, and conversion-first web design for senior care facilities and medical practices.",
                   "slogan": "Built for healthcare. Built for trust.",
                   "knowsAbout": [
