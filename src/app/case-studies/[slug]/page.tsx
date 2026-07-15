@@ -9,7 +9,7 @@ const cases: Record<string, { client: string; title: string; services: string[];
     resultLabel: 'Increase in qualified tours',
     body: [
       'Oakwood was losing out to newer competitors despite offering better care. Their existing website was slow, outdated, and didn\'t communicate the warmth and professionalism of their team.',
-      'We completely overhauled their digital presence — starting with a conversion-first website built around the Google 3-Pack, and pairing it with a cinematic facility tour video that gave prospective families a real feel for the community.',
+      'We completely overhauled their digital presence, starting with a conversion-first website built around the Google 3-Pack, and pairing it with a cinematic facility tour video that gave prospective families a real feel for the community.',
       'Within three months of launch, qualified tour bookings had increased by 42%, and their Google Business profile moved from page 3 to position 2 in local search.',
     ],
   },
@@ -33,7 +33,7 @@ const cases: Record<string, { client: string; title: string; services: string[];
     resultLabel: 'Facilities launched under the new brand',
     body: [
       'Harmony Care was expanding rapidly across the region, but their brand hadn\'t kept pace. Each facility looked different, messaging was inconsistent, and their website couldn\'t handle their multi-location growth.',
-      'We designed a scalable brand system from the ground up — logo, color palette, typography, and voice — then built a unified website architecture that let each location maintain its personality while presenting a cohesive parent brand.',
+      'We designed a scalable brand system from the ground up, logo, color palette, typography, and voice, then built a unified website architecture that let each location maintain its personality while presenting a cohesive parent brand.',
       'Within 18 months, 15 facilities had launched under the new Harmony Care brand, with a standardized marketing playbook that made each opening smoother than the last.',
     ],
   },
@@ -45,7 +45,7 @@ const cases: Record<string, { client: string; title: string; services: string[];
     resultLabel: 'Organic search traffic',
     body: [
       'Mercy Health Partners had five locations but almost no organic visibility. Their website was a single-page template that couldn\'t compete in local search, and their Google Business profiles were incomplete.',
-      'We restructured their website into a proper multi-location architecture — dedicated pages for each practice, schema markup, and deep SEO foundations. We also audited and optimized all five Google Business profiles with new photos, correct categories, and review response templates.',
+      'We restructured their website into a proper multi-location architecture, dedicated pages for each practice, schema markup, and deep SEO foundations. We also audited and optimized all five Google Business profiles with new photos, correct categories, and review response templates.',
       'Within six months, organic search traffic had grown by 210%, and three of the five locations now appear in the Google 3-Pack for their target search terms.',
     ],
   },

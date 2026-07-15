@@ -240,9 +240,9 @@ export default function About() {
             <div data-reveal>
               <span className="label">Why We Exist</span>
               <h2>Ten years. Hundreds of facilities. One problem.</h2>
-              <p>Over the past ten years, we've worked with hundreds of nursing homes and healthcare operators across the country. And honestly, most of them had the same problem — they weren't being seen the way they deserved to be seen.</p>
+              <p>Over the past ten years, we've worked with hundreds of nursing homes and healthcare operators across the country. And honestly, most of them had the same problem, they weren't being seen the way they deserved to be seen.</p>
               <p>From a broken website to a video from the 90s, we've seen it all. Nothing says <em>"we'll take great care of your loved one"</em> like an online experience that feels clear, trustworthy, and easy from start to finish.</p>
-              <p>So we built Wavecare — to showcase quality of care in the light it deserves.</p>
+              <p>So we built Wavecare, to showcase quality of care in the light it deserves.</p>
               <Link href="#services" className="btn" data-magnetic data-cursor style={{ marginTop: '14px' }}>What We Do</Link>
             </div>
             <div className="story-img" data-reveal data-cursor>
@@ -256,7 +256,7 @@ export default function About() {
         <div className="glow" style={{ width: '560px', height: '560px', background: 'var(--teal-accent)', bottom: '-160px', right: '-120px', opacity: 0.3 }}></div>
         <div className="container">
           <span className="label">The Stakes</span>
-          <p className="big" id="insightText">Families are making one of the biggest decisions of their lives — and your facility gets judged in seconds. We make those seconds count.</p>
+          <p className="big" id="insightText">Families are making one of the biggest decisions of their lives, and your facility gets judged in seconds. We make those seconds count.</p>
           <p className="foot" data-reveal>When families come across your community, it's about trust. It's about confidence. It's about that moment where they say: yeah, this feels right.</p>
         </div>
       </section>
@@ -274,11 +274,11 @@ export default function About() {
             </article>
             <article className="value" data-cursor>
               <div className="vmark">02</div><h3>Confidence</h3>
-              <p>We showcase your quality of care in the light it deserves — branding, video, and high-converting websites that hold up to scrutiny.</p>
+              <p>We showcase your quality of care in the light it deserves, branding, video, and high-converting websites that hold up to scrutiny.</p>
             </article>
             <article className="value" data-cursor>
               <div className="vmark">03</div><h3>The Right Fit</h3>
-              <p>We optimize the entire journey to get more suitable residents through your doors — not just clicks, but the right families saying yes.</p>
+              <p>We optimize the entire journey to get more suitable residents through your doors, not just clicks, but the right families saying yes.</p>
             </article>
           </div>
         </div>
@@ -373,7 +373,7 @@ export default function About() {
           <div className="sec-head" data-reveal>
             <span className="label">What Our Clients Say</span>
             <h2>Don't just take<br />our word for it.</h2>
-            <p className="lead">See how we've helped healthcare providers grow — in their own words.</p>
+            <p className="lead">See how we've helped healthcare providers grow, in their own words.</p>
           </div>
           <div className="tcards stagger">
             <article className="tcard" data-cursor><span className="q">"</span><blockquote>From the first call, their team understood our facility, our audience, and the sensitivity required in healthcare. The visuals, website updates, and overall branding helped us look more professional and trustworthy. We started receiving better-quality inquiries within weeks.</blockquote><div className="who"><strong>Director</strong>Senior Care Facility</div></article>

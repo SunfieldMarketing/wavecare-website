@@ -141,10 +141,10 @@ export default function DesignPrint() {
   }, []);
 
   const procData = [
-    { name: "Discovery", title: "Discovery", desc: "We review your goals, audience, and existing materials — and define exactly what each piece needs to do." },
+    { name: "Discovery", title: "Discovery", desc: "We review your goals, audience, and existing materials, and define exactly what each piece needs to do." },
     { name: "Design", title: "Design", desc: "We create concepts aligned with your brand and messaging, turning the brief into real layouts." },
-    { name: "Refine", title: "Refine", desc: "We collaborate on revisions and finalize the design — every edit marked and resolved." },
-    { name: "Print & Deliver", title: "Print & Deliver", desc: "We prepare production-ready files or coordinate printing and delivery — press marks, bleeds, and CMYK all handled." }
+    { name: "Refine", title: "Refine", desc: "We collaborate on revisions and finalize the design, every edit marked and resolved." },
+    { name: "Print & Deliver", title: "Print & Deliver", desc: "We prepare production-ready files or coordinate printing and delivery, press marks, bleeds, and CMYK all handled." }
   ];
 
   return (
@@ -205,7 +205,7 @@ export default function DesignPrint() {
             <div className="ba-handle" style={{ left: `${baPos}%` }}></div>
             <div className="ba-tags"><span className="btag">BEFORE</span><span className="atag">AFTER</span></div>
           </div>
-          <p className="ba-caption" data-reveal style={{ marginTop: '32px', fontSize: '11px' }}>Drag — left is a typical flyer, right is a professionally designed piece.</p>
+          <p className="ba-caption" data-reveal style={{ marginTop: '32px', fontSize: '11px' }}>Drag, left is a typical flyer, right is a professionally designed piece.</p>
 
           <div className="stats stagger" style={{ maxWidth: '900px', margin: '80px auto 0' }}>
             <div className="stat"><div className="num" style={{ fontSize: 'clamp(36px, 4.5vw, 60px)' }} data-count="60" data-suffix="%">0</div><div className="cap" style={{ fontSize: '12px' }}>of families judge care quality by marketing materials</div></div>
@@ -228,42 +228,36 @@ export default function DesignPrint() {
               <span className="num">01</span>
               <h3>Brochures & Marketing</h3>
               <p>Professionally designed brochures, flyers, postcards, and promotional pieces.</p>
-              <Link href="#" className="btn-text" style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start', marginTop: '24px' }}>See examples &rarr;</Link>
             </article>
             <article className="ds-card">
               <div className="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg></div>
               <span className="num">02</span>
               <h3>Admissions Packets</h3>
               <p>Custom folders and insert sheets to cleanly organize intake forms, facility amenities, and rules.</p>
-              <Link href="#" className="btn-text" style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start', marginTop: '24px' }}>See examples &rarr;</Link>
             </article>
             <article className="ds-card">
               <div className="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="5" width="16" height="14" rx="2" ry="2"></rect><line x1="12" y1="19" x2="12" y2="22"></line><line x1="8" y1="22" x2="16" y2="22"></line><line x1="8" y1="5" x2="8" y2="19"></line></svg></div>
               <span className="num">03</span>
               <h3>Banners & Signage</h3>
               <p>Pull-up banners, event signage, and facility posters that align perfectly with your brand identity.</p>
-              <Link href="#" className="btn-text" style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start', marginTop: '24px' }}>See examples &rarr;</Link>
             </article>
             <article className="ds-card">
               <div className="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="18"></line><line x1="12" y1="14" x2="12" y2="14"></line><line x1="12" y1="10" x2="12" y2="10"></line></svg></div>
               <span className="num">04</span>
               <h3>Menus & Activities</h3>
               <p>Elevate your dining and recreation experience with beautifully formatted and easy-to-read daily or weekly layouts.</p>
-              <Link href="#" className="btn-text" style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start', marginTop: '24px' }}>See examples &rarr;</Link>
             </article>
             <article className="ds-card">
               <div className="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg></div>
               <span className="num">05</span>
               <h3>Stationery & Cards</h3>
               <p>Business cards for your liaisons and leadership, letterheads, and custom envelopes.</p>
-              <Link href="#" className="btn-text" style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start', marginTop: '24px' }}>See examples &rarr;</Link>
             </article>
             <article className="ds-card">
               <div className="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></div>
               <span className="num">06</span>
               <h3>Event Collateral</h3>
               <p>Invitations, schedules, and custom promo items designed specifically for your community events or open houses.</p>
-              <Link href="#" className="btn-text" style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start', marginTop: '24px' }}>See examples &rarr;</Link>
             </article>
           </div>
         </div>
@@ -274,7 +268,7 @@ export default function DesignPrint() {
             <div className="sec-head center" data-reveal>
               <span className="label">Our Process</span>
               <h2 style={{ whiteSpace: 'nowrap', fontSize: 'clamp(16px, 3.8vw, 48px)' }}>From blank page to <span className="accent">press-ready.</span></h2>
-              <p className="sub" style={{ maxWidth: '400px', margin: '16px auto 0' }}>Hover a phase — watch a piece go from wireframe to a print-ready proof.</p>
+              <p className="sub" style={{ maxWidth: '400px', margin: '16px auto 0' }}>Hover a phase, watch a piece go from wireframe to a print-ready proof.</p>
             </div>
             
             <div className="ip-tabs stagger">

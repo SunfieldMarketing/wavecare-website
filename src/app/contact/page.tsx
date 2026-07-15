@@ -229,12 +229,12 @@ export default function Contact() {
             <div className="step">
               <div className="sn">01</div>
               <h3>We listen & audit</h3>
-              <p>We learn about your facility, your audience, and review your current online presence — what's working and what's costing you tours.</p>
+              <p>We learn about your facility, your audience, and review your current online presence, what's working and what's costing you tours.</p>
             </div>
             <div className="step">
               <div className="sn">02</div>
               <h3>We map the plan</h3>
-              <p>You get a clear, no-filler plan for exactly what we'd build, capture, or design — with honest timelines and scope.</p>
+              <p>You get a clear, no-filler plan for exactly what we'd build, capture, or design, with honest timelines and scope.</p>
             </div>
             <div className="step">
               <div className="sn">03</div>

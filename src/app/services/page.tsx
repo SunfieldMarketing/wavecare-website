@@ -113,11 +113,11 @@ export default function Services() {
         <div className="container">
           <div className="services-head reveal">
             <span className="label on-dark">Services</span>
-            <h2>Everything your healthcare brand<br />needs — under one roof.</h2>
+            <h2>Everything your healthcare brand<br />needs, under one roof.</h2>
             <p className="lead">
               We work with senior living communities, memory care, assisted living, and
               healthcare practices to handle every piece of your marketing. Photography,
-              video, print, and web — built with HIPAA-conscious workflows and the kind of
+              video, print, and web, built with HIPAA-conscious workflows and the kind of
               turnaround healthcare decision-makers actually need.
             </p>
           </div>
@@ -127,7 +127,7 @@ export default function Services() {
               <span className="card-img" aria-hidden="true"></span>
               <span className="num">01</span>
               <h3>Brand &amp; Photoshoots</h3>
-              <p>Professional photography that builds instant trust. Facility shots, staff portraits, resident moments, and brand imagery — captured with sensitivity and ready for every channel.</p>
+              <p>Professional photography that builds instant trust. Facility shots, staff portraits, resident moments, and brand imagery, captured with sensitivity and ready for every channel.</p>
             </article>
 
             <article className="service-card reveal delay-2">
@@ -141,7 +141,7 @@ export default function Services() {
               <span className="card-img" aria-hidden="true"></span>
               <span className="num">03</span>
               <h3>Design &amp; Print</h3>
-              <p>Patient-ready materials your team uses every day: brochures, signage, menus, banners, business cards — designed to match your brand and built to last.</p>
+              <p>Patient-ready materials your team uses every day: brochures, signage, menus, banners, business cards, designed to match your brand and built to last.</p>
             </article>
 
             <article className="service-card reveal delay-4">
@@ -162,7 +162,7 @@ export default function Services() {
               <h2>Conversion-first websites built for healthcare.</h2>
               <p className="split-body">
                 Most healthcare websites are stuck in 2015. We build fast, mobile-first
-                sites that load quickly, rank locally, and turn visitors into inquiries —
+                sites that load quickly, rank locally, and turn visitors into inquiries , 
                 optimized for the Google 3-Pack and integrated with Google Business so
                 families find you the moment they start looking.
               </p>
@@ -170,7 +170,7 @@ export default function Services() {
                 <li>Mobile-first, accessibility-conscious build</li>
                 <li>SEO foundations + Google Business optimization</li>
                 <li>Most projects launch in about two weeks</li>
-                <li>Ongoing management — we work with existing sites too</li>
+                <li>Ongoing management, we work with existing sites too</li>
               </ul>
               <Link href="/webdesign" className="btn">Learn More</Link>
             </div>
@@ -232,7 +232,7 @@ export default function Services() {
               <p className="split-body">
                 When a family leaves a tour, what do they take with them?
                 We design premium, patient-ready materials that feel as good
-                as they look — ensuring your brand stands out when the decision
+                as they look, ensuring your brand stands out when the decision
                 is made at the kitchen table.
               </p>
               <ul className="feature-list">
@@ -273,7 +273,7 @@ export default function Services() {
             </div>
             <div className="feature-card reveal delay-3">
               <h3>Everything Under One Roof</h3>
-              <p>Stop managing five different freelancers. We handle the web, the photo, the video, and the print — ensuring your brand is consistent everywhere.</p>
+              <p>Stop managing five different freelancers. We handle the web, the photo, the video, and the print, ensuring your brand is consistent everywhere.</p>
             </div>
           </div>
         </div>

@@ -617,7 +617,7 @@ export default function WebDesign() {
       </section>
 
       {/* ========== FEATURED WEBSITE SHOWCASE ========== */}
-      <section className="panel sec-pad">
+      <section className="panel sec-pad" style={{ display: 'none' }}>
         <div className="container">
           <div className="sec-head center" data-reveal>
             <span className="label">FEATURED WEBSITE SHOWCASE</span>

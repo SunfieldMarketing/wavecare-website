@@ -104,7 +104,7 @@ export default function Testimonials() {
         <div className="wct-hero-inner">
           <p className="wct-eyebrow">Real Facilities · Real Results</p>
           <h1 id="wct-hero-headline">Hear what happens when <em>facilities like yours</em> work with Wavecare</h1>
-          <p className="wct-hero-sub">Senior care administrators tell you — in their own words — what changed after partnering with us.</p>
+          <p className="wct-hero-sub">Senior care administrators tell you, in their own words, what changed after partnering with us.</p>
           <div className="wct-hero-trust">
             <span>Healthcare-focused since 2019</span>
             <span className="dot"></span>
@@ -142,7 +142,7 @@ export default function Testimonials() {
           </div>
           <div className="wct-video-content">
             <div className="wct-stars">★★★★★</div>
-            <p className="wct-pull-quote">Within six weeks our tour requests doubled — and the families coming through were the right fit, not tire-kickers.</p>
+            <p className="wct-pull-quote">Within six weeks our tour requests doubled, and the families coming through were the right fit, not tire-kickers.</p>
             <div className="wct-video-attr">
               <div className="wct-attr-line"></div>
               <div className="wct-attr-block">
@@ -178,7 +178,7 @@ export default function Testimonials() {
       <div className="wct-inline-cta">
         <div className="wct-inline-cta-text">
           <span>Curious where you stand?</span>
-          We'll show you exactly what families see when they search for your facility — free.
+          We'll show you exactly what families see when they search for your facility, free.
         </div>
         <Link href="/contact" className="wct-inline-cta-btn">Book My Audit</Link>
       </div>

@@ -90,7 +90,7 @@
 
 /* video specific proc */
 .proc-screen{position:relative; background:#062a24; border-left:1px solid var(--soft); overflow:hidden;}
-@media(max-width:760px){.proc-screen{border-left:none; border-top:1px solid var(--soft);}}
+@media(max-width:760px){.proc-screen{border-left:none; border-top:1px solid var(--soft); aspect-ratio: 4/3; min-height: unset;}}
 .proc-screen .frame{position:absolute; inset:0; opacity:0; transition:opacity .6s;}
 .proc-screen.dev1 .frame:nth-child(1){opacity:1;}
 .proc-screen.dev2 .frame:nth-child(2){opacity:1;}

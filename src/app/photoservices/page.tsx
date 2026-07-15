@@ -183,7 +183,7 @@ export default function PhotoServices() {
               const webpName = photo.replace(/\.(jpg|jpeg|png)$/i, '.webp');
               return (
                 <div key={i} className="cell" style={{ padding: 0, overflow: 'hidden' }}>
-                  <Image src={`/images/gallery/thumbs/${encodeURIComponent(webpName)}`} alt="Selected Work Background" width={800} height={600} style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(30%) opacity(0.55)' }} loading="lazy" />
+                  <Image src={`/images/gallery/thumbs/${encodeURIComponent(webpName)}`} alt="Selected Work Background" width={800} height={600} style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(10%) opacity(0.65)' }} loading="lazy" />
                 </div>
               );
             })}

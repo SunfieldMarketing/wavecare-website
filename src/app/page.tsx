@@ -234,7 +234,7 @@ export default function Home() {
         })();
       }
 
-      // Run preloader immediately — don't block on CDN libraries loading
+      // Run preloader immediately, don't block on CDN libraries loading
       runPreloader(() => {
         initChrome();
         initReveals();
@@ -419,7 +419,7 @@ export default function Home() {
             </article>
           </div>
         </div>
-        <div className="svc-hint">Drag, scroll, or use the arrows — tap a card for details</div>
+        <div className="svc-hint">Drag, scroll, or use the arrows, tap a card for details</div>
       </section>
 
       <section className="light sec-pad">
@@ -491,7 +491,7 @@ export default function Home() {
           <div className="sec-head" data-reveal>
             <span className="label">What Our Clients Say</span>
             <h2>Don&apos;t just take<br />our word for it.</h2>
-            <p className="lead">See how we&apos;ve helped healthcare providers grow — in their own words.</p>
+            <p className="lead">See how we&apos;ve helped healthcare providers grow, in their own words.</p>
           </div>
           <div className="tcards stagger">
             <article className="tcard" data-cursor>

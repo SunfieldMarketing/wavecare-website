@@ -158,7 +158,7 @@ export default function VideoServices() {
           <div className="phero-in">
             <div data-reveal>
               <h1>Healthcare <span className="accent">Video Production</span></h1>
-              <p className="phero-sub">Strategic healthcare video that highlights your team, facility, services, and resident experience — built to earn trust before families ever walk through your doors.</p>
+              <p className="phero-sub">Strategic healthcare video that highlights your team, facility, services, and resident experience, built to earn trust before families ever walk through your doors.</p>
               <div className="trust-list" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '34px' }}>
                 <span className="label" style={{ marginBottom: 0 }}>✓ Full Production</span>
                 <span className="label" style={{ marginBottom: 0 }}>✓ Scripting &amp; Creative</span>
@@ -214,7 +214,7 @@ export default function VideoServices() {
             <h2 style={{ color: '#062A24', textWrap: 'unset' }}>Families decide<br/><em>before</em> they ever<br/>visit.</h2>
           </div>
           <div className="why-text stagger" style={{ fontSize: '16px', lineHeight: '1.8' }}>
-            <p style={{ marginBottom: '20px' }}>Most families have already formed an opinion before they pick up the phone. Professional video lets them experience your environment, meet your team, and feel the level of care you provide — in the same seconds they'd otherwise spend scrolling past you.</p>
+            <p style={{ marginBottom: '20px' }}>Most families have already formed an opinion before they pick up the phone. Professional video lets them experience your environment, meet your team, and feel the level of care you provide, in the same seconds they'd otherwise spend scrolling past you.</p>
             <p>Done right, video doesn't just market the facility. It pre-qualifies the inquiry.</p>
           </div>
         </div>
@@ -289,7 +289,6 @@ export default function VideoServices() {
               </div>
               <h3 style={{ fontSize: '22px', color: '#fff', marginBottom: '16px' }}>Facility Films</h3>
               <p style={{ color: 'var(--on-dark)', fontSize: '15px', lineHeight: '1.6', marginBottom: '32px', flex: 1 }}>Hero videos for homepages, virtual tours, and admissions packets are the front families watch before booking a visit.</p>
-              <Link href="#" className="btn-text" onClick={(e) => { e.preventDefault(); setActiveVideo('1183669641'); }} style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start' }}>View Sample &rarr;</Link>
             </div>
 
             <div className="fk-card">
@@ -298,7 +297,6 @@ export default function VideoServices() {
               </div>
               <h3 style={{ fontSize: '22px', color: '#fff', marginBottom: '16px' }}>Family-Facing Stories</h3>
               <p style={{ color: 'var(--on-dark)', fontSize: '15px', lineHeight: '1.6', marginBottom: '32px', flex: 1 }}>Resident videos, resident testimonials, and care journeys that turn the abstract into the personal.</p>
-              <Link href="#" className="btn-text" onClick={(e) => { e.preventDefault(); setActiveVideo('1183056612'); }} style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start' }}>View Sample &rarr;</Link>
             </div>
 
             <div className="fk-card">
@@ -307,7 +305,6 @@ export default function VideoServices() {
               </div>
               <h3 style={{ fontSize: '22px', color: '#fff', marginBottom: '16px' }}>Recruitment &amp; Culture</h3>
               <p style={{ color: 'var(--on-dark)', fontSize: '15px', lineHeight: '1.6', marginBottom: '32px', flex: 1 }}>Films that attract caregivers and clinical staff by showing the team and culture, not the job description.</p>
-              <Link href="#" className="btn-text" onClick={(e) => { e.preventDefault(); setActiveVideo('930394765'); }} style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start' }}>View Sample &rarr;</Link>
             </div>
 
             <div className="fk-card">
@@ -316,7 +313,6 @@ export default function VideoServices() {
               </div>
               <h3 style={{ fontSize: '22px', color: '#fff', marginBottom: '16px' }}>Social &amp; Service Cuts</h3>
               <p style={{ color: 'var(--on-dark)', fontSize: '15px', lineHeight: '1.6', marginBottom: '32px', flex: 1 }}>Vertical cuts, service-line spots, and short-form content sized for the platforms your audience actually scrolls.</p>
-              <Link href="#" className="btn-text" onClick={(e) => { e.preventDefault(); setActiveVideo('906115435'); }} style={{ color: 'var(--teal-bright)', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', alignSelf: 'flex-start' }}>View Sample &rarr;</Link>
             </div>
           </div>
         </div>
@@ -328,7 +324,7 @@ export default function VideoServices() {
           <div className="sec-head center" data-reveal>
             <span className="label">Types of Videos</span>
             <h2>What we <span className="lite">produce.</span></h2>
-            <p className="sub" style={{ margin: '20px auto 0', maxWidth: '600px' }}>Every video is purpose-built for the place it will actually be seen — the website, the tour, the inbox, the feed.</p>
+            <p className="sub" style={{ margin: '20px auto 0', maxWidth: '600px' }}>Every video is purpose-built for the place it will actually be seen, the website, the tour, the inbox, the feed.</p>
           </div>
           
           <div className="filter-bar" data-reveal>
