@@ -139,7 +139,7 @@ export default function CaseStudies() {
                     <div className="cs-grid stagger">
             <div className="cs-card">
               <div className="cs-media">
-                <Image src="/images/cs_medical_group.png" alt="Healthcare network rebrand" fill style={{ objectFit: 'cover' }} />
+                <Image src="/images/cs_medical_group.png" alt="Healthcare network rebrand" fill style={{ objectFit: 'cover' }} priority />
                 <div className="cs-tag">
                   <span>Full Service</span>
                 </div>
