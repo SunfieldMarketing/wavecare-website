@@ -60,6 +60,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Analytics } from '@vercel/analytics/react';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import { PostHogPageleave } from '@/components/PostHogPageleave';
 import Script from 'next/script';
 import './globals.css';
 
@@ -185,6 +186,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         />
       </head>
       <body>
+          <PostHogPageleave />
           <div className="grain"></div>
           <div className="progress" id="progress"></div>
           <div className="cdot" id="cdot"></div>
