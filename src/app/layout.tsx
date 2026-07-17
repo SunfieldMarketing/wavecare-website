@@ -60,7 +60,6 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Analytics } from '@vercel/analytics/react';
 import { GoogleAnalytics } from '@next/third-parties/google';
-import { PostHogPageleave } from '@/components/PostHogPageleave';
 import Script from 'next/script';
 import './globals.css';
 
@@ -79,7 +78,34 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           posthog.init("phc_BJhLsyCjeo8rMhDNLkBCbuTTg95tFwW54crcZLXcvokZ", {
             api_host: "https://us.i.posthog.com",
             defaults: "2026-05-30",
+            capture_pageview: false, // We will handle it manually below for SPA
             capture_pageleave: true,
+          });
+          
+          // SPA Routing patch for Next.js App Router
+          var currentUrl = window.location.href;
+          posthog.capture('$pageview', { $current_url: currentUrl });
+          
+          var originalPushState = history.pushState;
+          history.pushState = function() {
+            posthog.capture('$pageleave', { $current_url: currentUrl });
+            var ret = originalPushState.apply(this, arguments);
+            currentUrl = window.location.href;
+            posthog.capture('$pageview', { $current_url: currentUrl });
+            return ret;
+          };
+          var originalReplaceState = history.replaceState;
+          history.replaceState = function() {
+            posthog.capture('$pageleave', { $current_url: currentUrl });
+            var ret = originalReplaceState.apply(this, arguments);
+            currentUrl = window.location.href;
+            posthog.capture('$pageview', { $current_url: currentUrl });
+            return ret;
+          };
+          window.addEventListener('popstate', function() {
+            posthog.capture('$pageleave', { $current_url: currentUrl });
+            currentUrl = window.location.href;
+            posthog.capture('$pageview', { $current_url: currentUrl });
           });
         `}} />
 
@@ -186,7 +212,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         />
       </head>
       <body>
-          <PostHogPageleave />
           <div className="grain"></div>
           <div className="progress" id="progress"></div>
           <div className="cdot" id="cdot"></div>
