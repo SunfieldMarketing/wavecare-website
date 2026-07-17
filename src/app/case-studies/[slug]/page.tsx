@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import CaseStudyTracker from './CaseStudyTracker';
 
 const cases: Record<string, { client: string; title: string; services: string[]; result: string; resultLabel: string; body: string[] }> = {
   oakwood: {
@@ -71,6 +72,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
 
   return (
     <>
+      <CaseStudyTracker slug={params.slug} client={study.client} services={study.services} />
       {/* Hero */}
       <section className="hero" style={{ minHeight: '60vh' }}>
         <div className="hero-bg">

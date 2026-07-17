@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
+import posthog from 'posthog-js';
 
 export default function Home() {
   useEffect(() => {
@@ -349,7 +350,7 @@ export default function Home() {
                     <li>HIPAA-conscious shoot workflows</li>
                     <li>Edited library for every channel</li>
                   </ul>
-                  <Link href="/photoservices" className="btn" data-cursor>Learn More</Link>
+                  <Link href="/photoservices" className="btn" data-cursor onClick={() => posthog.capture('service_learn_more_clicked', { service: 'Brand & Photoshoots' })}>Learn More</Link>
                 </div>
                 <button className="svc-toggle">More info <span className="chev">▾</span></button>
               </div>
@@ -370,7 +371,7 @@ export default function Home() {
                     <li>Social-ready cuts, every ratio</li>
                     <li>Vimeo-hosted, ad-free playback</li>
                   </ul>
-                  <Link href="/videoservices" className="btn" data-cursor>Learn More</Link>
+                  <Link href="/videoservices" className="btn" data-cursor onClick={() => posthog.capture('service_learn_more_clicked', { service: 'Video Production' })}>Learn More</Link>
                 </div>
                 <button className="svc-toggle">More info <span className="chev">▾</span></button>
               </div>
@@ -391,7 +392,7 @@ export default function Home() {
                     <li>Menus &amp; event collateral</li>
                     <li>Business cards &amp; stationery</li>
                   </ul>
-                  <Link href="/design-print" className="btn" data-cursor>Learn More</Link>
+                  <Link href="/design-print" className="btn" data-cursor onClick={() => posthog.capture('service_learn_more_clicked', { service: 'Design & Print' })}>Learn More</Link>
                 </div>
                 <button className="svc-toggle">More info <span className="chev">▾</span></button>
               </div>
@@ -412,7 +413,7 @@ export default function Home() {
                     <li>Most projects launch in ~2 weeks</li>
                     <li>Ongoing management &amp; updates</li>
                   </ul>
-                  <Link href="/webdesign" className="btn" data-cursor>Learn More</Link>
+                  <Link href="/webdesign" className="btn" data-cursor onClick={() => posthog.capture('service_learn_more_clicked', { service: 'Web Design & Management' })}>Learn More</Link>
                 </div>
                 <button className="svc-toggle">More info <span className="chev">▾</span></button>
               </div>
