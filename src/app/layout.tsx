@@ -78,6 +78,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           posthog.init("phc_BJhLsyCjeo8rMhDNLkBCbuTTg95tFwW54crcZLXcvokZ", {
             api_host: "https://us.i.posthog.com",
             defaults: "2026-05-30",
+            capture_pageleave: true,
           });
         `}} />
 
