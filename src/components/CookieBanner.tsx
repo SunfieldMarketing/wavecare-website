@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import posthog from 'posthog-js';
 
 export default function CookieBanner() {
   const [showBanner, setShowBanner] = useState(false);
@@ -17,12 +18,13 @@ export default function CookieBanner() {
   const acceptCookies = () => {
     localStorage.setItem('cookie-consent', 'accepted');
     setShowBanner(false);
-    // Here you would typically trigger your analytics scripts to initialize
+    posthog.capture('cookie_consent_accepted');
   };
 
   const declineCookies = () => {
     localStorage.setItem('cookie-consent', 'declined');
     setShowBanner(false);
+    posthog.capture('cookie_consent_declined');
   };
 
   if (!showBanner) return null;

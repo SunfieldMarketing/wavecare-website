@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { getPostHogClient } from '@/lib/posthog-server';
 
 export async function POST(request: Request) {
   let body: any = {};
@@ -102,5 +103,21 @@ export async function POST(request: Request) {
   }
 
   console.log('[GHL] Contact created successfully:', contactId);
+
+  const posthog = getPostHogClient();
+  const distinctId = contactId || email;
+  posthog.identify({ distinctId, properties: { email, name: name || undefined, companyName: company || undefined } });
+  posthog.capture({
+    distinctId,
+    event: 'lead_created',
+    properties: {
+      services: services && services.length > 0 ? services : [],
+      has_message: !!(message?.trim()),
+      has_company: !!company,
+      source: 'website_contact_form',
+    },
+  });
+  await posthog.flush();
+
   return NextResponse.json({ success: true });
 }

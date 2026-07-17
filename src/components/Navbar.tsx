@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
+import posthog from 'posthog-js';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -12,7 +13,7 @@ export default function Navbar() {
         <Link href="/" className="logo" data-cursor onClick={() => setMobileMenuOpen(false)}>
           <Image src="/wavecare-marketing-logo-white.png" alt="Wavecare Marketing" width={300} height={400} style={{ height: '110px', width: 'auto' }} priority />
         </Link>
-        <button className={`mobile-toggle ${mobileMenuOpen ? 'open' : ''}`} onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+        <button className={`mobile-toggle ${mobileMenuOpen ? 'open' : ''}`} onClick={() => { const next = !mobileMenuOpen; setMobileMenuOpen(next); if (next) posthog.capture('mobile_menu_opened'); }}>
           <span></span><span></span><span></span>
         </button>
         <div className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
