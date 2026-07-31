@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
 import { useEffect, useState, FormEvent } from 'react';
-import posthog from 'posthog-js';
+
 import './contact.css';
 
 export default function Contact() {
@@ -33,12 +33,12 @@ export default function Contact() {
       const json = await res.json();
       if (res.ok && json.success) {
         setStatus('success');
-        posthog.identify(data.email as string, {
+        window.posthog?.identify(data.email as string, {
           email: data.email as string,
           name: (data.name as string) || undefined,
           company: (data.company as string) || undefined,
         });
-        posthog.capture('contact_form_submitted', {
+        window.posthog?.capture('contact_form_submitted', {
           services_selected: Object.keys(selectedChips).filter(k => selectedChips[k]),
           has_company: !!data.company,
           has_message: !!data.message,
@@ -46,14 +46,14 @@ export default function Contact() {
       } else {
         setErrorMsg(json.error || 'Something went wrong. Please try again.');
         setStatus('error');
-        posthog.capture('contact_form_error', {
+        window.posthog?.capture('contact_form_error', {
           services_selected: Object.keys(selectedChips).filter(k => selectedChips[k]),
         });
       }
     } catch (err) {
       setErrorMsg('Could not connect to our servers. Please check your internet connection and try again.');
       setStatus('error');
-      posthog.capture('contact_form_error', {
+      window.posthog?.capture('contact_form_error', {
         services_selected: Object.keys(selectedChips).filter(k => selectedChips[k]),
       });
     }
@@ -106,7 +106,7 @@ export default function Contact() {
   const toggleChip = (name: string) => {
     const next = !selectedChips[name];
     setSelectedChips(prev => ({ ...prev, [name]: next }));
-    posthog.capture('service_chip_selected', { service: name, selected: next });
+    window.posthog?.capture('service_chip_selected', { service: name, selected: next });
   };
 
   return (
