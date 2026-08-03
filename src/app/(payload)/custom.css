@@ -1,0 +1,14 @@
+/**
+ * Admin panel branding.
+ * Keeps the CMS visually consistent with the Wavecare site so the handoff
+ * feels like one product rather than a bolted-on tool.
+ */
+:root {
+  --theme-elevation-0: #062a24;
+  --theme-success-500: #2a9d8f;
+}
+
+.payload-logo,
+.graphic-logo {
+  max-height: 40px;
+}

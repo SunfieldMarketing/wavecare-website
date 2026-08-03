@@ -12,6 +12,10 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* ---- preloader (CSS fade + hard failsafe, can't hang) ---- */
 function runPreloader(done){
   const bar=document.getElementById('plbar'),num=document.getElementById('plnum'),pre=document.getElementById('preloader');
+  // The preloader markup was removed from the layout. Without this guard the
+  // interval below throws on the first tick and `done()` never runs — which
+  // silently disabled reveals, the cursor, Lenis and the wave canvas.
+  if(!pre||!bar||!num){ done(); return; }
   let p=0,fin=false;
   function finish(){ if(fin)return; fin=true; pre.style.transition='opacity .6s'; pre.style.opacity='0'; setTimeout(()=>{pre.style.display='none'; done();},620); }
   const iv=setInterval(()=>{ p=Math.min(100,p+Math.random()*22+10); bar.style.width=p+'%'; num.textContent=Math.floor(p); if(p>=100){clearInterval(iv); setTimeout(finish,200);} },90);
