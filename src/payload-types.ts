@@ -1434,6 +1434,111 @@ export interface Page {
             blockName?: string | null;
             blockType: 'finalCta';
           }
+        | {
+            eyebrow?: string | null;
+            /**
+             * Wrap words in _underscores_ to italicise them. Line breaks are preserved.
+             */
+            title: string;
+            /**
+             * Shown under the heading, separated by dots.
+             */
+            trustItems?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'landingHero';
+          }
+        | {
+            /**
+             * e.g. "Watch the overview as Jake explains the approach"
+             */
+            contextLine?: string | null;
+            vimeoId: string;
+            videoTitle?: string | null;
+            subhead?: string | null;
+            cta?: {
+              label?: string | null;
+              type?: ('internal' | 'external' | 'anchor') | null;
+              page?: (number | null) | Page;
+              /**
+               * Include https://
+               */
+              url?: string | null;
+              /**
+               * Section id without the #, e.g. "gallery"
+               */
+              anchor?: string | null;
+              style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+              newTab?: boolean | null;
+            };
+            ctaNote?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'videoFeature';
+          }
+        | {
+            stats?:
+              | {
+                  /**
+                   * e.g. 500+
+                   */
+                  value: string;
+                  label: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'statsBar';
+          }
+        | {
+            label?: string | null;
+            pills?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            showTransition?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'pillBand';
+          }
+        | {
+            tag?: string | null;
+            title: string;
+            subtitle?: string | null;
+            items?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            cta?: {
+              label?: string | null;
+              type?: ('internal' | 'external' | 'anchor') | null;
+              page?: (number | null) | Page;
+              /**
+               * Include https://
+               */
+              url?: string | null;
+              /**
+               * Section id without the #, e.g. "gallery"
+               */
+              anchor?: string | null;
+              style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+              newTab?: boolean | null;
+            };
+            ctaNote?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'auditCta';
+          }
       )[]
     | null;
   /**
@@ -2845,6 +2950,111 @@ export interface CaseStudy {
             id?: string | null;
             blockName?: string | null;
             blockType: 'finalCta';
+          }
+        | {
+            eyebrow?: string | null;
+            /**
+             * Wrap words in _underscores_ to italicise them. Line breaks are preserved.
+             */
+            title: string;
+            /**
+             * Shown under the heading, separated by dots.
+             */
+            trustItems?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'landingHero';
+          }
+        | {
+            /**
+             * e.g. "Watch the overview as Jake explains the approach"
+             */
+            contextLine?: string | null;
+            vimeoId: string;
+            videoTitle?: string | null;
+            subhead?: string | null;
+            cta?: {
+              label?: string | null;
+              type?: ('internal' | 'external' | 'anchor') | null;
+              page?: (number | null) | Page;
+              /**
+               * Include https://
+               */
+              url?: string | null;
+              /**
+               * Section id without the #, e.g. "gallery"
+               */
+              anchor?: string | null;
+              style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+              newTab?: boolean | null;
+            };
+            ctaNote?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'videoFeature';
+          }
+        | {
+            stats?:
+              | {
+                  /**
+                   * e.g. 500+
+                   */
+                  value: string;
+                  label: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'statsBar';
+          }
+        | {
+            label?: string | null;
+            pills?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            showTransition?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'pillBand';
+          }
+        | {
+            tag?: string | null;
+            title: string;
+            subtitle?: string | null;
+            items?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            cta?: {
+              label?: string | null;
+              type?: ('internal' | 'external' | 'anchor') | null;
+              page?: (number | null) | Page;
+              /**
+               * Include https://
+               */
+              url?: string | null;
+              /**
+               * Section id without the #, e.g. "gallery"
+               */
+              anchor?: string | null;
+              style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+              newTab?: boolean | null;
+            };
+            ctaNote?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'auditCta';
           }
       )[]
     | null;
@@ -4272,6 +4482,96 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        landingHero?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              trustItems?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        videoFeature?:
+          | T
+          | {
+              contextLine?: T;
+              vimeoId?: T;
+              videoTitle?: T;
+              subhead?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    type?: T;
+                    page?: T;
+                    url?: T;
+                    anchor?: T;
+                    style?: T;
+                    newTab?: T;
+                  };
+              ctaNote?: T;
+              id?: T;
+              blockName?: T;
+            };
+        statsBar?:
+          | T
+          | {
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        pillBand?:
+          | T
+          | {
+              label?: T;
+              pills?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              showTransition?: T;
+              id?: T;
+              blockName?: T;
+            };
+        auditCta?:
+          | T
+          | {
+              tag?: T;
+              title?: T;
+              subtitle?: T;
+              items?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    type?: T;
+                    page?: T;
+                    url?: T;
+                    anchor?: T;
+                    style?: T;
+                    newTab?: T;
+                  };
+              ctaNote?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   slug?: T;
   hideFromSitemap?: T;
@@ -5263,6 +5563,96 @@ export interface CaseStudiesSelect<T extends boolean = true> {
                     width?: T;
                     anchorId?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        landingHero?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              trustItems?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        videoFeature?:
+          | T
+          | {
+              contextLine?: T;
+              vimeoId?: T;
+              videoTitle?: T;
+              subhead?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    type?: T;
+                    page?: T;
+                    url?: T;
+                    anchor?: T;
+                    style?: T;
+                    newTab?: T;
+                  };
+              ctaNote?: T;
+              id?: T;
+              blockName?: T;
+            };
+        statsBar?:
+          | T
+          | {
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        pillBand?:
+          | T
+          | {
+              label?: T;
+              pills?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              showTransition?: T;
+              id?: T;
+              blockName?: T;
+            };
+        auditCta?:
+          | T
+          | {
+              tag?: T;
+              title?: T;
+              subtitle?: T;
+              items?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    type?: T;
+                    page?: T;
+                    url?: T;
+                    anchor?: T;
+                    style?: T;
+                    newTab?: T;
+                  };
+              ctaNote?: T;
               id?: T;
               blockName?: T;
             };

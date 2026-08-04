@@ -9,6 +9,13 @@ import {
   FinalCTABlock,
 } from './blocks/ServerBlocks';
 import { BeforeAfterInner, TabsShowcaseInner, GalleryInner } from './blocks/ClientBlocks';
+import {
+  LandingHeroBlock,
+  VideoFeatureBlock,
+  StatsBarBlock,
+  PillBandBlock,
+  AuditCTABlock,
+} from './blocks/LandingBlocks';
 import { containerClassName } from './appearance';
 import CMSLink from './CMSLink';
 import './cms-blocks.css';
@@ -46,6 +53,18 @@ export default function RenderBlocks({ blocks }: { blocks?: any[] | null }) {
 
           case 'finalCta':
             return <FinalCTABlock key={key} block={block} />;
+
+          // ── Landing-page kit (wc-* design system) ──
+          case 'landingHero':
+            return <LandingHeroBlock key={key} block={block} />;
+          case 'videoFeature':
+            return <VideoFeatureBlock key={key} block={block} />;
+          case 'statsBar':
+            return <StatsBarBlock key={key} block={block} />;
+          case 'pillBand':
+            return <PillBandBlock key={key} block={block} />;
+          case 'auditCta':
+            return <AuditCTABlock key={key} block={block} />;
 
           case 'beforeAfter':
             return (

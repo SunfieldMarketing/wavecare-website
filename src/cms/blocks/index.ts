@@ -2,6 +2,7 @@ import { Hero, NoticeBar } from './hero';
 import { RichTextBlock, CardGrid, SplitMedia, Stats, Accordion } from './layout';
 import { LogoMarquee, Gallery, BeforeAfter, VideoEmbed, VideoGrid, TabsShowcase } from './media';
 import { Process, CaseStudyGrid, TestimonialGrid, FinalCTA, ContactFormBlock } from './conversion';
+import { landingBlocks, LandingHero, VideoFeature, StatsBar, PillBand, AuditCTA } from './landing';
 
 export {
   Hero,
@@ -22,6 +23,11 @@ export {
   TestimonialGrid,
   FinalCTA,
   ContactFormBlock,
+  LandingHero,
+  VideoFeature,
+  StatsBar,
+  PillBand,
+  AuditCTA,
 };
 
 /**
@@ -47,4 +53,6 @@ export const allBlocks = [
   RichTextBlock,
   ContactFormBlock,
   FinalCTA,
+  // Landing-page kit — renders the separate wc-* design system in commercial.css
+  ...landingBlocks,
 ];
