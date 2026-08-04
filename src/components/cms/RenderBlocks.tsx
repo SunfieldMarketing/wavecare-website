@@ -61,6 +61,12 @@ import {
   VideoReelBlock,
   SimpleQuoteGridBlock,
 } from './blocks/AboutBlocks';
+import {
+  WebDesignHeroBlock,
+  RevealBeforeAfterBlock,
+  CapabilitiesGridBlock,
+  SimpleIconGridBlock,
+} from './blocks/WebDesignBlocks';
 import { containerClassName } from './appearance';
 import CMSLink from './CMSLink';
 import './cms-blocks.css';
@@ -169,6 +175,16 @@ export default function RenderBlocks({ blocks }: { blocks?: any[] | null }) {
             return <VideoReelBlock key={key} block={block} />;
           case 'simpleQuoteGrid':
             return <SimpleQuoteGridBlock key={key} block={block} />;
+
+          // ── /webdesign (subservices.css) ──
+          case 'webDesignHero':
+            return <WebDesignHeroBlock key={key} block={block} />;
+          case 'revealBeforeAfter':
+            return <RevealBeforeAfterBlock key={key} block={block} />;
+          case 'capabilitiesGrid':
+            return <CapabilitiesGridBlock key={key} block={block} />;
+          case 'simpleIconGrid':
+            return <SimpleIconGridBlock key={key} block={block} />;
 
           case 'richText':
             return (

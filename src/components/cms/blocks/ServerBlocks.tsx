@@ -13,6 +13,7 @@ import {
 import { CMSLinkGroup } from '../CMSLink';
 import ProcessShowcase from './ProcessShowcase';
 import VideoProcessScreen from './VideoProcessScreen';
+import WebDesignProcessMockup from './WebDesignProcessMockup';
 import CameraCursor from './CameraCursor';
 
 /** Shared eyebrow + heading + sub-paragraph, matching .sec-head. */
@@ -281,6 +282,7 @@ export function CardGridBlock({ block }: { block: any }) {
 /* ── Stats ────────────────────────────────────────────────────────── */
 
 export function StatsBlock({ block }: { block: any }) {
+  const compact = block.compact;
   return (
     <Section appearance={block.appearance}>
       <div className={containerClassName(block.appearance)}>
@@ -290,19 +292,25 @@ export function StatsBlock({ block }: { block: any }) {
         <div className={`stats stagger${(block.stats ?? []).length === 4 ? ' four' : ''}`}>
           {(block.stats ?? []).map((s: any, i: number) => (
             <div className="stat" key={i}>
-              {/* data-count drives the shared count-up script; the suffix stays
-                  outside the counted span so it is not overwritten. */}
+              {/* The count-up script reads data-count/-prefix/-suffix/-comma
+                  straight off this element and overwrites its text — so the
+                  prefix/suffix must be attributes here, not sibling JSX, or
+                  the animation would erase them on the first frame. */}
               {s.countTo != null ? (
                 <div className="num">
-                  <span data-count={s.countTo} {...(s.comma ? { 'data-comma': '1' } : {})}>
+                  <span
+                    data-count={s.countTo}
+                    {...(s.comma ? { 'data-comma': '1' } : {})}
+                    {...(s.prefix ? { 'data-prefix': s.prefix } : {})}
+                    {...(s.suffix ? { 'data-suffix': s.suffix } : {})}
+                  >
                     0
                   </span>
-                  {s.suffix}
                 </div>
               ) : (
                 <div className="num">{s.value}</div>
               )}
-              <div className="cap">{s.label}</div>
+              <div className={compact ? 'lbl' : 'cap'}>{s.label}</div>
             </div>
           ))}
         </div>
@@ -314,7 +322,7 @@ export function StatsBlock({ block }: { block: any }) {
 /* ── Process ──────────────────────────────────────────────────────── */
 
 export function ProcessBlock({ block }: { block: any }) {
-  const { heading, steps, buttons, appearance, layout, contactSheet } = block;
+  const { heading, steps, buttons, appearance, layout, contactSheet, browserUrl } = block;
   const sheet = (Array.isArray(contactSheet) ? contactSheet : [])
     .filter((m: any) => m?.url)
     .map((m: any) => ({ url: m.sizes?.card?.url || m.url, alt: m.alt }));
@@ -339,6 +347,8 @@ export function ProcessBlock({ block }: { block: any }) {
           <VideoProcessScreen
             steps={(steps ?? []).map((s: any) => ({ ...s, image: s.image?.url ? s.image : null }))}
           />
+        ) : layout === 'browser' ? (
+          <WebDesignProcessMockup steps={steps ?? []} browserUrl={browserUrl} />
         ) : (
           <ProcessShowcase steps={steps ?? []} sheetImages={sheet} />
         )}

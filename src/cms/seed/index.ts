@@ -16,6 +16,7 @@ import { seedServices } from './services';
 import { seedDesignPrint } from './design-print';
 import { seedVideoServices } from './video-services';
 import { seedAbout } from './about';
+import { seedWebDesign } from './webdesign';
 import { seedAdminUser } from './admin';
 
 /**
@@ -43,6 +44,7 @@ async function run() {
   await seedDesignPrint(payload);
   await seedVideoServices(payload);
   await seedAbout(payload);
+  await seedWebDesign(payload);
   await seedTestimonials(payload);
   await seedPhotoservices(payload);
 

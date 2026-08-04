@@ -17,8 +17,16 @@ export const Process: Block = {
       options: [
         { label: 'Interactive tabs + contact sheet', value: 'tabs' },
         { label: 'Interactive tabs + recording screen', value: 'screen' },
+        { label: 'Interactive tabs + browser dashboard', value: 'browser' },
         { label: 'Simple numbered cards', value: 'cards' },
       ],
+    },
+    {
+      name: 'browserUrl',
+      type: 'text',
+      defaultValue: 'yourfacility.org',
+      label: 'URL shown in the mock browser bar',
+      admin: { condition: (_, s) => s?.layout === 'browser' },
     },
     {
       name: 'contactSheet',

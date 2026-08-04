@@ -47,6 +47,7 @@ import {
   VideoReel,
   SimpleQuoteGrid,
 } from './about';
+import { webDesignBlocks, WebDesignHero, RevealBeforeAfter, CapabilitiesGrid, SimpleIconGrid } from './webdesign';
 
 export {
   Hero,
@@ -104,6 +105,10 @@ export {
   AccordionShowcase,
   VideoReel,
   SimpleQuoteGrid,
+  WebDesignHero,
+  RevealBeforeAfter,
+  CapabilitiesGrid,
+  SimpleIconGrid,
 };
 
 /**
@@ -140,4 +145,5 @@ export const allBlocks = [
   ...designPrintBlocks,
   ...videoServiceBlocks,
   ...aboutBlocks,
+  ...webDesignBlocks,
 ];
