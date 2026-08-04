@@ -1781,6 +1781,198 @@ export interface Page {
             blockName?: string | null;
             blockType: 'inlineCta';
           }
+        | {
+            backgroundImage?: (number | null) | Media;
+            eyebrow?: string | null;
+            /**
+             * Wrap words in *asterisks* for the accent colour. Line breaks preserved.
+             */
+            title: string;
+            subtitle?: string | null;
+            trustItems?:
+              | {
+                  /**
+                   * Paste inline SVG markup, or leave blank.
+                   */
+                  icon?: string | null;
+                  title: string;
+                  body?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Email and phone shown under the trust points.
+             */
+            directLinks?:
+              | {
+                  /**
+                   * e.g. ✉ or ☎
+                   */
+                  icon?: string | null;
+                  label: string;
+                  /**
+                   * mailto: or tel:
+                   */
+                  href: string;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Wording only — where submissions go is fixed in code.
+             */
+            form?: {
+              heading?: string | null;
+              subheading?: string | null;
+              subheadingLinkLabel?: string | null;
+              subheadingLinkHref?: string | null;
+              nameLabel?: string | null;
+              namePlaceholder?: string | null;
+              emailLabel?: string | null;
+              emailPlaceholder?: string | null;
+              companyLabel?: string | null;
+              companyPlaceholder?: string | null;
+              chipsLabel?: string | null;
+              /**
+               * Selections are attached to the CRM record as a note.
+               */
+              chips?:
+                | {
+                    text: string;
+                    id?: string | null;
+                  }[]
+                | null;
+              messageLabel?: string | null;
+              messagePlaceholder?: string | null;
+              submitLabel?: string | null;
+              retryLabel?: string | null;
+              note?: string | null;
+              successTitle?: string | null;
+              successBody?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactHero';
+          }
+        | {
+            heading?: {
+              eyebrow?: string | null;
+              /**
+               * Wrap words in *asterisks* to highlight them in the accent colour.
+               */
+              title?: string | null;
+              subtitle?: string | null;
+              align?: ('left' | 'center') | null;
+            };
+            /**
+             * Optional inline SVG, e.g. the wave mark.
+             */
+            headingIcon?: string | null;
+            steps?:
+              | {
+                  /**
+                   * e.g. 01. Leave blank to auto-number.
+                   */
+                  number?: string | null;
+                  title: string;
+                  body?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Background, text colour, spacing and width for this section.
+             */
+            appearance?: {
+              background?:
+                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
+              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
+              /**
+               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
+               */
+              customBackground?: string | null;
+              customTextColor?: string | null;
+              backgroundImage?: (number | null) | Media;
+              backgroundVideo?: {
+                source?: ('vimeo' | 'file') | null;
+                /**
+                 * Just the number, e.g. 1187767005
+                 */
+                vimeoId?: string | null;
+                /**
+                 * e.g. /videos/Website video .mp4
+                 */
+                url?: string | null;
+              };
+              overlay?: {
+                enabled?: boolean | null;
+                opacity?: number | null;
+              };
+              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
+              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
+              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
+              /**
+               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
+               */
+              anchorId?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'steps';
+          }
+        | {
+            heading?: {
+              eyebrow?: string | null;
+              /**
+               * Wrap words in *asterisks* to highlight them in the accent colour.
+               */
+              title?: string | null;
+              subtitle?: string | null;
+              align?: ('left' | 'center') | null;
+            };
+            /**
+             * The id from your GoHighLevel booking link, e.g. BihxiP7RLvybBcV9yUHJ. The full URL is built from it.
+             */
+            widgetId: string;
+            minHeight?: number | null;
+            /**
+             * Background, text colour, spacing and width for this section.
+             */
+            appearance?: {
+              background?:
+                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
+              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
+              /**
+               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
+               */
+              customBackground?: string | null;
+              customTextColor?: string | null;
+              backgroundImage?: (number | null) | Media;
+              backgroundVideo?: {
+                source?: ('vimeo' | 'file') | null;
+                /**
+                 * Just the number, e.g. 1187767005
+                 */
+                vimeoId?: string | null;
+                /**
+                 * e.g. /videos/Website video .mp4
+                 */
+                url?: string | null;
+              };
+              overlay?: {
+                enabled?: boolean | null;
+                opacity?: number | null;
+              };
+              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
+              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
+              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
+              /**
+               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
+               */
+              anchorId?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'calendarEmbed';
+          }
       )[]
     | null;
   /**
@@ -3540,6 +3732,198 @@ export interface CaseStudy {
             blockName?: string | null;
             blockType: 'inlineCta';
           }
+        | {
+            backgroundImage?: (number | null) | Media;
+            eyebrow?: string | null;
+            /**
+             * Wrap words in *asterisks* for the accent colour. Line breaks preserved.
+             */
+            title: string;
+            subtitle?: string | null;
+            trustItems?:
+              | {
+                  /**
+                   * Paste inline SVG markup, or leave blank.
+                   */
+                  icon?: string | null;
+                  title: string;
+                  body?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Email and phone shown under the trust points.
+             */
+            directLinks?:
+              | {
+                  /**
+                   * e.g. ✉ or ☎
+                   */
+                  icon?: string | null;
+                  label: string;
+                  /**
+                   * mailto: or tel:
+                   */
+                  href: string;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Wording only — where submissions go is fixed in code.
+             */
+            form?: {
+              heading?: string | null;
+              subheading?: string | null;
+              subheadingLinkLabel?: string | null;
+              subheadingLinkHref?: string | null;
+              nameLabel?: string | null;
+              namePlaceholder?: string | null;
+              emailLabel?: string | null;
+              emailPlaceholder?: string | null;
+              companyLabel?: string | null;
+              companyPlaceholder?: string | null;
+              chipsLabel?: string | null;
+              /**
+               * Selections are attached to the CRM record as a note.
+               */
+              chips?:
+                | {
+                    text: string;
+                    id?: string | null;
+                  }[]
+                | null;
+              messageLabel?: string | null;
+              messagePlaceholder?: string | null;
+              submitLabel?: string | null;
+              retryLabel?: string | null;
+              note?: string | null;
+              successTitle?: string | null;
+              successBody?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactHero';
+          }
+        | {
+            heading?: {
+              eyebrow?: string | null;
+              /**
+               * Wrap words in *asterisks* to highlight them in the accent colour.
+               */
+              title?: string | null;
+              subtitle?: string | null;
+              align?: ('left' | 'center') | null;
+            };
+            /**
+             * Optional inline SVG, e.g. the wave mark.
+             */
+            headingIcon?: string | null;
+            steps?:
+              | {
+                  /**
+                   * e.g. 01. Leave blank to auto-number.
+                   */
+                  number?: string | null;
+                  title: string;
+                  body?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Background, text colour, spacing and width for this section.
+             */
+            appearance?: {
+              background?:
+                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
+              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
+              /**
+               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
+               */
+              customBackground?: string | null;
+              customTextColor?: string | null;
+              backgroundImage?: (number | null) | Media;
+              backgroundVideo?: {
+                source?: ('vimeo' | 'file') | null;
+                /**
+                 * Just the number, e.g. 1187767005
+                 */
+                vimeoId?: string | null;
+                /**
+                 * e.g. /videos/Website video .mp4
+                 */
+                url?: string | null;
+              };
+              overlay?: {
+                enabled?: boolean | null;
+                opacity?: number | null;
+              };
+              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
+              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
+              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
+              /**
+               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
+               */
+              anchorId?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'steps';
+          }
+        | {
+            heading?: {
+              eyebrow?: string | null;
+              /**
+               * Wrap words in *asterisks* to highlight them in the accent colour.
+               */
+              title?: string | null;
+              subtitle?: string | null;
+              align?: ('left' | 'center') | null;
+            };
+            /**
+             * The id from your GoHighLevel booking link, e.g. BihxiP7RLvybBcV9yUHJ. The full URL is built from it.
+             */
+            widgetId: string;
+            minHeight?: number | null;
+            /**
+             * Background, text colour, spacing and width for this section.
+             */
+            appearance?: {
+              background?:
+                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
+              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
+              /**
+               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
+               */
+              customBackground?: string | null;
+              customTextColor?: string | null;
+              backgroundImage?: (number | null) | Media;
+              backgroundVideo?: {
+                source?: ('vimeo' | 'file') | null;
+                /**
+                 * Just the number, e.g. 1187767005
+                 */
+                vimeoId?: string | null;
+                /**
+                 * e.g. /videos/Website video .mp4
+                 */
+                url?: string | null;
+              };
+              overlay?: {
+                enabled?: boolean | null;
+                opacity?: number | null;
+              };
+              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
+              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
+              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
+              /**
+               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
+               */
+              anchorId?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'calendarEmbed';
+          }
       )[]
     | null;
   meta?: {
@@ -5240,6 +5624,151 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        contactHero?:
+          | T
+          | {
+              backgroundImage?: T;
+              eyebrow?: T;
+              title?: T;
+              subtitle?: T;
+              trustItems?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    body?: T;
+                    id?: T;
+                  };
+              directLinks?:
+                | T
+                | {
+                    icon?: T;
+                    label?: T;
+                    href?: T;
+                    id?: T;
+                  };
+              form?:
+                | T
+                | {
+                    heading?: T;
+                    subheading?: T;
+                    subheadingLinkLabel?: T;
+                    subheadingLinkHref?: T;
+                    nameLabel?: T;
+                    namePlaceholder?: T;
+                    emailLabel?: T;
+                    emailPlaceholder?: T;
+                    companyLabel?: T;
+                    companyPlaceholder?: T;
+                    chipsLabel?: T;
+                    chips?:
+                      | T
+                      | {
+                          text?: T;
+                          id?: T;
+                        };
+                    messageLabel?: T;
+                    messagePlaceholder?: T;
+                    submitLabel?: T;
+                    retryLabel?: T;
+                    note?: T;
+                    successTitle?: T;
+                    successBody?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        steps?:
+          | T
+          | {
+              heading?:
+                | T
+                | {
+                    eyebrow?: T;
+                    title?: T;
+                    subtitle?: T;
+                    align?: T;
+                  };
+              headingIcon?: T;
+              steps?:
+                | T
+                | {
+                    number?: T;
+                    title?: T;
+                    body?: T;
+                    id?: T;
+                  };
+              appearance?:
+                | T
+                | {
+                    background?: T;
+                    textColor?: T;
+                    customBackground?: T;
+                    customTextColor?: T;
+                    backgroundImage?: T;
+                    backgroundVideo?:
+                      | T
+                      | {
+                          source?: T;
+                          vimeoId?: T;
+                          url?: T;
+                        };
+                    overlay?:
+                      | T
+                      | {
+                          enabled?: T;
+                          opacity?: T;
+                        };
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                    width?: T;
+                    anchorId?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        calendarEmbed?:
+          | T
+          | {
+              heading?:
+                | T
+                | {
+                    eyebrow?: T;
+                    title?: T;
+                    subtitle?: T;
+                    align?: T;
+                  };
+              widgetId?: T;
+              minHeight?: T;
+              appearance?:
+                | T
+                | {
+                    background?: T;
+                    textColor?: T;
+                    customBackground?: T;
+                    customTextColor?: T;
+                    backgroundImage?: T;
+                    backgroundVideo?:
+                      | T
+                      | {
+                          source?: T;
+                          vimeoId?: T;
+                          url?: T;
+                        };
+                    overlay?:
+                      | T
+                      | {
+                          enabled?: T;
+                          opacity?: T;
+                        };
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                    width?: T;
+                    anchorId?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
       };
   slug?: T;
   hideFromSitemap?: T;
@@ -6493,6 +7022,151 @@ export interface CaseStudiesSelect<T extends boolean = true> {
                     anchor?: T;
                     style?: T;
                     newTab?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contactHero?:
+          | T
+          | {
+              backgroundImage?: T;
+              eyebrow?: T;
+              title?: T;
+              subtitle?: T;
+              trustItems?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    body?: T;
+                    id?: T;
+                  };
+              directLinks?:
+                | T
+                | {
+                    icon?: T;
+                    label?: T;
+                    href?: T;
+                    id?: T;
+                  };
+              form?:
+                | T
+                | {
+                    heading?: T;
+                    subheading?: T;
+                    subheadingLinkLabel?: T;
+                    subheadingLinkHref?: T;
+                    nameLabel?: T;
+                    namePlaceholder?: T;
+                    emailLabel?: T;
+                    emailPlaceholder?: T;
+                    companyLabel?: T;
+                    companyPlaceholder?: T;
+                    chipsLabel?: T;
+                    chips?:
+                      | T
+                      | {
+                          text?: T;
+                          id?: T;
+                        };
+                    messageLabel?: T;
+                    messagePlaceholder?: T;
+                    submitLabel?: T;
+                    retryLabel?: T;
+                    note?: T;
+                    successTitle?: T;
+                    successBody?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        steps?:
+          | T
+          | {
+              heading?:
+                | T
+                | {
+                    eyebrow?: T;
+                    title?: T;
+                    subtitle?: T;
+                    align?: T;
+                  };
+              headingIcon?: T;
+              steps?:
+                | T
+                | {
+                    number?: T;
+                    title?: T;
+                    body?: T;
+                    id?: T;
+                  };
+              appearance?:
+                | T
+                | {
+                    background?: T;
+                    textColor?: T;
+                    customBackground?: T;
+                    customTextColor?: T;
+                    backgroundImage?: T;
+                    backgroundVideo?:
+                      | T
+                      | {
+                          source?: T;
+                          vimeoId?: T;
+                          url?: T;
+                        };
+                    overlay?:
+                      | T
+                      | {
+                          enabled?: T;
+                          opacity?: T;
+                        };
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                    width?: T;
+                    anchorId?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        calendarEmbed?:
+          | T
+          | {
+              heading?:
+                | T
+                | {
+                    eyebrow?: T;
+                    title?: T;
+                    subtitle?: T;
+                    align?: T;
+                  };
+              widgetId?: T;
+              minHeight?: T;
+              appearance?:
+                | T
+                | {
+                    background?: T;
+                    textColor?: T;
+                    customBackground?: T;
+                    customTextColor?: T;
+                    backgroundImage?: T;
+                    backgroundVideo?:
+                      | T
+                      | {
+                          source?: T;
+                          vimeoId?: T;
+                          url?: T;
+                        };
+                    overlay?:
+                      | T
+                      | {
+                          enabled?: T;
+                          opacity?: T;
+                        };
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                    width?: T;
+                    anchorId?: T;
                   };
               id?: T;
               blockName?: T;

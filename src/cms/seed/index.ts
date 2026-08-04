@@ -11,6 +11,7 @@ import { seedCommercial } from './commercial';
 import { seedLegalPages } from './legal';
 import { seedTestimonials } from './testimonials';
 import { seedCaseStudiesIndex } from './case-studies-index';
+import { seedContact } from './contact';
 import { seedAdminUser } from './admin';
 
 /**
@@ -33,6 +34,7 @@ async function run() {
   await seedCaseStudiesIndex(payload);
   await seedCommercial(payload);
   await seedLegalPages(payload);
+  await seedContact(payload);
   await seedTestimonials(payload);
   await seedPhotoservices(payload);
 

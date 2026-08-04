@@ -23,6 +23,11 @@ import {
   VideoTestimonialsBlock,
   TestimonialCardsBlock,
 } from './blocks/LandingBlocks';
+import {
+  ContactHeroBlock,
+  StepsBlockRenderer,
+  CalendarEmbedBlock,
+} from './blocks/ContactBlocks';
 import { containerClassName } from './appearance';
 import CMSLink from './CMSLink';
 import './cms-blocks.css';
@@ -66,6 +71,14 @@ export default function RenderBlocks({ blocks }: { blocks?: any[] | null }) {
 
           case 'caseStudyCards':
             return <CaseStudyCardsBlock key={key} block={block} />;
+
+          // ── Contact page ──
+          case 'contactHero':
+            return <ContactHeroBlock key={key} block={block} />;
+          case 'steps':
+            return <StepsBlockRenderer key={key} block={block} />;
+          case 'calendarEmbed':
+            return <CalendarEmbedBlock key={key} block={block} />;
 
           case 'richText':
             return (

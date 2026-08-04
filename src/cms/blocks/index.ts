@@ -17,6 +17,7 @@ import {
   DividerLabel,
   InlineCTA,
 } from './testimonials';
+import { contactBlocks, ContactHero, StepsBlock, CalendarEmbed } from './contact';
 
 export {
   Hero,
@@ -48,6 +49,9 @@ export {
   TestimonialCards,
   DividerLabel,
   InlineCTA,
+  ContactHero,
+  StepsBlock,
+  CalendarEmbed,
 };
 
 /**
@@ -78,4 +82,5 @@ export const allBlocks = [
   // Landing-page kit — renders the wc-* / wct-* design systems
   ...landingBlocks,
   ...testimonialBlocks,
+  ...contactBlocks,
 ];
