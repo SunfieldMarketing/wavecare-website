@@ -1,7 +1,14 @@
 import { Hero, NoticeBar } from './hero';
 import { RichTextBlock, CardGrid, SplitMedia, Stats, Accordion, LegalDocument } from './layout';
 import { LogoMarquee, Gallery, BeforeAfter, VideoEmbed, VideoGrid, TabsShowcase } from './media';
-import { Process, CaseStudyGrid, TestimonialGrid, FinalCTA, ContactFormBlock } from './conversion';
+import {
+  Process,
+  CaseStudyGrid,
+  CaseStudyCards,
+  TestimonialGrid,
+  FinalCTA,
+  ContactFormBlock,
+} from './conversion';
 import { landingBlocks, LandingHero, VideoFeature, StatsBar, PillBand, AuditCTA } from './landing';
 import {
   testimonialBlocks,
@@ -28,6 +35,7 @@ export {
   TabsShowcase,
   Process,
   CaseStudyGrid,
+  CaseStudyCards,
   TestimonialGrid,
   FinalCTA,
   ContactFormBlock,
@@ -59,6 +67,7 @@ export const allBlocks = [
   VideoEmbed,
   VideoGrid,
   LogoMarquee,
+  CaseStudyCards,
   CaseStudyGrid,
   TestimonialGrid,
   Accordion,

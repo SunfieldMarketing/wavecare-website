@@ -13,6 +13,7 @@ import { seedCaseStudies } from './case-studies';
 import { seedCommercial } from './commercial';
 import { seedLegalPages } from './legal';
 import { seedTestimonials } from './testimonials';
+import { seedCaseStudiesIndex } from './case-studies-index';
 import { seedAdminUser } from './admin';
 
 /**
@@ -32,6 +33,7 @@ async function run() {
   await seedAdminUser(payload);
   await seedNavigation(payload);
   await seedCaseStudies(payload);
+  await seedCaseStudiesIndex(payload);
   await seedCommercial(payload);
   await seedLegalPages(payload);
   await seedTestimonials(payload);

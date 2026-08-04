@@ -9,6 +9,7 @@ import {
   ProcessBlock,
   FinalCTABlock,
   LegalDocumentBlock,
+  CaseStudyCardsBlock,
 } from './blocks/ServerBlocks';
 import { BeforeAfterInner, TabsShowcaseInner, GalleryInner } from './blocks/ClientBlocks';
 import {
@@ -62,6 +63,9 @@ export default function RenderBlocks({ blocks }: { blocks?: any[] | null }) {
 
           case 'legalDocument':
             return <LegalDocumentBlock key={key} block={block} />;
+
+          case 'caseStudyCards':
+            return <CaseStudyCardsBlock key={key} block={block} />;
 
           case 'richText':
             return (

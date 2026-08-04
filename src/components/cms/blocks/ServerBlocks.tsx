@@ -236,7 +236,18 @@ export function StatsBlock({ block }: { block: any }) {
         <div className={`stats stagger${(block.stats ?? []).length === 4 ? ' four' : ''}`}>
           {(block.stats ?? []).map((s: any, i: number) => (
             <div className="stat" key={i}>
-              <div className="num">{s.value}</div>
+              {/* data-count drives the shared count-up script; the suffix stays
+                  outside the counted span so it is not overwritten. */}
+              {s.countTo != null ? (
+                <div className="num">
+                  <span data-count={s.countTo} {...(s.comma ? { 'data-comma': '1' } : {})}>
+                    0
+                  </span>
+                  {s.suffix}
+                </div>
+              ) : (
+                <div className="num">{s.value}</div>
+              )}
               <div className="cap">{s.label}</div>
             </div>
           ))}
@@ -275,6 +286,54 @@ export function ProcessBlock({ block }: { block: any }) {
         )}
 
         <CMSLinkGroup buttons={buttons} />
+      </div>
+    </Section>
+  );
+}
+
+/* ── Case study showcase cards ────────────────────────────────────── */
+
+export function CaseStudyCardsBlock({ block }: { block: any }) {
+  const { heading, cards, appearance } = block;
+  return (
+    <Section appearance={appearance}>
+      <div className={containerClassName(appearance)}>
+        <SectionHead heading={heading} />
+        <div className="cs-grid stagger">
+          {(cards ?? []).map((card: any, i: number) => (
+            <div className="cs-card" key={i}>
+              <div className="cs-media">
+                {card.image?.url && (
+                  <Image
+                    src={card.image.url}
+                    alt={card.image.alt ?? card.title ?? ''}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    priority={i === 0}
+                  />
+                )}
+                {card.tags?.length > 0 && (
+                  <div className="cs-tag">
+                    {card.tags.map((t: any, ti: number) => (
+                      <span key={ti}>{t.text}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="cs-body">
+                <span className="cs-client">{card.client}</span>
+                <h3>{card.title}</h3>
+                {card.description && <p className="cs-desc">{card.description}</p>}
+                {card.result?.value && (
+                  <div className="cs-result">
+                    <span className="num">{card.result.value}</span>
+                    {card.result.label && <span className="lbl">{card.result.label}</span>}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </Section>
   );

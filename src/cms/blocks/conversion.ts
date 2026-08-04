@@ -80,6 +80,50 @@ export const CaseStudyGrid: Block = {
   ],
 };
 
+/**
+ * Case study showcase cards (.cs-grid > .cs-card).
+ *
+ * Separate from caseStudyGrid: the index page's cards carry their own headline,
+ * client description and result, which differ from the full case-study records,
+ * and they are presentational rather than linked.
+ */
+export const CaseStudyCards: Block = {
+  slug: 'caseStudyCards',
+  labels: { singular: 'Case study cards', plural: 'Case study cards' },
+  imageAltText: 'Grid of image-led project cards',
+  fields: [
+    headingFields,
+    {
+      name: 'cards',
+      type: 'array',
+      minRows: 1,
+      fields: [
+        { name: 'image', type: 'upload', relationTo: 'media', required: true },
+        {
+          name: 'tags',
+          type: 'array',
+          label: 'Tags over the image',
+          fields: [{ name: 'text', type: 'text', required: true }],
+        },
+        { name: 'client', type: 'text', label: 'Client description', required: true },
+        { name: 'title', type: 'text', required: true },
+        { name: 'description', type: 'textarea' },
+        {
+          name: 'result',
+          type: 'group',
+          label: 'Result',
+          fields: [
+            { name: 'value', type: 'text', admin: { description: 'e.g. 48 or 72%. Leave blank to hide.' } },
+            { name: 'label', type: 'text' },
+          ],
+        },
+        linkField({ name: 'link', label: 'Card link (optional)' }),
+      ],
+    },
+    sectionSettings,
+  ],
+};
+
 /** Testimonials — text quotes or Vimeo video testimonials. */
 export const TestimonialGrid: Block = {
   slug: 'testimonialGrid',

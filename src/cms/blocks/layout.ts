@@ -174,6 +174,27 @@ export const Stats: Block = {
       fields: [
         { name: 'value', type: 'text', required: true, admin: { description: 'e.g. 42%, 3X, +210%' } },
         { name: 'label', type: 'text', required: true },
+        {
+          name: 'countTo',
+          type: 'number',
+          label: 'Count up to',
+          admin: {
+            description:
+              'Optional. Animates the number counting up on scroll. Leave blank to show the value as typed.',
+          },
+        },
+        {
+          name: 'suffix',
+          type: 'text',
+          label: 'Suffix after the number',
+          admin: { condition: (_, s) => s?.countTo != null, description: 'e.g. + or %' },
+        },
+        {
+          name: 'comma',
+          type: 'checkbox',
+          label: 'Thousands separator',
+          admin: { condition: (_, s) => s?.countTo != null },
+        },
       ],
     },
     sectionSettings,

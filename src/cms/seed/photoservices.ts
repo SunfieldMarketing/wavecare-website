@@ -1,38 +1,5 @@
-import path from 'path';
-import fs from 'fs';
 import type { Payload } from 'payload';
-
-const PUBLIC = path.resolve(process.cwd(), 'public');
-
-/**
- * Uploads a file from /public into the Media library, reusing it if already
- * there. Returns the raw id — SQLite uses integer ids, so it must not be
- * stringified or Payload's upload-relationship validation rejects it.
- */
-async function ensureMedia(payload: Payload, relPath: string, alt: string): Promise<number | string | null> {
-  const filePath = path.join(PUBLIC, relPath);
-  if (!fs.existsSync(filePath)) {
-    payload.logger.warn(`  ! missing file, skipped: ${relPath}`);
-    return null;
-  }
-
-  const filename = path.basename(relPath);
-  const existing = await payload.find({
-    collection: 'media',
-    where: { filename: { equals: filename } },
-    limit: 1,
-    overrideAccess: true,
-  });
-  if (existing.docs.length > 0) return existing.docs[0].id;
-
-  const doc = await payload.create({
-    collection: 'media',
-    data: { alt },
-    filePath,
-    overrideAccess: true,
-  });
-  return doc.id;
-}
+import { ensureMedia } from './media';
 
 const GALLERY = [
   { f: 'Balloon activity photo.jpeg', alt: 'Residents enjoying a balloon activity', cats: ['Resident Lifestyle'] },
