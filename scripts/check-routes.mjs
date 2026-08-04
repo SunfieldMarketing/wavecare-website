@@ -31,10 +31,12 @@ for (const r of routes) {
     const html = await res.text();
     const sections = (html.match(/<section/g) || []).length;
     const notes = [];
-    // NB: `__next_error__` appears in ordinary Next dev output (the error
-    // overlay boundary), so it is NOT a failure signal on its own.
-    if (/This page could not be found|Application error/i.test(html)) notes.push('ERROR PAGE');
-    if (/Internal Server Error/i.test(html)) notes.push('500');
+    // NB: strings like `__next_error__`, "Application error" and "This page
+    // could not be found" all ship inside Next's dev overlay bundle on EVERY
+    // page, so matching them flags healthy routes. Judge on real signals only:
+    // the status code, and whether the page actually rendered anything.
+    if (res.status >= 400) notes.push(`HTTP ${res.status}`);
+    if (html.length < 5000) notes.push('SUSPICIOUSLY SMALL');
     if (sections === 0) notes.push('no sections');
     const title = (html.match(/<title>([^<]*)<\/title>/) || [])[1] || '';
     if (title) notes.push(`title="${title.slice(0, 46)}"`);
