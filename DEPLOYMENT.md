@@ -42,17 +42,39 @@ Local SQLite cannot `ALTER` existing tables, so a schema change means dropping
 and re-seeding. That is fine while all content is script-generated; it destroys
 real editor work. Use a hosted database as soon as anyone edits content for real.
 
+### Getting Turso credentials
+
+The Turso CLI has **no native Windows build** — it requires WSL. The web
+dashboard does the same job with no CLI, and is the recommended route on Windows:
+
+1. <https://turso.tech> → sign up (GitHub login, free, no card)
+2. **Create Database** → name it `wavecare` → pick the nearest region
+3. On the database page, copy the **Database URL** (`libsql://wavecare-<org>.turso.io`)
+4. **Create Token** (full access) → copy it — it is shown only once
+
+On macOS or Linux the CLI is equivalent:
+
+```bash
+curl -sSfL https://get.tur.so/install.sh | bash
+turso auth signup
+turso db create wavecare
+turso db show wavecare --url
+turso db tokens create wavecare
+```
+
 ### First-time setup
 
 ```bash
-# 1. point at the database
-#    .env.local:
-#      DATABASE_URI=libsql://wavecare-<org>.turso.io
-#      DATABASE_AUTH_TOKEN=<token>
+# .env.local:
+#   DATABASE_URI=libsql://wavecare-<org>.turso.io
+#   DATABASE_AUTH_TOKEN=<token>
 
 npm run migrate      # create the tables (migration is committed)
 npm run seed         # load all content — safe to re-run, it upserts
 ```
+
+A fresh hosted database runs `migrate` without prompting. The local SQLite file
+prompts about data loss because dev mode pushed schema into it directly.
 
 `npm run migrate:create` is only needed after changing a block or collection
 schema. Commit the generated file in `src/migrations`.
