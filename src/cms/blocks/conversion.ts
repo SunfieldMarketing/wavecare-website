@@ -12,12 +12,24 @@ export const Process: Block = {
     {
       name: 'layout',
       type: 'select',
-      defaultValue: 'timeline',
+      enumName: 'enum_process_layout',
+      defaultValue: 'tabs',
       options: [
-        { label: 'Vertical timeline', value: 'timeline' },
-        { label: 'Horizontal row', value: 'row' },
-        { label: 'Tabs with visual', value: 'tabs' },
+        { label: 'Interactive tabs + contact sheet', value: 'tabs' },
+        { label: 'Simple numbered cards', value: 'cards' },
       ],
+    },
+    {
+      name: 'contactSheet',
+      type: 'upload',
+      relationTo: 'media',
+      hasMany: true,
+      label: 'Contact sheet photos',
+      admin: {
+        condition: (_, s) => s?.layout === 'tabs',
+        description:
+          'Six images work best. They sharpen from blurred proofs to final selects as the visitor moves through the phases.',
+      },
     },
     {
       name: 'steps',

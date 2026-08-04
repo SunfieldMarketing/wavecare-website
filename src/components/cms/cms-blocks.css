@@ -1,0 +1,66 @@
+/**
+ * Styles for options the CMS exposes that the original hand-written stylesheet
+ * never defined.
+ *
+ * Everything here is namespaced `cms-` on purpose. The legacy pages already use
+ * bare `container-wide` (e.g. /videoservices) and currently get no styling from
+ * it — defining that selector globally would silently restyle those pages. This
+ * keeps CMS-only options from leaking into hand-written markup.
+ */
+
+.cms-container-wide {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 clamp(22px, 4vw, 56px);
+}
+
+.cms-container-narrow {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 clamp(22px, 4vw, 56px);
+}
+
+.cms-container-full {
+  max-width: none;
+  width: 100%;
+  padding: 0;
+}
+
+/* Even (non-masonry) gallery grid — the stylesheet only shipped .mason. */
+.cms-gal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.cms-gal-grid > * {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+/* Card grid column counts. .shoot-grid owns its own responsive behaviour, so
+   these only apply when an editor explicitly overrides the column count. */
+.cms-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cms-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cms-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+@media (max-width: 1000px) {
+  .cms-cols-3,
+  .cms-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .cms-cols-2,
+  .cms-cols-3,
+  .cms-cols-4 { grid-template-columns: 1fr; }
+}
+
+/* Fallback so a block type with no renderer is obvious in development only. */
+.cms-missing-block {
+  padding: 24px;
+  margin: 16px;
+  border: 2px dashed var(--teal-bright);
+  border-radius: 12px;
+  color: var(--teal-bright);
+  font-family: monospace;
+}

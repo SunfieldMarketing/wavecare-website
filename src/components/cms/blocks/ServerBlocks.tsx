@@ -4,28 +4,25 @@ import {
   containerClassName,
   sectionStyle,
   overlayStyle,
+  hasMediaBackground,
   parseHighlight,
   type Appearance,
 } from '../appearance';
 import { CMSLinkGroup } from '../CMSLink';
+import ProcessShowcase from './ProcessShowcase';
+import CameraCursor from './CameraCursor';
 
 /** Shared eyebrow + heading + sub-paragraph, matching .sec-head. */
 export function SectionHead({ heading }: { heading?: any }) {
   if (!heading || (!heading.eyebrow && !heading.title && !heading.subtitle)) return null;
-  const centered = heading.align === 'center';
+  // globals.css:246 already defines `.sec-head.center` — use the class rather
+  // than inline styles so the stylesheet stays in control.
+  const cls = heading.align === 'center' ? 'sec-head center' : 'sec-head';
   return (
-    <div
-      className="sec-head"
-      data-reveal
-      style={centered ? { textAlign: 'center', maxWidth: '900px', margin: '0 auto 60px' } : undefined}
-    >
+    <div className={cls} data-reveal>
       {heading.eyebrow && <span className="label">{heading.eyebrow}</span>}
       {heading.title && <h2>{parseHighlight(heading.title)}</h2>}
-      {heading.subtitle && (
-        <p className="sub" style={{ marginTop: '18px' }}>
-          {heading.subtitle}
-        </p>
-      )}
+      {heading.subtitle && <p className="sub">{heading.subtitle}</p>}
     </div>
   );
 }
@@ -77,7 +74,15 @@ export function Section({
         />
       )}
       {ov && <div style={ov} />}
-      <div style={{ position: 'relative', zIndex: 2 }}>{children}</div>
+      {/* Only introduce a stacking wrapper when there is a media background to
+          sit above. Adding it unconditionally put an extra div between
+          <section> and .container, which breaks descendant rules like
+          `.final .container` and `.phero .container`. */}
+      {hasMediaBackground(appearance) ? (
+        <div style={{ position: 'relative', zIndex: 2 }}>{children}</div>
+      ) : (
+        children
+      )}
     </section>
   );
 }
@@ -85,7 +90,8 @@ export function Section({
 /* ── Hero ─────────────────────────────────────────────────────────── */
 
 export function HeroBlock({ block }: { block: any }) {
-  const { layout, eyebrow, title, subtitle, mosaicImages, buttons, minHeight, appearance } = block;
+  const { layout, eyebrow, title, subtitle, mosaicImages, buttons, minHeight, appearance, cameraCursor } =
+    block;
   const isMosaic = layout === 'mosaic';
   const images: any[] = Array.isArray(mosaicImages) ? mosaicImages : [];
 
@@ -98,6 +104,7 @@ export function HeroBlock({ block }: { block: any }) {
       className={isMosaic ? 'phero' : 'hero'}
       style={{ ...sectionStyle(appearance), ...heightStyle, position: 'relative', overflow: 'hidden' }}
     >
+      {cameraCursor?.enabled && <CameraCursor fStop={cameraCursor.fStop || 'F/1.8'} />}
       {isMosaic && images.length > 0 && (
         <div className="phero-bg">
           <div className="phero-grid-full">
@@ -180,10 +187,17 @@ export function CardGridBlock({ block }: { block: any }) {
     <Section appearance={appearance}>
       <div className={containerClassName(appearance)}>
         <SectionHead heading={heading} />
+        {/* .shoot-grid and .deliv already define their own responsive grids.
+            The column override is opt-in via a namespaced class so it never
+            clobbers the stylesheet's breakpoints. */}
         <div
-          className={style === 'plain' ? 'deliv stagger' : 'shoot-grid'}
+          className={[
+            style === 'plain' ? 'deliv stagger' : 'shoot-grid',
+            columns && columns !== '4' ? `cms-cols-${columns}` : '',
+          ]
+            .filter(Boolean)
+            .join(' ')}
           data-reveal
-          style={{ display: 'grid', gridTemplateColumns: `repeat(${columns ?? 4}, minmax(0,1fr))`, gap: '24px' }}
         >
           {(cards ?? []).map((card: any, i: number) => (
             <div key={i} className={style === 'plain' ? 'deliv-item' : 'shoot-card'}>
@@ -215,14 +229,9 @@ export function StatsBlock({ block }: { block: any }) {
     <Section appearance={block.appearance}>
       <div className={containerClassName(block.appearance)}>
         <SectionHead heading={block.heading} />
-        <div
-          className="stats stagger"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: `repeat(${Math.min((block.stats ?? []).length || 1, 4)}, minmax(0,1fr))`,
-            gap: '32px',
-          }}
-        >
+        {/* globals.css:261 ships .stats (3 across) with a .four modifier for
+            4 across — use those instead of inline grid styles. */}
+        <div className={`stats stagger${(block.stats ?? []).length === 4 ? ' four' : ''}`}>
           {(block.stats ?? []).map((s: any, i: number) => (
             <div className="stat" key={i}>
               <div className="num">{s.value}</div>
@@ -238,20 +247,31 @@ export function StatsBlock({ block }: { block: any }) {
 /* ── Process ──────────────────────────────────────────────────────── */
 
 export function ProcessBlock({ block }: { block: any }) {
-  const { heading, steps, buttons, appearance } = block;
+  const { heading, steps, buttons, appearance, layout, contactSheet } = block;
+  const sheet = (Array.isArray(contactSheet) ? contactSheet : [])
+    .filter((m: any) => m?.url)
+    .map((m: any) => ({ url: m.sizes?.card?.url || m.url, alt: m.alt }));
+
   return (
     <Section appearance={appearance}>
       <div className={containerClassName(appearance)}>
         <SectionHead heading={heading} />
-        <div className="proc stagger">
-          {(steps ?? []).map((step: any, i: number) => (
-            <div className="proc-step" key={i} data-reveal>
-              <span className="label">{step.label || `Step ${String(i + 1).padStart(2, '0')}`}</span>
-              <h3>{step.title}</h3>
-              {step.body && <p>{step.body}</p>}
-            </div>
-          ))}
-        </div>
+
+        {layout === 'cards' ? (
+          // Plain numbered cards reuse .deliv, which the stylesheet defines.
+          <div className="deliv stagger">
+            {(steps ?? []).map((step: any, i: number) => (
+              <div className="deliv-item" key={i}>
+                <div className="ic">{step.label || String(i + 1).padStart(2, '0')}</div>
+                <h4>{step.title}</h4>
+                {step.body && <p>{step.body}</p>}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <ProcessShowcase steps={steps ?? []} sheetImages={sheet} />
+        )}
+
         <CMSLinkGroup buttons={buttons} />
       </div>
     </Section>

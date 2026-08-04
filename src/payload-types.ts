@@ -197,6 +197,13 @@ export interface Page {
                   id?: string | null;
                 }[]
               | null;
+            /**
+             * Camera focus brackets that follow the mouse across the hero.
+             */
+            cameraCursor?: {
+              enabled?: boolean | null;
+              fStop?: string | null;
+            };
             minHeight?: ('full' | 'tall' | 'compact') | null;
             /**
              * Background, text colour, spacing and width for this section.
@@ -528,7 +535,11 @@ export interface Page {
               subtitle?: string | null;
               align?: ('left' | 'center') | null;
             };
-            layout?: ('timeline' | 'row' | 'tabs') | null;
+            layout?: ('tabs' | 'cards') | null;
+            /**
+             * Six images work best. They sharpen from blurred proofs to final selects as the visitor moves through the phases.
+             */
+            contactSheet?: (number | Media)[] | null;
             steps?:
               | {
                   /**
@@ -611,7 +622,9 @@ export interface Page {
               subtitle?: string | null;
               align?: ('left' | 'center') | null;
             };
-            frame?: ('none' | 'browser' | 'brochure' | 'phone') | null;
+            /**
+             * Each tab can show its visual inside a different mockup frame.
+             */
             tabs?:
               | {
                   title: string;
@@ -620,7 +633,11 @@ export interface Page {
                    * Paste inline SVG markup, or leave blank.
                    */
                   icon?: string | null;
+                  frame?: ('browser' | 'brochure' | 'google' | 'none') | null;
                   image?: (number | null) | Media;
+                  image2?: (number | null) | Media;
+                  businessName?: string | null;
+                  rating?: number | null;
                   id?: string | null;
                 }[]
               | null;
@@ -712,6 +729,26 @@ export interface Page {
             showFilters?: boolean | null;
             layout?: ('masonry' | 'grid' | 'carousel') | null;
             lightbox?: boolean | null;
+            buttons?:
+              | {
+                  link?: {
+                    label?: string | null;
+                    type?: ('internal' | 'external' | 'anchor') | null;
+                    page?: (number | null) | Page;
+                    /**
+                     * Include https://
+                     */
+                    url?: string | null;
+                    /**
+                     * Section id without the #, e.g. "gallery"
+                     */
+                    anchor?: string | null;
+                    style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+                    newTab?: boolean | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
             /**
              * Background, text colour, spacing and width for this section.
              */
@@ -1572,6 +1609,13 @@ export interface CaseStudy {
                   id?: string | null;
                 }[]
               | null;
+            /**
+             * Camera focus brackets that follow the mouse across the hero.
+             */
+            cameraCursor?: {
+              enabled?: boolean | null;
+              fStop?: string | null;
+            };
             minHeight?: ('full' | 'tall' | 'compact') | null;
             /**
              * Background, text colour, spacing and width for this section.
@@ -1903,7 +1947,11 @@ export interface CaseStudy {
               subtitle?: string | null;
               align?: ('left' | 'center') | null;
             };
-            layout?: ('timeline' | 'row' | 'tabs') | null;
+            layout?: ('tabs' | 'cards') | null;
+            /**
+             * Six images work best. They sharpen from blurred proofs to final selects as the visitor moves through the phases.
+             */
+            contactSheet?: (number | Media)[] | null;
             steps?:
               | {
                   /**
@@ -1986,7 +2034,9 @@ export interface CaseStudy {
               subtitle?: string | null;
               align?: ('left' | 'center') | null;
             };
-            frame?: ('none' | 'browser' | 'brochure' | 'phone') | null;
+            /**
+             * Each tab can show its visual inside a different mockup frame.
+             */
             tabs?:
               | {
                   title: string;
@@ -1995,7 +2045,11 @@ export interface CaseStudy {
                    * Paste inline SVG markup, or leave blank.
                    */
                   icon?: string | null;
+                  frame?: ('browser' | 'brochure' | 'google' | 'none') | null;
                   image?: (number | null) | Media;
+                  image2?: (number | null) | Media;
+                  businessName?: string | null;
+                  rating?: number | null;
                   id?: string | null;
                 }[]
               | null;
@@ -2087,6 +2141,26 @@ export interface CaseStudy {
             showFilters?: boolean | null;
             layout?: ('masonry' | 'grid' | 'carousel') | null;
             lightbox?: boolean | null;
+            buttons?:
+              | {
+                  link?: {
+                    label?: string | null;
+                    type?: ('internal' | 'external' | 'anchor') | null;
+                    page?: (number | null) | Page;
+                    /**
+                     * Include https://
+                     */
+                    url?: string | null;
+                    /**
+                     * Section id without the #, e.g. "gallery"
+                     */
+                    anchor?: string | null;
+                    style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+                    newTab?: boolean | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
             /**
              * Background, text colour, spacing and width for this section.
              */
@@ -3265,6 +3339,12 @@ export interface PagesSelect<T extends boolean = true> {
                         };
                     id?: T;
                   };
+              cameraCursor?:
+                | T
+                | {
+                    enabled?: T;
+                    fStop?: T;
+                  };
               minHeight?: T;
               appearance?:
                 | T
@@ -3517,6 +3597,7 @@ export interface PagesSelect<T extends boolean = true> {
                     align?: T;
                   };
               layout?: T;
+              contactSheet?: T;
               steps?:
                 | T
                 | {
@@ -3582,14 +3663,17 @@ export interface PagesSelect<T extends boolean = true> {
                     subtitle?: T;
                     align?: T;
                   };
-              frame?: T;
               tabs?:
                 | T
                 | {
                     title?: T;
                     body?: T;
                     icon?: T;
+                    frame?: T;
                     image?: T;
+                    image2?: T;
+                    businessName?: T;
+                    rating?: T;
                     id?: T;
                   };
               buttons?:
@@ -3659,6 +3743,22 @@ export interface PagesSelect<T extends boolean = true> {
               showFilters?: T;
               layout?: T;
               lightbox?: T;
+              buttons?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          label?: T;
+                          type?: T;
+                          page?: T;
+                          url?: T;
+                          anchor?: T;
+                          style?: T;
+                          newTab?: T;
+                        };
+                    id?: T;
+                  };
               appearance?:
                 | T
                 | {
@@ -4233,6 +4333,12 @@ export interface CaseStudiesSelect<T extends boolean = true> {
                         };
                     id?: T;
                   };
+              cameraCursor?:
+                | T
+                | {
+                    enabled?: T;
+                    fStop?: T;
+                  };
               minHeight?: T;
               appearance?:
                 | T
@@ -4485,6 +4591,7 @@ export interface CaseStudiesSelect<T extends boolean = true> {
                     align?: T;
                   };
               layout?: T;
+              contactSheet?: T;
               steps?:
                 | T
                 | {
@@ -4550,14 +4657,17 @@ export interface CaseStudiesSelect<T extends boolean = true> {
                     subtitle?: T;
                     align?: T;
                   };
-              frame?: T;
               tabs?:
                 | T
                 | {
                     title?: T;
                     body?: T;
                     icon?: T;
+                    frame?: T;
                     image?: T;
+                    image2?: T;
+                    businessName?: T;
+                    rating?: T;
                     id?: T;
                   };
               buttons?:
@@ -4627,6 +4737,22 @@ export interface CaseStudiesSelect<T extends boolean = true> {
               showFilters?: T;
               layout?: T;
               lightbox?: T;
+              buttons?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          label?: T;
+                          type?: T;
+                          page?: T;
+                          url?: T;
+                          anchor?: T;
+                          style?: T;
+                          newTab?: T;
+                        };
+                    id?: T;
+                  };
               appearance?:
                 | T
                 | {

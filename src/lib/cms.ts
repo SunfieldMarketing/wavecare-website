@@ -15,12 +15,10 @@ export async function payloadClient() {
 export async function getPageBySlug(slug: string) {
   const payload = await payloadClient();
 
-  let isDraft = false;
-  try {
-    isDraft = (await draftMode()).isEnabled;
-  } catch {
-    isDraft = false;
-  }
+  // Do NOT wrap draftMode() in try/catch. Next.js signals dynamic-rendering
+  // bailouts by throwing, and swallowing those breaks streaming — the Suspense
+  // boundary never resolves and loading.tsx stays on screen forever.
+  const { isEnabled: isDraft } = await draftMode();
 
   const result = await payload.find({
     collection: 'pages',

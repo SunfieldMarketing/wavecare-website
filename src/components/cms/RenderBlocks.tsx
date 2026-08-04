@@ -10,6 +10,8 @@ import {
 } from './blocks/ServerBlocks';
 import { BeforeAfterInner, TabsShowcaseInner, GalleryInner } from './blocks/ClientBlocks';
 import { containerClassName } from './appearance';
+import CMSLink from './CMSLink';
+import './cms-blocks.css';
 
 /**
  * Renders the ordered list of blocks that make up a page.
@@ -80,6 +82,13 @@ export default function RenderBlocks({ blocks }: { blocks?: any[] | null }) {
                     lightbox={block.lightbox !== false}
                     showFilters={block.showFilters === true}
                   />
+                  {block.buttons?.length ? (
+                    <div style={{ textAlign: 'center', marginTop: '50px' }} data-reveal>
+                      {block.buttons.map((b: any, bi: number) => (
+                        <CMSLink key={bi} link={b.link} />
+                      ))}
+                    </div>
+                  ) : null}
                 </div>
               </Section>
             );
@@ -88,17 +97,7 @@ export default function RenderBlocks({ blocks }: { blocks?: any[] | null }) {
             // Block type exists in the CMS but has no renderer yet.
             if (process.env.NODE_ENV === 'development') {
               return (
-                <div
-                  key={key}
-                  style={{
-                    padding: '24px',
-                    margin: '16px',
-                    border: '2px dashed #5FD0BF',
-                    borderRadius: '12px',
-                    color: '#5FD0BF',
-                    fontFamily: 'monospace',
-                  }}
-                >
+                <div key={key} className="cms-missing-block">
                   No renderer yet for block type: <strong>{block.blockType}</strong>
                 </div>
               );

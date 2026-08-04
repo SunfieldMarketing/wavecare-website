@@ -18,6 +18,91 @@ export function BeforeAfterInner({ before, after, caption }: { before: string; a
 
 /* ── Tabbed showcase ──────────────────────────────────────────────── */
 
+/**
+ * Renders a tab's visual inside the mockup frame it selected.
+ * Markup mirrors the hand-written page exactly:
+ *   .mock-web > .bar + .shot + .lines
+ *   .mock-bro > .pg × 2
+ *   .mock-goo > .shot + .info > .name/.stars/.meta
+ */
+function TabFrame({ tab, fallbackFrame }: { tab: any; fallbackFrame?: string }) {
+  const frame = tab.frame || fallbackFrame || 'browser';
+  const img = tab.image;
+  const img2 = tab.image2;
+
+  const pic = (m: any, fit: 'cover' = 'cover', pos?: string) =>
+    m?.url ? (
+      <Image
+        src={m.url}
+        alt={m.alt ?? tab.title ?? ''}
+        width={800}
+        height={600}
+        style={{ width: '100%', height: '100%', objectFit: fit, objectPosition: pos }}
+      />
+    ) : null;
+
+  if (frame === 'browser') {
+    return (
+      <div className="mock-web" style={{ maxWidth: '600px', width: '100%' }}>
+        <div className="bar">
+          <i />
+          <i />
+          <i />
+        </div>
+        <div className="shot" style={{ aspectRatio: '16/10' }}>
+          {pic(img, 'cover', 'top')}
+        </div>
+        <div className="lines">
+          <span />
+          <span />
+          <span />
+        </div>
+      </div>
+    );
+  }
+
+  if (frame === 'brochure') {
+    return (
+      <div className="mock-bro" style={{ maxWidth: '600px', width: '100%', gap: '16px', transform: 'none' }}>
+        <div className="pg" style={{ padding: 0, overflow: 'hidden', aspectRatio: '4/5' }}>
+          {pic(img)}
+        </div>
+        {img2?.url && (
+          <div className="pg" style={{ padding: 0, overflow: 'hidden', aspectRatio: '4/5' }}>
+            {pic(img2)}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  if (frame === 'google') {
+    const stars = '★'.repeat(Math.max(1, Math.min(tab.rating ?? 5, 5)));
+    return (
+      <div className="mock-goo" style={{ maxWidth: '600px', width: '100%' }}>
+        <div className="shot" style={{ aspectRatio: '16/10' }}>
+          {pic(img)}
+        </div>
+        <div className="info">
+          <div className="name">{tab.businessName || tab.title}</div>
+          <div className="stars">{stars}</div>
+          <div className="meta" />
+        </div>
+      </div>
+    );
+  }
+
+  return img?.url ? (
+    <Image
+      src={img.url}
+      alt={img.alt ?? tab.title ?? ''}
+      width={900}
+      height={700}
+      style={{ width: '100%', height: 'auto', borderRadius: '14px' }}
+    />
+  ) : null;
+}
+
 export function TabsShowcaseInner({
   tabs,
   frame,
@@ -53,55 +138,7 @@ export function TabsShowcaseInner({
         <div className="ctx-stage" style={{ position: 'relative', height: '100%', minHeight: '400px', width: '100%' }}>
           {tabs.map((tab, i) => (
             <div key={i} className={`ctx-scene ${active === i ? 'on' : ''}`}>
-              {frame === 'browser' ? (
-                <div className="mock-web" style={{ maxWidth: '600px', width: '100%' }}>
-                  <div className="bar">
-                    <i />
-                    <i />
-                    <i />
-                  </div>
-                  <div className="shot" style={{ aspectRatio: '16/10' }}>
-                    {tab.image?.url && (
-                      <Image
-                        src={tab.image.url}
-                        alt={tab.image.alt ?? tab.title ?? ''}
-                        width={800}
-                        height={600}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
-                      />
-                    )}
-                  </div>
-                  <div className="lines">
-                    <span />
-                    <span />
-                    <span />
-                  </div>
-                </div>
-              ) : frame === 'brochure' ? (
-                <div className="mock-bro" style={{ maxWidth: '600px', width: '100%', gap: '16px', transform: 'none' }}>
-                  <div className="pg" style={{ padding: 0, overflow: 'hidden', aspectRatio: '4/5' }}>
-                    {tab.image?.url && (
-                      <Image
-                        src={tab.image.url}
-                        alt={tab.image.alt ?? tab.title ?? ''}
-                        width={800}
-                        height={600}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                      />
-                    )}
-                  </div>
-                </div>
-              ) : (
-                tab.image?.url && (
-                  <Image
-                    src={tab.image.url}
-                    alt={tab.image.alt ?? tab.title ?? ''}
-                    width={900}
-                    height={700}
-                    style={{ width: '100%', height: 'auto', borderRadius: '14px' }}
-                  />
-                )
-              )}
+              <TabFrame tab={tab} fallbackFrame={frame} />
             </div>
           ))}
         </div>
@@ -154,15 +191,9 @@ export function GalleryInner({
         </div>
       )}
 
-      <div
-        className={layout === 'masonry' ? 'mason' : 'gal-grid'}
-        data-reveal
-        style={
-          layout === 'masonry'
-            ? undefined
-            : { display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(260px,1fr))', gap: '16px' }
-        }
-      >
+      {/* .mason is defined in subservices.css; the even grid is CMS-only, so it
+          lives in cms-blocks.css under a namespaced class. */}
+      <div className={layout === 'masonry' ? 'mason' : 'cms-gal-grid'} data-reveal>
         {visible.map((it, i) => {
           const img = it.image;
           if (!img?.url) return null;

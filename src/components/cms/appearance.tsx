@@ -15,16 +15,19 @@ export type Appearance = {
 } | null | undefined;
 
 /**
- * Maps the CMS "Appearance" group onto the class names the existing
- * stylesheet already understands, so CMS-driven sections render pixel-identical
- * to the hand-written ones.
+ * Maps the CMS "Appearance" group onto class names that ACTUALLY EXIST in
+ * globals.css / subservices.css.
+ *
+ * globals.css:201 defines the background modifiers: .deep .primary .ink .light
+ * `panel` is kept only because the hand-written pages used it; it has no rules
+ * of its own and is purely a hook.
  */
 const BG_CLASS: Record<string, string> = {
   deep: 'panel deep',
   ink: 'panel ink',
-  primary: 'panel',
+  primary: 'panel primary',
   light: 'panel light',
-  white: 'panel white',
+  white: 'panel',
   transparent: '',
   custom: '',
   image: '',
@@ -34,20 +37,32 @@ const BG_CLASS: Record<string, string> = {
 const PAD: Record<string, string> = {
   none: '0',
   sm: 'clamp(40px,4vw,64px)',
-  default: 'var(--pad)',
   lg: 'calc(var(--pad) * 1.4)',
+  // 'default' is intentionally absent — fall through to the .sec-pad class so
+  // the stylesheet, not an inline style, controls normal spacing.
 };
 
+// `cms-` prefixed so these options cannot restyle the hand-written pages, which
+// already use a bare `container-wide` that the stylesheet never defined.
 const WIDTH_CLASS: Record<string, string> = {
   default: 'container',
-  wide: 'container container-wide',
-  narrow: 'container container-narrow',
-  full: '',
+  wide: 'cms-container-wide',
+  narrow: 'cms-container-narrow',
+  full: 'cms-container-full',
 };
 
-export function sectionClassName(a: Appearance, extra?: string): string {
+/**
+ * @param withPad adds .sec-pad. Heroes and the notice bar manage their own
+ *   spacing, exactly as the hand-written markup did.
+ */
+export function sectionClassName(a: Appearance, extra?: string, withPad = true): string {
   const bg = a?.background ?? 'deep';
-  return ['sec-pad', BG_CLASS[bg] ?? '', extra ?? ''].filter(Boolean).join(' ').trim();
+  const usesDefaultPad =
+    (a?.paddingTop ?? 'default') === 'default' && (a?.paddingBottom ?? 'default') === 'default';
+  return [withPad && usesDefaultPad ? 'sec-pad' : '', BG_CLASS[bg] ?? '', extra ?? '']
+    .filter(Boolean)
+    .join(' ')
+    .trim();
 }
 
 export function containerClassName(a: Appearance): string {
@@ -57,23 +72,20 @@ export function containerClassName(a: Appearance): string {
 export function sectionStyle(a: Appearance): CSSProperties {
   const style: CSSProperties = {};
 
-  if (a?.background === 'custom' && a.customBackground) {
-    style.background = a.customBackground;
-  }
-  if (a?.textColor === 'custom' && a.customTextColor) {
-    style.color = a.customTextColor;
-  } else if (a?.textColor === 'light') {
-    style.color = 'var(--on-dark)';
-  } else if (a?.textColor === 'dark') {
-    style.color = 'var(--ink)';
-  }
+  if (a?.background === 'custom' && a.customBackground) style.background = a.customBackground;
 
+  if (a?.textColor === 'custom' && a.customTextColor) style.color = a.customTextColor;
+  else if (a?.textColor === 'light') style.color = 'var(--on-dark)';
+  else if (a?.textColor === 'dark') style.color = 'var(--ink)';
+
+  // Only emit padding when the editor picked a non-default value; otherwise
+  // .sec-pad owns it and we must not override the stylesheet.
   const pt = PAD[a?.paddingTop ?? 'default'];
   const pb = PAD[a?.paddingBottom ?? 'default'];
   if (pt !== undefined) style.paddingTop = pt;
   if (pb !== undefined) style.paddingBottom = pb;
 
-  if (a?.background === 'image' || a?.background === 'video') {
+  if (hasMediaBackground(a)) {
     style.position = 'relative';
     style.overflow = 'hidden';
   }
@@ -81,9 +93,12 @@ export function sectionStyle(a: Appearance): CSSProperties {
   return style;
 }
 
-/** Overlay layer for image/video backgrounds. */
+export function hasMediaBackground(a: Appearance): boolean {
+  return a?.background === 'image' || a?.background === 'video';
+}
+
 export function overlayStyle(a: Appearance): CSSProperties | null {
-  if (a?.background !== 'image' && a?.background !== 'video') return null;
+  if (!hasMediaBackground(a)) return null;
   if (a?.overlay?.enabled === false) return null;
   const opacity = (a?.overlay?.opacity ?? 60) / 100;
   return {
@@ -98,7 +113,7 @@ export function overlayStyle(a: Appearance): CSSProperties | null {
 /**
  * Renders *asterisk-wrapped* words in the accent colour, matching the
  * <span className="accent"> pattern used throughout the hand-written pages.
- * Also turns newlines into <br />.
+ * Newlines become <br />.
  */
 export function parseHighlight(text?: string | null): React.ReactNode[] {
   if (!text) return [];

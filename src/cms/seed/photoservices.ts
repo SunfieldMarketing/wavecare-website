@@ -73,7 +73,19 @@ export async function seedPhotoservices(payload: Payload): Promise<void> {
   const afterId = await ensureMedia(payload, 'images/gallery/Yorktown front.jpg', 'Yorktown entrance photographed professionally');
   const websiteId = await ensureMedia(payload, 'images/website.png', 'Facility website showing professional photography');
   const brochureId = await ensureMedia(payload, 'images/brochure_inside.png', 'Printed brochure spread');
-  const gmbId = await ensureMedia(payload, 'images/gmb.png', 'Google Business Profile with real facility photos');
+  const brochureCoverId = await ensureMedia(payload, 'images/brochure_cover.jpg', 'Printed brochure cover');
+  const gmbPhotoId = await ensureMedia(
+    payload,
+    'images/gallery/Caregiver with elderly women.jpeg',
+    'Caregiver with a resident, used on the Google Business Profile',
+  );
+
+  // Contact-sheet proofs for the interactive process panel.
+  const sheetIds: Array<number | string> = [];
+  for (let i = 1; i <= 6; i++) {
+    const id = await ensureMedia(payload, `images/proc_${i}.png`, `Process contact sheet proof ${i}`);
+    if (id) sheetIds.push(id);
+  }
 
   payload.logger.info(`→ Media ready (${galleryIds.length} gallery photos).`);
 
@@ -88,6 +100,7 @@ export async function seedPhotoservices(payload: Payload): Promise<void> {
       subtitle:
         'Showcase your facility, staff, residents, and care environment with authentic imagery built for websites, social media, admissions materials, and marketing campaigns.',
       mosaicImages: galleryIds.map((g) => g.id),
+      cameraCursor: { enabled: true, fStop: 'F/1.8' },
       minHeight: 'full',
       buttons: [
         { link: { label: 'Book a Photoshoot', type: 'internal', page: null, url: '/contact', style: 'primary' } },
@@ -154,25 +167,30 @@ export async function seedPhotoservices(payload: Payload): Promise<void> {
           'The same professional image earns its keep across every place families and referral partners find you.',
         align: 'left',
       },
-      frame: 'browser',
       tabs: [
         {
           title: 'Website',
           body: 'Stronger first impression, instant trust.',
           icon: icon('<rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="20" x2="22" y2="20"></line>'),
+          frame: 'browser',
           image: websiteId,
         },
         {
           title: 'Brochures & Packets',
           body: 'Polished materials for tours and admissions.',
           icon: icon('<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>'),
+          frame: 'brochure',
           image: brochureId,
+          image2: brochureCoverId,
         },
         {
           title: 'Google Business Profile',
           body: 'Better local visibility with real imagery.',
           icon: icon('<circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>'),
-          image: gmbId,
+          frame: 'google',
+          image: gmbPhotoId,
+          businessName: 'Park Gardens · Senior Living',
+          rating: 5,
         },
       ],
       appearance: deep(),
@@ -182,10 +200,12 @@ export async function seedPhotoservices(payload: Payload): Promise<void> {
       heading: {
         eyebrow: 'Our Process',
         title: 'From shot list to *final gallery.*',
-        subtitle: 'Every phase is planned so your team knows exactly what to expect.',
+        subtitle:
+          'Hover a phase to watch the contact sheet develop from raw proofs to the final selects.',
         align: 'left',
       },
-      layout: 'timeline',
+      layout: 'tabs',
+      contactSheet: sheetIds,
       steps: [
         {
           label: '01',
@@ -222,6 +242,9 @@ export async function seedPhotoservices(payload: Payload): Promise<void> {
       showFilters: true,
       layout: 'masonry',
       lightbox: true,
+      buttons: [
+        { link: { label: 'View More Work', type: 'external', url: '/case-studies', style: 'ghost' } },
+      ],
       appearance: deep({ anchorId: 'gallery' }),
     },
     {

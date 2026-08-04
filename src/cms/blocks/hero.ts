@@ -55,8 +55,25 @@ export const Hero: Block = {
       fields: [linkField()],
     },
     {
+      name: 'cameraCursor',
+      type: 'group',
+      label: 'Viewfinder cursor',
+      admin: { description: 'Camera focus brackets that follow the mouse across the hero.' },
+      fields: [
+        { name: 'enabled', type: 'checkbox', defaultValue: false },
+        {
+          name: 'fStop',
+          type: 'text',
+          defaultValue: 'F/1.8',
+          label: 'Readout text',
+          admin: { condition: (_, s) => s?.enabled },
+        },
+      ],
+    },
+    {
       name: 'minHeight',
       type: 'select',
+      enumName: 'enum_hero_min_height',
       defaultValue: 'full',
       options: [
         { label: 'Full screen', value: 'full' },
