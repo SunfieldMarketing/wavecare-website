@@ -9,7 +9,7 @@ import { parseHighlight } from '../appearance';
 /** Renderers for /design-print. Confirmed against subservices.css before writing. */
 
 export function PrintHeroBlock({ block }: { block: any }) {
-  const { breadcrumb, title, subtitle, checklist, buttons, images } = block;
+  const { breadcrumb, title, subtitle, subtitleStyle, checklist, buttons, images } = block;
   const imgs = (images ?? []).map((x: any) => x.image).filter((i: any) => i?.url);
 
   return (
@@ -28,7 +28,7 @@ export function PrintHeroBlock({ block }: { block: any }) {
               </div>
             )}
             <h1>{parseHighlight(title)}</h1>
-            {subtitle && <p className="sub">{subtitle}</p>}
+            {subtitle && <p className={subtitleStyle || 'sub'}>{subtitle}</p>}
 
             {checklist?.length > 0 && (
               <div

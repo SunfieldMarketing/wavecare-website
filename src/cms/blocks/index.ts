@@ -1,6 +1,6 @@
 import { Hero, NoticeBar } from './hero';
 import { RichTextBlock, CardGrid, SplitMedia, Stats, Accordion, LegalDocument } from './layout';
-import { LogoMarquee, Gallery, BeforeAfter, VideoEmbed, VideoGrid, TabsShowcase } from './media';
+import { LogoMarquee, Gallery, BeforeAfter, VideoEmbed, VideoGrid, FeaturedVideoWork, TabsShowcase } from './media';
 import {
   Process,
   CaseStudyGrid,
@@ -37,6 +37,7 @@ import {
   ReceiveGrid,
   SignatureProduct,
 } from './designPrint';
+import { videoServiceBlocks, CommercialPlayer, TwoColumnText, IconFeatureGrid } from './videoservices';
 
 export {
   Hero,
@@ -52,6 +53,7 @@ export {
   BeforeAfter,
   VideoEmbed,
   VideoGrid,
+  FeaturedVideoWork,
   TabsShowcase,
   Process,
   CaseStudyGrid,
@@ -84,6 +86,9 @@ export {
   PrintProcess,
   ReceiveGrid,
   SignatureProduct,
+  CommercialPlayer,
+  TwoColumnText,
+  IconFeatureGrid,
 };
 
 /**
@@ -102,6 +107,7 @@ export const allBlocks = [
   BeforeAfter,
   VideoEmbed,
   VideoGrid,
+  FeaturedVideoWork,
   LogoMarquee,
   CaseStudyCards,
   CaseStudyGrid,
@@ -117,4 +123,5 @@ export const allBlocks = [
   ...contactBlocks,
   ...serviceBlocks,
   ...designPrintBlocks,
+  ...videoServiceBlocks,
 ];

@@ -544,7 +544,7 @@ export interface Page {
               subtitle?: string | null;
               align?: ('left' | 'center') | null;
             };
-            layout?: ('tabs' | 'cards') | null;
+            layout?: ('tabs' | 'screen' | 'cards') | null;
             /**
              * Six images work best. They sharpen from blurred proofs to final selects as the visitor moves through the phases.
              */
@@ -557,6 +557,9 @@ export interface Page {
                   label?: string | null;
                   title: string;
                   body?: string | null;
+                  /**
+                   * For the "recording screen" layout, this is the frame shown while this step is active.
+                   */
                   image?: (number | null) | Media;
                   id?: string | null;
                 }[]
@@ -924,6 +927,22 @@ export interface Page {
               align?: ('left' | 'center') | null;
             };
             enableFilters?: boolean | null;
+            /**
+             * The "All" button is automatic. Add one row per additional filter.
+             */
+            filters?:
+              | {
+                  /**
+                   * e.g. Family & Facility
+                   */
+                  label: string;
+                  /**
+                   * Matches a video's Filter key below, e.g. family
+                   */
+                  key: string;
+                  id?: string | null;
+                }[]
+              | null;
             videos?:
               | {
                   title: string;
@@ -937,6 +956,10 @@ export interface Page {
                    * e.g. Virtual Tour, Commercial
                    */
                   category?: string | null;
+                  /**
+                   * Matches a filter button's key above, e.g. family. Leave blank if filters are off.
+                   */
+                  filterKey?: string | null;
                   featured?: boolean | null;
                   id?: string | null;
                 }[]
@@ -980,6 +1003,74 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'videoGrid';
+          }
+        | {
+            heading?: {
+              eyebrow?: string | null;
+              /**
+               * Wrap words in *asterisks* to highlight them in the accent colour.
+               */
+              title?: string | null;
+              subtitle?: string | null;
+              align?: ('left' | 'center') | null;
+            };
+            hero: {
+              vimeoId: string;
+              /**
+               * Vimeo CDN thumbnail URL.
+               */
+              posterUrl?: string | null;
+              tag?: string | null;
+              title: string;
+            };
+            side?:
+              | {
+                  vimeoId: string;
+                  posterUrl?: string | null;
+                  tag?: string | null;
+                  title: string;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Background, text colour, spacing and width for this section.
+             */
+            appearance?: {
+              background?:
+                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
+              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
+              /**
+               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
+               */
+              customBackground?: string | null;
+              customTextColor?: string | null;
+              backgroundImage?: (number | null) | Media;
+              backgroundVideo?: {
+                source?: ('vimeo' | 'file') | null;
+                /**
+                 * Just the number, e.g. 1187767005
+                 */
+                vimeoId?: string | null;
+                /**
+                 * e.g. /videos/Website video .mp4
+                 */
+                url?: string | null;
+              };
+              overlay?: {
+                enabled?: boolean | null;
+                opacity?: number | null;
+              };
+              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
+              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
+              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
+              /**
+               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
+               */
+              anchorId?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featuredVideoWork';
           }
         | {
             mode?: ('logos' | 'text') | null;
@@ -2155,6 +2246,7 @@ export interface Page {
               | null;
             title: string;
             subtitle?: string | null;
+            subtitleStyle?: ('sub' | 'phero-sub') | null;
             checklist?:
               | {
                   text: string;
@@ -2303,6 +2395,47 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'signatureProduct';
+          }
+        | {
+            eyebrow?: string | null;
+            /**
+             * Wrap in _underscores_ for the light italic treatment.
+             */
+            title?: string | null;
+            vimeoId: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'commercialPlayer';
+          }
+        | {
+            tone?: ('dark' | 'light') | null;
+            eyebrow?: string | null;
+            title?: string | null;
+            body?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'twoColumnText';
+          }
+        | {
+            eyebrow?: string | null;
+            title?: string | null;
+            subtitle?: string | null;
+            cards?:
+              | {
+                  icon?: string | null;
+                  title: string;
+                  body?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'iconFeatureGrid';
           }
       )[]
     | null;
@@ -2826,7 +2959,7 @@ export interface CaseStudy {
               subtitle?: string | null;
               align?: ('left' | 'center') | null;
             };
-            layout?: ('tabs' | 'cards') | null;
+            layout?: ('tabs' | 'screen' | 'cards') | null;
             /**
              * Six images work best. They sharpen from blurred proofs to final selects as the visitor moves through the phases.
              */
@@ -2839,6 +2972,9 @@ export interface CaseStudy {
                   label?: string | null;
                   title: string;
                   body?: string | null;
+                  /**
+                   * For the "recording screen" layout, this is the frame shown while this step is active.
+                   */
                   image?: (number | null) | Media;
                   id?: string | null;
                 }[]
@@ -3206,6 +3342,22 @@ export interface CaseStudy {
               align?: ('left' | 'center') | null;
             };
             enableFilters?: boolean | null;
+            /**
+             * The "All" button is automatic. Add one row per additional filter.
+             */
+            filters?:
+              | {
+                  /**
+                   * e.g. Family & Facility
+                   */
+                  label: string;
+                  /**
+                   * Matches a video's Filter key below, e.g. family
+                   */
+                  key: string;
+                  id?: string | null;
+                }[]
+              | null;
             videos?:
               | {
                   title: string;
@@ -3219,6 +3371,10 @@ export interface CaseStudy {
                    * e.g. Virtual Tour, Commercial
                    */
                   category?: string | null;
+                  /**
+                   * Matches a filter button's key above, e.g. family. Leave blank if filters are off.
+                   */
+                  filterKey?: string | null;
                   featured?: boolean | null;
                   id?: string | null;
                 }[]
@@ -3262,6 +3418,74 @@ export interface CaseStudy {
             id?: string | null;
             blockName?: string | null;
             blockType: 'videoGrid';
+          }
+        | {
+            heading?: {
+              eyebrow?: string | null;
+              /**
+               * Wrap words in *asterisks* to highlight them in the accent colour.
+               */
+              title?: string | null;
+              subtitle?: string | null;
+              align?: ('left' | 'center') | null;
+            };
+            hero: {
+              vimeoId: string;
+              /**
+               * Vimeo CDN thumbnail URL.
+               */
+              posterUrl?: string | null;
+              tag?: string | null;
+              title: string;
+            };
+            side?:
+              | {
+                  vimeoId: string;
+                  posterUrl?: string | null;
+                  tag?: string | null;
+                  title: string;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Background, text colour, spacing and width for this section.
+             */
+            appearance?: {
+              background?:
+                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
+              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
+              /**
+               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
+               */
+              customBackground?: string | null;
+              customTextColor?: string | null;
+              backgroundImage?: (number | null) | Media;
+              backgroundVideo?: {
+                source?: ('vimeo' | 'file') | null;
+                /**
+                 * Just the number, e.g. 1187767005
+                 */
+                vimeoId?: string | null;
+                /**
+                 * e.g. /videos/Website video .mp4
+                 */
+                url?: string | null;
+              };
+              overlay?: {
+                enabled?: boolean | null;
+                opacity?: number | null;
+              };
+              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
+              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
+              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
+              /**
+               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
+               */
+              anchorId?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featuredVideoWork';
           }
         | {
             mode?: ('logos' | 'text') | null;
@@ -4437,6 +4661,7 @@ export interface CaseStudy {
               | null;
             title: string;
             subtitle?: string | null;
+            subtitleStyle?: ('sub' | 'phero-sub') | null;
             checklist?:
               | {
                   text: string;
@@ -4585,6 +4810,47 @@ export interface CaseStudy {
             id?: string | null;
             blockName?: string | null;
             blockType: 'signatureProduct';
+          }
+        | {
+            eyebrow?: string | null;
+            /**
+             * Wrap in _underscores_ for the light italic treatment.
+             */
+            title?: string | null;
+            vimeoId: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'commercialPlayer';
+          }
+        | {
+            tone?: ('dark' | 'light') | null;
+            eyebrow?: string | null;
+            title?: string | null;
+            body?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'twoColumnText';
+          }
+        | {
+            eyebrow?: string | null;
+            title?: string | null;
+            subtitle?: string | null;
+            cards?:
+              | {
+                  icon?: string | null;
+                  title: string;
+                  body?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'iconFeatureGrid';
           }
       )[]
     | null;
@@ -5643,6 +5909,13 @@ export interface PagesSelect<T extends boolean = true> {
                     align?: T;
                   };
               enableFilters?: T;
+              filters?:
+                | T
+                | {
+                    label?: T;
+                    key?: T;
+                    id?: T;
+                  };
               videos?:
                 | T
                 | {
@@ -5651,7 +5924,65 @@ export interface PagesSelect<T extends boolean = true> {
                     vimeoId?: T;
                     poster?: T;
                     category?: T;
+                    filterKey?: T;
                     featured?: T;
+                    id?: T;
+                  };
+              appearance?:
+                | T
+                | {
+                    background?: T;
+                    textColor?: T;
+                    customBackground?: T;
+                    customTextColor?: T;
+                    backgroundImage?: T;
+                    backgroundVideo?:
+                      | T
+                      | {
+                          source?: T;
+                          vimeoId?: T;
+                          url?: T;
+                        };
+                    overlay?:
+                      | T
+                      | {
+                          enabled?: T;
+                          opacity?: T;
+                        };
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                    width?: T;
+                    anchorId?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        featuredVideoWork?:
+          | T
+          | {
+              heading?:
+                | T
+                | {
+                    eyebrow?: T;
+                    title?: T;
+                    subtitle?: T;
+                    align?: T;
+                  };
+              hero?:
+                | T
+                | {
+                    vimeoId?: T;
+                    posterUrl?: T;
+                    tag?: T;
+                    title?: T;
+                  };
+              side?:
+                | T
+                | {
+                    vimeoId?: T;
+                    posterUrl?: T;
+                    tag?: T;
+                    title?: T;
                     id?: T;
                   };
               appearance?:
@@ -6587,6 +6918,7 @@ export interface PagesSelect<T extends boolean = true> {
                   };
               title?: T;
               subtitle?: T;
+              subtitleStyle?: T;
               checklist?:
                 | T
                 | {
@@ -6713,6 +7045,47 @@ export interface PagesSelect<T extends boolean = true> {
                         };
                   };
               videoUrl?: T;
+              id?: T;
+              blockName?: T;
+            };
+        commercialPlayer?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              vimeoId?: T;
+              id?: T;
+              blockName?: T;
+            };
+        twoColumnText?:
+          | T
+          | {
+              tone?: T;
+              eyebrow?: T;
+              title?: T;
+              body?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        iconFeatureGrid?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              subtitle?: T;
+              cards?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    body?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };
@@ -7330,6 +7703,13 @@ export interface CaseStudiesSelect<T extends boolean = true> {
                     align?: T;
                   };
               enableFilters?: T;
+              filters?:
+                | T
+                | {
+                    label?: T;
+                    key?: T;
+                    id?: T;
+                  };
               videos?:
                 | T
                 | {
@@ -7338,7 +7718,65 @@ export interface CaseStudiesSelect<T extends boolean = true> {
                     vimeoId?: T;
                     poster?: T;
                     category?: T;
+                    filterKey?: T;
                     featured?: T;
+                    id?: T;
+                  };
+              appearance?:
+                | T
+                | {
+                    background?: T;
+                    textColor?: T;
+                    customBackground?: T;
+                    customTextColor?: T;
+                    backgroundImage?: T;
+                    backgroundVideo?:
+                      | T
+                      | {
+                          source?: T;
+                          vimeoId?: T;
+                          url?: T;
+                        };
+                    overlay?:
+                      | T
+                      | {
+                          enabled?: T;
+                          opacity?: T;
+                        };
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                    width?: T;
+                    anchorId?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        featuredVideoWork?:
+          | T
+          | {
+              heading?:
+                | T
+                | {
+                    eyebrow?: T;
+                    title?: T;
+                    subtitle?: T;
+                    align?: T;
+                  };
+              hero?:
+                | T
+                | {
+                    vimeoId?: T;
+                    posterUrl?: T;
+                    tag?: T;
+                    title?: T;
+                  };
+              side?:
+                | T
+                | {
+                    vimeoId?: T;
+                    posterUrl?: T;
+                    tag?: T;
+                    title?: T;
                     id?: T;
                   };
               appearance?:
@@ -8274,6 +8712,7 @@ export interface CaseStudiesSelect<T extends boolean = true> {
                   };
               title?: T;
               subtitle?: T;
+              subtitleStyle?: T;
               checklist?:
                 | T
                 | {
@@ -8400,6 +8839,47 @@ export interface CaseStudiesSelect<T extends boolean = true> {
                         };
                   };
               videoUrl?: T;
+              id?: T;
+              blockName?: T;
+            };
+        commercialPlayer?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              vimeoId?: T;
+              id?: T;
+              blockName?: T;
+            };
+        twoColumnText?:
+          | T
+          | {
+              tone?: T;
+              eyebrow?: T;
+              title?: T;
+              body?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        iconFeatureGrid?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              subtitle?: T;
+              cards?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    body?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };

@@ -12,6 +12,7 @@ import {
 } from '../appearance';
 import { CMSLinkGroup } from '../CMSLink';
 import ProcessShowcase from './ProcessShowcase';
+import VideoProcessScreen from './VideoProcessScreen';
 import CameraCursor from './CameraCursor';
 
 /** Shared eyebrow + heading + sub-paragraph, matching .sec-head. */
@@ -281,6 +282,10 @@ export function ProcessBlock({ block }: { block: any }) {
               </div>
             ))}
           </div>
+        ) : layout === 'screen' ? (
+          <VideoProcessScreen
+            steps={(steps ?? []).map((s: any) => ({ ...s, image: s.image?.url ? s.image : null }))}
+          />
         ) : (
           <ProcessShowcase steps={steps ?? []} sheetImages={sheet} />
         )}

@@ -185,6 +185,24 @@ export const VideoGrid: Block = {
       defaultValue: false,
     },
     {
+      name: 'filters',
+      type: 'array',
+      label: 'Filter buttons',
+      admin: {
+        condition: (_, s) => s?.enableFilters,
+        description: 'The "All" button is automatic. Add one row per additional filter.',
+      },
+      fields: [
+        { name: 'label', type: 'text', required: true, admin: { description: 'e.g. Family & Facility' } },
+        {
+          name: 'key',
+          type: 'text',
+          required: true,
+          admin: { description: 'Matches a video\'s Filter key below, e.g. family' },
+        },
+      ],
+    },
+    {
       name: 'videos',
       type: 'array',
       minRows: 1,
@@ -200,8 +218,57 @@ export const VideoGrid: Block = {
           label: 'Thumbnail',
           admin: { description: 'Leave empty to use the Vimeo thumbnail automatically.' },
         },
-        { name: 'category', type: 'text', label: 'Category', admin: { description: 'e.g. Virtual Tour, Commercial' } },
+        {
+          name: 'category',
+          type: 'text',
+          label: 'Badge shown on the card',
+          admin: { description: 'e.g. Virtual Tour, Commercial' },
+        },
+        {
+          name: 'filterKey',
+          type: 'text',
+          label: 'Filter key',
+          admin: { description: 'Matches a filter button\'s key above, e.g. family. Leave blank if filters are off.' },
+        },
         { name: 'featured', type: 'checkbox', label: 'Show large' },
+      ],
+    },
+    sectionSettings,
+  ],
+};
+
+/**
+ * Featured work — one large hero video card beside two smaller stacked ones,
+ * all opening the shared video lightbox. .fw-grid/.fw-card/.fw-side/.fw-meta.
+ */
+export const FeaturedVideoWork: Block = {
+  slug: 'featuredVideoWork',
+  labels: { singular: 'Featured video work', plural: 'Featured video work' },
+  imageAltText: 'One large video card beside two smaller stacked ones',
+  fields: [
+    headingFields,
+    {
+      name: 'hero',
+      type: 'group',
+      label: 'Large card',
+      fields: [
+        { name: 'vimeoId', type: 'text', required: true, label: 'Vimeo ID' },
+        { name: 'posterUrl', type: 'text', label: 'Poster image URL', admin: { description: 'Vimeo CDN thumbnail URL.' } },
+        { name: 'tag', type: 'text', label: 'Badge' },
+        { name: 'title', type: 'text', required: true },
+      ],
+    },
+    {
+      name: 'side',
+      type: 'array',
+      label: 'Smaller cards',
+      minRows: 1,
+      maxRows: 2,
+      fields: [
+        { name: 'vimeoId', type: 'text', required: true, label: 'Vimeo ID' },
+        { name: 'posterUrl', type: 'text', label: 'Poster image URL' },
+        { name: 'tag', type: 'text', label: 'Badge' },
+        { name: 'title', type: 'text', required: true },
       ],
     },
     sectionSettings,

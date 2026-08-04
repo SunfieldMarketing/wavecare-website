@@ -45,6 +45,14 @@ import {
   ReceiveGridBlock,
   SignatureProductBlock,
 } from './blocks/DesignPrintBlocks';
+import {
+  CommercialPlayerBlock,
+  TwoColumnTextBlock,
+  IconFeatureGridBlock,
+  VideoGridBlock,
+  FeaturedVideoWorkBlock,
+} from './blocks/VideoServicesBlocks';
+import VideoLightboxHost from './blocks/VideoLightbox';
 import { containerClassName } from './appearance';
 import CMSLink from './CMSLink';
 import './cms-blocks.css';
@@ -61,6 +69,7 @@ export default function RenderBlocks({ blocks }: { blocks?: any[] | null }) {
 
   return (
     <>
+      <VideoLightboxHost />
       {blocks.map((block, i) => {
         const key = `${block.blockType}-${block.id ?? i}`;
 
@@ -126,6 +135,18 @@ export default function RenderBlocks({ blocks }: { blocks?: any[] | null }) {
             return <ReceiveGridBlock key={key} block={block} />;
           case 'signatureProduct':
             return <SignatureProductBlock key={key} block={block} />;
+
+          // ── /videoservices (subservices.css) ──
+          case 'commercialPlayer':
+            return <CommercialPlayerBlock key={key} block={block} />;
+          case 'twoColumnText':
+            return <TwoColumnTextBlock key={key} block={block} />;
+          case 'iconFeatureGrid':
+            return <IconFeatureGridBlock key={key} block={block} />;
+          case 'videoGrid':
+            return <VideoGridBlock key={key} block={block} />;
+          case 'featuredVideoWork':
+            return <FeaturedVideoWorkBlock key={key} block={block} />;
 
           case 'richText':
             return (

@@ -16,6 +16,7 @@ export const Process: Block = {
       defaultValue: 'tabs',
       options: [
         { label: 'Interactive tabs + contact sheet', value: 'tabs' },
+        { label: 'Interactive tabs + recording screen', value: 'screen' },
         { label: 'Simple numbered cards', value: 'cards' },
       ],
     },
@@ -39,7 +40,15 @@ export const Process: Block = {
         { name: 'label', type: 'text', label: 'Step label', admin: { description: 'e.g. "Step 01" — leave blank to auto-number.' } },
         { name: 'title', type: 'text', required: true },
         { name: 'body', type: 'textarea' },
-        { name: 'image', type: 'upload', relationTo: 'media', label: 'Visual (optional)' },
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Visual',
+          admin: {
+            description: 'For the "recording screen" layout, this is the frame shown while this step is active.',
+          },
+        },
       ],
     },
     { name: 'buttons', type: 'array', maxRows: 2, label: 'Buttons', fields: [linkField()] },

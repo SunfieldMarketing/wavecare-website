@@ -28,6 +28,16 @@ export const PrintHero: Block = {
     { name: 'title', type: 'textarea', required: true, label: 'Heading' },
     { name: 'subtitle', type: 'textarea', label: 'Supporting paragraph' },
     {
+      name: 'subtitleStyle',
+      type: 'select',
+      enumName: 'enum_print_hero_sub',
+      defaultValue: 'sub',
+      options: [
+        { label: 'Standard', value: 'sub' },
+        { label: 'Wide hero (max-width 480px)', value: 'phero-sub' },
+      ],
+    },
+    {
       name: 'checklist',
       type: 'array',
       label: 'Checkmark list',
