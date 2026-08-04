@@ -1,10 +1,7 @@
-import dotenv from 'dotenv';
-
-// Next.js reads .env.local automatically, but a standalone tsx script does not.
-// Load it explicitly, then fall back to .env, so `npm run seed` sees the same
-// variables the dev server does.
-dotenv.config({ path: '.env.local' });
-dotenv.config();
+// MUST be first: loads .env.local before payload.config.ts is evaluated, since
+// that file picks its database adapter from DATABASE_URI at module scope.
+// See load-env.ts — getting this order wrong silently seeds the wrong database.
+import './load-env';
 
 import { getPayload } from 'payload';
 import config from '../../payload.config';
