@@ -46,7 +46,14 @@ const dirname = path.dirname(filename);
 function databaseAdapter() {
   const uri = process.env.DATABASE_URI || 'file:./wavecare-cms.db';
   const isPostgres = /^postgres(ql)?:\/\//.test(uri);
-  const allowPush = process.env.NODE_ENV !== 'production';
+  const isLocalFile = uri.startsWith('file:');
+
+  // Push ONLY against a throwaway local file. Against any hosted database it
+  // races the migration history: push applies schema directly, then `payload
+  // migrate` sees a dev-pushed database, warns about data loss and refuses to
+  // run — leaving migrations permanently un-applied and the two out of sync.
+  // Hosted databases go through migrations, which is also what production does.
+  const allowPush = isLocalFile && process.env.NODE_ENV !== 'production';
 
   if (isPostgres) {
     return postgresAdapter({
