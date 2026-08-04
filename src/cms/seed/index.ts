@@ -1,7 +1,15 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
+
+// Next.js reads .env.local automatically, but a standalone tsx script does not.
+// Load it explicitly, then fall back to .env, so `npm run seed` sees the same
+// variables the dev server does.
+dotenv.config({ path: '.env.local' });
+dotenv.config();
+
 import { getPayload } from 'payload';
 import config from '../../payload.config';
 import { seedPhotoservices } from './photoservices';
+import { seedAdminUser } from './admin';
 
 /**
  * Content migration.
@@ -17,6 +25,7 @@ async function run() {
 
   payload.logger.info('── Wavecare content migration ──');
 
+  await seedAdminUser(payload);
   await seedNavigation(payload);
   await seedPhotoservices(payload);
 

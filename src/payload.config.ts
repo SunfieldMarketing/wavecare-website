@@ -53,6 +53,10 @@ export default buildConfig({
     client: {
       url: process.env.DATABASE_URI || 'file:./wavecare-cms.db',
     },
+    // Auto-sync the schema in development so standalone scripts (e.g. `npm run
+    // seed`) pick up field changes without a dev server running. Production
+    // must use generated migrations instead — never push against live data.
+    push: process.env.NODE_ENV !== 'production',
   }),
 
   secret: process.env.PAYLOAD_SECRET || 'CHANGE_ME_BEFORE_DEPLOY',

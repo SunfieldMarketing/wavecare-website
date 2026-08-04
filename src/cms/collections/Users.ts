@@ -5,9 +5,21 @@ export const Users: CollectionConfig = {
   slug: 'users',
   labels: { singular: 'Team member', plural: 'Team' },
   auth: {
-    tokenExpiration: 60 * 60 * 24 * 7, // stay signed in for a week
-    maxLoginAttempts: 10,
-    lockTime: 10 * 60 * 1000,
+    // Sign in with a username (e.g. WavecareAdmin) rather than an email.
+    // Email stays available but optional, so password reset can be enabled later.
+    loginWithUsername: {
+      allowEmailLogin: false,
+      requireEmail: false,
+      requireUsername: true,
+    },
+    tokenExpiration: 60 * 60 * 8, // 8h session
+    // Brute-force protection: lock the account for 15 minutes after 5 misses.
+    maxLoginAttempts: 5,
+    lockTime: 15 * 60 * 1000,
+    cookies: {
+      sameSite: 'Lax',
+      secure: process.env.NODE_ENV === 'production', // HTTPS-only in prod
+    },
   },
   admin: {
     useAsTitle: 'name',
