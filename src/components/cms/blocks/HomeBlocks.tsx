@@ -11,7 +11,7 @@ export function ShowreelBlock({ block }: { block: any }) {
         <div className="showreel">
           <div data-reveal>
             {eyebrow && <span className="label">{eyebrow}</span>}
-            {title && <h2>{title}</h2>}
+            {title && <h2>{parseHighlight(title)}</h2>}
             {(paragraphs ?? []).map((p: any, i: number) => (
               <p key={i}>{p.text}</p>
             ))}

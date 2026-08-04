@@ -80,6 +80,19 @@ const CASES = [
   },
 ];
 
+// Closing CTA — verbatim from the original hand-written page, which hardcoded
+// the same copy for every case study. Now a `finalCta` block in each study's
+// `layout` field instead of fixed JSX, so it's per-study editable and gets the
+// shared FinalCTABlock's container/z-index handling for free.
+const CLOSING_CTA = {
+  blockType: 'finalCta',
+  eyebrow: 'Ready for results like this?',
+  title: "Let's build your success story.",
+  subtitle: "Book a free discovery call and we'll map out exactly what we'd build for your facility.",
+  waveAnimation: true,
+  buttons: [{ link: { label: 'Book a Demo', type: 'external', url: '/contact', style: 'primary' } }],
+};
+
 export async function seedCaseStudies(payload: Payload): Promise<void> {
   payload.logger.info('→ Seeding case studies…');
 
@@ -99,6 +112,7 @@ export async function seedCaseStudies(payload: Payload): Promise<void> {
       result: c.result,
       resultLabel: c.resultLabel,
       body: richText(c.body),
+      layout: [CLOSING_CTA],
       _status: 'published',
       meta: c.meta,
     };

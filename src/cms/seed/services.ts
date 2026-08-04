@@ -164,8 +164,13 @@ export async function seedServices(payload: Payload): Promise<void> {
       ],
     },
     {
+      // The original wrapped this in <section className="light"> together
+      // with the stats row above — .trusted-head h2/.stat-num are hardcoded
+      // for a light background in services.css (no dark-tone variant), so
+      // `tone: 'dark'` here was a real bug: dark navy text on a dark teal
+      // background.
       blockType: 'logoStrip',
-      tone: 'dark',
+      tone: 'light',
       eyebrow: 'Trusted by the Best',
       title: 'Join the leaders working with us.',
       logos,

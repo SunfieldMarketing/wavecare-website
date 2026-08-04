@@ -114,18 +114,26 @@ export function FeatureRowBlock({ block }: { block: any }) {
   );
 }
 
+// .stat-num/.stat-label are hardcoded for a light background in
+// services.css (no dark-tone variant exists), and in the original this
+// markup only ever appeared inside the same <section className="light">
+// as the trusted-head/marquee that follows it. Wrapping in its own `light`
+// section here reproduces that exactly — two adjacent same-background
+// sections read as one seamless block, same as the original's single one.
 export function StatsRowBlock({ block }: { block: any }) {
   return (
-    <div className="container">
-      <div className="stats-row reveal">
-        {(block.stats ?? []).map((s: any, i: number) => (
-          <div className="stat" key={i}>
-            <div className="stat-num">{s.value}</div>
-            <div className="stat-label">{s.label}</div>
-          </div>
-        ))}
+    <section className="light">
+      <div className="container">
+        <div className="stats-row reveal">
+          {(block.stats ?? []).map((s: any, i: number) => (
+            <div className="stat" key={i}>
+              <div className="stat-num">{s.value}</div>
+              <div className="stat-label">{s.label}</div>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
 

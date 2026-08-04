@@ -12,7 +12,7 @@ export function StoryBlockRenderer({ block }: { block: any }) {
         <div className="story">
           <div data-reveal>
             {eyebrow && <span className="label">{eyebrow}</span>}
-            {title && <h2>{title}</h2>}
+            {title && <h2>{parseHighlight(title)}</h2>}
             {(paragraphs ?? []).map((p: any, i: number) => (
               <p key={i}>{p.text}</p>
             ))}
@@ -101,7 +101,7 @@ export function VideoReelBlock({ block }: { block: any }) {
       <div className={containerClassName(appearance)}>
         <div className="sec-head center" data-reveal>
           {eyebrow && <span className="label">{eyebrow}</span>}
-          {title && <h2>{title}</h2>}
+          {title && <h2>{parseHighlight(title)}</h2>}
         </div>
         <div className="reel-wrap" data-reveal data-cursor>
           <div className="reel-frame">

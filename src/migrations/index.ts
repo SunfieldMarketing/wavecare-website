@@ -10,6 +10,8 @@ import * as migration_20260804_193258_webdesign_blocks from './20260804_193258_w
 import * as migration_20260804_195647_home_blocks from './20260804_195647_home_blocks';
 import * as migration_20260804_200703_logo_scale_up from './20260804_200703_logo_scale_up';
 import * as migration_20260804_201845_social_proof_banner from './20260804_201845_social_proof_banner';
+import * as migration_20260804_230145_logo_dark_tint from './20260804_230145_logo_dark_tint';
+import * as migration_20260804_231605_drop_logo_dark_tint from './20260804_231605_drop_logo_dark_tint';
 
 export const migrations = [
   {
@@ -70,6 +72,16 @@ export const migrations = [
   {
     up: migration_20260804_201845_social_proof_banner.up,
     down: migration_20260804_201845_social_proof_banner.down,
-    name: '20260804_201845_social_proof_banner'
+    name: '20260804_201845_social_proof_banner',
+  },
+  {
+    up: migration_20260804_230145_logo_dark_tint.up,
+    down: migration_20260804_230145_logo_dark_tint.down,
+    name: '20260804_230145_logo_dark_tint',
+  },
+  {
+    up: migration_20260804_231605_drop_logo_dark_tint.up,
+    down: migration_20260804_231605_drop_logo_dark_tint.down,
+    name: '20260804_231605_drop_logo_dark_tint'
   },
 ];

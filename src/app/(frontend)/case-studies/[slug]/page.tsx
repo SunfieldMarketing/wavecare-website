@@ -105,23 +105,10 @@ export default async function CaseStudyPage({ params }: Params) {
         </div>
       </section>
 
-      {/* Any extra sections an editor added in the CMS */}
+      {/* Closing CTA + any extra sections an editor added in the CMS. The CTA
+          used to be hardcoded here; it's now the last entry in study.layout
+          (a finalCta block) so its copy is editable per case study. */}
       <RenderBlocks blocks={study.layout} />
-
-      {/* CTA */}
-      <section className="final">
-        <canvas id="waveCanvas" />
-        <div className="final-in">
-          <span className="label">Ready for results like this?</span>
-          <h2>Let&apos;s build your success story.</h2>
-          <p className="sub">
-            Book a free discovery call and we&apos;ll map out exactly what we&apos;d build for your facility.
-          </p>
-          <Link href="/contact" className="btn">
-            Book a Demo
-          </Link>
-        </div>
-      </section>
     </>
   );
 }
