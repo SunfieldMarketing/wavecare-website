@@ -41,7 +41,25 @@ export const Testimonials: CollectionConfig = {
     },
     { name: 'author', type: 'text', required: true, label: 'Name' },
     { name: 'role', type: 'text', label: 'Job title' },
-    { name: 'organisation', type: 'text', label: 'Facility / company' },
+    {
+      name: 'organisation',
+      type: 'text',
+      label: 'Facility / location',
+      admin: { description: 'e.g. "Assisted Living Community · 84 beds · Tampa, FL"' },
+    },
+    {
+      name: 'outcome',
+      type: 'text',
+      label: 'Outcome badge',
+      admin: { description: 'Short result shown under the quote, e.g. "Better-fit inquiries in under 30 days".' },
+    },
+    {
+      name: 'initials',
+      type: 'text',
+      label: 'Initials',
+      maxLength: 3,
+      admin: { description: 'Shown in the avatar circle when there is no photo.' },
+    },
     { name: 'avatar', type: 'upload', relationTo: 'media', label: 'Photo' },
     {
       name: 'rating',

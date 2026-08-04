@@ -17,6 +17,10 @@ import {
   StatsBarBlock,
   PillBandBlock,
   AuditCTABlock,
+  DividerLabelBlock,
+  InlineCTABlock,
+  VideoTestimonialsBlock,
+  TestimonialCardsBlock,
 } from './blocks/LandingBlocks';
 import { containerClassName } from './appearance';
 import CMSLink from './CMSLink';
@@ -80,6 +84,14 @@ export default function RenderBlocks({ blocks }: { blocks?: any[] | null }) {
             return <PillBandBlock key={key} block={block} />;
           case 'auditCta':
             return <AuditCTABlock key={key} block={block} />;
+          case 'dividerLabel':
+            return <DividerLabelBlock key={key} block={block} />;
+          case 'inlineCta':
+            return <InlineCTABlock key={key} block={block} />;
+          case 'videoTestimonials':
+            return <VideoTestimonialsBlock key={key} block={block} />;
+          case 'testimonialCards':
+            return <TestimonialCardsBlock key={key} block={block} />;
 
           case 'beforeAfter':
             return (

@@ -1510,11 +1510,16 @@ export interface Page {
             blockType: 'finalCta';
           }
         | {
+            /**
+             * Must match the stylesheet the page imports.
+             */
+            variant?: ('wc' | 'wct') | null;
             eyebrow?: string | null;
             /**
              * Wrap words in _underscores_ to italicise them. Line breaks are preserved.
              */
             title: string;
+            subtitle?: string | null;
             /**
              * Shown under the heading, separated by dots.
              */
@@ -1557,16 +1562,27 @@ export interface Page {
             blockType: 'videoFeature';
           }
         | {
+            /**
+             * Must match the stylesheet the page imports.
+             */
+            variant?: ('wc' | 'wct') | null;
             stats?:
               | {
                   /**
-                   * e.g. 500+
+                   * e.g. 500+ or 3.4×
                    */
                   value: string;
                   label: string;
+                  /**
+                   * Optional. Set a number here to animate the value counting up, e.g. 3.4. Leave blank to show the value as-is.
+                   */
+                  countTo?: string | null;
+                  suffix?: string | null;
+                  decimals?: number | null;
                   id?: string | null;
                 }[]
               | null;
+            showTransition?: boolean | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'statsBar';
@@ -1585,6 +1601,10 @@ export interface Page {
             blockType: 'pillBand';
           }
         | {
+            /**
+             * Must match the stylesheet the page imports.
+             */
+            variant?: ('wc' | 'wct') | null;
             tag?: string | null;
             title: string;
             subtitle?: string | null;
@@ -1613,6 +1633,57 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'auditCta';
+          }
+        | {
+            label?: string | null;
+            /**
+             * Wrap words in _underscores_ to italicise them.
+             */
+            title?: string | null;
+            /**
+             * Rows alternate left/right automatically. Use video testimonials here.
+             */
+            testimonials: (number | Testimonial)[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'videoTestimonials';
+          }
+        | {
+            testimonials: (number | Testimonial)[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonialCards';
+          }
+        | {
+            text: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'dividerLabel';
+          }
+        | {
+            /**
+             * e.g. "Curious where you stand?"
+             */
+            lead?: string | null;
+            text?: string | null;
+            cta?: {
+              label?: string | null;
+              type?: ('internal' | 'external' | 'anchor') | null;
+              page?: (number | null) | Page;
+              /**
+               * Include https://
+               */
+              url?: string | null;
+              /**
+               * Section id without the #, e.g. "gallery"
+               */
+              anchor?: string | null;
+              style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+              newTab?: boolean | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'inlineCta';
           }
       )[]
     | null;
@@ -3102,11 +3173,16 @@ export interface CaseStudy {
             blockType: 'finalCta';
           }
         | {
+            /**
+             * Must match the stylesheet the page imports.
+             */
+            variant?: ('wc' | 'wct') | null;
             eyebrow?: string | null;
             /**
              * Wrap words in _underscores_ to italicise them. Line breaks are preserved.
              */
             title: string;
+            subtitle?: string | null;
             /**
              * Shown under the heading, separated by dots.
              */
@@ -3149,16 +3225,27 @@ export interface CaseStudy {
             blockType: 'videoFeature';
           }
         | {
+            /**
+             * Must match the stylesheet the page imports.
+             */
+            variant?: ('wc' | 'wct') | null;
             stats?:
               | {
                   /**
-                   * e.g. 500+
+                   * e.g. 500+ or 3.4×
                    */
                   value: string;
                   label: string;
+                  /**
+                   * Optional. Set a number here to animate the value counting up, e.g. 3.4. Leave blank to show the value as-is.
+                   */
+                  countTo?: string | null;
+                  suffix?: string | null;
+                  decimals?: number | null;
                   id?: string | null;
                 }[]
               | null;
+            showTransition?: boolean | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'statsBar';
@@ -3177,6 +3264,10 @@ export interface CaseStudy {
             blockType: 'pillBand';
           }
         | {
+            /**
+             * Must match the stylesheet the page imports.
+             */
+            variant?: ('wc' | 'wct') | null;
             tag?: string | null;
             title: string;
             subtitle?: string | null;
@@ -3206,6 +3297,57 @@ export interface CaseStudy {
             blockName?: string | null;
             blockType: 'auditCta';
           }
+        | {
+            label?: string | null;
+            /**
+             * Wrap words in _underscores_ to italicise them.
+             */
+            title?: string | null;
+            /**
+             * Rows alternate left/right automatically. Use video testimonials here.
+             */
+            testimonials: (number | Testimonial)[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'videoTestimonials';
+          }
+        | {
+            testimonials: (number | Testimonial)[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonialCards';
+          }
+        | {
+            text: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'dividerLabel';
+          }
+        | {
+            /**
+             * e.g. "Curious where you stand?"
+             */
+            lead?: string | null;
+            text?: string | null;
+            cta?: {
+              label?: string | null;
+              type?: ('internal' | 'external' | 'anchor') | null;
+              page?: (number | null) | Page;
+              /**
+               * Include https://
+               */
+              url?: string | null;
+              /**
+               * Section id without the #, e.g. "gallery"
+               */
+              anchor?: string | null;
+              style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+              newTab?: boolean | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'inlineCta';
+          }
       )[]
     | null;
   meta?: {
@@ -3233,7 +3375,18 @@ export interface Testimonial {
   vimeoId?: string | null;
   author: string;
   role?: string | null;
+  /**
+   * e.g. "Assisted Living Community · 84 beds · Tampa, FL"
+   */
   organisation?: string | null;
+  /**
+   * Short result shown under the quote, e.g. "Better-fit inquiries in under 30 days".
+   */
+  outcome?: string | null;
+  /**
+   * Shown in the avatar circle when there is no photo.
+   */
+  initials?: string | null;
   avatar?: (number | null) | Media;
   /**
    * Optional star rating, 1 to 5.
@@ -4683,8 +4836,10 @@ export interface PagesSelect<T extends boolean = true> {
         landingHero?:
           | T
           | {
+              variant?: T;
               eyebrow?: T;
               title?: T;
+              subtitle?: T;
               trustItems?:
                 | T
                 | {
@@ -4719,13 +4874,18 @@ export interface PagesSelect<T extends boolean = true> {
         statsBar?:
           | T
           | {
+              variant?: T;
               stats?:
                 | T
                 | {
                     value?: T;
                     label?: T;
+                    countTo?: T;
+                    suffix?: T;
+                    decimals?: T;
                     id?: T;
                   };
+              showTransition?: T;
               id?: T;
               blockName?: T;
             };
@@ -4746,6 +4906,7 @@ export interface PagesSelect<T extends boolean = true> {
         auditCta?:
           | T
           | {
+              variant?: T;
               tag?: T;
               title?: T;
               subtitle?: T;
@@ -4767,6 +4928,48 @@ export interface PagesSelect<T extends boolean = true> {
                     newTab?: T;
                   };
               ctaNote?: T;
+              id?: T;
+              blockName?: T;
+            };
+        videoTestimonials?:
+          | T
+          | {
+              label?: T;
+              title?: T;
+              testimonials?: T;
+              id?: T;
+              blockName?: T;
+            };
+        testimonialCards?:
+          | T
+          | {
+              testimonials?: T;
+              id?: T;
+              blockName?: T;
+            };
+        dividerLabel?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+              blockName?: T;
+            };
+        inlineCta?:
+          | T
+          | {
+              lead?: T;
+              text?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    type?: T;
+                    page?: T;
+                    url?: T;
+                    anchor?: T;
+                    style?: T;
+                    newTab?: T;
+                  };
               id?: T;
               blockName?: T;
             };
@@ -5815,8 +6018,10 @@ export interface CaseStudiesSelect<T extends boolean = true> {
         landingHero?:
           | T
           | {
+              variant?: T;
               eyebrow?: T;
               title?: T;
+              subtitle?: T;
               trustItems?:
                 | T
                 | {
@@ -5851,13 +6056,18 @@ export interface CaseStudiesSelect<T extends boolean = true> {
         statsBar?:
           | T
           | {
+              variant?: T;
               stats?:
                 | T
                 | {
                     value?: T;
                     label?: T;
+                    countTo?: T;
+                    suffix?: T;
+                    decimals?: T;
                     id?: T;
                   };
+              showTransition?: T;
               id?: T;
               blockName?: T;
             };
@@ -5878,6 +6088,7 @@ export interface CaseStudiesSelect<T extends boolean = true> {
         auditCta?:
           | T
           | {
+              variant?: T;
               tag?: T;
               title?: T;
               subtitle?: T;
@@ -5899,6 +6110,48 @@ export interface CaseStudiesSelect<T extends boolean = true> {
                     newTab?: T;
                   };
               ctaNote?: T;
+              id?: T;
+              blockName?: T;
+            };
+        videoTestimonials?:
+          | T
+          | {
+              label?: T;
+              title?: T;
+              testimonials?: T;
+              id?: T;
+              blockName?: T;
+            };
+        testimonialCards?:
+          | T
+          | {
+              testimonials?: T;
+              id?: T;
+              blockName?: T;
+            };
+        dividerLabel?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+              blockName?: T;
+            };
+        inlineCta?:
+          | T
+          | {
+              lead?: T;
+              text?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    type?: T;
+                    page?: T;
+                    url?: T;
+                    anchor?: T;
+                    style?: T;
+                    newTab?: T;
+                  };
               id?: T;
               blockName?: T;
             };
@@ -5925,6 +6178,8 @@ export interface TestimonialsSelect<T extends boolean = true> {
   author?: T;
   role?: T;
   organisation?: T;
+  outcome?: T;
+  initials?: T;
   avatar?: T;
   rating?: T;
   updatedAt?: T;

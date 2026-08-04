@@ -3,6 +3,13 @@ import { RichTextBlock, CardGrid, SplitMedia, Stats, Accordion, LegalDocument } 
 import { LogoMarquee, Gallery, BeforeAfter, VideoEmbed, VideoGrid, TabsShowcase } from './media';
 import { Process, CaseStudyGrid, TestimonialGrid, FinalCTA, ContactFormBlock } from './conversion';
 import { landingBlocks, LandingHero, VideoFeature, StatsBar, PillBand, AuditCTA } from './landing';
+import {
+  testimonialBlocks,
+  VideoTestimonials,
+  TestimonialCards,
+  DividerLabel,
+  InlineCTA,
+} from './testimonials';
 
 export {
   Hero,
@@ -29,6 +36,10 @@ export {
   StatsBar,
   PillBand,
   AuditCTA,
+  VideoTestimonials,
+  TestimonialCards,
+  DividerLabel,
+  InlineCTA,
 };
 
 /**
@@ -55,6 +66,7 @@ export const allBlocks = [
   LegalDocument,
   ContactFormBlock,
   FinalCTA,
-  // Landing-page kit — renders the separate wc-* design system in commercial.css
+  // Landing-page kit — renders the wc-* / wct-* design systems
   ...landingBlocks,
+  ...testimonialBlocks,
 ];
