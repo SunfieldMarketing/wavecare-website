@@ -733,6 +733,10 @@ export interface Page {
                * Optional, e.g. 4/5 or 16/9. Leave blank for the image’s own ratio.
                */
               aspect?: string | null;
+              /**
+               * Optional small overlay label, e.g. "Brochure" or "Signage".
+               */
+              tag?: string | null;
               id?: string | null;
             }[];
             showFilters?: boolean | null;
@@ -2137,6 +2141,168 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'serviceFinalCta';
+          }
+        | {
+            breadcrumb?:
+              | {
+                  label: string;
+                  /**
+                   * Leave blank for the current page.
+                   */
+                  href?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            title: string;
+            subtitle?: string | null;
+            checklist?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            buttons?:
+              | {
+                  link?: {
+                    label?: string | null;
+                    type?: ('internal' | 'external' | 'anchor') | null;
+                    page?: (number | null) | Page;
+                    /**
+                     * Include https://
+                     */
+                    url?: string | null;
+                    /**
+                     * Section id without the #, e.g. "gallery"
+                     */
+                    anchor?: string | null;
+                    style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+                    newTab?: boolean | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Fixed layout: wide, wide, square, wide-short.
+             */
+            images?:
+              | {
+                  image: number | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'printHero';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            lead?: string | null;
+            beforeImage: number | Media;
+            afterImage: number | Media;
+            caption?: string | null;
+            stats?:
+              | {
+                  value: string;
+                  /**
+                   * e.g. % or x — animates counting up to value+suffix
+                   */
+                  suffix?: string | null;
+                  label: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'printIntro';
+          }
+        | {
+            tone?: ('deep' | 'ink') | null;
+            eyebrow?: string | null;
+            title?: string | null;
+            subtitle?: string | null;
+            cards?:
+              | {
+                  /**
+                   * Paste inline SVG markup.
+                   */
+                  icon?: string | null;
+                  /**
+                   * e.g. 01. Blank auto-numbers.
+                   */
+                  number?: string | null;
+                  title: string;
+                  body?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'iconCardGrid';
+          }
+        | {
+            eyebrow?: string | null;
+            title?: string | null;
+            subtitle?: string | null;
+            /**
+             * Exactly 4, in order: Wireframe, Flat Comp, Revision, Press-Ready. The visual mockup for each phase is fixed in code.
+             */
+            phases?:
+              | {
+                  name: string;
+                  title: string;
+                  description: string;
+                  badge: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'printProcess';
+          }
+        | {
+            eyebrow?: string | null;
+            title?: string | null;
+            items?:
+              | {
+                  icon?: string | null;
+                  title: string;
+                  body?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'receiveGrid';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            body?: string | null;
+            button?: {
+              link?: {
+                label?: string | null;
+                type?: ('internal' | 'external' | 'anchor') | null;
+                page?: (number | null) | Page;
+                /**
+                 * Include https://
+                 */
+                url?: string | null;
+                /**
+                 * Section id without the #, e.g. "gallery"
+                 */
+                anchor?: string | null;
+                style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+                newTab?: boolean | null;
+              };
+            };
+            /**
+             * e.g. /videos/1 Wavecare Photo Ad (HQ).mp4
+             */
+            videoUrl: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'signatureProduct';
           }
       )[]
     | null;
@@ -2849,6 +3015,10 @@ export interface CaseStudy {
                * Optional, e.g. 4/5 or 16/9. Leave blank for the image’s own ratio.
                */
               aspect?: string | null;
+              /**
+               * Optional small overlay label, e.g. "Brochure" or "Signage".
+               */
+              tag?: string | null;
               id?: string | null;
             }[];
             showFilters?: boolean | null;
@@ -4253,6 +4423,168 @@ export interface CaseStudy {
             id?: string | null;
             blockName?: string | null;
             blockType: 'serviceFinalCta';
+          }
+        | {
+            breadcrumb?:
+              | {
+                  label: string;
+                  /**
+                   * Leave blank for the current page.
+                   */
+                  href?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            title: string;
+            subtitle?: string | null;
+            checklist?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            buttons?:
+              | {
+                  link?: {
+                    label?: string | null;
+                    type?: ('internal' | 'external' | 'anchor') | null;
+                    page?: (number | null) | Page;
+                    /**
+                     * Include https://
+                     */
+                    url?: string | null;
+                    /**
+                     * Section id without the #, e.g. "gallery"
+                     */
+                    anchor?: string | null;
+                    style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+                    newTab?: boolean | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Fixed layout: wide, wide, square, wide-short.
+             */
+            images?:
+              | {
+                  image: number | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'printHero';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            lead?: string | null;
+            beforeImage: number | Media;
+            afterImage: number | Media;
+            caption?: string | null;
+            stats?:
+              | {
+                  value: string;
+                  /**
+                   * e.g. % or x — animates counting up to value+suffix
+                   */
+                  suffix?: string | null;
+                  label: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'printIntro';
+          }
+        | {
+            tone?: ('deep' | 'ink') | null;
+            eyebrow?: string | null;
+            title?: string | null;
+            subtitle?: string | null;
+            cards?:
+              | {
+                  /**
+                   * Paste inline SVG markup.
+                   */
+                  icon?: string | null;
+                  /**
+                   * e.g. 01. Blank auto-numbers.
+                   */
+                  number?: string | null;
+                  title: string;
+                  body?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'iconCardGrid';
+          }
+        | {
+            eyebrow?: string | null;
+            title?: string | null;
+            subtitle?: string | null;
+            /**
+             * Exactly 4, in order: Wireframe, Flat Comp, Revision, Press-Ready. The visual mockup for each phase is fixed in code.
+             */
+            phases?:
+              | {
+                  name: string;
+                  title: string;
+                  description: string;
+                  badge: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'printProcess';
+          }
+        | {
+            eyebrow?: string | null;
+            title?: string | null;
+            items?:
+              | {
+                  icon?: string | null;
+                  title: string;
+                  body?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'receiveGrid';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            body?: string | null;
+            button?: {
+              link?: {
+                label?: string | null;
+                type?: ('internal' | 'external' | 'anchor') | null;
+                page?: (number | null) | Page;
+                /**
+                 * Include https://
+                 */
+                url?: string | null;
+                /**
+                 * Section id without the #, e.g. "gallery"
+                 */
+                anchor?: string | null;
+                style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+                newTab?: boolean | null;
+              };
+            };
+            /**
+             * e.g. /videos/1 Wavecare Photo Ad (HQ).mp4
+             */
+            videoUrl: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'signatureProduct';
           }
       )[]
     | null;
@@ -5160,6 +5492,7 @@ export interface PagesSelect<T extends boolean = true> {
                     image?: T;
                     categories?: T;
                     aspect?: T;
+                    tag?: T;
                     id?: T;
                   };
               showFilters?: T;
@@ -6239,6 +6572,147 @@ export interface PagesSelect<T extends boolean = true> {
                         };
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        printHero?:
+          | T
+          | {
+              breadcrumb?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    id?: T;
+                  };
+              title?: T;
+              subtitle?: T;
+              checklist?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              buttons?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          label?: T;
+                          type?: T;
+                          page?: T;
+                          url?: T;
+                          anchor?: T;
+                          style?: T;
+                          newTab?: T;
+                        };
+                    id?: T;
+                  };
+              images?:
+                | T
+                | {
+                    image?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        printIntro?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              lead?: T;
+              beforeImage?: T;
+              afterImage?: T;
+              caption?: T;
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    suffix?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        iconCardGrid?:
+          | T
+          | {
+              tone?: T;
+              eyebrow?: T;
+              title?: T;
+              subtitle?: T;
+              cards?:
+                | T
+                | {
+                    icon?: T;
+                    number?: T;
+                    title?: T;
+                    body?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        printProcess?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              subtitle?: T;
+              phases?:
+                | T
+                | {
+                    name?: T;
+                    title?: T;
+                    description?: T;
+                    badge?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        receiveGrid?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              items?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    body?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        signatureProduct?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              body?: T;
+              button?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          label?: T;
+                          type?: T;
+                          page?: T;
+                          url?: T;
+                          anchor?: T;
+                          style?: T;
+                          newTab?: T;
+                        };
+                  };
+              videoUrl?: T;
               id?: T;
               blockName?: T;
             };
@@ -6705,6 +7179,7 @@ export interface CaseStudiesSelect<T extends boolean = true> {
                     image?: T;
                     categories?: T;
                     aspect?: T;
+                    tag?: T;
                     id?: T;
                   };
               showFilters?: T;
@@ -7784,6 +8259,147 @@ export interface CaseStudiesSelect<T extends boolean = true> {
                         };
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        printHero?:
+          | T
+          | {
+              breadcrumb?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    id?: T;
+                  };
+              title?: T;
+              subtitle?: T;
+              checklist?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              buttons?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          label?: T;
+                          type?: T;
+                          page?: T;
+                          url?: T;
+                          anchor?: T;
+                          style?: T;
+                          newTab?: T;
+                        };
+                    id?: T;
+                  };
+              images?:
+                | T
+                | {
+                    image?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        printIntro?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              lead?: T;
+              beforeImage?: T;
+              afterImage?: T;
+              caption?: T;
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    suffix?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        iconCardGrid?:
+          | T
+          | {
+              tone?: T;
+              eyebrow?: T;
+              title?: T;
+              subtitle?: T;
+              cards?:
+                | T
+                | {
+                    icon?: T;
+                    number?: T;
+                    title?: T;
+                    body?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        printProcess?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              subtitle?: T;
+              phases?:
+                | T
+                | {
+                    name?: T;
+                    title?: T;
+                    description?: T;
+                    badge?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        receiveGrid?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              items?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    body?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        signatureProduct?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              body?: T;
+              button?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          label?: T;
+                          type?: T;
+                          page?: T;
+                          url?: T;
+                          anchor?: T;
+                          style?: T;
+                          newTab?: T;
+                        };
+                  };
+              videoUrl?: T;
               id?: T;
               blockName?: T;
             };

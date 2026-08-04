@@ -202,6 +202,7 @@ export function GalleryInner({
               key={`${filter}-${img.url}`}
               className={layout === 'masonry' ? 'm' : undefined}
               style={{
+                position: 'relative',
                 aspectRatio: it.aspect || undefined,
                 breakInside: 'avoid',
                 cursor: lightbox ? 'zoom-in' : 'default',
@@ -222,6 +223,25 @@ export function GalleryInner({
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 loading="lazy"
               />
+              {it.tag && (
+                <div
+                  className="fwt"
+                  style={{
+                    position: 'absolute',
+                    top: '12px',
+                    left: '16px',
+                    fontSize: '0.65rem',
+                    letterSpacing: '1px',
+                    textTransform: 'uppercase',
+                    background: 'rgba(0,0,0,0.6)',
+                    padding: '4px 8px',
+                    borderRadius: '4px',
+                    color: '#fff',
+                  }}
+                >
+                  {it.tag}
+                </div>
+              )}
             </div>
           );
         })}

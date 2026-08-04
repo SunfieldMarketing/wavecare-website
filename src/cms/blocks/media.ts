@@ -70,6 +70,12 @@ export const Gallery: Block = {
           label: 'Aspect ratio',
           admin: { description: 'Optional, e.g. 4/5 or 16/9. Leave blank for the image’s own ratio.' },
         },
+        {
+          name: 'tag',
+          type: 'text',
+          label: 'Corner label',
+          admin: { description: 'Optional small overlay label, e.g. "Brochure" or "Signage".' },
+        },
       ],
     },
     {

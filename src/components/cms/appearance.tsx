@@ -111,18 +111,25 @@ export function overlayStyle(a: Appearance): CSSProperties | null {
 }
 
 /**
- * Renders *asterisk-wrapped* words in the accent colour, matching the
- * <span className="accent"> pattern used throughout the hand-written pages.
- * Newlines become <br />.
+ * Renders *asterisk-wrapped* words in the accent colour (<span
+ * className="accent">) and _underscore-wrapped_ words in the light-italic
+ * treatment (<span className="lite">), matching the two inline-emphasis
+ * patterns used throughout the hand-written pages. Newlines become <br />.
  */
 export function parseHighlight(text?: string | null): React.ReactNode[] {
   if (!text) return [];
   const nodes: React.ReactNode[] = [];
   text.split('\n').forEach((line, lineIdx, lines) => {
-    line.split(/(\*[^*]+\*)/g).forEach((part, i) => {
+    line.split(/(\*[^*]+\*|_[^_]+_)/g).forEach((part, i) => {
       if (part.startsWith('*') && part.endsWith('*') && part.length > 2) {
         nodes.push(
           <span className="accent" key={`${lineIdx}-${i}`}>
+            {part.slice(1, -1)}
+          </span>,
+        );
+      } else if (part.startsWith('_') && part.endsWith('_') && part.length > 2) {
+        nodes.push(
+          <span className="lite" key={`${lineIdx}-${i}`}>
             {part.slice(1, -1)}
           </span>,
         );

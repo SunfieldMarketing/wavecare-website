@@ -28,6 +28,15 @@ import {
   ServiceTestimonials,
   ServiceFinalCTA,
 } from './services';
+import {
+  designPrintBlocks,
+  PrintHero,
+  PrintIntro,
+  IconCardGrid,
+  PrintProcess,
+  ReceiveGrid,
+  SignatureProduct,
+} from './designPrint';
 
 export {
   Hero,
@@ -69,6 +78,12 @@ export {
   LogoStrip,
   ServiceTestimonials,
   ServiceFinalCTA,
+  PrintHero,
+  PrintIntro,
+  IconCardGrid,
+  PrintProcess,
+  ReceiveGrid,
+  SignatureProduct,
 };
 
 /**
@@ -101,4 +116,5 @@ export const allBlocks = [
   ...testimonialBlocks,
   ...contactBlocks,
   ...serviceBlocks,
+  ...designPrintBlocks,
 ];

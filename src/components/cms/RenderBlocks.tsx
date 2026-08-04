@@ -37,6 +37,14 @@ import {
   ServiceTestimonialsBlock,
   ServiceFinalCTABlock,
 } from './blocks/ServiceBlocks';
+import {
+  PrintHeroBlock,
+  PrintIntroBlock,
+  IconCardGridBlock,
+  PrintProcessBlock,
+  ReceiveGridBlock,
+  SignatureProductBlock,
+} from './blocks/DesignPrintBlocks';
 import { containerClassName } from './appearance';
 import CMSLink from './CMSLink';
 import './cms-blocks.css';
@@ -104,6 +112,20 @@ export default function RenderBlocks({ blocks }: { blocks?: any[] | null }) {
             return <ServiceTestimonialsBlock key={key} block={block} />;
           case 'serviceFinalCta':
             return <ServiceFinalCTABlock key={key} block={block} />;
+
+          // ── /design-print (subservices.css) ──
+          case 'printHero':
+            return <PrintHeroBlock key={key} block={block} />;
+          case 'printIntro':
+            return <PrintIntroBlock key={key} block={block} />;
+          case 'iconCardGrid':
+            return <IconCardGridBlock key={key} block={block} />;
+          case 'printProcess':
+            return <PrintProcessBlock key={key} block={block} />;
+          case 'receiveGrid':
+            return <ReceiveGridBlock key={key} block={block} />;
+          case 'signatureProduct':
+            return <SignatureProductBlock key={key} block={block} />;
 
           case 'richText':
             return (
