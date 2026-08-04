@@ -6,28 +6,18 @@ import { getAllPageSlugs, getAllCaseStudySlugs, getGlobal } from '@/lib/cms';
  *
  * Pages and case studies come from Payload, so anything an editor publishes is
  * listed automatically and anything they tick "hide from sitemap" on is not.
- * ROUTES_NOT_YET_IN_CMS covers the pages still hardcoded — delete each entry as
- * that page is migrated.
+ *
+ * Every page (including the homepage, slug `home`) is now CMS-managed, so
+ * there are no hardcoded fallback routes left. Keeping the array (typed,
+ * empty) rather than deleting the mechanism entirely — if a future page is
+ * ever added outside the CMS, or the CMS is briefly unreachable and the
+ * catch below swallows the error, this is the place to list it.
  */
 const ROUTES_NOT_YET_IN_CMS: Array<{
   path: string;
   changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'];
   priority: number;
-}> = [
-  { path: '/', changeFrequency: 'weekly', priority: 1 },
-  { path: '/about', changeFrequency: 'monthly', priority: 0.8 },
-  { path: '/services', changeFrequency: 'monthly', priority: 0.8 },
-  { path: '/videoservices', changeFrequency: 'monthly', priority: 0.7 },
-  { path: '/design-print', changeFrequency: 'monthly', priority: 0.7 },
-  { path: '/webdesign', changeFrequency: 'monthly', priority: 0.7 },
-  // These three were missing from the old hardcoded sitemap entirely.
-  { path: '/commercial', changeFrequency: 'monthly', priority: 0.6 },
-  { path: '/testimonials', changeFrequency: 'monthly', priority: 0.6 },
-  { path: '/case-studies', changeFrequency: 'weekly', priority: 0.8 },
-  { path: '/contact', changeFrequency: 'yearly', priority: 0.8 },
-  { path: '/privacy-policy', changeFrequency: 'yearly', priority: 0.5 },
-  { path: '/terms-of-service', changeFrequency: 'yearly', priority: 0.5 },
-];
+}> = [];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const settings: any = await getGlobal('site-settings').catch(() => null);

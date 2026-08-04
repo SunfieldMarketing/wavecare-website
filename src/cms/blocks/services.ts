@@ -158,6 +158,13 @@ export const LogoStrip: Block = {
       fields: [
         { name: 'image', type: 'upload', relationTo: 'media', required: true },
         { name: 'name', type: 'text', label: 'Client name (alt text)' },
+        {
+          name: 'scaleUp',
+          type: 'checkbox',
+          defaultValue: false,
+          label: 'Scale up 1.5x',
+          admin: { description: 'For logos that render visually smaller than the rest of the row.' },
+        },
       ],
     },
   ],

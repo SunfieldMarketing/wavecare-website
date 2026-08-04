@@ -1,5 +1,5 @@
 import { Hero, NoticeBar } from './hero';
-import { RichTextBlock, CardGrid, SplitMedia, Stats, Accordion, LegalDocument } from './layout';
+import { RichTextBlock, CardGrid, SplitMedia, Stats, Accordion, LegalDocument, SocialProofBanner } from './layout';
 import { LogoMarquee, Gallery, BeforeAfter, VideoEmbed, VideoGrid, FeaturedVideoWork, TabsShowcase } from './media';
 import {
   Process,
@@ -48,12 +48,14 @@ import {
   SimpleQuoteGrid,
 } from './about';
 import { webDesignBlocks, WebDesignHero, RevealBeforeAfter, CapabilitiesGrid, SimpleIconGrid } from './webdesign';
+import { homeBlocks, ShowreelBlock as ShowreelBlockDef, ServiceCarousel, NumberedFeatureGrid } from './home';
 
 export {
   Hero,
   NoticeBar,
   RichTextBlock,
   LegalDocument,
+  SocialProofBanner,
   CardGrid,
   SplitMedia,
   Stats,
@@ -109,6 +111,9 @@ export {
   RevealBeforeAfter,
   CapabilitiesGrid,
   SimpleIconGrid,
+  ShowreelBlockDef as ShowreelBlock,
+  ServiceCarousel,
+  NumberedFeatureGrid,
 };
 
 /**
@@ -118,6 +123,7 @@ export {
 export const allBlocks = [
   Hero,
   NoticeBar,
+  SocialProofBanner,
   SplitMedia,
   CardGrid,
   Stats,
@@ -146,4 +152,5 @@ export const allBlocks = [
   ...videoServiceBlocks,
   ...aboutBlocks,
   ...webDesignBlocks,
+  ...homeBlocks,
 ];

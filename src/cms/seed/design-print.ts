@@ -58,14 +58,9 @@ export async function seedDesignPrint(payload: Payload): Promise<void> {
       images: wallImgs.filter(Boolean).map((id) => ({ image: id })),
     },
     {
-      blockType: 'noticeBar',
+      blockType: 'socialProofBanner',
       text: 'Healthcare-Focused Design  •  Print-Ready Files  •  Custom Branding  •  Premium Materials',
-      appearance: {
-        background: 'custom',
-        customBackground: '#062A24',
-        paddingTop: 'none',
-        paddingBottom: 'none',
-      },
+      background: '#062A24',
     },
     {
       blockType: 'printIntro',

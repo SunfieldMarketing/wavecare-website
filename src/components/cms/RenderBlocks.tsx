@@ -4,6 +4,7 @@ import {
   SectionHead,
   HeroBlock,
   NoticeBarBlock,
+  SocialProofBannerBlock,
   CardGridBlock,
   StatsBlock,
   ProcessBlock,
@@ -67,6 +68,7 @@ import {
   CapabilitiesGridBlock,
   SimpleIconGridBlock,
 } from './blocks/WebDesignBlocks';
+import { ShowreelBlock, ServiceCarouselBlock, NumberedFeatureGridBlock } from './blocks/HomeBlocks';
 import { containerClassName } from './appearance';
 import CMSLink from './CMSLink';
 import './cms-blocks.css';
@@ -93,6 +95,9 @@ export default function RenderBlocks({ blocks }: { blocks?: any[] | null }) {
 
           case 'noticeBar':
             return <NoticeBarBlock key={key} block={block} />;
+
+          case 'socialProofBanner':
+            return <SocialProofBannerBlock key={key} block={block} />;
 
           case 'cardGrid':
             return <CardGridBlock key={key} block={block} />;
@@ -185,6 +190,14 @@ export default function RenderBlocks({ blocks }: { blocks?: any[] | null }) {
             return <CapabilitiesGridBlock key={key} block={block} />;
           case 'simpleIconGrid':
             return <SimpleIconGridBlock key={key} block={block} />;
+
+          // ── / (homepage, globals.css) ──
+          case 'showreelBlock':
+            return <ShowreelBlock key={key} block={block} />;
+          case 'serviceCarousel':
+            return <ServiceCarouselBlock key={key} block={block} />;
+          case 'numberedFeatureGrid':
+            return <NumberedFeatureGridBlock key={key} block={block} />;
 
           case 'richText':
             return (

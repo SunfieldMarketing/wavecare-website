@@ -2,6 +2,29 @@ import type { Block } from 'payload';
 import { sectionSettings, headingFields } from '../fields/sectionSettings';
 import { linkField } from '../fields/link';
 
+/**
+ * Thin decorative text strip, entirely inline-styled in the original (no CSS
+ * class backs it) — used on /design-print, /videoservices, and /webdesign
+ * just under the hero. Colors differ slightly per page, so they're editable
+ * rather than hardcoded.
+ */
+export const SocialProofBanner: Block = {
+  slug: 'socialProofBanner',
+  labels: { singular: 'Social proof banner', plural: 'Social proof banners' },
+  fields: [
+    { name: 'text', type: 'text', required: true, label: 'Banner text' },
+    { name: 'background', type: 'text', defaultValue: '#062A24', label: 'Background color' },
+    { name: 'borderColor', type: 'text', defaultValue: 'rgba(255,255,255,0.05)', label: 'Border color' },
+    { name: 'textColor', type: 'text', defaultValue: 'var(--teal-bright)', label: 'Text color' },
+    { name: 'uppercase', type: 'checkbox', defaultValue: true, label: 'Uppercase text' },
+    { name: 'fontSize', type: 'text', defaultValue: '12px', label: 'Font size' },
+    { name: 'fontWeight', type: 'text', defaultValue: '600', label: 'Font weight' },
+    { name: 'letterSpacing', type: 'text', defaultValue: '0.15em', label: 'Letter spacing' },
+    { name: 'maxWidth', type: 'text', label: 'Max width (optional, centers text)' },
+    { name: 'padding', type: 'text', defaultValue: '24px 0', label: 'Padding' },
+  ],
+};
+
 /** Free-form rich text — used by /privacy-policy and /terms-of-service. */
 export const RichTextBlock: Block = {
   slug: 'richText',

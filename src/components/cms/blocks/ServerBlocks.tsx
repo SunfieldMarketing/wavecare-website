@@ -236,6 +236,47 @@ export function NoticeBarBlock({ block }: { block: any }) {
   );
 }
 
+export function SocialProofBannerBlock({ block }: { block: any }) {
+  const {
+    text,
+    background,
+    borderColor,
+    textColor,
+    uppercase,
+    fontSize,
+    fontWeight,
+    letterSpacing,
+    maxWidth,
+    padding,
+  } = block;
+  return (
+    <div
+      className="social-proof-banner"
+      style={{
+        background: background || '#062A24',
+        borderTop: `1px solid ${borderColor || 'rgba(255,255,255,0.05)'}`,
+        borderBottom: `1px solid ${borderColor || 'rgba(255,255,255,0.05)'}`,
+        padding: padding || '24px 0',
+        textAlign: 'center',
+      }}
+    >
+      <p
+        style={{
+          margin: maxWidth ? '0 auto' : 0,
+          maxWidth: maxWidth || undefined,
+          fontSize: fontSize || '12px',
+          letterSpacing: letterSpacing || '0.15em',
+          color: textColor || 'var(--teal-bright)',
+          textTransform: uppercase === false ? 'none' : 'uppercase',
+          fontWeight: fontWeight || 600,
+        }}
+      >
+        {text}
+      </p>
+    </div>
+  );
+}
+
 /* ── Card grid ────────────────────────────────────────────────────── */
 
 export function CardGridBlock({ block }: { block: any }) {
@@ -449,8 +490,8 @@ export function FinalCTABlock({ block }: { block: any }) {
   return (
     <section id={appearance?.anchorId || undefined} className="final">
       {waveAnimation !== false && <canvas id="waveCanvas" />}
-      <div className="final-in">
-        {eyebrow && <span className="label">{eyebrow}</span>}
+      <div className="container">
+        {eyebrow && <span className="label" style={{ justifyContent: 'center' }}>{eyebrow}</span>}
         <h2>{parseHighlight(title)}</h2>
         {subtitle && <p className="sub">{subtitle}</p>}
         <CMSLinkGroup buttons={buttons} />

@@ -7,6 +7,9 @@ import * as migration_20260804_185530_print_hero_subtitle_style from './20260804
 import * as migration_20260804_190802_about_blocks from './20260804_190802_about_blocks';
 import * as migration_20260804_191741_about_blocks_appearance from './20260804_191741_about_blocks_appearance';
 import * as migration_20260804_193258_webdesign_blocks from './20260804_193258_webdesign_blocks';
+import * as migration_20260804_195647_home_blocks from './20260804_195647_home_blocks';
+import * as migration_20260804_200703_logo_scale_up from './20260804_200703_logo_scale_up';
+import * as migration_20260804_201845_social_proof_banner from './20260804_201845_social_proof_banner';
 
 export const migrations = [
   {
@@ -52,6 +55,21 @@ export const migrations = [
   {
     up: migration_20260804_193258_webdesign_blocks.up,
     down: migration_20260804_193258_webdesign_blocks.down,
-    name: '20260804_193258_webdesign_blocks'
+    name: '20260804_193258_webdesign_blocks',
+  },
+  {
+    up: migration_20260804_195647_home_blocks.up,
+    down: migration_20260804_195647_home_blocks.down,
+    name: '20260804_195647_home_blocks',
+  },
+  {
+    up: migration_20260804_200703_logo_scale_up.up,
+    down: migration_20260804_200703_logo_scale_up.down,
+    name: '20260804_200703_logo_scale_up',
+  },
+  {
+    up: migration_20260804_201845_social_proof_banner.up,
+    down: migration_20260804_201845_social_proof_banner.down,
+    name: '20260804_201845_social_proof_banner'
   },
 ];

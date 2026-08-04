@@ -42,14 +42,10 @@ export async function seedVideoServices(payload: Payload): Promise<void> {
       images: wallImgs.filter(Boolean).map((id) => ({ image: id })),
     },
     {
-      blockType: 'noticeBar',
+      blockType: 'socialProofBanner',
       text: 'Senior Care & Skilled Nursing  •  Assisted Living  •  Rehabilitation Centers  •  Memory Care  •  Medical Practices',
-      appearance: {
-        background: 'custom',
-        customBackground: '#062A24',
-        paddingTop: 'none',
-        paddingBottom: 'none',
-      },
+      background: '#062A24',
+      fontWeight: '400',
     },
     {
       blockType: 'commercialPlayer',

@@ -137,7 +137,9 @@ export function LogoStripBlock({ block }: { block: any }) {
       {hasHead && (
         <div className="container">
           <div className="trusted-head reveal">
-            {eyebrow && <span className="label on-dark">{eyebrow}</span>}
+            {eyebrow && (
+              <span className={`label on-dark${tone === 'light' ? ' dark' : ''}`}>{eyebrow}</span>
+            )}
             {title && <h2>{lines(title)}</h2>}
           </div>
         </div>
@@ -153,6 +155,7 @@ export function LogoStripBlock({ block }: { block: any }) {
                   alt={l.name ?? l.image.alt ?? ''}
                   width={200}
                   height={100}
+                  className={l.scaleUp ? 'scale-up' : undefined}
                   style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
                 />
               </div>

@@ -312,6 +312,21 @@ export interface Page {
             blockType: 'noticeBar';
           }
         | {
+            text: string;
+            background?: string | null;
+            borderColor?: string | null;
+            textColor?: string | null;
+            uppercase?: boolean | null;
+            fontSize?: string | null;
+            fontWeight?: string | null;
+            letterSpacing?: string | null;
+            maxWidth?: string | null;
+            padding?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'socialProofBanner';
+          }
+        | {
             mediaSide?: ('right' | 'left') | null;
             mediaType?: ('image' | 'video' | 'vimeo') | null;
             image?: (number | null) | Media;
@@ -2423,6 +2438,10 @@ export interface Page {
               | {
                   image: number | Media;
                   name?: string | null;
+                  /**
+                   * For logos that render visually smaller than the rest of the row.
+                   */
+                  scaleUp?: boolean | null;
                   id?: string | null;
                 }[]
               | null;
@@ -3282,6 +3301,243 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'simpleIconGrid';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            paragraphs?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            button?: {
+              link?: {
+                label?: string | null;
+                type?: ('internal' | 'external' | 'anchor') | null;
+                page?: (number | null) | Page;
+                /**
+                 * Include https://
+                 */
+                url?: string | null;
+                /**
+                 * Section id without the #, e.g. "gallery"
+                 */
+                anchor?: string | null;
+                style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+                newTab?: boolean | null;
+              };
+            };
+            vimeoId: string;
+            /**
+             * Background, text colour, spacing and width for this section.
+             */
+            appearance?: {
+              background?:
+                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
+              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
+              /**
+               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
+               */
+              customBackground?: string | null;
+              customTextColor?: string | null;
+              backgroundImage?: (number | null) | Media;
+              backgroundVideo?: {
+                source?: ('vimeo' | 'file') | null;
+                /**
+                 * Just the number, e.g. 1187767005
+                 */
+                vimeoId?: string | null;
+                /**
+                 * e.g. /videos/Website video .mp4
+                 */
+                url?: string | null;
+              };
+              overlay?: {
+                enabled?: boolean | null;
+                opacity?: number | null;
+              };
+              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
+              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
+              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
+              /**
+               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
+               */
+              anchorId?: string | null;
+              /**
+               * Large soft blurred colour blob behind the content, used throughout /about. Purely decorative.
+               */
+              glow?: {
+                enabled?: boolean | null;
+                color?: ('primary' | 'accent') | null;
+                size?: number | null;
+                opacity?: number | null;
+                position?: ('top-left' | 'top-right' | 'bottom-right' | 'center') | null;
+              };
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'showreelBlock';
+          }
+        | {
+            eyebrow?: string | null;
+            title?: string | null;
+            hint?: string | null;
+            cards?:
+              | {
+                  /**
+                   * e.g. 01. Blank auto-numbers.
+                   */
+                  number?: string | null;
+                  image: number | Media;
+                  imageFit?: ('cover' | 'contain') | null;
+                  title: string;
+                  tag?: string | null;
+                  detail?:
+                    | {
+                        text: string;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  link?: {
+                    link?: {
+                      label?: string | null;
+                      type?: ('internal' | 'external' | 'anchor') | null;
+                      page?: (number | null) | Page;
+                      /**
+                       * Include https://
+                       */
+                      url?: string | null;
+                      /**
+                       * Section id without the #, e.g. "gallery"
+                       */
+                      anchor?: string | null;
+                      style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+                      newTab?: boolean | null;
+                    };
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Background, text colour, spacing and width for this section.
+             */
+            appearance?: {
+              background?:
+                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
+              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
+              /**
+               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
+               */
+              customBackground?: string | null;
+              customTextColor?: string | null;
+              backgroundImage?: (number | null) | Media;
+              backgroundVideo?: {
+                source?: ('vimeo' | 'file') | null;
+                /**
+                 * Just the number, e.g. 1187767005
+                 */
+                vimeoId?: string | null;
+                /**
+                 * e.g. /videos/Website video .mp4
+                 */
+                url?: string | null;
+              };
+              overlay?: {
+                enabled?: boolean | null;
+                opacity?: number | null;
+              };
+              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
+              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
+              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
+              /**
+               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
+               */
+              anchorId?: string | null;
+              /**
+               * Large soft blurred colour blob behind the content, used throughout /about. Purely decorative.
+               */
+              glow?: {
+                enabled?: boolean | null;
+                color?: ('primary' | 'accent') | null;
+                size?: number | null;
+                opacity?: number | null;
+                position?: ('top-left' | 'top-right' | 'bottom-right' | 'center') | null;
+              };
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'serviceCarousel';
+          }
+        | {
+            eyebrow?: string | null;
+            title?: string | null;
+            leads?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            features?:
+              | {
+                  /**
+                   * e.g. 01. Blank auto-numbers.
+                   */
+                  number?: string | null;
+                  title: string;
+                  body?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Background, text colour, spacing and width for this section.
+             */
+            appearance?: {
+              background?:
+                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
+              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
+              /**
+               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
+               */
+              customBackground?: string | null;
+              customTextColor?: string | null;
+              backgroundImage?: (number | null) | Media;
+              backgroundVideo?: {
+                source?: ('vimeo' | 'file') | null;
+                /**
+                 * Just the number, e.g. 1187767005
+                 */
+                vimeoId?: string | null;
+                /**
+                 * e.g. /videos/Website video .mp4
+                 */
+                url?: string | null;
+              };
+              overlay?: {
+                enabled?: boolean | null;
+                opacity?: number | null;
+              };
+              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
+              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
+              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
+              /**
+               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
+               */
+              anchorId?: string | null;
+              /**
+               * Large soft blurred colour blob behind the content, used throughout /about. Purely decorative.
+               */
+              glow?: {
+                enabled?: boolean | null;
+                color?: ('primary' | 'accent') | null;
+                size?: number | null;
+                opacity?: number | null;
+                position?: ('top-left' | 'top-right' | 'bottom-right' | 'center') | null;
+              };
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'numberedFeatureGrid';
           }
       )[]
     | null;
@@ -3573,6 +3829,21 @@ export interface CaseStudy {
             blockType: 'noticeBar';
           }
         | {
+            text: string;
+            background?: string | null;
+            borderColor?: string | null;
+            textColor?: string | null;
+            uppercase?: boolean | null;
+            fontSize?: string | null;
+            fontWeight?: string | null;
+            letterSpacing?: string | null;
+            maxWidth?: string | null;
+            padding?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'socialProofBanner';
+          }
+        | {
             mediaSide?: ('right' | 'left') | null;
             mediaType?: ('image' | 'video' | 'vimeo') | null;
             image?: (number | null) | Media;
@@ -5684,6 +5955,10 @@ export interface CaseStudy {
               | {
                   image: number | Media;
                   name?: string | null;
+                  /**
+                   * For logos that render visually smaller than the rest of the row.
+                   */
+                  scaleUp?: boolean | null;
                   id?: string | null;
                 }[]
               | null;
@@ -6543,6 +6818,243 @@ export interface CaseStudy {
             id?: string | null;
             blockName?: string | null;
             blockType: 'simpleIconGrid';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            paragraphs?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            button?: {
+              link?: {
+                label?: string | null;
+                type?: ('internal' | 'external' | 'anchor') | null;
+                page?: (number | null) | Page;
+                /**
+                 * Include https://
+                 */
+                url?: string | null;
+                /**
+                 * Section id without the #, e.g. "gallery"
+                 */
+                anchor?: string | null;
+                style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+                newTab?: boolean | null;
+              };
+            };
+            vimeoId: string;
+            /**
+             * Background, text colour, spacing and width for this section.
+             */
+            appearance?: {
+              background?:
+                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
+              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
+              /**
+               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
+               */
+              customBackground?: string | null;
+              customTextColor?: string | null;
+              backgroundImage?: (number | null) | Media;
+              backgroundVideo?: {
+                source?: ('vimeo' | 'file') | null;
+                /**
+                 * Just the number, e.g. 1187767005
+                 */
+                vimeoId?: string | null;
+                /**
+                 * e.g. /videos/Website video .mp4
+                 */
+                url?: string | null;
+              };
+              overlay?: {
+                enabled?: boolean | null;
+                opacity?: number | null;
+              };
+              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
+              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
+              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
+              /**
+               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
+               */
+              anchorId?: string | null;
+              /**
+               * Large soft blurred colour blob behind the content, used throughout /about. Purely decorative.
+               */
+              glow?: {
+                enabled?: boolean | null;
+                color?: ('primary' | 'accent') | null;
+                size?: number | null;
+                opacity?: number | null;
+                position?: ('top-left' | 'top-right' | 'bottom-right' | 'center') | null;
+              };
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'showreelBlock';
+          }
+        | {
+            eyebrow?: string | null;
+            title?: string | null;
+            hint?: string | null;
+            cards?:
+              | {
+                  /**
+                   * e.g. 01. Blank auto-numbers.
+                   */
+                  number?: string | null;
+                  image: number | Media;
+                  imageFit?: ('cover' | 'contain') | null;
+                  title: string;
+                  tag?: string | null;
+                  detail?:
+                    | {
+                        text: string;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  link?: {
+                    link?: {
+                      label?: string | null;
+                      type?: ('internal' | 'external' | 'anchor') | null;
+                      page?: (number | null) | Page;
+                      /**
+                       * Include https://
+                       */
+                      url?: string | null;
+                      /**
+                       * Section id without the #, e.g. "gallery"
+                       */
+                      anchor?: string | null;
+                      style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+                      newTab?: boolean | null;
+                    };
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Background, text colour, spacing and width for this section.
+             */
+            appearance?: {
+              background?:
+                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
+              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
+              /**
+               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
+               */
+              customBackground?: string | null;
+              customTextColor?: string | null;
+              backgroundImage?: (number | null) | Media;
+              backgroundVideo?: {
+                source?: ('vimeo' | 'file') | null;
+                /**
+                 * Just the number, e.g. 1187767005
+                 */
+                vimeoId?: string | null;
+                /**
+                 * e.g. /videos/Website video .mp4
+                 */
+                url?: string | null;
+              };
+              overlay?: {
+                enabled?: boolean | null;
+                opacity?: number | null;
+              };
+              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
+              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
+              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
+              /**
+               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
+               */
+              anchorId?: string | null;
+              /**
+               * Large soft blurred colour blob behind the content, used throughout /about. Purely decorative.
+               */
+              glow?: {
+                enabled?: boolean | null;
+                color?: ('primary' | 'accent') | null;
+                size?: number | null;
+                opacity?: number | null;
+                position?: ('top-left' | 'top-right' | 'bottom-right' | 'center') | null;
+              };
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'serviceCarousel';
+          }
+        | {
+            eyebrow?: string | null;
+            title?: string | null;
+            leads?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            features?:
+              | {
+                  /**
+                   * e.g. 01. Blank auto-numbers.
+                   */
+                  number?: string | null;
+                  title: string;
+                  body?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Background, text colour, spacing and width for this section.
+             */
+            appearance?: {
+              background?:
+                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
+              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
+              /**
+               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
+               */
+              customBackground?: string | null;
+              customTextColor?: string | null;
+              backgroundImage?: (number | null) | Media;
+              backgroundVideo?: {
+                source?: ('vimeo' | 'file') | null;
+                /**
+                 * Just the number, e.g. 1187767005
+                 */
+                vimeoId?: string | null;
+                /**
+                 * e.g. /videos/Website video .mp4
+                 */
+                url?: string | null;
+              };
+              overlay?: {
+                enabled?: boolean | null;
+                opacity?: number | null;
+              };
+              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
+              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
+              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
+              /**
+               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
+               */
+              anchorId?: string | null;
+              /**
+               * Large soft blurred colour blob behind the content, used throughout /about. Purely decorative.
+               */
+              glow?: {
+                enabled?: boolean | null;
+                color?: ('primary' | 'accent') | null;
+                size?: number | null;
+                opacity?: number | null;
+                position?: ('top-left' | 'top-right' | 'bottom-right' | 'center') | null;
+              };
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'numberedFeatureGrid';
           }
       )[]
     | null;
@@ -7136,6 +7648,22 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        socialProofBanner?:
+          | T
+          | {
+              text?: T;
+              background?: T;
+              borderColor?: T;
+              textColor?: T;
+              uppercase?: T;
+              fontSize?: T;
+              fontWeight?: T;
+              letterSpacing?: T;
+              maxWidth?: T;
+              padding?: T;
+              id?: T;
+              blockName?: T;
+            };
         splitMedia?:
           | T
           | {
@@ -8763,6 +9291,7 @@ export interface PagesSelect<T extends boolean = true> {
                 | {
                     image?: T;
                     name?: T;
+                    scaleUp?: T;
                     id?: T;
                   };
               id?: T;
@@ -9453,6 +9982,203 @@ export interface PagesSelect<T extends boolean = true> {
                 | T
                 | {
                     icon?: T;
+                    title?: T;
+                    body?: T;
+                    id?: T;
+                  };
+              appearance?:
+                | T
+                | {
+                    background?: T;
+                    textColor?: T;
+                    customBackground?: T;
+                    customTextColor?: T;
+                    backgroundImage?: T;
+                    backgroundVideo?:
+                      | T
+                      | {
+                          source?: T;
+                          vimeoId?: T;
+                          url?: T;
+                        };
+                    overlay?:
+                      | T
+                      | {
+                          enabled?: T;
+                          opacity?: T;
+                        };
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                    width?: T;
+                    anchorId?: T;
+                    glow?:
+                      | T
+                      | {
+                          enabled?: T;
+                          color?: T;
+                          size?: T;
+                          opacity?: T;
+                          position?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        showreelBlock?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              paragraphs?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              button?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          label?: T;
+                          type?: T;
+                          page?: T;
+                          url?: T;
+                          anchor?: T;
+                          style?: T;
+                          newTab?: T;
+                        };
+                  };
+              vimeoId?: T;
+              appearance?:
+                | T
+                | {
+                    background?: T;
+                    textColor?: T;
+                    customBackground?: T;
+                    customTextColor?: T;
+                    backgroundImage?: T;
+                    backgroundVideo?:
+                      | T
+                      | {
+                          source?: T;
+                          vimeoId?: T;
+                          url?: T;
+                        };
+                    overlay?:
+                      | T
+                      | {
+                          enabled?: T;
+                          opacity?: T;
+                        };
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                    width?: T;
+                    anchorId?: T;
+                    glow?:
+                      | T
+                      | {
+                          enabled?: T;
+                          color?: T;
+                          size?: T;
+                          opacity?: T;
+                          position?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        serviceCarousel?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              hint?: T;
+              cards?:
+                | T
+                | {
+                    number?: T;
+                    image?: T;
+                    imageFit?: T;
+                    title?: T;
+                    tag?: T;
+                    detail?:
+                      | T
+                      | {
+                          text?: T;
+                          id?: T;
+                        };
+                    link?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                label?: T;
+                                type?: T;
+                                page?: T;
+                                url?: T;
+                                anchor?: T;
+                                style?: T;
+                                newTab?: T;
+                              };
+                        };
+                    id?: T;
+                  };
+              appearance?:
+                | T
+                | {
+                    background?: T;
+                    textColor?: T;
+                    customBackground?: T;
+                    customTextColor?: T;
+                    backgroundImage?: T;
+                    backgroundVideo?:
+                      | T
+                      | {
+                          source?: T;
+                          vimeoId?: T;
+                          url?: T;
+                        };
+                    overlay?:
+                      | T
+                      | {
+                          enabled?: T;
+                          opacity?: T;
+                        };
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                    width?: T;
+                    anchorId?: T;
+                    glow?:
+                      | T
+                      | {
+                          enabled?: T;
+                          color?: T;
+                          size?: T;
+                          opacity?: T;
+                          position?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        numberedFeatureGrid?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              leads?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              features?:
+                | T
+                | {
+                    number?: T;
                     title?: T;
                     body?: T;
                     id?: T;
@@ -9644,6 +10370,22 @@ export interface CaseStudiesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        socialProofBanner?:
+          | T
+          | {
+              text?: T;
+              background?: T;
+              borderColor?: T;
+              textColor?: T;
+              uppercase?: T;
+              fontSize?: T;
+              fontWeight?: T;
+              letterSpacing?: T;
+              maxWidth?: T;
+              padding?: T;
+              id?: T;
+              blockName?: T;
+            };
         splitMedia?:
           | T
           | {
@@ -11271,6 +12013,7 @@ export interface CaseStudiesSelect<T extends boolean = true> {
                 | {
                     image?: T;
                     name?: T;
+                    scaleUp?: T;
                     id?: T;
                   };
               id?: T;
@@ -11961,6 +12704,203 @@ export interface CaseStudiesSelect<T extends boolean = true> {
                 | T
                 | {
                     icon?: T;
+                    title?: T;
+                    body?: T;
+                    id?: T;
+                  };
+              appearance?:
+                | T
+                | {
+                    background?: T;
+                    textColor?: T;
+                    customBackground?: T;
+                    customTextColor?: T;
+                    backgroundImage?: T;
+                    backgroundVideo?:
+                      | T
+                      | {
+                          source?: T;
+                          vimeoId?: T;
+                          url?: T;
+                        };
+                    overlay?:
+                      | T
+                      | {
+                          enabled?: T;
+                          opacity?: T;
+                        };
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                    width?: T;
+                    anchorId?: T;
+                    glow?:
+                      | T
+                      | {
+                          enabled?: T;
+                          color?: T;
+                          size?: T;
+                          opacity?: T;
+                          position?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        showreelBlock?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              paragraphs?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              button?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          label?: T;
+                          type?: T;
+                          page?: T;
+                          url?: T;
+                          anchor?: T;
+                          style?: T;
+                          newTab?: T;
+                        };
+                  };
+              vimeoId?: T;
+              appearance?:
+                | T
+                | {
+                    background?: T;
+                    textColor?: T;
+                    customBackground?: T;
+                    customTextColor?: T;
+                    backgroundImage?: T;
+                    backgroundVideo?:
+                      | T
+                      | {
+                          source?: T;
+                          vimeoId?: T;
+                          url?: T;
+                        };
+                    overlay?:
+                      | T
+                      | {
+                          enabled?: T;
+                          opacity?: T;
+                        };
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                    width?: T;
+                    anchorId?: T;
+                    glow?:
+                      | T
+                      | {
+                          enabled?: T;
+                          color?: T;
+                          size?: T;
+                          opacity?: T;
+                          position?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        serviceCarousel?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              hint?: T;
+              cards?:
+                | T
+                | {
+                    number?: T;
+                    image?: T;
+                    imageFit?: T;
+                    title?: T;
+                    tag?: T;
+                    detail?:
+                      | T
+                      | {
+                          text?: T;
+                          id?: T;
+                        };
+                    link?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                label?: T;
+                                type?: T;
+                                page?: T;
+                                url?: T;
+                                anchor?: T;
+                                style?: T;
+                                newTab?: T;
+                              };
+                        };
+                    id?: T;
+                  };
+              appearance?:
+                | T
+                | {
+                    background?: T;
+                    textColor?: T;
+                    customBackground?: T;
+                    customTextColor?: T;
+                    backgroundImage?: T;
+                    backgroundVideo?:
+                      | T
+                      | {
+                          source?: T;
+                          vimeoId?: T;
+                          url?: T;
+                        };
+                    overlay?:
+                      | T
+                      | {
+                          enabled?: T;
+                          opacity?: T;
+                        };
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                    width?: T;
+                    anchorId?: T;
+                    glow?:
+                      | T
+                      | {
+                          enabled?: T;
+                          color?: T;
+                          size?: T;
+                          opacity?: T;
+                          position?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        numberedFeatureGrid?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              leads?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              features?:
+                | T
+                | {
+                    number?: T;
                     title?: T;
                     body?: T;
                     id?: T;

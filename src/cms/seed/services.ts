@@ -5,8 +5,15 @@ import { ensureMedia } from './media';
 export async function seedServices(payload: Payload): Promise<void> {
   payload.logger.info('→ Seeding /services…');
 
-  const logoFiles = [
-    ['logo2.png', 'The Enclave at Rye'],
+  // Third element mirrors the original's per-image class: Enclave at Rye's
+  // logo renders visually smaller than the rest of the row, so it gets a
+  // 1.5x scale-up (`.m-logo img.scale-up`, a real rule in globals.css).
+  // Link Homecare's original `invert` class is intentionally NOT carried
+  // over — its CSS rule is dead in the original too (`.m-logo img.invert{
+  // /* removed invert to keep original color */ }`), so applying it here
+  // would be a no-op either way.
+  const logoFiles: Array<[string, string, boolean?]> = [
+    ['logo2.png', 'The Enclave at Rye', true],
     ['logo3.png', 'Heart Shield'],
     ['logo4.png', 'Silverstream'],
     ['logo5.png', 'Nyack Ridge'],
@@ -16,9 +23,9 @@ export async function seedServices(payload: Payload): Promise<void> {
   ];
 
   const logos: any[] = [];
-  for (const [file, name] of logoFiles) {
+  for (const [file, name, scaleUp] of logoFiles) {
     const id = await ensureMedia(payload, `images/logos/${file}`, `${name} logo`);
-    if (id) logos.push({ image: id, name });
+    if (id) logos.push({ image: id, name, scaleUp: scaleUp ?? false });
   }
 
   const btn = (label: string, url: string, style = 'primary') => ({
