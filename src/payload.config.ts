@@ -2,6 +2,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { buildConfig } from 'payload';
 import { sqliteAdapter } from '@payloadcms/db-sqlite';
+import { postgresAdapter } from '@payloadcms/db-postgres';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { seoPlugin } from '@payloadcms/plugin-seo';
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder';
@@ -19,6 +20,46 @@ import { SiteSettings } from './cms/globals/SiteSettings';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
+
+/**
+ * Picks the database adapter from DATABASE_URI.
+ *
+ *   postgres://... / postgresql://...  -> Postgres (Neon, Supabase, RDS, ...)
+ *   anything else (or unset)           -> local SQLite file
+ *
+ * Why this matters: SQLite's `push` cannot ALTER existing tables, so every
+ * schema change means dropping and re-seeding the database. That is fine while
+ * all content is script-generated, but it destroys real editor work. Postgres
+ * uses generated migrations instead, so edits survive schema changes.
+ *
+ * Switching is therefore just a matter of setting DATABASE_URI — no code change:
+ *   1. create a Postgres database (Neon's free tier is enough)
+ *   2. put its connection string in DATABASE_URI
+ *   3. npm run migrate:create  (generates a migration from the current schema)
+ *   4. npm run seed
+ *
+ * `push` is only ever enabled outside production. Pushing against live data can
+ * drop columns without warning.
+ */
+function databaseAdapter() {
+  const uri = process.env.DATABASE_URI || 'file:./wavecare-cms.db';
+  const isPostgres = /^postgres(ql)?:\/\//.test(uri);
+  const allowPush = process.env.NODE_ENV !== 'production';
+
+  if (isPostgres) {
+    return postgresAdapter({
+      pool: { connectionString: uri },
+      push: allowPush,
+      migrationDir: path.resolve(dirname, 'migrations'),
+    });
+  }
+
+  return sqliteAdapter({
+    client: { url: uri },
+    push: allowPush,
+    migrationDir: path.resolve(dirname, 'migrations'),
+  });
+}
 
 export default buildConfig({
   admin: {
@@ -49,15 +90,7 @@ export default buildConfig({
 
   editor: lexicalEditor({}),
 
-  db: sqliteAdapter({
-    client: {
-      url: process.env.DATABASE_URI || 'file:./wavecare-cms.db',
-    },
-    // Auto-sync the schema in development so standalone scripts (e.g. `npm run
-    // seed`) pick up field changes without a dev server running. Production
-    // must use generated migrations instead — never push against live data.
-    push: process.env.NODE_ENV !== 'production',
-  }),
+  db: databaseAdapter(),
 
   secret: process.env.PAYLOAD_SECRET || 'CHANGE_ME_BEFORE_DEPLOY',
 

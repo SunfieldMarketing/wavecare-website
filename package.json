@@ -12,10 +12,15 @@
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "seed": "cross-env NODE_OPTIONS=--no-deprecation tsx src/cms/seed/index.ts",
-    "audit:fidelity": "node scripts/audit-fidelity.mjs"
+    "audit:fidelity": "node scripts/audit-fidelity.mjs",
+    "check:routes": "node scripts/check-routes.mjs",
+    "migrate:create": "cross-env NODE_OPTIONS=--no-deprecation payload migrate:create",
+    "migrate": "cross-env NODE_OPTIONS=--no-deprecation payload migrate",
+    "migrate:status": "cross-env NODE_OPTIONS=--no-deprecation payload migrate:status"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.9",
+    "@payloadcms/db-postgres": "^3.87.0",
     "@payloadcms/db-sqlite": "^3.87.0",
     "@payloadcms/next": "^3.87.0",
     "@payloadcms/plugin-form-builder": "^3.87.0",
