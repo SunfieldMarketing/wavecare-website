@@ -26,7 +26,8 @@ const dirname = path.dirname(filename);
  * Picks the database adapter from DATABASE_URI.
  *
  *   postgres://... / postgresql://...  -> Postgres (Neon, Supabase, RDS, ...)
- *   anything else (or unset)           -> local SQLite file
+ *   libsql://... (Turso)               -> hosted SQLite, needs DATABASE_AUTH_TOKEN
+ *   file:./...                         -> local SQLite file
  *
  * Why this matters: SQLite's `push` cannot ALTER existing tables, so every
  * schema change means dropping and re-seeding the database. That is fine while
@@ -55,8 +56,22 @@ function databaseAdapter() {
     });
   }
 
+  // Turso is libSQL over the network and needs an auth token; a local file
+  // does not. Passing an undefined token to a file: URL is harmless, but
+  // failing loudly on a missing one saves a confusing 401 at build time.
+  const isRemote = uri.startsWith('libsql://') || uri.startsWith('https://');
+  const authToken = process.env.DATABASE_AUTH_TOKEN;
+
+  if (isRemote && !authToken) {
+    throw new Error(
+      `DATABASE_URI points at a remote libSQL database (${uri.split('?')[0]}) but ` +
+        `DATABASE_AUTH_TOKEN is not set.\n` +
+        `Create one with:  turso db tokens create <database-name>`,
+    );
+  }
+
   return sqliteAdapter({
-    client: { url: uri },
+    client: isRemote ? { url: uri, authToken } : { url: uri },
     push: allowPush,
     migrationDir: path.resolve(dirname, 'migrations'),
   });
