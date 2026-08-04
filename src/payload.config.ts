@@ -7,6 +7,7 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { seoPlugin } from '@payloadcms/plugin-seo';
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import sharp from 'sharp';
 
 import { Users } from './cms/collections/Users';
@@ -142,5 +143,31 @@ export default buildConfig({
         admin: { group: 'Settings' },
       },
     }),
+
+    /**
+     * Media storage.
+     *
+     * Vercel's filesystem is ephemeral — anything written to public/media is
+     * lost on the next deploy or cold start, so CMS uploads would silently
+     * disappear. When BLOB_READ_WRITE_TOKEN is present the plugin takes over
+     * and sets disableLocalStorage automatically.
+     *
+     * clientUploads sends files straight from the browser to Blob, which also
+     * sidesteps Vercel's 4.5 MB server-upload cap — several existing photos are
+     * larger than that.
+     *
+     * Locally the token is unset, so this is a no-op and uploads keep going to
+     * public/media.
+     */
+    ...(process.env.BLOB_READ_WRITE_TOKEN
+      ? [
+          vercelBlobStorage({
+            enabled: true,
+            collections: { media: true },
+            token: process.env.BLOB_READ_WRITE_TOKEN,
+            clientUploads: true,
+          }),
+        ]
+      : []),
   ],
 });

@@ -29,7 +29,41 @@ export async function getPageBySlug(slug: string) {
     overrideAccess: isDraft,
   });
 
-  return result.docs[0] ?? null;
+  const doc = result.docs[0] ?? null;
+  if (!doc) await assertContentExists(slug);
+  return doc;
+}
+
+/**
+ * Guards against deploying a site whose CMS is empty.
+ *
+ * The database is not committed, so a fresh environment (Vercel, CI, a new
+ * clone) starts with no content. Every CMS-backed page would then call
+ * notFound() and ship as a 404 — a silent failure you would only notice by
+ * visiting each URL. Failing the build instead makes it obvious and fixable.
+ *
+ * Only triggers when the pages collection is entirely empty, i.e. unseeded.
+ * A single missing slug is a genuine 404 and still behaves normally.
+ */
+async function assertContentExists(slug: string): Promise<void> {
+  const payload = await payloadClient();
+  const { totalDocs } = await payload.find({
+    collection: 'pages',
+    limit: 0,
+    depth: 0,
+    overrideAccess: true,
+  });
+
+  if (totalDocs > 0) return;
+
+  const message =
+    `CMS has no pages, so "/${slug}" would deploy as a 404.\n` +
+    `The database is not committed to git, so a fresh environment starts empty.\n\n` +
+    `Fix: point DATABASE_URI at a persistent database, then run:\n` +
+    `  npm run migrate:create && npm run migrate && npm run seed\n`;
+
+  if (process.env.NODE_ENV === 'production') throw new Error(message);
+  console.warn(`\n[cms] ${message}`);
 }
 
 export async function getCaseStudyBySlug(slug: string) {
@@ -43,16 +77,37 @@ export async function getCaseStudyBySlug(slug: string) {
   return result.docs[0] ?? null;
 }
 
+const SETUP_HELP =
+  'The CMS database is empty or has no schema, so this build would ship broken pages.\n' +
+  'The database is not committed to git, so a fresh environment starts empty.\n\n' +
+  'Fix: point DATABASE_URI at a persistent database, then run:\n' +
+  '  npm run migrate:create && npm run migrate && npm run seed\n';
+
+/**
+ * Turns the raw driver error you get from an unseeded database
+ * ("no such table: case_studies") into something actionable.
+ */
+function explainDbFailure(err: unknown): never {
+  const raw = err instanceof Error ? err.message : String(err);
+  throw new Error(`${SETUP_HELP}\nUnderlying error: ${raw}`);
+}
+
 /** Slugs for generateStaticParams and the sitemap. */
 export async function getAllCaseStudySlugs(): Promise<string[]> {
-  const payload = await payloadClient();
-  const result = await payload.find({
-    collection: 'case-studies',
-    limit: 200,
-    depth: 0,
-    where: { _status: { equals: 'published' } },
-  });
-  return result.docs.map((d: any) => d.slug).filter(Boolean);
+  try {
+    const payload = await payloadClient();
+    const result = await payload.find({
+      collection: 'case-studies',
+      limit: 200,
+      depth: 0,
+      where: { _status: { equals: 'published' } },
+    });
+    return result.docs.map((d: any) => d.slug).filter(Boolean);
+  } catch (err) {
+    if (process.env.NODE_ENV === 'production') explainDbFailure(err);
+    console.warn(`\n[cms] ${SETUP_HELP}`);
+    return [];
+  }
 }
 
 /** All published page slugs, for the sitemap. */
