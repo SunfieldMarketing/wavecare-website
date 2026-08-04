@@ -58,6 +58,7 @@ export const metadata: Metadata = {
 
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import ScrollGuard from '@/components/ScrollGuard';
 import { Analytics } from '@vercel/analytics/react';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
@@ -217,6 +218,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <div className="cdot" id="cdot"></div>
           <div className="cring" id="cring"></div>
 
+          <ScrollGuard />
           <Navbar />
           {children}
           <Footer />

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getPageBySlug, buildMetadata } from '@/lib/cms';
 import RenderBlocks from '@/components/cms/RenderBlocks';
-import GlobalScripts from '@/components/GlobalScripts';
+import CMSPageEffects from '@/components/cms/CMSPageEffects';
 import '../subservices.css';
 
 const SLUG = 'photoservices';
@@ -25,7 +25,7 @@ export default async function PhotoServicesPage() {
 
   return (
     <>
-      <GlobalScripts />
+      <CMSPageEffects />
       <RenderBlocks blocks={page.layout} />
     </>
   );

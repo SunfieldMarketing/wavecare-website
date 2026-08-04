@@ -58,8 +58,23 @@ function initChrome(){
 }
 
 /* ---- Lenis smooth scroll ---- */
+/** Fully removes the active Lenis instance and whatever is driving its RAF. */
+function destroyLenis(){
+  try{
+    if(window._lenisTicker && window.gsap){ gsap.ticker.remove(window._lenisTicker); }
+    window._lenisTicker = null;
+    if(window._lenisStop){ window._lenisStop(); window._lenisStop = null; }
+    if(window._lenis){ window._lenis.destroy(); window._lenis = null; }
+  }catch(e){ /* never let teardown break the page */ }
+}
+
 function initLenis(){
   if(!window.Lenis||reduceMotion) return;
+  // Tear down any previous instance first. This effect re-runs on every route
+  // change, and the legacy pages create their own Lenis too — without this,
+  // instances stack up, each with a live gsap.ticker callback, and they fight
+  // over the scroll position until scrolling stops working entirely.
+  destroyLenis();
   const lenis=new Lenis({
     lerp: 0.1,
     smoothWheel: true,
@@ -70,10 +85,15 @@ function initLenis(){
   });
   if(window.gsap&&window.ScrollTrigger){
     lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add(t=>lenis.raf(t*1000));
+    // Keep a reference so the callback can actually be removed later.
+    const tick = t => lenis.raf(t*1000);
+    gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
+    window._lenisTicker = tick;
   } else {
-    (function raf(t){lenis.raf(t); requestAnimationFrame(raf);})(0);
+    let alive = true;
+    window._lenisStop = () => { alive = false; };
+    (function raf(t){ if(!alive) return; lenis.raf(t); requestAnimationFrame(raf); })(0);
   }
   document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const el=document.querySelector(a.getAttribute('href')); if(el){e.preventDefault(); lenis.scrollTo(el,{offset:-20, duration:1.2, easing: t=>Math.min(1,1.001-Math.pow(2,-10*t))});}}));
   window._lenis = lenis;
@@ -208,7 +228,17 @@ addEventListener('load',()=>{
       initServices(); initMarquee(); initCursor(); initWaveAccent();
       if(window.ScrollTrigger) window.ScrollTrigger.refresh();
     });
-// cleanup can be added if needed
+    // Tear everything down on unmount / route change. Without this, each
+    // navigation left behind a Lenis instance, a gsap.ticker callback and a set
+    // of ScrollTriggers, which together broke scrolling on the next page.
+    return () => {
+      destroyLenis();
+      try {
+        if (window.ScrollTrigger) {
+          window.ScrollTrigger.getAll().forEach((t: any) => t.kill());
+        }
+      } catch (e) { /* ignore */ }
+    };
   }, [pathname]);
   return null;
 }
