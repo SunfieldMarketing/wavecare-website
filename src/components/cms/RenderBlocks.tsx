@@ -53,6 +53,14 @@ import {
   FeaturedVideoWorkBlock,
 } from './blocks/VideoServicesBlocks';
 import VideoLightboxHost from './blocks/VideoLightbox';
+import {
+  StoryBlockRenderer,
+  InsightQuoteBlock,
+  ValuesGridBlock,
+  AccordionShowcaseBlock,
+  VideoReelBlock,
+  SimpleQuoteGridBlock,
+} from './blocks/AboutBlocks';
 import { containerClassName } from './appearance';
 import CMSLink from './CMSLink';
 import './cms-blocks.css';
@@ -147,6 +155,20 @@ export default function RenderBlocks({ blocks }: { blocks?: any[] | null }) {
             return <VideoGridBlock key={key} block={block} />;
           case 'featuredVideoWork':
             return <FeaturedVideoWorkBlock key={key} block={block} />;
+
+          // ── /about (globals.css only) ──
+          case 'storyBlock':
+            return <StoryBlockRenderer key={key} block={block} />;
+          case 'insightQuote':
+            return <InsightQuoteBlock key={key} block={block} />;
+          case 'valuesGrid':
+            return <ValuesGridBlock key={key} block={block} />;
+          case 'accordionShowcase':
+            return <AccordionShowcaseBlock key={key} block={block} />;
+          case 'videoReel':
+            return <VideoReelBlock key={key} block={block} />;
+          case 'simpleQuoteGrid':
+            return <SimpleQuoteGridBlock key={key} block={block} />;
 
           case 'richText':
             return (

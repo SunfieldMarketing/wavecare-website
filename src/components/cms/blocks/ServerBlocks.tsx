@@ -77,6 +77,30 @@ export function Section({
         />
       )}
       {ov && <div style={ov} />}
+      {appearance?.glow?.enabled && (
+        // NOTE: .glow is `display:none` in globals.css site-wide with no
+        // overriding rule anywhere — it renders invisible in the current site
+        // too. Kept faithful to that rather than "fixed", since silently
+        // making previously-invisible decoration visible would itself be a
+        // fidelity regression against the live site.
+        <div
+          className="glow"
+          style={{
+            position: 'absolute',
+            width: `${appearance.glow.size ?? 520}px`,
+            height: `${appearance.glow.size ?? 520}px`,
+            background: `var(--teal-${appearance.glow.color === 'accent' ? 'accent' : 'primary'})`,
+            opacity: (appearance.glow.opacity ?? 100) / 100,
+            ...(appearance.glow.position === 'top-right'
+              ? { top: '-120px', right: '-100px' }
+              : appearance.glow.position === 'bottom-right'
+                ? { bottom: '-120px', right: '-100px' }
+                : appearance.glow.position === 'center'
+                  ? { top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }
+                  : { top: '-120px', left: '-140px' }),
+          }}
+        />
+      )}
       {/* Only introduce a stacking wrapper when there is a media background to
           sit above. Adding it unconditionally put an extra div between
           <section> and .container, which breaks descendant rules like
@@ -93,8 +117,18 @@ export function Section({
 /* ── Hero ─────────────────────────────────────────────────────────── */
 
 export function HeroBlock({ block }: { block: any }) {
-  const { layout, eyebrow, title, subtitle, mosaicImages, buttons, minHeight, appearance, cameraCursor } =
-    block;
+  const {
+    layout,
+    eyebrow,
+    title,
+    subtitle,
+    mosaicImages,
+    buttons,
+    minHeight,
+    appearance,
+    cameraCursor,
+    scrollCue,
+  } = block;
   const isMosaic = layout === 'mosaic';
   const images: any[] = Array.isArray(mosaicImages) ? mosaicImages : [];
 
@@ -136,6 +170,19 @@ export function HeroBlock({ block }: { block: any }) {
         </div>
       )}
 
+      {!isMosaic && appearance?.background === 'image' && appearance.backgroundImage?.url && (
+        <div className="hero-bg">
+          <Image
+            src={appearance.backgroundImage.url}
+            alt={appearance.backgroundImage.alt ?? ''}
+            fill
+            sizes="100vw"
+            priority
+            style={{ objectFit: 'cover', objectPosition: 'center center' }}
+          />
+        </div>
+      )}
+
       {!isMosaic && appearance?.background === 'video' && appearance.backgroundVideo?.vimeoId && (
         <div className="hero-video-wrap">
           <iframe
@@ -155,6 +202,12 @@ export function HeroBlock({ block }: { block: any }) {
           <CMSLinkGroup buttons={buttons} className="btn-group hero-actions reveal delay-3" />
         </div>
       </div>
+      {!isMosaic && scrollCue && (
+        <div className="scroll-cue">
+          <div className="m" />
+          <span>Scroll</span>
+        </div>
+      )}
     </section>
   );
 }

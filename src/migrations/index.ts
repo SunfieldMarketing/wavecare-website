@@ -4,6 +4,8 @@ import * as migration_20260804_152240_services_blocks from './20260804_152240_se
 import * as migration_20260804_182933_design_print_blocks from './20260804_182933_design_print_blocks';
 import * as migration_20260804_185013_videoservices_blocks from './20260804_185013_videoservices_blocks';
 import * as migration_20260804_185530_print_hero_subtitle_style from './20260804_185530_print_hero_subtitle_style';
+import * as migration_20260804_190802_about_blocks from './20260804_190802_about_blocks';
+import * as migration_20260804_191741_about_blocks_appearance from './20260804_191741_about_blocks_appearance';
 
 export const migrations = [
   {
@@ -34,6 +36,16 @@ export const migrations = [
   {
     up: migration_20260804_185530_print_hero_subtitle_style.up,
     down: migration_20260804_185530_print_hero_subtitle_style.down,
-    name: '20260804_185530_print_hero_subtitle_style'
+    name: '20260804_185530_print_hero_subtitle_style',
+  },
+  {
+    up: migration_20260804_190802_about_blocks.up,
+    down: migration_20260804_190802_about_blocks.down,
+    name: '20260804_190802_about_blocks',
+  },
+  {
+    up: migration_20260804_191741_about_blocks_appearance.up,
+    down: migration_20260804_191741_about_blocks_appearance.down,
+    name: '20260804_191741_about_blocks_appearance'
   },
 ];

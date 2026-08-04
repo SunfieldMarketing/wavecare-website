@@ -38,6 +38,15 @@ import {
   SignatureProduct,
 } from './designPrint';
 import { videoServiceBlocks, CommercialPlayer, TwoColumnText, IconFeatureGrid } from './videoservices';
+import {
+  aboutBlocks,
+  StoryBlock,
+  InsightQuote,
+  ValuesGrid,
+  AccordionShowcase,
+  VideoReel,
+  SimpleQuoteGrid,
+} from './about';
 
 export {
   Hero,
@@ -89,6 +98,12 @@ export {
   CommercialPlayer,
   TwoColumnText,
   IconFeatureGrid,
+  StoryBlock,
+  InsightQuote,
+  ValuesGrid,
+  AccordionShowcase,
+  VideoReel,
+  SimpleQuoteGrid,
 };
 
 /**
@@ -124,4 +139,5 @@ export const allBlocks = [
   ...serviceBlocks,
   ...designPrintBlocks,
   ...videoServiceBlocks,
+  ...aboutBlocks,
 ];

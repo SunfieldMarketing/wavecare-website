@@ -71,6 +71,13 @@ export const Hero: Block = {
       ],
     },
     {
+      name: 'scrollCue',
+      type: 'checkbox',
+      defaultValue: false,
+      label: 'Show "Scroll" indicator',
+      admin: { description: 'Small animated mouse-wheel cue at the bottom of the hero.' },
+    },
+    {
       name: 'minHeight',
       type: 'select',
       enumName: 'enum_hero_min_height',

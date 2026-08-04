@@ -12,6 +12,13 @@ export type Appearance = {
   paddingBottom?: string | null;
   width?: string | null;
   anchorId?: string | null;
+  glow?: {
+    enabled?: boolean | null;
+    color?: string | null;
+    size?: number | null;
+    opacity?: number | null;
+    position?: string | null;
+  } | null;
 } | null | undefined;
 
 /**

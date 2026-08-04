@@ -205,6 +205,61 @@ export const sectionSettings: Field = {
           'Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.',
       },
     },
+    {
+      name: 'glow',
+      type: 'group',
+      label: 'Decorative glow',
+      admin: {
+        description:
+          'Large soft blurred colour blob behind the content, used throughout /about. Purely decorative.',
+      },
+      fields: [
+        { name: 'enabled', type: 'checkbox', label: 'Show glow' },
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'color',
+              type: 'select',
+              enumName: 'enum_glow_color',
+              defaultValue: 'primary',
+              options: [
+                { label: 'Primary teal', value: 'primary' },
+                { label: 'Accent teal', value: 'accent' },
+              ],
+              admin: { width: '34%', condition: (_, s) => s?.enabled },
+            },
+            {
+              name: 'size',
+              type: 'number',
+              defaultValue: 520,
+              label: 'Size (px)',
+              admin: { width: '33%', condition: (_, s) => s?.enabled },
+            },
+            {
+              name: 'opacity',
+              type: 'number',
+              defaultValue: 100,
+              label: 'Opacity %',
+              admin: { width: '33%', condition: (_, s) => s?.enabled },
+            },
+          ],
+        },
+        {
+          name: 'position',
+          type: 'select',
+          enumName: 'enum_glow_pos',
+          defaultValue: 'top-left',
+          options: [
+            { label: 'Top left', value: 'top-left' },
+            { label: 'Top right', value: 'top-right' },
+            { label: 'Bottom right', value: 'bottom-right' },
+            { label: 'Center', value: 'center' },
+          ],
+          admin: { condition: (_, s) => s?.enabled },
+        },
+      ],
+    },
   ],
 };
 
