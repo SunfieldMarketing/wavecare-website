@@ -97,6 +97,52 @@ export default function CMSPageEffects() {
       }
     }
 
+    /* [data-target] counter animation — the wc-/wct- landing kit
+       (StatsBarBlock, /commercial and /testimonials) shipped its own
+       separate counter script in the original, independent of initCount's
+       [data-count] convention above (different attribute names, duration,
+       threshold, and decimal-place support). Ported verbatim from the
+       original's initReveals(); without this every wct-stat-num/wc-stat-num
+       with a countTo value was frozen at its placeholder ("0.0x", "0 days"). */
+    const targetCounters = Array.from(document.querySelectorAll<HTMLElement>('[data-target]'));
+    if (targetCounters.length) {
+      const run = (el: HTMLElement) => {
+        const target = parseFloat(el.getAttribute('data-target') || '0');
+        const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+        const suffix = el.getAttribute('data-suffix') || '';
+        if (reduceMotion) {
+          el.textContent = target.toFixed(decimals) + suffix;
+          return;
+        }
+        const start = performance.now();
+        const duration = 2000;
+        const step = (now: number) => {
+          const p = Math.min(1, (now - start) / duration);
+          const ease = 1 - Math.pow(1 - p, 3);
+          el.textContent = (target * ease).toFixed(decimals) + suffix;
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      };
+
+      if (!('IntersectionObserver' in window)) {
+        targetCounters.forEach(run);
+      } else {
+        const tio = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((en) => {
+              if (!en.isIntersecting) return;
+              tio.unobserve(en.target);
+              run(en.target as HTMLElement);
+            });
+          },
+          { threshold: 0.5 },
+        );
+        targetCounters.forEach((el) => tio.observe(el));
+        cleanups.push(() => tio.disconnect());
+      }
+    }
+
     // The final CTA canvas is painted by the global WebGL wave when it is
     // available; give it a matching gradient so it is never a blank rectangle.
     const canvas = document.getElementById('waveCanvas') as HTMLCanvasElement | null;
