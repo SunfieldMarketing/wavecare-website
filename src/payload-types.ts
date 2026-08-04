@@ -5718,6 +5718,10 @@ export interface Footer {
                 style?: ('primary' | 'light' | 'ghost' | 'text') | null;
                 newTab?: boolean | null;
               };
+              /**
+               * Styles it like the "Book a Demo →" call to action.
+               */
+              highlight?: boolean | null;
               id?: string | null;
             }[]
           | null;
@@ -5735,6 +5739,11 @@ export interface Footer {
    * Use {year} to insert the current year automatically.
    */
   copyright?: string | null;
+  /**
+   * Shown after the legal links, e.g. the domain name.
+   */
+  bottomNote?: string | null;
+  logoHeight?: number | null;
   legalLinks?:
     | {
         label: string;
@@ -5940,6 +5949,7 @@ export interface FooterSelect<T extends boolean = true> {
                     style?: T;
                     newTab?: T;
                   };
+              highlight?: T;
               id?: T;
             };
         id?: T;
@@ -5952,6 +5962,8 @@ export interface FooterSelect<T extends boolean = true> {
         id?: T;
       };
   copyright?: T;
+  bottomNote?: T;
+  logoHeight?: T;
   legalLinks?:
     | T
     | {

@@ -68,6 +68,47 @@ async function seedNavigation(payload: any) {
     overrideAccess: true,
   });
 
+  const ext = (label: string, url: string, extra: Record<string, any> = {}) => ({
+    label,
+    link: { label, type: 'external', url, style: 'text' },
+    ...extra,
+  });
+
+  await payload.updateGlobal({
+    slug: 'footer',
+    data: {
+      logoHeight: 140,
+      blurb:
+        'Healthcare marketing that helps facilities look as good as the care they provide. Built for Healthcare.',
+      columns: [
+        {
+          heading: 'Explore',
+          links: [
+            ext('Services', '/services'),
+            ext('Case Studies', '/case-studies'),
+            ext('About', '/about'),
+            ext('Contact', '/contact'),
+          ],
+        },
+        {
+          heading: 'Get In Touch',
+          links: [
+            ext('info@wavecare.io', 'mailto:info@wavecare.io'),
+            ext('+1 732 930 1934', 'tel:+17329301934'),
+            ext('Book a Demo →', '/contact', { highlight: true }),
+          ],
+        },
+      ],
+      copyright: '© {year} Wavecare Marketing · Miami, FL',
+      legalLinks: [
+        ext('Terms of Service', '/terms-of-service'),
+        ext('Privacy Policy', '/privacy-policy'),
+      ],
+      bottomNote: 'wavecare.io',
+    },
+    overrideAccess: true,
+  });
+
   await payload.updateGlobal({
     slug: 'site-settings',
     data: {

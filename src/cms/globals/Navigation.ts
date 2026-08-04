@@ -73,6 +73,12 @@ export const Footer: GlobalConfig = {
           fields: [
             { name: 'label', type: 'text', required: true },
             linkField({ name: 'link', label: 'Destination' }),
+            {
+              name: 'highlight',
+              type: 'checkbox',
+              label: 'Emphasise this link',
+              admin: { description: 'Styles it like the "Book a Demo →" call to action.' },
+            },
           ],
         },
       ],
@@ -99,7 +105,19 @@ export const Footer: GlobalConfig = {
       type: 'text',
       label: 'Copyright line',
       admin: { description: 'Use {year} to insert the current year automatically.' },
-      defaultValue: '© {year} Wavecare Marketing. All rights reserved.',
+      defaultValue: '© {year} Wavecare Marketing · Miami, FL',
+    },
+    {
+      name: 'bottomNote',
+      type: 'text',
+      label: 'Bottom-right note',
+      admin: { description: 'Shown after the legal links, e.g. the domain name.' },
+    },
+    {
+      name: 'logoHeight',
+      type: 'number',
+      defaultValue: 140,
+      label: 'Logo height (px)',
     },
     {
       name: 'legalLinks',
