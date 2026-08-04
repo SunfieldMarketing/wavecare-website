@@ -12,6 +12,7 @@
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "seed": "cross-env NODE_OPTIONS=--no-deprecation tsx src/cms/seed/index.ts",
+    "seed:reset-media": "cross-env NODE_OPTIONS=--no-deprecation tsx src/cms/seed/reset-media.ts",
     "audit:fidelity": "node scripts/audit-fidelity.mjs",
     "check:routes": "node scripts/check-routes.mjs",
     "migrate:create": "cross-env NODE_OPTIONS=--no-deprecation payload migrate:create",
