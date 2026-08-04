@@ -30,9 +30,12 @@ export async function seedAdminUser(payload: Payload): Promise<void> {
     throw new Error('Weak ADMIN_INITIAL_PASSWORD');
   }
 
+  // Payload normalises usernames to lowercase on save, so the lookup has to
+  // match that — otherwise the seed misses the existing admin and tries to
+  // create a duplicate, which fails validation.
   const existing = await payload.find({
     collection: 'users',
-    where: { username: { equals: username } },
+    where: { username: { equals: username.toLowerCase() } },
     limit: 1,
     overrideAccess: true,
   });

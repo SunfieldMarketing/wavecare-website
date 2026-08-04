@@ -9,6 +9,7 @@ dotenv.config();
 import { getPayload } from 'payload';
 import config from '../../payload.config';
 import { seedPhotoservices } from './photoservices';
+import { seedCaseStudies } from './case-studies';
 import { seedAdminUser } from './admin';
 
 /**
@@ -27,6 +28,7 @@ async function run() {
 
   await seedAdminUser(payload);
   await seedNavigation(payload);
+  await seedCaseStudies(payload);
   await seedPhotoservices(payload);
 
   payload.logger.info('── Done ──');

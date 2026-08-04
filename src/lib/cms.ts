@@ -43,6 +43,37 @@ export async function getCaseStudyBySlug(slug: string) {
   return result.docs[0] ?? null;
 }
 
+/** Slugs for generateStaticParams and the sitemap. */
+export async function getAllCaseStudySlugs(): Promise<string[]> {
+  const payload = await payloadClient();
+  const result = await payload.find({
+    collection: 'case-studies',
+    limit: 200,
+    depth: 0,
+    where: { _status: { equals: 'published' } },
+  });
+  return result.docs.map((d: any) => d.slug).filter(Boolean);
+}
+
+/** All published page slugs, for the sitemap. */
+export async function getAllPageSlugs(): Promise<
+  Array<{ slug: string; updatedAt?: string; changeFrequency?: any; priority?: number }>
+> {
+  const payload = await payloadClient();
+  const result = await payload.find({
+    collection: 'pages',
+    limit: 500,
+    depth: 0,
+    where: { _status: { equals: 'published' }, hideFromSitemap: { not_equals: true } },
+  });
+  return result.docs.map((d: any) => ({
+    slug: d.slug,
+    updatedAt: d.updatedAt,
+    changeFrequency: d.changeFrequency,
+    priority: d.priority,
+  }));
+}
+
 export async function getGlobal(slug: 'navigation' | 'footer' | 'theme' | 'site-settings') {
   const payload = await payloadClient();
   return payload.findGlobal({ slug, depth: 2 });
