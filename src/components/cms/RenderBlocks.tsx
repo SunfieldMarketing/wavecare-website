@@ -28,6 +28,15 @@ import {
   StepsBlockRenderer,
   CalendarEmbedBlock,
 } from './blocks/ContactBlocks';
+import {
+  ServicesGridBlock,
+  SplitRowBlock,
+  FeatureRowBlock,
+  StatsRowBlock,
+  LogoStripBlock,
+  ServiceTestimonialsBlock,
+  ServiceFinalCTABlock,
+} from './blocks/ServiceBlocks';
 import { containerClassName } from './appearance';
 import CMSLink from './CMSLink';
 import './cms-blocks.css';
@@ -79,6 +88,22 @@ export default function RenderBlocks({ blocks }: { blocks?: any[] | null }) {
             return <StepsBlockRenderer key={key} block={block} />;
           case 'calendarEmbed':
             return <CalendarEmbedBlock key={key} block={block} />;
+
+          // ── /services (services.css class system) ──
+          case 'servicesGrid':
+            return <ServicesGridBlock key={key} block={block} />;
+          case 'splitRow':
+            return <SplitRowBlock key={key} block={block} />;
+          case 'featureRow':
+            return <FeatureRowBlock key={key} block={block} />;
+          case 'statsRow':
+            return <StatsRowBlock key={key} block={block} />;
+          case 'logoStrip':
+            return <LogoStripBlock key={key} block={block} />;
+          case 'serviceTestimonials':
+            return <ServiceTestimonialsBlock key={key} block={block} />;
+          case 'serviceFinalCta':
+            return <ServiceFinalCTABlock key={key} block={block} />;
 
           case 'richText':
             return (

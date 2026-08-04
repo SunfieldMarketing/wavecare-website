@@ -1973,6 +1973,171 @@ export interface Page {
             blockName?: string | null;
             blockType: 'calendarEmbed';
           }
+        | {
+            tone?: ('dark' | 'deeper' | 'light' | 'invert') | null;
+            /**
+             * e.g. "services"
+             */
+            anchorId?: string | null;
+            eyebrow?: string | null;
+            /**
+             * Line breaks preserved.
+             */
+            title?: string | null;
+            lead?: string | null;
+            cards?:
+              | {
+                  /**
+                   * e.g. 01. Blank auto-numbers.
+                   */
+                  number?: string | null;
+                  title: string;
+                  body?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'servicesGrid';
+          }
+        | {
+            tone?: ('dark' | 'deeper' | 'light' | 'invert') | null;
+            /**
+             * Tick on the first split of a run. Consecutive splits sharing a background should leave this off.
+             */
+            wrapSection?: boolean | null;
+            flipped?: boolean | null;
+            textTone?: ('on-dark' | 'on-light') | null;
+            eyebrow?: string | null;
+            title: string;
+            body?: string | null;
+            bullets?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            buttons?:
+              | {
+                  link?: {
+                    label?: string | null;
+                    type?: ('internal' | 'external' | 'anchor') | null;
+                    page?: (number | null) | Page;
+                    /**
+                     * Include https://
+                     */
+                    url?: string | null;
+                    /**
+                     * Section id without the #, e.g. "gallery"
+                     */
+                    anchor?: string | null;
+                    style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+                    newTab?: boolean | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            mediaType?: ('video' | 'image') | null;
+            /**
+             * e.g. /videos/Website video .mp4 — plays muted and loops when scrolled into view.
+             */
+            videoUrl?: string | null;
+            image?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'splitRow';
+          }
+        | {
+            tone?: ('dark' | 'deeper' | 'light' | 'invert') | null;
+            eyebrow?: string | null;
+            title?: string | null;
+            cards?:
+              | {
+                  title: string;
+                  body?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featureRow';
+          }
+        | {
+            stats?:
+              | {
+                  /**
+                   * e.g. 50+, 1M+, 100%
+                   */
+                  value: string;
+                  label: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'statsRow';
+          }
+        | {
+            tone?: ('dark' | 'deeper' | 'light' | 'invert') | null;
+            eyebrow?: string | null;
+            title?: string | null;
+            logos?:
+              | {
+                  image: number | Media;
+                  name?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'logoStrip';
+          }
+        | {
+            eyebrow?: string | null;
+            title?: string | null;
+            /**
+             * Held on the page rather than the Testimonials collection — these are different people from the ones on /testimonials.
+             */
+            quotes?:
+              | {
+                  quote: string;
+                  author: string;
+                  role?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'serviceTestimonials';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            subtitle?: string | null;
+            buttons?:
+              | {
+                  link?: {
+                    label?: string | null;
+                    type?: ('internal' | 'external' | 'anchor') | null;
+                    page?: (number | null) | Page;
+                    /**
+                     * Include https://
+                     */
+                    url?: string | null;
+                    /**
+                     * Section id without the #, e.g. "gallery"
+                     */
+                    anchor?: string | null;
+                    style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+                    newTab?: boolean | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'serviceFinalCta';
+          }
       )[]
     | null;
   /**
@@ -3924,6 +4089,171 @@ export interface CaseStudy {
             blockName?: string | null;
             blockType: 'calendarEmbed';
           }
+        | {
+            tone?: ('dark' | 'deeper' | 'light' | 'invert') | null;
+            /**
+             * e.g. "services"
+             */
+            anchorId?: string | null;
+            eyebrow?: string | null;
+            /**
+             * Line breaks preserved.
+             */
+            title?: string | null;
+            lead?: string | null;
+            cards?:
+              | {
+                  /**
+                   * e.g. 01. Blank auto-numbers.
+                   */
+                  number?: string | null;
+                  title: string;
+                  body?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'servicesGrid';
+          }
+        | {
+            tone?: ('dark' | 'deeper' | 'light' | 'invert') | null;
+            /**
+             * Tick on the first split of a run. Consecutive splits sharing a background should leave this off.
+             */
+            wrapSection?: boolean | null;
+            flipped?: boolean | null;
+            textTone?: ('on-dark' | 'on-light') | null;
+            eyebrow?: string | null;
+            title: string;
+            body?: string | null;
+            bullets?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            buttons?:
+              | {
+                  link?: {
+                    label?: string | null;
+                    type?: ('internal' | 'external' | 'anchor') | null;
+                    page?: (number | null) | Page;
+                    /**
+                     * Include https://
+                     */
+                    url?: string | null;
+                    /**
+                     * Section id without the #, e.g. "gallery"
+                     */
+                    anchor?: string | null;
+                    style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+                    newTab?: boolean | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            mediaType?: ('video' | 'image') | null;
+            /**
+             * e.g. /videos/Website video .mp4 — plays muted and loops when scrolled into view.
+             */
+            videoUrl?: string | null;
+            image?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'splitRow';
+          }
+        | {
+            tone?: ('dark' | 'deeper' | 'light' | 'invert') | null;
+            eyebrow?: string | null;
+            title?: string | null;
+            cards?:
+              | {
+                  title: string;
+                  body?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featureRow';
+          }
+        | {
+            stats?:
+              | {
+                  /**
+                   * e.g. 50+, 1M+, 100%
+                   */
+                  value: string;
+                  label: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'statsRow';
+          }
+        | {
+            tone?: ('dark' | 'deeper' | 'light' | 'invert') | null;
+            eyebrow?: string | null;
+            title?: string | null;
+            logos?:
+              | {
+                  image: number | Media;
+                  name?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'logoStrip';
+          }
+        | {
+            eyebrow?: string | null;
+            title?: string | null;
+            /**
+             * Held on the page rather than the Testimonials collection — these are different people from the ones on /testimonials.
+             */
+            quotes?:
+              | {
+                  quote: string;
+                  author: string;
+                  role?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'serviceTestimonials';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            subtitle?: string | null;
+            buttons?:
+              | {
+                  link?: {
+                    label?: string | null;
+                    type?: ('internal' | 'external' | 'anchor') | null;
+                    page?: (number | null) | Page;
+                    /**
+                     * Include https://
+                     */
+                    url?: string | null;
+                    /**
+                     * Section id without the #, e.g. "gallery"
+                     */
+                    anchor?: string | null;
+                    style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+                    newTab?: boolean | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'serviceFinalCta';
+          }
       )[]
     | null;
   meta?: {
@@ -5769,6 +6099,149 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        servicesGrid?:
+          | T
+          | {
+              tone?: T;
+              anchorId?: T;
+              eyebrow?: T;
+              title?: T;
+              lead?: T;
+              cards?:
+                | T
+                | {
+                    number?: T;
+                    title?: T;
+                    body?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        splitRow?:
+          | T
+          | {
+              tone?: T;
+              wrapSection?: T;
+              flipped?: T;
+              textTone?: T;
+              eyebrow?: T;
+              title?: T;
+              body?: T;
+              bullets?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              buttons?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          label?: T;
+                          type?: T;
+                          page?: T;
+                          url?: T;
+                          anchor?: T;
+                          style?: T;
+                          newTab?: T;
+                        };
+                    id?: T;
+                  };
+              mediaType?: T;
+              videoUrl?: T;
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
+        featureRow?:
+          | T
+          | {
+              tone?: T;
+              eyebrow?: T;
+              title?: T;
+              cards?:
+                | T
+                | {
+                    title?: T;
+                    body?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        statsRow?:
+          | T
+          | {
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        logoStrip?:
+          | T
+          | {
+              tone?: T;
+              eyebrow?: T;
+              title?: T;
+              logos?:
+                | T
+                | {
+                    image?: T;
+                    name?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        serviceTestimonials?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              quotes?:
+                | T
+                | {
+                    quote?: T;
+                    author?: T;
+                    role?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        serviceFinalCta?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              subtitle?: T;
+              buttons?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          label?: T;
+                          type?: T;
+                          page?: T;
+                          url?: T;
+                          anchor?: T;
+                          style?: T;
+                          newTab?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
       };
   slug?: T;
   hideFromSitemap?: T;
@@ -7167,6 +7640,149 @@ export interface CaseStudiesSelect<T extends boolean = true> {
                     paddingBottom?: T;
                     width?: T;
                     anchorId?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        servicesGrid?:
+          | T
+          | {
+              tone?: T;
+              anchorId?: T;
+              eyebrow?: T;
+              title?: T;
+              lead?: T;
+              cards?:
+                | T
+                | {
+                    number?: T;
+                    title?: T;
+                    body?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        splitRow?:
+          | T
+          | {
+              tone?: T;
+              wrapSection?: T;
+              flipped?: T;
+              textTone?: T;
+              eyebrow?: T;
+              title?: T;
+              body?: T;
+              bullets?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              buttons?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          label?: T;
+                          type?: T;
+                          page?: T;
+                          url?: T;
+                          anchor?: T;
+                          style?: T;
+                          newTab?: T;
+                        };
+                    id?: T;
+                  };
+              mediaType?: T;
+              videoUrl?: T;
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
+        featureRow?:
+          | T
+          | {
+              tone?: T;
+              eyebrow?: T;
+              title?: T;
+              cards?:
+                | T
+                | {
+                    title?: T;
+                    body?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        statsRow?:
+          | T
+          | {
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        logoStrip?:
+          | T
+          | {
+              tone?: T;
+              eyebrow?: T;
+              title?: T;
+              logos?:
+                | T
+                | {
+                    image?: T;
+                    name?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        serviceTestimonials?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              quotes?:
+                | T
+                | {
+                    quote?: T;
+                    author?: T;
+                    role?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        serviceFinalCta?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              subtitle?: T;
+              buttons?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          label?: T;
+                          type?: T;
+                          page?: T;
+                          url?: T;
+                          anchor?: T;
+                          style?: T;
+                          newTab?: T;
+                        };
+                    id?: T;
                   };
               id?: T;
               blockName?: T;

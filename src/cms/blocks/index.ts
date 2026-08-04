@@ -18,6 +18,16 @@ import {
   InlineCTA,
 } from './testimonials';
 import { contactBlocks, ContactHero, StepsBlock, CalendarEmbed } from './contact';
+import {
+  serviceBlocks,
+  ServicesGrid,
+  SplitRow,
+  FeatureRow,
+  StatsRow,
+  LogoStrip,
+  ServiceTestimonials,
+  ServiceFinalCTA,
+} from './services';
 
 export {
   Hero,
@@ -52,6 +62,13 @@ export {
   ContactHero,
   StepsBlock,
   CalendarEmbed,
+  ServicesGrid,
+  SplitRow,
+  FeatureRow,
+  StatsRow,
+  LogoStrip,
+  ServiceTestimonials,
+  ServiceFinalCTA,
 };
 
 /**
@@ -83,4 +100,5 @@ export const allBlocks = [
   ...landingBlocks,
   ...testimonialBlocks,
   ...contactBlocks,
+  ...serviceBlocks,
 ];
