@@ -11,6 +11,7 @@ import config from '../../payload.config';
 import { seedPhotoservices } from './photoservices';
 import { seedCaseStudies } from './case-studies';
 import { seedCommercial } from './commercial';
+import { seedLegalPages } from './legal';
 import { seedAdminUser } from './admin';
 
 /**
@@ -31,6 +32,7 @@ async function run() {
   await seedNavigation(payload);
   await seedCaseStudies(payload);
   await seedCommercial(payload);
+  await seedLegalPages(payload);
   await seedPhotoservices(payload);
 
   payload.logger.info('── Done ──');

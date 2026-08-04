@@ -1,3 +1,4 @@
+import { RichText } from '@payloadcms/richtext-lexical/react';
 import {
   Section,
   SectionHead,
@@ -7,6 +8,7 @@ import {
   StatsBlock,
   ProcessBlock,
   FinalCTABlock,
+  LegalDocumentBlock,
 } from './blocks/ServerBlocks';
 import { BeforeAfterInner, TabsShowcaseInner, GalleryInner } from './blocks/ClientBlocks';
 import {
@@ -53,6 +55,19 @@ export default function RenderBlocks({ blocks }: { blocks?: any[] | null }) {
 
           case 'finalCta':
             return <FinalCTABlock key={key} block={block} />;
+
+          case 'legalDocument':
+            return <LegalDocumentBlock key={key} block={block} />;
+
+          case 'richText':
+            return (
+              <Section key={key} appearance={block.appearance}>
+                <div className={containerClassName(block.appearance)}>
+                  <SectionHead heading={block.heading} />
+                  {block.content && <RichText data={block.content} />}
+                </div>
+              </Section>
+            );
 
           // ── Landing-page kit (wc-* design system) ──
           case 'landingHero':

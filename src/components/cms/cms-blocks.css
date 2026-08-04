@@ -55,6 +55,39 @@
   .cms-cols-4 { grid-template-columns: 1fr; }
 }
 
+/* Payload's rich-text renderer emits its own wrapper classes, which the
+   hand-written stylesheet knows nothing about. These keep lists and links
+   looking like the rest of the site. */
+.payload-richtext ul,
+.payload-richtext ol {
+  margin: 0 0 18px;
+  padding-left: 1.35em;
+}
+
+.payload-richtext ul { list-style: disc; }
+.payload-richtext ol { list-style: decimal; }
+
+.payload-richtext li {
+  margin-bottom: 10px;
+  line-height: 1.75;
+}
+
+/* Nested lists sit inside a list item and must not re-indent excessively. */
+.payload-richtext li > ul {
+  margin: 10px 0 0;
+  list-style: circle;
+}
+
+.payload-richtext p { margin-bottom: 18px; }
+.payload-richtext p:last-child { margin-bottom: 0; }
+
+.payload-richtext a {
+  color: var(--teal-bright);
+  text-decoration: underline;
+}
+
+.payload-richtext strong { font-weight: 600; }
+
 /* Fallback so a block type with no renderer is obvious in development only. */
 .cms-missing-block {
   padding: 24px;

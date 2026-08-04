@@ -13,6 +13,48 @@ export const RichTextBlock: Block = {
   ],
 };
 
+/**
+ * Legal document — numbered sections of prose, used by /privacy-policy and
+ * /terms-of-service. Kept as one block so the whole document stays a single
+ * editable unit rather than a long chain of rich-text sections.
+ */
+export const LegalDocument: Block = {
+  slug: 'legalDocument',
+  labels: { singular: 'Legal document', plural: 'Legal documents' },
+  imageAltText: 'Long-form legal text',
+  fields: [
+    { name: 'title', type: 'text', required: true, label: 'Document title' },
+    {
+      name: 'effectiveDate',
+      type: 'text',
+      label: 'Effective date line',
+      admin: { description: 'e.g. "Effective Date: June 15, 2026". Shown in bold under the title.' },
+    },
+    {
+      name: 'sections',
+      type: 'array',
+      label: 'Sections',
+      minRows: 1,
+      admin: { description: 'Drag to reorder. Numbering is part of the heading text.' },
+      fields: [
+        { name: 'heading', type: 'text', required: true },
+        { name: 'content', type: 'richText', required: true },
+      ],
+    },
+    {
+      name: 'backLink',
+      type: 'group',
+      label: 'Back link',
+      fields: [
+        { name: 'enabled', type: 'checkbox', defaultValue: true },
+        { name: 'label', type: 'text', defaultValue: '← Back to Home' },
+        { name: 'url', type: 'text', defaultValue: '/' },
+      ],
+    },
+    sectionSettings,
+  ],
+};
+
 /** Card grid — .shoot-grid, .deliv, feature cards. */
 export const CardGrid: Block = {
   slug: 'cardGrid',

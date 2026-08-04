@@ -1293,6 +1293,81 @@ export interface Page {
             blockType: 'richText';
           }
         | {
+            title: string;
+            /**
+             * e.g. "Effective Date: June 15, 2026". Shown in bold under the title.
+             */
+            effectiveDate?: string | null;
+            /**
+             * Drag to reorder. Numbering is part of the heading text.
+             */
+            sections?:
+              | {
+                  heading: string;
+                  content: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: any;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            backLink?: {
+              enabled?: boolean | null;
+              label?: string | null;
+              url?: string | null;
+            };
+            /**
+             * Background, text colour, spacing and width for this section.
+             */
+            appearance?: {
+              background?:
+                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
+              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
+              /**
+               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
+               */
+              customBackground?: string | null;
+              customTextColor?: string | null;
+              backgroundImage?: (number | null) | Media;
+              backgroundVideo?: {
+                source?: ('vimeo' | 'file') | null;
+                /**
+                 * Just the number, e.g. 1187767005
+                 */
+                vimeoId?: string | null;
+                /**
+                 * e.g. /videos/Website video .mp4
+                 */
+                url?: string | null;
+              };
+              overlay?: {
+                enabled?: boolean | null;
+                opacity?: number | null;
+              };
+              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
+              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
+              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
+              /**
+               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
+               */
+              anchorId?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'legalDocument';
+          }
+        | {
             heading?: {
               eyebrow?: string | null;
               /**
@@ -2808,6 +2883,81 @@ export interface CaseStudy {
             id?: string | null;
             blockName?: string | null;
             blockType: 'richText';
+          }
+        | {
+            title: string;
+            /**
+             * e.g. "Effective Date: June 15, 2026". Shown in bold under the title.
+             */
+            effectiveDate?: string | null;
+            /**
+             * Drag to reorder. Numbering is part of the heading text.
+             */
+            sections?:
+              | {
+                  heading: string;
+                  content: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: any;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            backLink?: {
+              enabled?: boolean | null;
+              label?: string | null;
+              url?: string | null;
+            };
+            /**
+             * Background, text colour, spacing and width for this section.
+             */
+            appearance?: {
+              background?:
+                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
+              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
+              /**
+               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
+               */
+              customBackground?: string | null;
+              customTextColor?: string | null;
+              backgroundImage?: (number | null) | Media;
+              backgroundVideo?: {
+                source?: ('vimeo' | 'file') | null;
+                /**
+                 * Just the number, e.g. 1187767005
+                 */
+                vimeoId?: string | null;
+                /**
+                 * e.g. /videos/Website video .mp4
+                 */
+                url?: string | null;
+              };
+              overlay?: {
+                enabled?: boolean | null;
+                opacity?: number | null;
+              };
+              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
+              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
+              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
+              /**
+               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
+               */
+              anchorId?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'legalDocument';
           }
         | {
             heading?: {
@@ -4375,6 +4525,54 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        legalDocument?:
+          | T
+          | {
+              title?: T;
+              effectiveDate?: T;
+              sections?:
+                | T
+                | {
+                    heading?: T;
+                    content?: T;
+                    id?: T;
+                  };
+              backLink?:
+                | T
+                | {
+                    enabled?: T;
+                    label?: T;
+                    url?: T;
+                  };
+              appearance?:
+                | T
+                | {
+                    background?: T;
+                    textColor?: T;
+                    customBackground?: T;
+                    customTextColor?: T;
+                    backgroundImage?: T;
+                    backgroundVideo?:
+                      | T
+                      | {
+                          source?: T;
+                          vimeoId?: T;
+                          url?: T;
+                        };
+                    overlay?:
+                      | T
+                      | {
+                          enabled?: T;
+                          opacity?: T;
+                        };
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                    width?: T;
+                    anchorId?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
         contactForm?:
           | T
           | {
@@ -5430,6 +5628,54 @@ export interface CaseStudiesSelect<T extends boolean = true> {
                     align?: T;
                   };
               content?: T;
+              appearance?:
+                | T
+                | {
+                    background?: T;
+                    textColor?: T;
+                    customBackground?: T;
+                    customTextColor?: T;
+                    backgroundImage?: T;
+                    backgroundVideo?:
+                      | T
+                      | {
+                          source?: T;
+                          vimeoId?: T;
+                          url?: T;
+                        };
+                    overlay?:
+                      | T
+                      | {
+                          enabled?: T;
+                          opacity?: T;
+                        };
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                    width?: T;
+                    anchorId?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        legalDocument?:
+          | T
+          | {
+              title?: T;
+              effectiveDate?: T;
+              sections?:
+                | T
+                | {
+                    heading?: T;
+                    content?: T;
+                    id?: T;
+                  };
+              backLink?:
+                | T
+                | {
+                    enabled?: T;
+                    label?: T;
+                    url?: T;
+                  };
               appearance?:
                 | T
                 | {

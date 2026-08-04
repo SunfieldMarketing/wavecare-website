@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import Link from 'next/link';
+import { RichText } from '@payloadcms/richtext-lexical/react';
 import {
   sectionClassName,
   containerClassName,
@@ -275,6 +277,41 @@ export function ProcessBlock({ block }: { block: any }) {
         <CMSLinkGroup buttons={buttons} />
       </div>
     </Section>
+  );
+}
+
+/* ── Legal document ───────────────────────────────────────────────── */
+
+export function LegalDocumentBlock({ block }: { block: any }) {
+  const { title, effectiveDate, sections, backLink, appearance } = block;
+  return (
+    <section
+      id={appearance?.anchorId || undefined}
+      className={sectionClassName(appearance ?? { background: 'ink' })}
+      style={{ ...sectionStyle(appearance), paddingTop: '160px', minHeight: '100vh' }}
+    >
+      <div className="container" style={{ maxWidth: '800px', margin: '0 auto' }}>
+        <h1>{title}</h1>
+        {effectiveDate && (
+          <p>
+            <strong>{effectiveDate}</strong>
+          </p>
+        )}
+
+        {(sections ?? []).map((s: any, i: number) => (
+          <section key={i}>
+            <h2>{s.heading}</h2>
+            {s.content && <RichText data={s.content} />}
+          </section>
+        ))}
+
+        {backLink?.enabled !== false && (
+          <div className="back-link">
+            <Link href={backLink?.url || '/'}>{backLink?.label || '← Back to Home'}</Link>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
 
