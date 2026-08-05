@@ -143,6 +143,7 @@ export async function seedHome(payload: Payload): Promise<void> {
     },
     {
       blockType: 'logoStrip',
+      variant: 'home',
       tone: 'light',
       eyebrow: 'Trusted by Clients Across the Country',
       title: 'Join the leaders working with us.',

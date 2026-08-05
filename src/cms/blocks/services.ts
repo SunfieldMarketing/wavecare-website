@@ -142,12 +142,34 @@ export const FeatureRow: Block = {
   ],
 };
 
-/** .marquee > .marquee-row > .m-logo — scrolling client logos. */
+/**
+ * .marquee > .marquee-row > .m-logo — scrolling client logos.
+ *
+ * Reused as-is on the homepage, which loads globals.css instead of
+ * services.css. The marquee/m-logo rules are compatible between the two
+ * stylesheets, but the heading wrapper is NOT: services.css's own
+ * `.trusted-head` (used below by default) has no equivalent rule in
+ * globals.css at all, so on the homepage it rendered with no padding and no
+ * centering. `variant: 'home'` switches the wrapper to globals.css's own
+ * `.sec-head.center` + `.sec-pad`, matching the original homepage exactly.
+ */
 export const LogoStrip: Block = {
   slug: 'logoStrip',
   labels: { singular: 'Logo strip', plural: 'Logo strips' },
   imageAltText: 'Continuously scrolling client logos',
   fields: [
+    {
+      name: 'variant',
+      type: 'select',
+      enumName: 'enum_logo_strip_variant',
+      defaultValue: 'services',
+      label: 'Design system',
+      options: [
+        { label: 'Services (services.css)', value: 'services' },
+        { label: 'Home (globals.css)', value: 'home' },
+      ],
+      admin: { description: 'Must match the stylesheet the page loads.' },
+    },
     sectionTone,
     { name: 'eyebrow', type: 'text', label: 'Small label' },
     { name: 'title', type: 'textarea', label: 'Heading' },

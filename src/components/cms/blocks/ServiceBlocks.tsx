@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { CMSLinkGroup } from '../CMSLink';
+import { parseHighlight } from '../appearance';
 
 /**
  * Renderers for /services.
@@ -138,18 +139,26 @@ export function StatsRowBlock({ block }: { block: any }) {
 }
 
 export function LogoStripBlock({ block }: { block: any }) {
-  const { tone, eyebrow, title, logos } = block;
+  const { variant, tone, eyebrow, title, logos } = block;
   const hasHead = eyebrow || title;
+  const isHome = variant === 'home';
   return (
-    <section className={tone ?? 'dark'}>
+    <section className={`${tone ?? 'dark'}${isHome ? ' sec-pad' : ''}`}>
       {hasHead && (
         <div className="container">
-          <div className="trusted-head reveal">
-            {eyebrow && (
-              <span className={`label on-dark${tone === 'light' ? ' dark' : ''}`}>{eyebrow}</span>
-            )}
-            {title && <h2>{lines(title)}</h2>}
-          </div>
+          {isHome ? (
+            <div className="sec-head center" data-reveal>
+              {eyebrow && <span className={`label${tone === 'light' ? ' dark' : ''}`}>{eyebrow}</span>}
+              {title && <h2>{parseHighlight(title)}</h2>}
+            </div>
+          ) : (
+            <div className="trusted-head reveal">
+              {eyebrow && (
+                <span className={`label on-dark${tone === 'light' ? ' dark' : ''}`}>{eyebrow}</span>
+              )}
+              {title && <h2>{lines(title)}</h2>}
+            </div>
+          )}
         </div>
       )}
       <div className="marquee">

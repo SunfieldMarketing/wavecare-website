@@ -2431,6 +2431,10 @@ export interface Page {
             blockType: 'statsRow';
           }
         | {
+            /**
+             * Must match the stylesheet the page loads.
+             */
+            variant?: ('services' | 'home') | null;
             tone?: ('dark' | 'deeper' | 'light' | 'invert') | null;
             eyebrow?: string | null;
             title?: string | null;
@@ -5948,6 +5952,10 @@ export interface CaseStudy {
             blockType: 'statsRow';
           }
         | {
+            /**
+             * Must match the stylesheet the page loads.
+             */
+            variant?: ('services' | 'home') | null;
             tone?: ('dark' | 'deeper' | 'light' | 'invert') | null;
             eyebrow?: string | null;
             title?: string | null;
@@ -9283,6 +9291,7 @@ export interface PagesSelect<T extends boolean = true> {
         logoStrip?:
           | T
           | {
+              variant?: T;
               tone?: T;
               eyebrow?: T;
               title?: T;
@@ -12005,6 +12014,7 @@ export interface CaseStudiesSelect<T extends boolean = true> {
         logoStrip?:
           | T
           | {
+              variant?: T;
               tone?: T;
               eyebrow?: T;
               title?: T;
