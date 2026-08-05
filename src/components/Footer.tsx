@@ -1,41 +1,127 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { getGlobal } from '@/lib/cms';
+import { resolveHref, type CMSLinkData } from '@/components/cms/CMSLink';
 
-export default function Footer() {
+/**
+ * Footer, driven by the "Footer" global in the CMS.
+ *
+ * Falls back to the original hardcoded content when the global has not been
+ * filled in, so the footer can never render empty — an editor clearing a field
+ * should degrade gracefully rather than blank the bottom of every page.
+ */
+
+const FALLBACK = {
+  logo: '/wavecare-marketing-logo-white.png',
+  logoHeight: 140,
+  blurb:
+    'Healthcare marketing that helps facilities look as good as the care they provide. Built for Healthcare.',
+  columns: [
+    {
+      heading: 'Explore',
+      links: [
+        { label: 'Services', href: '/services' },
+        { label: 'Case Studies', href: '/case-studies' },
+        { label: 'About', href: '/about' },
+        { label: 'Contact', href: '/contact' },
+      ],
+    },
+    {
+      heading: 'Get In Touch',
+      links: [
+        { label: 'info@wavecare.io', href: 'mailto:info@wavecare.io' },
+        { label: '+1 732 930 1934', href: 'tel:+17329301934' },
+        { label: 'Book a Demo →', href: '/contact', highlight: true },
+      ],
+    },
+  ],
+  copyright: '© {year} Wavecare Marketing · Miami, FL',
+  legalLinks: [
+    { label: 'Terms of Service', href: '/terms-of-service' },
+    { label: 'Privacy Policy', href: '/privacy-policy' },
+  ],
+  bottomNote: 'wavecare.io',
+};
+
+type SimpleLink = { label: string; href: string; highlight?: boolean };
+
+export default async function Footer() {
+  const data: any = await getGlobal('footer').catch(() => null);
+
+  const logo = data?.logo?.url || FALLBACK.logo;
+  const logoHeight = data?.logoHeight || FALLBACK.logoHeight;
+  const blurb = data?.blurb || FALLBACK.blurb;
+
+  const columns: Array<{ heading: string; links: SimpleLink[] }> = data?.columns?.length
+    ? data.columns.map((c: any) => ({
+        heading: c.heading,
+        links: (c.links ?? []).map((l: any) => ({
+          label: l.label,
+          href: resolveHref(l.link as CMSLinkData),
+          highlight: l.highlight,
+        })),
+      }))
+    : FALLBACK.columns;
+
+  const legalLinks: SimpleLink[] = data?.legalLinks?.length
+    ? data.legalLinks.map((l: any) => ({ label: l.label, href: resolveHref(l.link as CMSLinkData) }))
+    : FALLBACK.legalLinks;
+
+  const copyright = (data?.copyright || FALLBACK.copyright).replace(
+    '{year}',
+    String(new Date().getFullYear()),
+  );
+  const bottomNote = data?.bottomNote ?? FALLBACK.bottomNote;
+
+  const renderHref = (l: SimpleLink) =>
+    /^(mailto:|tel:|https?:)/.test(l.href) ? (
+      <a href={l.href} className={l.highlight ? 'f-book' : undefined}>
+        {l.label}
+      </a>
+    ) : (
+      <Link href={l.href} className={l.highlight ? 'f-book' : undefined}>
+        {l.label}
+      </Link>
+    );
+
   return (
     <footer>
       <div className="container">
         <div className="f-grid">
           <div className="f-col f-brand">
             <div className="f-logo-row">
-              <Image src="/wavecare-marketing-logo-white.png" alt="Wavecare Marketing" width={300} height={400} style={{ height: '140px', width: 'auto' }} />
+              <Image
+                src={logo}
+                alt="Wavecare Marketing"
+                width={300}
+                height={400}
+                style={{ height: `${logoHeight}px`, width: 'auto' }}
+              />
             </div>
-            <p>Healthcare marketing that helps facilities look as good as the care they provide. Built for Healthcare.</p>
+            <p>{blurb}</p>
           </div>
-          <div className="f-col">
-            <h4>Explore</h4>
-            <ul>
-              <li><Link href="/services">Services</Link></li>
-              <li><Link href="/case-studies">Case Studies</Link></li>
-              <li><Link href="/about">About</Link></li>
-              <li><Link href="/contact">Contact</Link></li>
-            </ul>
-          </div>
-          <div className="f-col">
-            <h4>Get In Touch</h4>
-            <ul>
-              <li><a href="mailto:info@wavecare.io">info@wavecare.io</a></li>
-              <li><a href="tel:+17329301934">+1 732 930 1934</a></li>
-              <li><Link href="/contact" className="f-book">Book a Demo &rarr;</Link></li>
-            </ul>
-          </div>
+
+          {columns.map((col, i) => (
+            <div className="f-col" key={i}>
+              <h4>{col.heading}</h4>
+              <ul>
+                {col.links.map((l, j) => (
+                  <li key={j}>{renderHref(l)}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
+
         <div className="f-bottom">
-          <div>&copy; 2026 Wavecare Marketing &middot; Miami, FL</div>
+          <div>{copyright}</div>
           <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-            <Link href="/terms-of-service" style={{ color: 'inherit' }}>Terms of Service</Link>
-            <Link href="/privacy-policy" style={{ color: 'inherit' }}>Privacy Policy</Link>
-            <span>wavecare.io</span>
+            {legalLinks.map((l, i) => (
+              <Link key={i} href={l.href} style={{ color: 'inherit' }}>
+                {l.label}
+              </Link>
+            ))}
+            {bottomNote && <span>{bottomNote}</span>}
           </div>
         </div>
       </div>

@@ -12,6 +12,10 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* ---- preloader (CSS fade + hard failsafe, can't hang) ---- */
 function runPreloader(done){
   const bar=document.getElementById('plbar'),num=document.getElementById('plnum'),pre=document.getElementById('preloader');
+  // The preloader markup was removed from the layout. Without this guard the
+  // interval below throws on the first tick and `done()` never runs — which
+  // silently disabled reveals, the cursor, Lenis and the wave canvas.
+  if(!pre||!bar||!num){ done(); return; }
   let p=0,fin=false;
   function finish(){ if(fin)return; fin=true; pre.style.transition='opacity .6s'; pre.style.opacity='0'; setTimeout(()=>{pre.style.display='none'; done();},620); }
   const iv=setInterval(()=>{ p=Math.min(100,p+Math.random()*22+10); bar.style.width=p+'%'; num.textContent=Math.floor(p); if(p>=100){clearInterval(iv); setTimeout(finish,200);} },90);
@@ -54,8 +58,23 @@ function initChrome(){
 }
 
 /* ---- Lenis smooth scroll ---- */
+/** Fully removes the active Lenis instance and whatever is driving its RAF. */
+function destroyLenis(){
+  try{
+    if(window._lenisTicker && window.gsap){ gsap.ticker.remove(window._lenisTicker); }
+    window._lenisTicker = null;
+    if(window._lenisStop){ window._lenisStop(); window._lenisStop = null; }
+    if(window._lenis){ window._lenis.destroy(); window._lenis = null; }
+  }catch(e){ /* never let teardown break the page */ }
+}
+
 function initLenis(){
   if(!window.Lenis||reduceMotion) return;
+  // Tear down any previous instance first. This effect re-runs on every route
+  // change, and the legacy pages create their own Lenis too — without this,
+  // instances stack up, each with a live gsap.ticker callback, and they fight
+  // over the scroll position until scrolling stops working entirely.
+  destroyLenis();
   const lenis=new Lenis({
     lerp: 0.1,
     smoothWheel: true,
@@ -66,10 +85,15 @@ function initLenis(){
   });
   if(window.gsap&&window.ScrollTrigger){
     lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add(t=>lenis.raf(t*1000));
+    // Keep a reference so the callback can actually be removed later.
+    const tick = t => lenis.raf(t*1000);
+    gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
+    window._lenisTicker = tick;
   } else {
-    (function raf(t){lenis.raf(t); requestAnimationFrame(raf);})(0);
+    let alive = true;
+    window._lenisStop = () => { alive = false; };
+    (function raf(t){ if(!alive) return; lenis.raf(t); requestAnimationFrame(raf); })(0);
   }
   document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const el=document.querySelector(a.getAttribute('href')); if(el){e.preventDefault(); lenis.scrollTo(el,{offset:-20, duration:1.2, easing: t=>Math.min(1,1.001-Math.pow(2,-10*t))});}}));
   window._lenis = lenis;
@@ -204,7 +228,17 @@ addEventListener('load',()=>{
       initServices(); initMarquee(); initCursor(); initWaveAccent();
       if(window.ScrollTrigger) window.ScrollTrigger.refresh();
     });
-// cleanup can be added if needed
+    // Tear everything down on unmount / route change. Without this, each
+    // navigation left behind a Lenis instance, a gsap.ticker callback and a set
+    // of ScrollTriggers, which together broke scrolling on the next page.
+    return () => {
+      destroyLenis();
+      try {
+        if (window.ScrollTrigger) {
+          window.ScrollTrigger.getAll().forEach((t: any) => t.kill());
+        }
+      } catch (e) { /* ignore */ }
+    };
   }, [pathname]);
   return null;
 }

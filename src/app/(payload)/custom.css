@@ -1,0 +1,255 @@
+/**
+ * Admin panel theme — retints Payload's default monochrome light theme with
+ * the site's own teal palette, so the CMS feels like the same product as
+ * the front end rather than a bolted-on generic admin tool.
+ *
+ * How Payload's theming actually works (payload/dist/scss/colors.scss):
+ * almost everything in the admin UI — borders, backgrounds, body text,
+ * AND primary buttons (bg: var(--theme-elevation-800)) — is driven off one
+ * greyscale ramp, --color-base-0 (lightest) through --color-base-1000
+ * (darkest), remapped to --theme-elevation-*. Payload's own "success" color
+ * is reserved for status states (save confirmations, checkboxes), not the
+ * general UI. So rather than chasing individual component selectors, the
+ * ramp itself is retinted teal below — every element built on it inherits
+ * the brand color automatically. Anchor points reuse the exact hex values
+ * from src/app/(frontend)/globals.css's :root (--teal-light/accent/primary/
+ * deep, --ink) so the two products share literal design tokens, not just a
+ * similar-looking green.
+ *
+ * admin.theme is locked to 'light' in payload.config.ts, so the
+ * html[data-theme="dark"] ramp Payload ships is never applied — only :root
+ * needs overriding here.
+ */
+:root {
+  --color-base-0: #ffffff;
+  --color-base-50: #f5faf9;
+  --color-base-100: #e8f5f3; /* --teal-light */
+  --color-base-150: #d6ece7;
+  --color-base-200: #c3e2dc;
+  --color-base-250: #aed7cf;
+  --color-base-300: #97cbc1;
+  --color-base-350: #80beb2;
+  --color-base-400: #69b1a2;
+  --color-base-450: #559f8f;
+  --color-base-500: #468a7c;
+  --color-base-550: #3c766a;
+  --color-base-600: #33645a;
+  --color-base-650: #2b544c;
+  --color-base-700: #23463f;
+  --color-base-750: #1c3933;
+  --color-base-800: #163029; /* primary button background */
+  --color-base-850: #11251f;
+  --color-base-900: #0c1c17;
+  --color-base-950: #071310;
+  --color-base-1000: #000000;
+
+  /* Payload's "success" ramp drives checkbox/radio focus rings and save
+     confirmations — remapped to the site's actual accent teal (brighter and
+     more saturated than the base ramp above) so those moments read as an
+     intentional brand color, not a leftover default blue. */
+  --color-success-50: #eefaf7;
+  --color-success-100: #d9f3ec;
+  --color-success-150: #bfeadf;
+  --color-success-200: #a0dfd0;
+  --color-success-250: #80d3c0;
+  --color-success-300: #5fd0bf; /* --teal-bright */
+  --color-success-350: #46bfac;
+  --color-success-400: #2a9d8f; /* --teal-accent */
+  --color-success-450: #248c80;
+  --color-success-500: #1e7a70;
+  --color-success-550: #1b7a6e; /* --teal-secondary */
+  --color-success-600: #17685e;
+  --color-success-650: #14584f;
+  --color-success-700: #0e5a50; /* --teal-primary */
+  --color-success-750: #0a4339; /* --teal-deep */
+  --color-success-800: #093a31;
+  --color-success-850: #073029;
+  --color-success-900: #062a24; /* --ink */
+  --color-success-950: #041c18;
+
+  --brand-focus-ring: 0 0 0 3px rgba(42, 157, 143, 0.35);
+}
+
+/* Payload derives --theme-success-* from --color-success-* itself, so no
+   further remapping is needed there — only --theme-border-color needs a
+   nudge since it defaults to a fairly stark elevation step. */
+:root {
+  --theme-border-color: var(--theme-elevation-150);
+}
+
+/* ── Branding marks ─────────────────────────────────────────────────── */
+.graphic-logo {
+  max-height: 150px;
+  width: auto;
+}
+.graphic-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Login view ──────────────────────────────────────────────────────
+   Payload's login screen is otherwise just a centered form on a flat
+   background; a soft branded backdrop and a card treatment make it read
+   as "Wavecare" rather than a generic tool before a visitor even signs in. */
+.template-minimal {
+  background: radial-gradient(ellipse at top, var(--color-base-100) 0%, var(--color-base-0) 55%);
+  position: relative;
+  overflow: hidden;
+}
+.template-minimal__wrap {
+  border-radius: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Decorative 3D robot (admin.components.beforeLogin) — fixed behind
+   everything, non-interactive, so it's pure ambience and never gets in the
+   way of actually signing in.
+   Payload renders beforeLogin as a sibling INSIDE .template-minimal__wrap,
+   between .login__brand and the form — not outside the card as a page-level
+   backdrop. A positioned (fixed) element still paints above its *static*
+   siblings within that shared stacking context regardless of z-index:0, so
+   without help here the robot would sit on top of the brand mark and the
+   form fields instead of behind them. Explicitly lifting those two siblings
+   above the robot restores the intended "ambience behind a legible card"
+   effect. */
+.admin-login-robot {
+  position: fixed;
+  right: -6%;
+  bottom: -10%;
+  width: 52%;
+  height: 82%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.45;
+}
+@media (max-width: 900px) {
+  /* On narrow viewports the corner placement collides with the card instead
+     of sitting beside it — hide rather than let it crowd the form. */
+  .admin-login-robot {
+    display: none;
+  }
+}
+.template-minimal__wrap > .login__brand,
+.template-minimal__wrap > .login__form {
+  position: relative;
+  z-index: 1;
+}
+.admin-login-robot__canvas {
+  width: 100%;
+  height: 100%;
+}
+.admin-spline-loader {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 3px solid var(--color-base-150);
+  border-top-color: var(--color-success-400);
+  animation: admin-spline-spin 0.8s linear infinite;
+}
+@keyframes admin-spline-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.login,
+.create-first-user {
+  padding-top: base(2);
+}
+.login .form-submit .btn,
+.create-first-user .form-submit .btn {
+  width: 100%;
+}
+
+/* ── Primary actions ─────────────────────────────────────────────────
+   Buttons already pick up the teal from the retinted elevation-800
+   background above; this just adds a touch more presence + a focus ring
+   that matches the brand rather than the browser default blue. */
+.btn--style-primary {
+  --hover-bg: var(--color-base-650);
+  border-radius: 6px;
+}
+.btn:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[role='button']:focus-visible {
+  outline: none;
+  box-shadow: var(--brand-focus-ring);
+}
+
+/* ── Nav ─────────────────────────────────────────────────────────────
+   A subtle teal wash on the sidebar (rather than pure white) separates it
+   from the main content area and echoes the site's own dark-on-light
+   sectioning, without going as far as a solid dark rail. */
+.nav {
+  background: linear-gradient(180deg, var(--color-base-50) 0%, var(--color-base-0) 100%);
+  border-right: 1px solid var(--theme-border-color);
+}
+.nav__link.active,
+.nav__link[aria-current='page'] {
+  color: var(--color-success-700);
+  font-weight: 600;
+}
+.nav-group__toggle {
+  color: var(--theme-elevation-800);
+}
+
+/* ── App header ──────────────────────────────────────────────────────
+   Thin brand-colored top edge so every admin view carries the mark even
+   when scrolled past the nav/header content itself. */
+.app-header {
+  border-bottom: 1px solid var(--theme-border-color);
+}
+.app-header::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-success-700), var(--color-success-300));
+}
+
+/* ── Dashboard ───────────────────────────────────────────────────────
+   Payload's default dashboard cards are a flat single-tone block; adding
+   a real border + hover lift makes the collection grid feel like an actual
+   set of clickable destinations instead of a static list. */
+.dashboard {
+  padding-top: base(1);
+}
+.card {
+  border: 1px solid var(--theme-border-color);
+  border-radius: 8px;
+  background: var(--color-base-0);
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+.card:hover {
+  border-color: var(--color-success-400);
+  box-shadow: 0 4px 14px rgba(9, 58, 49, 0.08);
+}
+.card .card__title {
+  color: var(--theme-elevation-900);
+}
+.dashboard__group:not(:first-child) {
+  margin-top: base(2);
+}
+.dashboard__label {
+  color: var(--color-success-700);
+}
+
+/* ── Misc polish ─────────────────────────────────────────────────────
+   Pills (status badges, tags) and step-nav breadcrumbs default to the same
+   flat grey as everything else; a touch of brand color on the parts a
+   user actually interacts with (links, active steps) keeps those legible
+   against the now-teal-tinted chrome around them. */
+a:not([class]),
+.step-nav a {
+  color: var(--color-success-700);
+}
+a:not([class]):hover,
+.step-nav a:hover {
+  color: var(--color-success-500);
+}
+::selection {
+  background: var(--color-success-200);
+}

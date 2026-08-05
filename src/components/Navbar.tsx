@@ -1,38 +1,61 @@
-"use client";
-import Link from 'next/link';
-import Image from 'next/image';
-import { useState } from 'react';
-import posthog from 'posthog-js';
+import { getGlobal } from '@/lib/cms';
+import { resolveHref, type CMSLinkData } from '@/components/cms/CMSLink';
+import NavbarClient, { type NavData, type NavItem } from './NavbarClient';
 
-export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+/**
+ * Header, driven by the "Navigation" global in the CMS.
+ *
+ * Falls back to the original menu if the global is empty, so an incomplete
+ * edit can never leave the site without navigation.
+ */
+const FALLBACK: NavData = {
+  logo: '/wavecare-marketing-logo-white.png',
+  logoHeight: 110,
+  items: [
+    { label: 'Home', href: '/' },
+    {
+      label: 'Services',
+      href: '/services',
+      children: [
+        { label: 'Brand & Photoshoots', href: '/photoservices' },
+        { label: 'Video Production', href: '/videoservices' },
+        { label: 'Design & Print', href: '/design-print' },
+        { label: 'Web Design', href: '/webdesign' },
+      ],
+    },
+    { label: 'About Us', href: '/about' },
+    { label: 'Case Studies', href: '/case-studies' },
+    { label: 'Testimonials', href: '/testimonials' },
+    { label: 'Contact', href: '/contact' },
+  ],
+  cta: { label: 'Book a Demo', href: '/contact' },
+};
 
-  return (
-    <nav className="nav" id="nav">
-      <div className="nav-inner">
-        <Link href="/" className="logo" data-cursor onClick={() => setMobileMenuOpen(false)}>
-          <Image src="/wavecare-marketing-logo-white.png" alt="Wavecare Marketing" width={300} height={400} style={{ height: '110px', width: 'auto' }} priority />
-        </Link>
-        <button className={`mobile-toggle ${mobileMenuOpen ? 'open' : ''}`} onClick={() => { const next = !mobileMenuOpen; setMobileMenuOpen(next); if (next) posthog.capture('mobile_menu_opened'); }}>
-          <span></span><span></span><span></span>
-        </button>
-        <div className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
-          <Link href="/" data-cursor onClick={() => setMobileMenuOpen(false)}>Home</Link>
-          <div className="nav-dropdown">
-            <Link href="/services" data-cursor onClick={() => setMobileMenuOpen(false)}>Services ▾</Link>
-            <div className="dropdown-content">
-              <Link href="/photoservices" data-cursor onClick={() => setMobileMenuOpen(false)}>Brand & Photoshoots</Link>
-              <Link href="/videoservices" data-cursor onClick={() => setMobileMenuOpen(false)}>Video Production</Link>
-              <Link href="/design-print" data-cursor onClick={() => setMobileMenuOpen(false)}>Design & Print</Link>
-              <Link href="/webdesign" data-cursor onClick={() => setMobileMenuOpen(false)}>Web Design</Link>
-            </div>
-          </div>
-          <Link href="/about" data-cursor onClick={() => setMobileMenuOpen(false)}>About Us</Link>
-          <Link href="/case-studies" data-cursor onClick={() => setMobileMenuOpen(false)}>Case Studies</Link>
-          <Link href="/contact" data-cursor onClick={() => setMobileMenuOpen(false)}>Contact</Link>
-          <Link href="/contact" className="btn" data-magnetic data-cursor onClick={() => setMobileMenuOpen(false)}>Book a Demo</Link>
-        </div>
-      </div>
-    </nav>
-  );
+export default async function Navbar() {
+  const data: any = await getGlobal('navigation').catch(() => null);
+
+  const items: NavItem[] = data?.items?.length
+    ? data.items.map((item: any) => ({
+        label: item.label,
+        href: resolveHref(item.link as CMSLinkData),
+        children: (item.children ?? []).map((c: any) => ({
+          label: c.label,
+          href: resolveHref(c.link as CMSLinkData),
+        })),
+      }))
+    : FALLBACK.items;
+
+  const nav: NavData = {
+    logo: data?.logo?.url || FALLBACK.logo,
+    logoHeight: data?.logoHeight || FALLBACK.logoHeight,
+    items,
+    cta:
+      data?.cta?.enabled === false
+        ? null
+        : data?.cta?.link?.label
+          ? { label: data.cta.link.label, href: resolveHref(data.cta.link as CMSLinkData) }
+          : FALLBACK.cta,
+  };
+
+  return <NavbarClient nav={nav} />;
 }
