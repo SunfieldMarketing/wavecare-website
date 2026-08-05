@@ -153,8 +153,14 @@ export function LogoStripBlock({ block }: { block: any }) {
             </div>
           ) : (
             <div className="trusted-head reveal">
+              {/* on-dark/on-light mirror the original's own class names for this
+                  spot exactly (services.css has no rule for either — both are
+                  dead/no-op there, same as in the original). Do NOT add
+                  globals.css's real `.label.dark` here; that's the home-variant's
+                  job above — this /services branch must stay visually identical
+                  to the original regardless of tone. */}
               {eyebrow && (
-                <span className={`label on-dark${tone === 'light' ? ' dark' : ''}`}>{eyebrow}</span>
+                <span className={`label ${tone === 'light' ? 'on-light' : 'on-dark'}`}>{eyebrow}</span>
               )}
               {title && <h2>{lines(title)}</h2>}
             </div>
