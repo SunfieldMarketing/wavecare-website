@@ -230,20 +230,29 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
           )}
 
-          {/* ── Google Ads conversion tracking ── */}
-          {process.env.NEXT_PUBLIC_GADS_ID && (
+          {/* ── Google Ads conversion tracking ──
+              Two Google Ads accounts run on this site side by side:
+              NEXT_PUBLIC_GADS_ID is the original/older account; NEXT_PUBLIC_GADS_CONVERSION_ID
+              is a second, newer account added for the Aug 2026 Ads launch. Both get their own
+              gtag('config', ...) call off the same loaded gtag.js runtime — that's the
+              supported way to run multiple Google tags on one page, and it's what makes Google
+              stop reporting "no tag found" for the new account without touching the old one. */}
+          {(process.env.NEXT_PUBLIC_GADS_ID || process.env.NEXT_PUBLIC_GADS_CONVERSION_ID) && (
             <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GADS_ID}`}
+              src={`https://www.googletagmanager.com/gtag/js?id=${
+                process.env.NEXT_PUBLIC_GADS_ID || process.env.NEXT_PUBLIC_GADS_CONVERSION_ID
+              }`}
               strategy="afterInteractive"
             />
           )}
-          {process.env.NEXT_PUBLIC_GADS_ID && (
+          {(process.env.NEXT_PUBLIC_GADS_ID || process.env.NEXT_PUBLIC_GADS_CONVERSION_ID) && (
             <Script id="google-ads-config" strategy="afterInteractive">
               {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GADS_ID}');
+                ${process.env.NEXT_PUBLIC_GADS_ID ? `gtag('config', '${process.env.NEXT_PUBLIC_GADS_ID}');` : ''}
+                ${process.env.NEXT_PUBLIC_GADS_CONVERSION_ID ? `gtag('config', '${process.env.NEXT_PUBLIC_GADS_CONVERSION_ID}');` : ''}
               `}
             </Script>
           )}

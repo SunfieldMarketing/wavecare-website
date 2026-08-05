@@ -82,6 +82,18 @@ export default function ContactForm({ copy }: { copy?: FormCopy }) {
           has_company: !!data.company,
           has_message: !!data.message,
         });
+
+        // Google Ads conversion + GA4 key event — fires here and only here,
+        // i.e. only once GHL has confirmed the lead was actually created.
+        // Never on page load, never on the button click itself.
+        const gadsConversionId = process.env.NEXT_PUBLIC_GADS_CONVERSION_ID;
+        const gadsConversionLabel = process.env.NEXT_PUBLIC_GADS_CONVERSION_LABEL;
+        if (typeof (window as any).gtag === 'function' && gadsConversionId && gadsConversionLabel) {
+          (window as any).gtag('event', 'conversion', {
+            send_to: `${gadsConversionId}/${gadsConversionLabel}`,
+          });
+          (window as any).gtag('event', 'qualify_lead');
+        }
       } else {
         setErrorMsg(json.error || 'Something went wrong. Please try again.');
         setStatus('error');
