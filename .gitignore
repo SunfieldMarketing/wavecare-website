@@ -35,7 +35,6 @@ yarn-error.log*
 !.env.example
 
 # payload cms
-/src/app/(payload)/admin/importMap.js
 *.db
 *.db-journal
 /public/media
