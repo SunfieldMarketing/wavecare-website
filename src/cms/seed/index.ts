@@ -19,6 +19,7 @@ import { seedAbout } from './about';
 import { seedWebDesign } from './webdesign';
 import { seedHome } from './home';
 import { seedAdminUser } from './admin';
+import { seedContactFormRecord } from './form-builder';
 
 /**
  * Content migration.
@@ -35,6 +36,7 @@ async function run() {
   payload.logger.info('── Wavecare content migration ──');
 
   await seedAdminUser(payload);
+  await seedContactFormRecord(payload);
   await seedNavigation(payload);
   await seedCaseStudies(payload);
   await seedCaseStudiesIndex(payload);
@@ -54,7 +56,7 @@ async function run() {
   process.exit(0);
 }
 
-async function seedNavigation(payload: any) {
+export async function seedNavigation(payload: any) {
   payload.logger.info('→ Seeding navigation & footer…');
 
   await payload.updateGlobal({
@@ -75,8 +77,6 @@ async function seedNavigation(payload: any) {
         },
         { label: 'About Us', link: { label: 'About Us', type: 'external', url: '/about', style: 'text' } },
         { label: 'Case Studies', link: { label: 'Case Studies', type: 'external', url: '/case-studies', style: 'text' } },
-        // Previously orphaned — reachable from the menu now.
-        { label: 'Testimonials', link: { label: 'Testimonials', type: 'external', url: '/testimonials', style: 'text' } },
         { label: 'Contact', link: { label: 'Contact', type: 'external', url: '/contact', style: 'text' } },
       ],
       cta: {

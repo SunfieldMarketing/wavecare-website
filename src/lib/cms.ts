@@ -135,6 +135,36 @@ export async function getGlobal(slug: 'navigation' | 'footer' | 'theme' | 'site-
 }
 
 /**
+ * ID of the "Contact Form" record registered with the form-builder plugin
+ * (see cms/seed/form-builder.ts) — /api/contact looks this up to attach
+ * every real submission to it as a form-submissions document, so leads show
+ * up live in the CMS dashboard alongside GoHighLevel, not just in it.
+ *
+ * Memoized per server instance: the record's ID never changes once seeded,
+ * so there is no reason to re-query it on every single form submission.
+ */
+let contactFormIdCache: string | null = null;
+
+export async function getContactFormId(): Promise<string | null> {
+  if (contactFormIdCache) return contactFormIdCache;
+
+  const payload = await payloadClient();
+  const result = await payload.find({
+    collection: 'forms',
+    where: { title: { equals: 'Contact Form' } },
+    limit: 1,
+    depth: 0,
+    overrideAccess: true,
+  });
+
+  const id = result.docs[0]?.id;
+  if (!id) return null;
+
+  contactFormIdCache = String(id);
+  return contactFormIdCache;
+}
+
+/**
  * Builds Next.js metadata from a page's SEO fields, falling back to Site
  * Settings. This is the fix for every content page previously inheriting the
  * same generic root title.

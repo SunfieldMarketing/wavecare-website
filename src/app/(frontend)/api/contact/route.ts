@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getPostHogClient } from '@/lib/posthog-server';
+import { payloadClient, getContactFormId } from '@/lib/cms';
 
 export async function POST(request: Request) {
   let body: any = {};
@@ -63,7 +64,7 @@ export async function POST(request: Request) {
 
   if (!contactRes.ok) {
     console.error('[GHL] Contact creation failed. Status:', contactRes.status, 'Body:', JSON.stringify(contactData));
-    console.error('[GHL] Token prefix used:', token.substring(0, 8), '| LocationId used:', locationId);
+    console.error('[GHL] LocationId used:', locationId);
     const ghlError = contactData?.message || contactData?.error || JSON.stringify(contactData);
     return NextResponse.json({ 
       success: false, 
@@ -103,6 +104,37 @@ export async function POST(request: Request) {
   }
 
   console.log('[GHL] Contact created successfully:', contactId);
+
+  // Mirror the submission into the CMS itself (Payload's Form Submissions
+  // collection) — non-critical, never blocks or fails the response. This is
+  // what makes every real lead show up live in the dashboard, not just in
+  // GoHighLevel: the write below is a normal synchronous database insert,
+  // so it's visible to an admin refreshing Form Submissions the instant
+  // this request completes.
+  try {
+    const formId = await getContactFormId();
+    if (formId) {
+      const payload = await payloadClient();
+      await payload.create({
+        collection: 'form-submissions',
+        data: {
+          form: formId,
+          submissionData: [
+            { field: 'name', value: name || '' },
+            { field: 'email', value: email },
+            { field: 'company', value: company || '' },
+            { field: 'services', value: services?.length > 0 ? services.join(', ') : '' },
+            { field: 'message', value: message || '' },
+          ],
+        } as any,
+        overrideAccess: true,
+      });
+    } else {
+      console.warn('[CMS] "Contact Form" record not found — run the seed to enable Form Submissions.');
+    }
+  } catch (cmsErr) {
+    console.warn('[CMS] Failed to record form submission in Payload:', cmsErr);
+  }
 
   const posthog = getPostHogClient();
   const distinctId = contactId || email;
