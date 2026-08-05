@@ -87,11 +87,20 @@ function databaseAdapter() {
 export default buildConfig({
   admin: {
     user: Users.slug,
+    // Locked to light — the CMS is themed against the site's light-mode
+    // teal palette (see custom.css); Payload's dark-mode elevation ramp
+    // would otherwise fight those overrides depending on the visitor's
+    // system preference.
+    theme: 'light',
     meta: {
       titleSuffix: ' — Wavecare CMS',
     },
     components: {
-      graphics: {},
+      graphics: {
+        Logo: '/components/admin/Logo#Logo',
+        Icon: '/components/admin/Logo#Icon',
+      },
+      beforeLogin: ['/components/admin/LoginRobotBackground'],
     },
     livePreview: {
       breakpoints: [
