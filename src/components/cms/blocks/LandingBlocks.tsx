@@ -73,6 +73,7 @@ export function VideoFeatureBlock({ block }: { block: any }) {
               allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 'none' }}
               title={block.videoTitle || 'Video'}
+              loading="eager"
             />
           </div>
         </div>

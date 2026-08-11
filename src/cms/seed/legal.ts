@@ -90,7 +90,7 @@ const PRIVACY: Section[] = [
     content: [
       'If you have any questions about this privacy policy or our privacy practices, please contact us in the following ways:',
       'Email address: [info@wavecare.io](mailto:info@wavecare.io)',
-      'Telephone number: [+1 732 930 1934](tel:+17329301934)',
+      'Telephone number: [+1 305-902-6682](tel:+13059026682)',
     ],
   },
 ];
@@ -161,7 +161,7 @@ const TERMS: Section[] = [
     content: [
       'If you have any questions about these Terms, please contact us:',
       'Email address: [info@wavecare.io](mailto:info@wavecare.io)',
-      'Telephone number: [+1 732 930 1934](tel:+17329301934)',
+      'Telephone number: [+1 305-902-6682](tel:+13059026682)',
     ],
   },
 ];

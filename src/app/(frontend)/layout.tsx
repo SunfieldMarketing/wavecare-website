@@ -231,31 +231,50 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           )}
 
           {/* ── Google Ads conversion tracking ──
-              Two Google Ads accounts run on this site side by side:
-              NEXT_PUBLIC_GADS_ID is the original/older account; NEXT_PUBLIC_GADS_CONVERSION_ID
-              is a second, newer account added for the Aug 2026 Ads launch. Both get their own
-              gtag('config', ...) call off the same loaded gtag.js runtime — that's the
-              supported way to run multiple Google tags on one page, and it's what makes Google
-              stop reporting "no tag found" for the new account without touching the old one. */}
-          {(process.env.NEXT_PUBLIC_GADS_ID || process.env.NEXT_PUBLIC_GADS_CONVERSION_ID) && (
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${
-                process.env.NEXT_PUBLIC_GADS_ID || process.env.NEXT_PUBLIC_GADS_CONVERSION_ID
-              }`}
-              strategy="afterInteractive"
-            />
-          )}
-          {(process.env.NEXT_PUBLIC_GADS_ID || process.env.NEXT_PUBLIC_GADS_CONVERSION_ID) && (
-            <Script id="google-ads-config" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                ${process.env.NEXT_PUBLIC_GADS_ID ? `gtag('config', '${process.env.NEXT_PUBLIC_GADS_ID}');` : ''}
-                ${process.env.NEXT_PUBLIC_GADS_CONVERSION_ID ? `gtag('config', '${process.env.NEXT_PUBLIC_GADS_CONVERSION_ID}');` : ''}
-              `}
-            </Script>
-          )}
+              Two accounts: NEXT_PUBLIC_GADS_ID = legacy AW-11311115355;
+              NEXT_PUBLIC_GADS_CONVERSION_ID = AW-18358463616 (Wavecare Aug 2026 launch).
+              The loader MUST use the Wavecare account ID so Tag Assistant sees it.
+              Both accounts get their own gtag('config') call off the same runtime.
+              Do not remove either account. */}
+          {/* Primary loader - always uses the Wavecare account for Tag Assistant visibility */}
+          <Script
+            id="gads-loader"
+            src={`https://www.googletagmanager.com/gtag/js?id=${
+              process.env.NEXT_PUBLIC_GADS_CONVERSION_ID || process.env.NEXT_PUBLIC_GADS_ID || 'AW-18358463616'
+            }`}
+            strategy="afterInteractive"
+          />
+          <Script id="google-ads-config" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-18358463616');
+              ${process.env.NEXT_PUBLIC_GADS_ID ? `gtag('config', '${process.env.NEXT_PUBLIC_GADS_ID}');` : ''}
+              ${process.env.NEXT_PUBLIC_GADS_CALL_LABEL ? `gtag('config', 'AW-18358463616/${process.env.NEXT_PUBLIC_GADS_CALL_LABEL}', { 'phone_conversion_number': '+1 305-902-6682' });` : ''}
+            `}
+          </Script>
+
+          {/* ── GHL booking conversion listener ──
+              Fires on every page so the calendar can be embedded anywhere.
+              Origin-checked + de-duped with window.__wcBooked. */}
+          <Script id="ghl-booking-listener" strategy="afterInteractive">
+            {`
+              window.addEventListener('message', function(e) {
+                if (e.origin !== 'https://api.leadconnectorhq.com') return;
+                var d = e.data;
+                if (!Array.isArray(d) || d[0] !== 'msgsndr-booking-complete') return;
+                if (window.__wcBooked) return;
+                window.__wcBooked = true;
+                if (typeof gtag === 'function') {
+                  gtag('event', 'conversion', {
+                    send_to: 'AW-18358463616/Zh1fCLTHq90cEIDZ_7FE',
+                    transaction_id: (d[1] && d[1].fingerprint) || ''
+                  });
+                }
+              });
+            `}
+          </Script>
 
           {/* ── Meta Pixel ── */}
           {process.env.NEXT_PUBLIC_META_PIXEL_ID && (

@@ -17,6 +17,7 @@ import { seedDesignPrint } from './design-print';
 import { seedVideoServices } from './video-services';
 import { seedAbout } from './about';
 import { seedWebDesign } from './webdesign';
+import { seedDigitalMarketing } from './digital-marketing';
 import { seedHome } from './home';
 import { seedAdminUser } from './admin';
 import { seedContactFormRecord } from './form-builder';
@@ -48,6 +49,7 @@ async function run() {
   await seedVideoServices(payload);
   await seedAbout(payload);
   await seedWebDesign(payload);
+  await seedDigitalMarketing(payload);
   await seedHome(payload);
   await seedTestimonials(payload);
   await seedPhotoservices(payload);
@@ -73,6 +75,7 @@ export async function seedNavigation(payload: any) {
             { label: 'Video Production', link: { label: 'Video Production', type: 'external', url: '/videoservices', style: 'text' } },
             { label: 'Design & Print', link: { label: 'Design & Print', type: 'external', url: '/design-print', style: 'text' } },
             { label: 'Web Design', link: { label: 'Web Design', type: 'external', url: '/webdesign', style: 'text' } },
+            { label: 'Ad Management', link: { label: 'Ad Management', type: 'external', url: '/digital-marketing', style: 'text' } },
           ],
         },
         { label: 'About Us', link: { label: 'About Us', type: 'external', url: '/about', style: 'text' } },
@@ -113,7 +116,7 @@ export async function seedNavigation(payload: any) {
           heading: 'Get In Touch',
           links: [
             ext('info@wavecare.io', 'mailto:info@wavecare.io'),
-            ext('+1 732 930 1934', 'tel:+17329301934'),
+            ext('+1 305-902-6682', 'tel:+13059026682'),
             ext('Book a Demo →', '/contact', { highlight: true }),
           ],
         },

@@ -190,6 +190,7 @@ export function HeroBlock({ block }: { block: any }) {
             src={`https://player.vimeo.com/video/${appearance.backgroundVideo.vimeoId}?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=1080p`}
             allow="autoplay; fullscreen; picture-in-picture"
             title=""
+            loading="eager"
           />
         </div>
       )}

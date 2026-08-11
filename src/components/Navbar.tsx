@@ -21,6 +21,7 @@ const FALLBACK: NavData = {
         { label: 'Video Production', href: '/videoservices' },
         { label: 'Design & Print', href: '/design-print' },
         { label: 'Web Design', href: '/webdesign' },
+        { label: 'Ad Management', href: '/digital-marketing' },
       ],
     },
     { label: 'About Us', href: '/about' },

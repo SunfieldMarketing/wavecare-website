@@ -18,31 +18,27 @@ export async function seedAdminUser(payload: Payload): Promise<void> {
   const username = process.env.ADMIN_USERNAME?.trim() || 'WavecareAdmin';
   const password = process.env.ADMIN_INITIAL_PASSWORD;
 
-  if (!password) {
-    payload.logger.error(
-      'ADMIN_INITIAL_PASSWORD is not set. Add it to .env.local before seeding the admin user.',
-    );
-    throw new Error('Missing ADMIN_INITIAL_PASSWORD');
-  }
-
-  if (password.length < 16) {
-    payload.logger.error('ADMIN_INITIAL_PASSWORD must be at least 16 characters.');
-    throw new Error('Weak ADMIN_INITIAL_PASSWORD');
-  }
-
-  // Payload normalises usernames to lowercase on save, so the lookup has to
-  // match that — otherwise the seed misses the existing admin and tries to
-  // create a duplicate, which fails validation.
   const existing = await payload.find({
     collection: 'users',
-    where: { username: { equals: username.toLowerCase() } },
     limit: 1,
     overrideAccess: true,
   });
 
   if (existing.docs.length > 0) {
-    payload.logger.info(`→ Admin "${username}" already exists — leaving it untouched.`);
+    payload.logger.info(`→ Admin user already exists — leaving users untouched.`);
     return;
+  }
+
+  if (!password) {
+    payload.logger.warn(
+      'ADMIN_INITIAL_PASSWORD is not set. Skipping initial admin user creation.',
+    );
+    return;
+  }
+
+  if (password.length < 16) {
+    payload.logger.error('ADMIN_INITIAL_PASSWORD must be at least 16 characters.');
+    throw new Error('Weak ADMIN_INITIAL_PASSWORD');
   }
 
   await payload.create({

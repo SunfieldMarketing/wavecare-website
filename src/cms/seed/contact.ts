@@ -48,7 +48,7 @@ export async function seedContact(payload: Payload): Promise<void> {
       ],
       directLinks: [
         { icon: '✉', label: 'info@wavecare.io', href: 'mailto:info@wavecare.io' },
-        { icon: '☎', label: '+1 732 930 1934', href: 'tel:+17329301934' },
+        { icon: '☎', label: '+1 305-902-6682', href: 'tel:+13059026682' },
       ],
       form: {
         heading: 'Send us a message',
