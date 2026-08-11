@@ -15,7 +15,6 @@ import { useEffect } from 'react';
 export default function ServicesPageEffects() {
   useEffect(() => {
     const cleanups: Array<() => void> = [];
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     /* Scroll reveals */
     const els = Array.from(document.querySelectorAll('.reveal, [data-reveal], .stagger'));
@@ -46,23 +45,9 @@ export default function ServicesPageEffects() {
       }
     }
 
-    /* Logo marquee — duplicate the row once, then translate it continuously */
-    const row = document.getElementById('marqueeRow');
-    if (row && !reduceMotion && !row.dataset.marqueeReady) {
-      row.dataset.marqueeReady = '1';
-      row.innerHTML += row.innerHTML;
-      let x = 0;
-      const half = row.scrollWidth / 2;
-      let raf = 0;
-      const tick = () => {
-        x -= 0.6;
-        if (-x >= half) x += half;
-        row.style.transform = `translateX(${x}px)`;
-        raf = requestAnimationFrame(tick);
-      };
-      raf = requestAnimationFrame(tick);
-      cleanups.push(() => cancelAnimationFrame(raf));
-    }
+    /* Logo marquee is a pure CSS loop now (marquee-anim, globals.css) — the
+       row is rendered twice server-side, no script needed to duplicate or
+       drive it. See ServiceBlocks.tsx's LogoStripBlock. */
 
     /* Split-row videos play only while visible, to avoid decoding all of them */
     const videos = Array.from(document.querySelectorAll<HTMLVideoElement>('.split-image video'));

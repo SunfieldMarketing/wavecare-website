@@ -60,6 +60,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ScrollGuard from '@/components/ScrollGuard';
 import ThemeStyles from '@/components/ThemeStyles';
+import CustomCursor from '@/components/CustomCursor';
 import { Analytics } from '@vercel/analytics/react';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
@@ -221,6 +222,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 
           <ThemeStyles />
           <ScrollGuard />
+          <CustomCursor />
           <Navbar />
           {children}
           <Footer />

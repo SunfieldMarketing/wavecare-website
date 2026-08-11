@@ -168,21 +168,29 @@ export function LogoStripBlock({ block }: { block: any }) {
         </div>
       )}
       <div className="marquee">
-        {/* id is required: the page script duplicates this row to loop it. */}
-        <div className="marquee-row" id="marqueeRow">
-          {(logos ?? []).map((l: any, i: number) =>
-            l.image?.url ? (
-              <div className="m-logo" key={i}>
-                <Image
-                  src={l.image.url}
-                  alt={l.name ?? l.image.alt ?? ''}
-                  width={200}
-                  height={100}
-                  className={l.scaleUp ? 'scale-up' : undefined}
-                  style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
-                />
-              </div>
-            ) : null,
+        {/* Rendered twice server-side and driven by a pure CSS animation
+            (marquee-anim, see globals.css) rather than a client-side script
+            duplicating + translating the row — the JS version depended on a
+            'use client' effect that proved unreliable, some page loads never
+            ran it, leaving a static, under-filled row that read as "logos on
+            the left, empty space on the right". This has no such dependency:
+            the loop is correct the instant the CSS parses, no JS required. */}
+        <div className="marquee-row marquee-anim" id="marqueeRow">
+          {[0, 1].map((copy) =>
+            (logos ?? []).map((l: any, i: number) =>
+              l.image?.url ? (
+                <div className="m-logo" key={`${copy}-${i}`} aria-hidden={copy === 1 ? true : undefined}>
+                  <Image
+                    src={l.image.url}
+                    alt={copy === 0 ? (l.name ?? l.image.alt ?? '') : ''}
+                    width={200}
+                    height={100}
+                    className={l.scaleUp ? 'scale-up' : undefined}
+                    style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
+                  />
+                </div>
+              ) : null,
+            ),
           )}
         </div>
       </div>

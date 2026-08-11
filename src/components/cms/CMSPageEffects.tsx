@@ -52,29 +52,6 @@ export default function CMSPageEffects() {
       }
     }
 
-    /* Logo marquee — ported from GlobalScripts' initMarquee (same fix already
-       applied in ServicesPageEffects.tsx for /services). GlobalScripts itself
-       is never mounted post-CMS-migration, so any page using the LogoStrip
-       block through this effects component (home, about, case-studies, ...)
-       rendered the row once, unanimated and too short to fill its width —
-       reading as "logos only on the left, empty space on the right". */
-    const marqueeRow = document.getElementById('marqueeRow');
-    if (marqueeRow && !reduceMotion && !marqueeRow.dataset.marqueeReady) {
-      marqueeRow.dataset.marqueeReady = '1';
-      marqueeRow.innerHTML += marqueeRow.innerHTML;
-      let mx = 0;
-      const half = marqueeRow.scrollWidth / 2;
-      let mraf = 0;
-      const mtick = () => {
-        mx -= 0.6;
-        if (-mx >= half) mx += half;
-        marqueeRow.style.transform = `translateX(${mx}px)`;
-        mraf = requestAnimationFrame(mtick);
-      };
-      mraf = requestAnimationFrame(mtick);
-      cleanups.push(() => cancelAnimationFrame(mraf));
-    }
-
     /* [data-count] counter animation — ported from GlobalScripts' initCount.
        Drives every stats block across the site (case-studies index, services,
        testimonials, design-print, ...). Missing this left every animated

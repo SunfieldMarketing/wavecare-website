@@ -251,9 +251,15 @@
   .sec-head h2{margin-bottom:22px;}
   .light .sec-head h2{color:var(--navy);}
 
-  /* logos marquee */
+  /* logos marquee — pure CSS loop, no JS. The row is rendered twice
+     server-side (see LogoStripBlock); animating exactly one copy-width to
+     the left lands back on an identical frame, so the loop is seamless
+     with no script needed to duplicate or drive it. */
   .marquee{overflow:hidden; position:relative; -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);}
   .marquee-row{display:flex; gap:60px; width:max-content; will-change:transform; align-items:center;}
+  @keyframes wc-marquee-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  .marquee-row.marquee-anim{ animation:wc-marquee-scroll 32s linear infinite; }
+  @media (prefers-reduced-motion: reduce){ .marquee-row.marquee-anim{ animation:none; } }
   .m-logo{height:60px; min-width:140px; display:flex; align-items:center; justify-content:center; opacity:0.8; transition: opacity 0.3s ease;}
   .m-logo:hover{opacity:1;}
   .m-logo img{max-height:100%; max-width:100%; object-fit:contain; filter: none !important;}
