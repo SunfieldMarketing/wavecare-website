@@ -13,6 +13,7 @@ import * as migration_20260804_201845_social_proof_banner from './20260804_20184
 import * as migration_20260804_230145_logo_dark_tint from './20260804_230145_logo_dark_tint';
 import * as migration_20260804_231605_drop_logo_dark_tint from './20260804_231605_drop_logo_dark_tint';
 import * as migration_20260805_001901_logo_strip_variant from './20260805_001901_logo_strip_variant';
+import * as migration_20260811_073238_digital_marketing_blocks from './20260811_073238_digital_marketing_blocks';
 
 export const migrations = [
   {
@@ -88,6 +89,11 @@ export const migrations = [
   {
     up: migration_20260805_001901_logo_strip_variant.up,
     down: migration_20260805_001901_logo_strip_variant.down,
-    name: '20260805_001901_logo_strip_variant'
+    name: '20260805_001901_logo_strip_variant',
+  },
+  {
+    up: migration_20260811_073238_digital_marketing_blocks.up,
+    down: migration_20260811_073238_digital_marketing_blocks.down,
+    name: '20260811_073238_digital_marketing_blocks'
   },
 ];
