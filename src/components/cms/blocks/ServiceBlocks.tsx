@@ -168,18 +168,24 @@ export function LogoStripBlock({ block }: { block: any }) {
         </div>
       )}
       <div className="marquee">
-        {/* Rendered twice server-side and driven by a pure CSS animation
+        {/* Rendered 4x server-side and driven by a pure CSS animation
             (marquee-anim, see globals.css) rather than a client-side script
             duplicating + translating the row — the JS version depended on a
             'use client' effect that proved unreliable, some page loads never
             ran it, leaving a static, under-filled row that read as "logos on
             the left, empty space on the right". This has no such dependency:
-            the loop is correct the instant the CSS parses, no JS required. */}
+            the loop is correct the instant the CSS parses, no JS required.
+            4 copies (not 2): .marquee sits outside .container, i.e. full-
+            bleed edge to edge, and a short logo list (~7) at only 2x isn't
+            reliably wider than a large viewport - the loop would visibly
+            run out of content and gap/stutter instead of scrolling
+            continuously. 4x guarantees enough width regardless of screen
+            size or how many logos are configured. */}
         <div className="marquee-row marquee-anim" id="marqueeRow">
-          {[0, 1].map((copy) =>
+          {[0, 1, 2, 3].map((copy) =>
             (logos ?? []).map((l: any, i: number) =>
               l.image?.url ? (
-                <div className="m-logo" key={`${copy}-${i}`} aria-hidden={copy === 1 ? true : undefined}>
+                <div className="m-logo" key={`${copy}-${i}`} aria-hidden={copy === 0 ? undefined : true}>
                   <Image
                     src={l.image.url}
                     alt={copy === 0 ? (l.name ?? l.image.alt ?? '') : ''}
