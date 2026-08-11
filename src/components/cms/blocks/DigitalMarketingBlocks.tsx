@@ -333,7 +333,7 @@ export function DMFinalCTABlock({ block }: { block: any }) {
         {subtitle && <p className="final-cta-sub reveal delay-2">{subtitle}</p>}
         {buttons?.length > 0 && (
           <div className="reveal delay-3">
-            <CMSLinkGroup buttons={buttons} className="" />
+            <CMSLinkGroup buttons={buttons} className="" center />
           </div>
         )}
       </div>

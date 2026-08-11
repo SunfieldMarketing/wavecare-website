@@ -111,7 +111,15 @@ export const Pages: CollectionConfig = {
 };
 
 function buildPreviewURL(slug: string): string {
-  const base = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000';
+  // NEXT_PUBLIC_SERVER_URL was never set in production, so this always fell
+  // through to the localhost default -- the admin's live-preview iframe and
+  // "Preview" button both tried to load http://localhost:3000 from whatever
+  // machine the editor was on, which (correctly) refused to connect. Only
+  // fall back to localhost when actually running a local dev server;
+  // anywhere else, default to the real domain.
+  const base =
+    process.env.NEXT_PUBLIC_SERVER_URL ||
+    (process.env.NODE_ENV === 'production' ? 'https://wavecare.io' : 'http://localhost:3000');
   const path = !slug || slug === 'home' ? '/' : `/${slug}`;
   return `${base}${path}?preview=true`;
 }

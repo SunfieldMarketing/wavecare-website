@@ -50,12 +50,13 @@
   @media (hover:none),(pointer:coarse){ .cdot,.cring{display:none;} }
   body:has(iframe:hover) .cdot, body:has(iframe:hover) .cring, body:has(.cal-wrap:hover) .cdot, body:has(.cal-wrap:hover) .cring { opacity: 0 !important; }
 
-  /* nav — always solid/visible, not just after scrolling past the hero.
-     The scroll-triggered .scrolled toggle (initChrome in GlobalScripts.tsx)
-     isn't wired up on CMS-migrated pages, so relying on it left the nav
-     permanently transparent; the background now lives on the base rule. */
-  .nav{position:fixed; top:0; left:0; right:0; z-index:1000; padding:13px 0; transition:.4s; background:rgba(6,42,36,0.78); backdrop-filter:blur(14px); border-bottom:1px solid rgba(255,255,255,0.06);}
-  .nav.scrolled{padding:13px 0;}
+  /* nav — transparent over the hero, solid once scrolled past it. The
+     .scrolled toggle is now driven by NavScrollChrome.tsx (mounted once in
+     the root layout) rather than the orphaned GlobalScripts.tsx. Padding
+     is slightly reduced from the original 22px/13px in both states — the
+     nav read as too tall, logo included. */
+  .nav{position:fixed; top:0; left:0; right:0; z-index:1000; padding:16px 0; transition:.4s;}
+  .nav.scrolled{background:rgba(6,42,36,0.78); backdrop-filter:blur(14px); padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.06);}
   .nav-inner{display:flex; align-items:center; justify-content:space-between; max-width:var(--container); margin:0 auto; padding:0 clamp(22px,4vw,56px);}
   .logo{display:flex; align-items:center; gap:12px; color:#fff; font-weight:700; font-size:15px; letter-spacing:0.18em;}
   .logo img{height:30px; width:auto;}
@@ -105,6 +106,10 @@
   .hero h1{font-size:clamp(42px,6.5vw,90px); color:#fff; margin:6px 0 26px; text-shadow:0 4px 50px rgba(0,0,0,0.3); line-height: 1.05;}
   .hero-sub{max-width:560px; font-size:clamp(16px,1.35vw,20px); line-height:1.6; color:var(--on-dark); margin-bottom:42px;}
   .hero-actions{display:flex; gap:18px; flex-wrap:wrap;}
+  /* See CMSLinkGroup's `center` prop — makes a single/double button in an
+     otherwise text-align:center section (final CTAs) actually sit centered
+     instead of pinned to the left by the flex row's own default alignment. */
+  .btn-group-center{justify-content:center;}
 
   /* scroll-cue — sits at bottom of hero, well clear of any buttons */
   .scroll-cue{position:absolute; bottom:28px; left:50%; transform:translateX(-50%); z-index:3; display:flex; flex-direction:column; align-items:center; gap:9px; color:var(--muted); font-size:11px; letter-spacing:0.25em; text-transform:uppercase; pointer-events:none;}
@@ -384,7 +389,12 @@
   .f-col h4{font-size:13px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--teal-bright); margin:0 0 24px;}
   .f-col ul{list-style:none; padding:0; margin:0;} .f-col li{margin-bottom:14px;}
   .f-col a{font-size:15px; color:var(--on-dark); transition:color .25s;} .f-col a:hover{color:var(--teal-bright);}
-  .f-col a.f-book{color:var(--teal-bright); font-weight:500; display:block; text-align:center;}
+  .f-col a.f-book{color:var(--teal-bright); font-weight:500;}
+  /* Highlighted footer CTAs (Footer.tsx splits them out of the plain link
+     list) get their own centered row with breathing room above, so the
+     centering reads as a deliberate button rather than a stray line that
+     doesn't line up with the left-aligned links above it. */
+  .f-cta-row{text-align:center; margin-top:18px;}
   .f-bottom{padding-top:30px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:14px; color:var(--muted);}
 
   /* reveal — IntersectionObserver driven, fires both directions, fails visible */

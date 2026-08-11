@@ -67,17 +67,30 @@ export default function CMSLink({
   );
 }
 
-/** Renders a CMS `buttons` array as a button group. */
+/**
+ * Renders a CMS `buttons` array as a button group.
+ *
+ * `center: true` adds a real CSS class (.btn-group-center, defined in
+ * globals.css) that sets justify-content on this flex row. Without it,
+ * the row's own inline display:flex overrides the surrounding section's
+ * text-align:center — a single centered-section button (final CTAs,
+ * mainly) would otherwise always render pinned to the left regardless of
+ * how the section around it is aligned, since flex children don't
+ * inherit text-align the way inline/inline-block content does.
+ */
 export function CMSLinkGroup({
   buttons,
   className,
+  center,
 }: {
   buttons?: Array<{ link?: CMSLinkData }> | null;
   className?: string;
+  center?: boolean;
 }) {
   if (!buttons?.length) return null;
+  const cls = [className || 'btn-group', center ? 'btn-group-center' : ''].filter(Boolean).join(' ');
   return (
-    <div className={className ?? 'btn-group'} style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+    <div className={cls} style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
       {buttons.map((b, i) => (
         <CMSLink key={i} link={b.link} />
       ))}

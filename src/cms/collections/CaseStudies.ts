@@ -11,8 +11,11 @@ export const CaseStudies: CollectionConfig = {
     group: 'Content',
     description: 'Client success stories. Each one gets its own page at /case-studies/<slug>.',
     livePreview: {
+      // Same fix as Pages.ts's buildPreviewURL: without NEXT_PUBLIC_SERVER_URL
+      // set in production, this always fell back to localhost, which the
+      // editor's own browser correctly refuses to connect to.
       url: ({ data }) =>
-        `${process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'}/case-studies/${data?.slug ?? ''}?preview=true`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL || (process.env.NODE_ENV === 'production' ? 'https://wavecare.io' : 'http://localhost:3000')}/case-studies/${data?.slug ?? ''}?preview=true`,
       breakpoints: [
         { name: 'mobile', label: 'Mobile', width: 390, height: 844 },
         { name: 'desktop', label: 'Desktop', width: 1440, height: 900 },

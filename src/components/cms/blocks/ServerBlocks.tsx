@@ -495,7 +495,7 @@ export function FinalCTABlock({ block }: { block: any }) {
         {eyebrow && <span className="label" style={{ justifyContent: 'center' }}>{eyebrow}</span>}
         <h2>{parseHighlight(title)}</h2>
         {subtitle && <p className="sub">{subtitle}</p>}
-        <CMSLinkGroup buttons={buttons} />
+        <CMSLinkGroup buttons={buttons} center />
       </div>
     </section>
   );

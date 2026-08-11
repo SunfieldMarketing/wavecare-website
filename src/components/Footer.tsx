@@ -101,16 +101,33 @@ export default async function Footer() {
             <p>{blurb}</p>
           </div>
 
-          {columns.map((col, i) => (
-            <div className="f-col" key={i}>
-              <h4>{col.heading}</h4>
-              <ul>
-                {col.links.map((l, j) => (
-                  <li key={j}>{renderHref(l)}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {columns.map((col, i) => {
+            const plainLinks = col.links.filter((l) => !l.highlight);
+            const ctaLinks = col.links.filter((l) => l.highlight);
+            return (
+              <div className="f-col" key={i}>
+                <h4>{col.heading}</h4>
+                {plainLinks.length > 0 && (
+                  <ul>
+                    {plainLinks.map((l, j) => (
+                      <li key={j}>{renderHref(l)}</li>
+                    ))}
+                  </ul>
+                )}
+                {/* Highlighted (CTA) links get their own centered row, separate
+                    from the plain left-aligned list above — centering one line
+                    inside the same list as left-aligned ones read as a mistake,
+                    not a deliberate button. */}
+                {ctaLinks.length > 0 && (
+                  <div className="f-cta-row">
+                    {ctaLinks.map((l, j) => (
+                      <span key={j}>{renderHref(l)}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
 
         <div className="f-bottom">
