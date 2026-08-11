@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { getPageBySlug, buildMetadata } from '@/lib/cms';
 import RenderBlocks from '@/components/cms/RenderBlocks';
 import CMSPageEffects from '@/components/cms/CMSPageEffects';
-import ClientEffects from './ClientEffects';
+import ClientEffects from '@/components/cms/blocks/DigitalMarketingClientEffects';
 import './dm.css';
 
 const SLUG = 'digital-marketing';

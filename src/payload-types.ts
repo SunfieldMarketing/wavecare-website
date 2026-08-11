@@ -3543,6 +3543,180 @@ export interface Page {
             blockName?: string | null;
             blockType: 'numberedFeatureGrid';
           }
+        | {
+            eyebrow?: string | null;
+            /**
+             * Line breaks preserved. Wrap a word in *asterisks* for the accent colour, or _underscores_ for the light italic treatment.
+             */
+            title: string;
+            subtitle?: string | null;
+            buttons?:
+              | {
+                  link?: {
+                    label?: string | null;
+                    type?: ('internal' | 'external' | 'anchor') | null;
+                    page?: (number | null) | Page;
+                    /**
+                     * Include https://
+                     */
+                    url?: string | null;
+                    /**
+                     * Section id without the #, e.g. "gallery"
+                     */
+                    anchor?: string | null;
+                    style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+                    newTab?: boolean | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'dmHero';
+          }
+        | {
+            /**
+             * e.g. "what-we-do"
+             */
+            anchorId?: string | null;
+            eyebrow?: string | null;
+            /**
+             * Line breaks preserved.
+             */
+            title?: string | null;
+            lead?: string | null;
+            items?:
+              | {
+                  /**
+                   * e.g. 01. Blank auto-numbers.
+                   */
+                  number?: string | null;
+                  title: string;
+                  /**
+                   * Tick on exactly one row — the one shown expanded on page load.
+                   */
+                  openByDefault?: boolean | null;
+                  coverType?: ('shuffle' | 'typewriter' | 'calendar' | 'proof') | null;
+                  /**
+                   * e.g. "Live Optimization"
+                   */
+                  coverTag?: string | null;
+                  heading: string;
+                  body?: string | null;
+                  pills?:
+                    | {
+                        text: string;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'dmAccordion';
+          }
+        | {
+            tone?: ('dark' | 'deeper' | 'light') | null;
+            wrapSection?: boolean | null;
+            flipped?: boolean | null;
+            textTone?: ('on-dark' | 'on-light') | null;
+            eyebrow?: string | null;
+            title: string;
+            body?: string | null;
+            bullets?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            buttons?:
+              | {
+                  link?: {
+                    label?: string | null;
+                    type?: ('internal' | 'external' | 'anchor') | null;
+                    page?: (number | null) | Page;
+                    /**
+                     * Include https://
+                     */
+                    url?: string | null;
+                    /**
+                     * Section id without the #, e.g. "gallery"
+                     */
+                    anchor?: string | null;
+                    style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+                    newTab?: boolean | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            mockup?: ('adPreview' | 'performanceBars') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'dmSplitMockup';
+          }
+        | {
+            tone?: ('dark' | 'deeper' | 'light') | null;
+            eyebrow?: string | null;
+            title?: string | null;
+            lead?: string | null;
+            cards?:
+              | {
+                  title: string;
+                  body?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'dmFeatureRow';
+          }
+        | {
+            eyebrow?: string | null;
+            title?: string | null;
+            lead?: string | null;
+            steps?:
+              | {
+                  /**
+                   * e.g. 01
+                   */
+                  number: string;
+                  label: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'dmStatsRow';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            subtitle?: string | null;
+            buttons?:
+              | {
+                  link?: {
+                    label?: string | null;
+                    type?: ('internal' | 'external' | 'anchor') | null;
+                    page?: (number | null) | Page;
+                    /**
+                     * Include https://
+                     */
+                    url?: string | null;
+                    /**
+                     * Section id without the #, e.g. "gallery"
+                     */
+                    anchor?: string | null;
+                    style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+                    newTab?: boolean | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'dmFinalCta';
+          }
       )[]
     | null;
   /**
@@ -7064,6 +7238,180 @@ export interface CaseStudy {
             blockName?: string | null;
             blockType: 'numberedFeatureGrid';
           }
+        | {
+            eyebrow?: string | null;
+            /**
+             * Line breaks preserved. Wrap a word in *asterisks* for the accent colour, or _underscores_ for the light italic treatment.
+             */
+            title: string;
+            subtitle?: string | null;
+            buttons?:
+              | {
+                  link?: {
+                    label?: string | null;
+                    type?: ('internal' | 'external' | 'anchor') | null;
+                    page?: (number | null) | Page;
+                    /**
+                     * Include https://
+                     */
+                    url?: string | null;
+                    /**
+                     * Section id without the #, e.g. "gallery"
+                     */
+                    anchor?: string | null;
+                    style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+                    newTab?: boolean | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'dmHero';
+          }
+        | {
+            /**
+             * e.g. "what-we-do"
+             */
+            anchorId?: string | null;
+            eyebrow?: string | null;
+            /**
+             * Line breaks preserved.
+             */
+            title?: string | null;
+            lead?: string | null;
+            items?:
+              | {
+                  /**
+                   * e.g. 01. Blank auto-numbers.
+                   */
+                  number?: string | null;
+                  title: string;
+                  /**
+                   * Tick on exactly one row — the one shown expanded on page load.
+                   */
+                  openByDefault?: boolean | null;
+                  coverType?: ('shuffle' | 'typewriter' | 'calendar' | 'proof') | null;
+                  /**
+                   * e.g. "Live Optimization"
+                   */
+                  coverTag?: string | null;
+                  heading: string;
+                  body?: string | null;
+                  pills?:
+                    | {
+                        text: string;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'dmAccordion';
+          }
+        | {
+            tone?: ('dark' | 'deeper' | 'light') | null;
+            wrapSection?: boolean | null;
+            flipped?: boolean | null;
+            textTone?: ('on-dark' | 'on-light') | null;
+            eyebrow?: string | null;
+            title: string;
+            body?: string | null;
+            bullets?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            buttons?:
+              | {
+                  link?: {
+                    label?: string | null;
+                    type?: ('internal' | 'external' | 'anchor') | null;
+                    page?: (number | null) | Page;
+                    /**
+                     * Include https://
+                     */
+                    url?: string | null;
+                    /**
+                     * Section id without the #, e.g. "gallery"
+                     */
+                    anchor?: string | null;
+                    style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+                    newTab?: boolean | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            mockup?: ('adPreview' | 'performanceBars') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'dmSplitMockup';
+          }
+        | {
+            tone?: ('dark' | 'deeper' | 'light') | null;
+            eyebrow?: string | null;
+            title?: string | null;
+            lead?: string | null;
+            cards?:
+              | {
+                  title: string;
+                  body?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'dmFeatureRow';
+          }
+        | {
+            eyebrow?: string | null;
+            title?: string | null;
+            lead?: string | null;
+            steps?:
+              | {
+                  /**
+                   * e.g. 01
+                   */
+                  number: string;
+                  label: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'dmStatsRow';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            subtitle?: string | null;
+            buttons?:
+              | {
+                  link?: {
+                    label?: string | null;
+                    type?: ('internal' | 'external' | 'anchor') | null;
+                    page?: (number | null) | Page;
+                    /**
+                     * Include https://
+                     */
+                    url?: string | null;
+                    /**
+                     * Section id without the #, e.g. "gallery"
+                     */
+                    anchor?: string | null;
+                    style?: ('primary' | 'light' | 'ghost' | 'text') | null;
+                    newTab?: boolean | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'dmFinalCta';
+          }
       )[]
     | null;
   meta?: {
@@ -10230,6 +10578,153 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        dmHero?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              subtitle?: T;
+              buttons?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          label?: T;
+                          type?: T;
+                          page?: T;
+                          url?: T;
+                          anchor?: T;
+                          style?: T;
+                          newTab?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        dmAccordion?:
+          | T
+          | {
+              anchorId?: T;
+              eyebrow?: T;
+              title?: T;
+              lead?: T;
+              items?:
+                | T
+                | {
+                    number?: T;
+                    title?: T;
+                    openByDefault?: T;
+                    coverType?: T;
+                    coverTag?: T;
+                    heading?: T;
+                    body?: T;
+                    pills?:
+                      | T
+                      | {
+                          text?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        dmSplitMockup?:
+          | T
+          | {
+              tone?: T;
+              wrapSection?: T;
+              flipped?: T;
+              textTone?: T;
+              eyebrow?: T;
+              title?: T;
+              body?: T;
+              bullets?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              buttons?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          label?: T;
+                          type?: T;
+                          page?: T;
+                          url?: T;
+                          anchor?: T;
+                          style?: T;
+                          newTab?: T;
+                        };
+                    id?: T;
+                  };
+              mockup?: T;
+              id?: T;
+              blockName?: T;
+            };
+        dmFeatureRow?:
+          | T
+          | {
+              tone?: T;
+              eyebrow?: T;
+              title?: T;
+              lead?: T;
+              cards?:
+                | T
+                | {
+                    title?: T;
+                    body?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        dmStatsRow?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              lead?: T;
+              steps?:
+                | T
+                | {
+                    number?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        dmFinalCta?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              subtitle?: T;
+              buttons?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          label?: T;
+                          type?: T;
+                          page?: T;
+                          url?: T;
+                          anchor?: T;
+                          style?: T;
+                          newTab?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
       };
   slug?: T;
   hideFromSitemap?: T;
@@ -12949,6 +13444,153 @@ export interface CaseStudiesSelect<T extends boolean = true> {
                           opacity?: T;
                           position?: T;
                         };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        dmHero?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              subtitle?: T;
+              buttons?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          label?: T;
+                          type?: T;
+                          page?: T;
+                          url?: T;
+                          anchor?: T;
+                          style?: T;
+                          newTab?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        dmAccordion?:
+          | T
+          | {
+              anchorId?: T;
+              eyebrow?: T;
+              title?: T;
+              lead?: T;
+              items?:
+                | T
+                | {
+                    number?: T;
+                    title?: T;
+                    openByDefault?: T;
+                    coverType?: T;
+                    coverTag?: T;
+                    heading?: T;
+                    body?: T;
+                    pills?:
+                      | T
+                      | {
+                          text?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        dmSplitMockup?:
+          | T
+          | {
+              tone?: T;
+              wrapSection?: T;
+              flipped?: T;
+              textTone?: T;
+              eyebrow?: T;
+              title?: T;
+              body?: T;
+              bullets?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              buttons?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          label?: T;
+                          type?: T;
+                          page?: T;
+                          url?: T;
+                          anchor?: T;
+                          style?: T;
+                          newTab?: T;
+                        };
+                    id?: T;
+                  };
+              mockup?: T;
+              id?: T;
+              blockName?: T;
+            };
+        dmFeatureRow?:
+          | T
+          | {
+              tone?: T;
+              eyebrow?: T;
+              title?: T;
+              lead?: T;
+              cards?:
+                | T
+                | {
+                    title?: T;
+                    body?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        dmStatsRow?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              lead?: T;
+              steps?:
+                | T
+                | {
+                    number?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        dmFinalCta?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              subtitle?: T;
+              buttons?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          label?: T;
+                          type?: T;
+                          page?: T;
+                          url?: T;
+                          anchor?: T;
+                          style?: T;
+                          newTab?: T;
+                        };
+                    id?: T;
                   };
               id?: T;
               blockName?: T;

@@ -44,7 +44,7 @@ export function DMHeroBlock({ block }: { block: any }) {
 
 function ShuffleCover() {
   return (
-    <div className="shuffle-board">
+    <div className="shuffle-board" id="shuffleBoard">
       <div className="mini-win">
         <div className="mw-dots"><span></span><span></span><span></span></div>
         <div className="mw-line"></div>

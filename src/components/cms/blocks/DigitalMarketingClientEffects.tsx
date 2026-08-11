@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import Script from 'next/script';
 
-export default function ClientEffects() {
+export default function DigitalMarketingClientEffects() {
   useEffect(() => {
     /* Services accordion, one row open at a time */
     function initAccordion() {
@@ -59,7 +59,7 @@ export default function ClientEffects() {
         place();
         setTimeout(() => { wins[a].classList.remove('lift'); }, 950);
       }, 2600);
-      
+
       return () => clearInterval(interval);
     }
 
@@ -132,7 +132,7 @@ export default function ClientEffects() {
     const cleanupShuffle = initShuffle();
     const cleanupTypewriter = initTypewriter();
     const cleanupCalendar = initCalendar();
-    
+
     return () => {
       if (cleanupShuffle) cleanupShuffle();
       if (cleanupTypewriter) cleanupTypewriter();
@@ -162,7 +162,7 @@ export default function ClientEffects() {
         var clock=new THREE.Clock();
         (function loop(){requestAnimationFrame(loop);if(!vis)return;mx+=(tmx-mx)*0.06;my+=(tmy-my)*0.06;u.uMouse.value.set(mx,my);u.uTime.value=clock.getElapsedTime()*(rm?0:1);renderer.render(scene,cam);})();
       }
-      
+
       // Wait for Three.js to be available on window, since it loads via the Script tag in layout.tsx
       if (window.THREE) {
          initFinalWave();
