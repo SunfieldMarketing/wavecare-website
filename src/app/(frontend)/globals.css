@@ -50,9 +50,12 @@
   @media (hover:none),(pointer:coarse){ .cdot,.cring{display:none;} }
   body:has(iframe:hover) .cdot, body:has(iframe:hover) .cring, body:has(.cal-wrap:hover) .cdot, body:has(.cal-wrap:hover) .cring { opacity: 0 !important; }
 
-  /* nav */
-  .nav{position:fixed; top:0; left:0; right:0; z-index:1000; padding:22px 0; transition:.4s;}
-  .nav.scrolled{background:rgba(6,42,36,0.78); backdrop-filter:blur(14px); padding:13px 0; border-bottom:1px solid rgba(255,255,255,0.06);}
+  /* nav — always solid/visible, not just after scrolling past the hero.
+     The scroll-triggered .scrolled toggle (initChrome in GlobalScripts.tsx)
+     isn't wired up on CMS-migrated pages, so relying on it left the nav
+     permanently transparent; the background now lives on the base rule. */
+  .nav{position:fixed; top:0; left:0; right:0; z-index:1000; padding:13px 0; transition:.4s; background:rgba(6,42,36,0.78); backdrop-filter:blur(14px); border-bottom:1px solid rgba(255,255,255,0.06);}
+  .nav.scrolled{padding:13px 0;}
   .nav-inner{display:flex; align-items:center; justify-content:space-between; max-width:var(--container); margin:0 auto; padding:0 clamp(22px,4vw,56px);}
   .logo{display:flex; align-items:center; gap:12px; color:#fff; font-weight:700; font-size:15px; letter-spacing:0.18em;}
   .logo img{height:30px; width:auto;}
@@ -375,7 +378,7 @@
   .f-col h4{font-size:13px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--teal-bright); margin:0 0 24px;}
   .f-col ul{list-style:none; padding:0; margin:0;} .f-col li{margin-bottom:14px;}
   .f-col a{font-size:15px; color:var(--on-dark); transition:color .25s;} .f-col a:hover{color:var(--teal-bright);}
-  .f-col a.f-book{color:var(--teal-bright); font-weight:500;}
+  .f-col a.f-book{color:var(--teal-bright); font-weight:500; display:block; text-align:center;}
   .f-bottom{padding-top:30px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:14px; color:var(--muted);}
 
   /* reveal — IntersectionObserver driven, fires both directions, fails visible */
