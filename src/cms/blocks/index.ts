@@ -49,6 +49,15 @@ import {
 } from './about';
 import { webDesignBlocks, WebDesignHero, RevealBeforeAfter, CapabilitiesGrid, SimpleIconGrid } from './webdesign';
 import { homeBlocks, ShowreelBlock as ShowreelBlockDef, ServiceCarousel, NumberedFeatureGrid } from './home';
+import {
+  digitalMarketingBlocks,
+  DMHero,
+  DMAccordion,
+  DMSplitMockup,
+  DMFeatureRow,
+  DMStatsRow,
+  DMFinalCTA,
+} from './digitalMarketing';
 
 export {
   Hero,
@@ -114,6 +123,12 @@ export {
   ShowreelBlockDef as ShowreelBlock,
   ServiceCarousel,
   NumberedFeatureGrid,
+  DMHero,
+  DMAccordion,
+  DMSplitMockup,
+  DMFeatureRow,
+  DMStatsRow,
+  DMFinalCTA,
 };
 
 /**
@@ -153,4 +168,5 @@ export const allBlocks = [
   ...aboutBlocks,
   ...webDesignBlocks,
   ...homeBlocks,
+  ...digitalMarketingBlocks,
 ];

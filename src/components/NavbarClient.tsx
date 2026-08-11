@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
-import posthog from 'posthog-js';
 
 export type NavItem = {
   label: string;
@@ -47,7 +46,10 @@ export default function NavbarClient({ nav }: { nav: NavData }) {
           onClick={() => {
             const next = !mobileMenuOpen;
             setMobileMenuOpen(next);
-            if (next) posthog.capture('mobile_menu_opened');
+            // window.posthog (not the posthog-js import) — that's the instance
+            // the root layout's snippet actually initializes with a real
+            // token; see ContactForm.tsx for the same pattern.
+            if (next) (window as any).posthog?.capture('mobile_menu_opened');
           }}
         >
           <span />

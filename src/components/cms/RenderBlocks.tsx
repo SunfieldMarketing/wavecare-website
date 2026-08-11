@@ -69,6 +69,14 @@ import {
   SimpleIconGridBlock,
 } from './blocks/WebDesignBlocks';
 import { ShowreelBlock, ServiceCarouselBlock, NumberedFeatureGridBlock } from './blocks/HomeBlocks';
+import {
+  DMHeroBlock,
+  DMAccordionBlock,
+  DMSplitMockupBlock,
+  DMFeatureRowBlock,
+  DMStatsRowBlock,
+  DMFinalCTABlock,
+} from './blocks/DigitalMarketingBlocks';
 import { containerClassName } from './appearance';
 import CMSLink from './CMSLink';
 import './cms-blocks.css';
@@ -198,6 +206,20 @@ export default function RenderBlocks({ blocks }: { blocks?: any[] | null }) {
             return <ServiceCarouselBlock key={key} block={block} />;
           case 'numberedFeatureGrid':
             return <NumberedFeatureGridBlock key={key} block={block} />;
+
+          // ── /digital-marketing (dm.css) ──
+          case 'dmHero':
+            return <DMHeroBlock key={key} block={block} />;
+          case 'dmAccordion':
+            return <DMAccordionBlock key={key} block={block} />;
+          case 'dmSplitMockup':
+            return <DMSplitMockupBlock key={key} block={block} />;
+          case 'dmFeatureRow':
+            return <DMFeatureRowBlock key={key} block={block} />;
+          case 'dmStatsRow':
+            return <DMStatsRowBlock key={key} block={block} />;
+          case 'dmFinalCta':
+            return <DMFinalCTABlock key={key} block={block} />;
 
           case 'richText':
             return (

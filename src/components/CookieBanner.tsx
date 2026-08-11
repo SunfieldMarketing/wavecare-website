@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import posthog from 'posthog-js';
 
 export default function CookieBanner() {
   const [showBanner, setShowBanner] = useState(false);
@@ -18,13 +17,13 @@ export default function CookieBanner() {
   const acceptCookies = () => {
     localStorage.setItem('cookie-consent', 'accepted');
     setShowBanner(false);
-    posthog.capture('cookie_consent_accepted');
+    (window as any).posthog?.capture('cookie_consent_accepted');
   };
 
   const declineCookies = () => {
     localStorage.setItem('cookie-consent', 'declined');
     setShowBanner(false);
-    posthog.capture('cookie_consent_declined');
+    (window as any).posthog?.capture('cookie_consent_declined');
   };
 
   if (!showBanner) return null;
