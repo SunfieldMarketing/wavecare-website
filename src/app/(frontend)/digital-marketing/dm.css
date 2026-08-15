@@ -294,6 +294,12 @@
   color: var(--white);
 }
 .dm-page .acc-num {
+  /* globals.css has its own unrelated ".acc-num" (the /about page's
+     accordion) with position:absolute - since that rule doesn't touch
+     any property this one doesn't also set, it wins on `position` by
+     default and was yanking these "01/02/03/04" labels out of the
+     accordion header's flex layout entirely. Reset explicitly. */
+  position: static;
   font-family: var(--font-mono);
   font-size: 13px;
   letter-spacing: 0.12em;
@@ -356,14 +362,6 @@
   padding: 8px 4px 42px;
   width: 100%;
 }
-/* Grid items default to min-width:auto, which lets a text-heavy column's
-   intrinsic content size fight the track's actual width instead of
-   wrapping inside it - the "content is real but doesn't render" pattern
-   this section exhibited. minmax(0, 1fr) on the track (above) plus this
-   is the standard, safe fix. */
-.dm-page .acc-detail {
-  min-width: 0;
-}
 @media (max-width: 860px) {
   .dm-page .acc-inner {
     grid-template-columns: 1fr;
@@ -405,6 +403,20 @@
   border-top: 4px solid transparent;
   border-bottom: 4px solid transparent;
   border-left: 6px solid var(--teal-bright);
+}
+.dm-page .acc-detail {
+  /* The actual bug: globals.css has its own unrelated ".acc-detail" (the
+     /about page's accordion) with opacity:0 by default, only reset to 1
+     by a *different* trigger class (.acc-panel.active) that this page's
+     markup (.acc-item/.acc-open) never has - so it stayed opacity:0
+     permanently here, alongside display:flex/margin-top from the same
+     rule fighting this section's intended block layout. Reset explicitly;
+     min-width:0 stays for the earlier (real, but secondary) grid-overflow
+     defensive fix. */
+  opacity: 1;
+  display: block;
+  margin-top: 0;
+  min-width: 0;
 }
 .dm-page .acc-detail h3 {
   font-family: var(--font-display);
