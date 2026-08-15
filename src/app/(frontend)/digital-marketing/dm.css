@@ -350,10 +350,19 @@
 }
 .dm-page .acc-inner {
   display: grid;
-  grid-template-columns: minmax(250px, 370px) 1fr;
+  grid-template-columns: minmax(250px, 370px) minmax(0, 1fr);
   gap: clamp(24px, 4vw, 56px);
   align-items: start;
   padding: 8px 4px 42px;
+  width: 100%;
+}
+/* Grid items default to min-width:auto, which lets a text-heavy column's
+   intrinsic content size fight the track's actual width instead of
+   wrapping inside it - the "content is real but doesn't render" pattern
+   this section exhibited. minmax(0, 1fr) on the track (above) plus this
+   is the standard, safe fix. */
+.dm-page .acc-detail {
+  min-width: 0;
 }
 @media (max-width: 860px) {
   .dm-page .acc-inner {

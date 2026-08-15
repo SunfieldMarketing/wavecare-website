@@ -97,7 +97,7 @@ export async function seedCaseStudiesIndex(payload: Payload): Promise<void> {
       subtitle:
         "Tell us about your facility. We'll show you exactly what a Wavecare rebuild could look like, and what it could do for your inquiries.",
       waveAnimation: true,
-      buttons: [{ link: { label: 'Book a Demo', type: 'external', url: '/contact', style: 'light' } }],
+      buttons: [{ link: { label: 'Book a Demo', type: 'external', url: '/contact#calendar', style: 'light' } }],
       appearance: { background: 'deep', width: 'default' },
     },
   ];

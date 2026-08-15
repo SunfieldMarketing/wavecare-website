@@ -57,7 +57,7 @@ export async function seedHome(payload: Payload): Promise<void> {
       subtitle:
         'Websites, photography, and video tours for senior living, assisted living, memory care, skilled nursing, independent living, hospice, and home health communities across the U.S. We work with operators of every size and plug in alongside your existing marketing team.',
       buttons: [
-        { link: link('Book a Demo', '/contact') },
+        { link: link('Book a Demo', '/contact#calendar') },
         { link: link('See What We Do', '#services', 'ghost') },
       ],
       minHeight: 'full',
@@ -72,7 +72,7 @@ export async function seedHome(payload: Payload): Promise<void> {
         { text: 'A youthful, yet experienced healthcare marketing agency with bespoke solutions and tailored strategies. Built around the sensitivity, compliance, and speed that senior care actually requires.' },
         { text: 'See the work for yourself.' },
       ],
-      button: { link: link('Book a Demo', '/contact') },
+      button: { link: link('Book a Demo', '/contact#calendar') },
       vimeoId: '1187767005',
       appearance: { background: 'ink', paddingTop: 'default', paddingBottom: 'default', width: 'default' },
     },
@@ -217,7 +217,7 @@ export async function seedHome(payload: Payload): Promise<void> {
       subtitle:
         "Tell us about your facility and we'll show you exactly what we'd build, capture, or design to start bringing in more qualified inquiries.",
       waveAnimation: true,
-      buttons: [{ link: link('Book a Demo', '/contact', 'light') }],
+      buttons: [{ link: link('Book a Demo', '/contact#calendar', 'light') }],
       appearance: { background: 'deep', width: 'default' },
     },
   ];

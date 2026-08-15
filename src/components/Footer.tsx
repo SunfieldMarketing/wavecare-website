@@ -31,7 +31,7 @@ const FALLBACK = {
       links: [
         { label: 'info@wavecare.io', href: 'mailto:info@wavecare.io' },
         { label: '+1 305-902-6682', href: 'tel:+13059026682' },
-        { label: 'Book a Demo →', href: '/contact', highlight: true },
+        { label: 'Book a Demo →', href: '/contact#calendar', highlight: true },
       ],
     },
   ],

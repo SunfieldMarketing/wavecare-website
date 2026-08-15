@@ -25,7 +25,7 @@ export async function seedAbout(payload: Payload): Promise<void> {
       subtitle:
         "For over a decade we've helped hundreds of nursing homes and healthcare operators get seen the way they deserve to be seen. This is why we built Wavecare.",
       buttons: [
-        { link: link('Book a Demo', '/contact') },
+        { link: link('Book a Demo', '/contact#calendar') },
         { link: link('Our Story', '#story', 'ghost') },
       ],
       minHeight: 'full',
@@ -176,7 +176,7 @@ export async function seedAbout(payload: Payload): Promise<void> {
       subtitle:
         "Tell us about your facility and we'll show you exactly what we'd build, capture, or design to start bringing the right families through your doors.",
       waveAnimation: true,
-      buttons: [{ link: link('Book a Demo', '/contact', 'light') }],
+      buttons: [{ link: link('Book a Demo', '/contact#calendar', 'light') }],
       appearance: { background: 'deep', width: 'default' },
     },
   ];

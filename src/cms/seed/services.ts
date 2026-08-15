@@ -41,7 +41,7 @@ export async function seedServices(payload: Payload): Promise<void> {
       subtitle:
         'From branding and photography to video and conversion-first web design, we help senior care facilities and healthcare practices look as professional online as they are in person.',
       minHeight: 'full',
-      buttons: [btn('Book a Demo', '/contact', 'light'), btn('See Our Services', '#services', 'ghost')],
+      buttons: [btn('Book a Demo', '/contact#calendar', 'light'), btn('See Our Services', '#services', 'ghost')],
       appearance: {
         background: 'video',
         backgroundVideo: { source: 'vimeo', vimeoId: '1187767005' },
@@ -234,7 +234,7 @@ export async function seedServices(payload: Payload): Promise<void> {
       title: "Let's build a brand that books tours.",
       subtitle:
         "Schedule a free discovery call to see how we can transform your facility's marketing.",
-      buttons: [btn('Book a Demo', '/contact', 'light')],
+      buttons: [btn('Book a Demo', '/contact#calendar', 'light')],
     },
   ];
 

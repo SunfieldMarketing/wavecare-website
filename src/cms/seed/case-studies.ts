@@ -90,7 +90,7 @@ const CLOSING_CTA = {
   title: "Let's build your success story.",
   subtitle: "Book a free discovery call and we'll map out exactly what we'd build for your facility.",
   waveAnimation: true,
-  buttons: [{ link: { label: 'Book a Demo', type: 'external', url: '/contact', style: 'primary' } }],
+  buttons: [{ link: { label: 'Book a Demo', type: 'external', url: '/contact#calendar', style: 'primary' } }],
 };
 
 export async function seedCaseStudies(payload: Payload): Promise<void> {

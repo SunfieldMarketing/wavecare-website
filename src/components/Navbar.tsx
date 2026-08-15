@@ -29,7 +29,7 @@ const FALLBACK: NavData = {
     { label: 'Testimonials', href: '/testimonials' },
     { label: 'Contact', href: '/contact' },
   ],
-  cta: { label: 'Book a Demo', href: '/contact' },
+  cta: { label: 'Book a Demo', href: '/contact#calendar' },
 };
 
 export default async function Navbar() {

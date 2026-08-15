@@ -38,7 +38,7 @@ export async function seedVideoServices(payload: Payload): Promise<void> {
         { text: 'Scripting & Creative' },
         { text: 'Multi-Format Delivery' },
       ],
-      buttons: [{ link: link('Book a Demo', '/contact') }],
+      buttons: [{ link: link('Book a Demo', '/contact#calendar') }],
       images: wallImgs.filter(Boolean).map((id) => ({ image: id })),
     },
     {
@@ -181,7 +181,7 @@ export async function seedVideoServices(payload: Payload): Promise<void> {
       subtitle:
         'From planning and scripting to filming and final delivery, we manage the entire production process to create polished videos that build trust and support admissions growth.',
       waveAnimation: true,
-      buttons: [{ link: link('Book a Demo', '/contact', 'light') }],
+      buttons: [{ link: link('Book a Demo', '/contact#calendar', 'light') }],
       appearance: { background: 'deep', width: 'default' },
     },
   ];

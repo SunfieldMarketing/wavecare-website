@@ -84,7 +84,7 @@ export async function seedNavigation(payload: any) {
       ],
       cta: {
         enabled: true,
-        link: { label: 'Book a Demo', type: 'external', url: '/contact', style: 'primary' },
+        link: { label: 'Book a Demo', type: 'external', url: '/contact#calendar', style: 'primary' },
       },
     },
     overrideAccess: true,
@@ -117,7 +117,7 @@ export async function seedNavigation(payload: any) {
           links: [
             ext('info@wavecare.io', 'mailto:info@wavecare.io'),
             ext('+1 305-902-6682', 'tel:+13059026682'),
-            ext('Book a Demo →', '/contact', { highlight: true }),
+            ext('Book a Demo →', '/contact#calendar', { highlight: true }),
           ],
         },
       ],
