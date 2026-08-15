@@ -143,7 +143,12 @@ export function StepsBlockRenderer({ block }: { block: any }) {
 /** GoHighLevel booking widget. */
 export function CalendarEmbedBlock({ block }: { block: any }) {
   const { heading, widgetId, minHeight, appearance } = block;
-  const h = minHeight || 600;
+  // Capped to a share of the viewport height (not just a flat pixel value)
+  // so the whole widget - calendar grid plus time slots - fits within a
+  // normal browser window instead of running past the fold on shorter
+  // screens (laptops, anything landscape). Still caps at the configured/
+  // default height on tall screens rather than growing indefinitely.
+  const h = `min(${minHeight || 600}px, 68vh)`;
 
   return (
     <Section appearance={appearance}>
@@ -167,12 +172,12 @@ export function CalendarEmbedBlock({ block }: { block: any }) {
 
         <div
           className="cal-wrap reveal"
-          style={{ minHeight: `${h}px`, width: '100%', position: 'relative' }}
+          style={{ height: h, maxWidth: '900px', margin: '0 auto', width: '100%', position: 'relative' }}
         >
           <iframe
             src={`https://api.leadconnectorhq.com/widget/booking/${widgetId}`}
-            style={{ width: '100%', border: 'none', overflow: 'hidden', minHeight: `${h}px` }}
-            scrolling="no"
+            style={{ width: '100%', height: '100%', border: 'none', overflow: 'hidden' }}
+            scrolling="yes"
             id={widgetId}
             title="Book a Demo"
           />
