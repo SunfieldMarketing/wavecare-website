@@ -143,12 +143,15 @@ export function StepsBlockRenderer({ block }: { block: any }) {
 /** GoHighLevel booking widget. */
 export function CalendarEmbedBlock({ block }: { block: any }) {
   const { heading, widgetId, minHeight, appearance } = block;
-  // Capped to a share of the viewport height (not just a flat pixel value)
-  // so the whole widget - calendar grid plus time slots - fits within a
-  // normal browser window instead of running past the fold on shorter
-  // screens (laptops, anything landscape). Still caps at the configured/
-  // default height on tall screens rather than growing indefinitely.
-  const h = `min(${minHeight || 600}px, 68vh)`;
+  // Visually zoomed out via CSS transform:scale rather than capped +
+  // internally-scrolled: the widget renders at its natural, full height
+  // (nothing clipped, every time slot still just a normal click - no
+  // scrolling inside the iframe), just scaled down a bit so the whole
+  // thing reads as more compact within the section. The wrapper's height
+  // is the *scaled* size so there's no leftover blank space below it.
+  const naturalH = minHeight || 600;
+  const scale = 0.85;
+  const scaledH = Math.round(naturalH * scale);
 
   return (
     <Section appearance={appearance}>
@@ -172,12 +175,25 @@ export function CalendarEmbedBlock({ block }: { block: any }) {
 
         <div
           className="cal-wrap reveal"
-          style={{ height: h, maxWidth: '900px', margin: '0 auto', width: '100%', position: 'relative' }}
+          style={{
+            height: `${scaledH}px`,
+            maxWidth: '900px',
+            margin: '0 auto',
+            width: '100%',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
         >
           <iframe
             src={`https://api.leadconnectorhq.com/widget/booking/${widgetId}`}
-            style={{ width: '100%', height: '100%', border: 'none', overflow: 'hidden' }}
-            scrolling="yes"
+            style={{
+              width: `${100 / scale}%`,
+              height: `${naturalH}px`,
+              border: 'none',
+              transform: `scale(${scale})`,
+              transformOrigin: 'top left',
+            }}
+            scrolling="no"
             id={widgetId}
             title="Book a Demo"
           />
