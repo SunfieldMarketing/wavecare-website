@@ -71,14 +71,36 @@
 
 /* booking calendar
    min-height/fixed width intentionally dropped: CalendarEmbedBlock
-   (ContactBlocks.tsx) sizes .cal-wrap and its iframe entirely via inline
-   styles now (the visual zoom-out fix). min-height always wins over an
-   inline height when they conflict, regardless of specificity - this
-   stale rule (from before the calendar embed moved to that shared
-   component) was silently forcing the wrapper 170px+ taller than
-   intended, on this page specifically. */
-.cal-wrap{position:relative; z-index:2; background:rgba(255,255,255,0.03); border:1px solid var(--soft); border-radius:20px;}
-.cal-wrap iframe{border:0; display:block;}
+   (ContactBlocks.tsx) sizes .cal-wrap and its iframe here, off the
+   --cal-natural-h/--cal-scale custom properties it sets inline, instead
+   of a fixed min-height. min-height always wins over a conflicting
+   height when they conflict, regardless of specificity - a stale rule
+   here (from before the calendar embed moved to that shared component)
+   was silently forcing the wrapper 170px+ taller than intended. */
+.cal-wrap{
+  position:relative; z-index:2; background:rgba(255,255,255,0.03); border:1px solid var(--soft); border-radius:20px;
+  max-width:900px; margin:0 auto; width:100%; overflow:hidden;
+  height:calc(var(--cal-natural-h) * var(--cal-scale));
+}
+.cal-wrap .cal-iframe{
+  border:0; display:block;
+  width:calc(100% / var(--cal-scale)); height:var(--cal-natural-h);
+  transform:scale(var(--cal-scale)); transform-origin:top left;
+}
+@media (max-width:640px){
+  /* Desktop's zoom-out (scale + a wrapper clipped to the *scaled* height)
+     works there because there's enough width/height to spare for a
+     selected date's time-slot list to still fit inside the fixed box.
+     On a phone there's no room to spare: GoHighLevel renders that
+     time-slot list *below* the month grid once a date is tapped, and a
+     fixed-height overflow:hidden wrapper just silently crops it off -
+     every date looks clickable but the actual time picker underneath is
+     unreachable. Dropping the scale and the height clamp here lets the
+     widget lay out at its natural size and the page scroll to it like
+     any other tall mobile content, so nothing is ever cut off. */
+  .cal-wrap{ height:auto; overflow:visible; border-radius:16px; }
+  .cal-wrap .cal-iframe{ width:100%; transform:none; height:calc(var(--cal-natural-h) + 260px); }
+}
 .cal-fallback{padding:60px 30px; text-align:center;}
 .cal-fallback p{color:var(--on-dark); margin-bottom:24px;}
 

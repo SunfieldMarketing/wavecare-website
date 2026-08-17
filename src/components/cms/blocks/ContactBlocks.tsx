@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import Image from 'next/image';
 import Script from 'next/script';
 import { Section, SectionHead } from './ServerBlocks';
@@ -143,15 +144,25 @@ export function StepsBlockRenderer({ block }: { block: any }) {
 /** GoHighLevel booking widget. */
 export function CalendarEmbedBlock({ block }: { block: any }) {
   const { heading, widgetId, minHeight, appearance } = block;
-  // Visually zoomed out via CSS transform:scale rather than capped +
-  // internally-scrolled: the widget renders at its natural, full height
-  // (nothing clipped, every time slot still just a normal click - no
-  // scrolling inside the iframe), just scaled down a bit so the whole
-  // thing reads as more compact within the section. The wrapper's height
-  // is the *scaled* size so there's no leftover blank space below it.
+  // Desktop: visually zoomed out via CSS transform:scale so the widget
+  // reads as more compact within the section, height clipped to the
+  // *scaled* size (no leftover blank space below it) - this is safe on
+  // desktop because the wrapper is wide/tall enough that the calendar
+  // grid + a selected date's time-slot list both still fit inside it.
+  //
+  // Mobile: the scale/clip is dropped entirely (see .cal-wrap's mobile
+  // override in contact.css). On a narrow viewport there isn't spare
+  // vertical room to absorb the widget growing taller once a date is
+  // tapped and GoHighLevel renders the time-slot list *below* the month
+  // grid - a fixed-height, overflow:hidden wrapper silently cuts that
+  // list off, making it impossible to actually pick a time. Letting the
+  // widget flow at natural size/height on mobile means the whole page
+  // simply scrolls to reach it, so every date and every time slot stays
+  // reachable. Values are passed as CSS custom properties (not inline
+  // height/transform) specifically so the mobile media query can win
+  // over them without needing `!important` against an inline style.
   const naturalH = minHeight || 600;
   const scale = 0.85;
-  const scaledH = Math.round(naturalH * scale);
 
   return (
     <Section appearance={appearance}>
@@ -175,24 +186,16 @@ export function CalendarEmbedBlock({ block }: { block: any }) {
 
         <div
           className="cal-wrap reveal"
-          style={{
-            height: `${scaledH}px`,
-            maxWidth: '900px',
-            margin: '0 auto',
-            width: '100%',
-            position: 'relative',
-            overflow: 'hidden',
-          }}
+          style={
+            {
+              '--cal-natural-h': `${naturalH}px`,
+              '--cal-scale': scale,
+            } as CSSProperties
+          }
         >
           <iframe
+            className="cal-iframe"
             src={`https://api.leadconnectorhq.com/widget/booking/${widgetId}`}
-            style={{
-              width: `${100 / scale}%`,
-              height: `${naturalH}px`,
-              border: 'none',
-              transform: `scale(${scale})`,
-              transformOrigin: 'top left',
-            }}
             scrolling="no"
             id={widgetId}
             title="Book a Demo"
