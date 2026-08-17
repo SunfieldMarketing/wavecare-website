@@ -23,7 +23,11 @@ export type NavData = {
  */
 export default function NavbarClient({ nav }: { nav: NavData }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const close = () => setMobileMenuOpen(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const close = () => {
+    setMobileMenuOpen(false);
+    setOpenDropdown(null);
+  };
 
   return (
     <nav className="nav" id="nav">
@@ -60,10 +64,28 @@ export default function NavbarClient({ nav }: { nav: NavData }) {
         <div className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
           {nav.items.map((item) =>
             item.children?.length ? (
-              <div className="nav-dropdown" key={item.label}>
-                <Link href={item.href} data-cursor onClick={close}>
-                  {item.label} ▾
-                </Link>
+              <div className={`nav-dropdown ${openDropdown === item.label ? 'open' : ''}`} key={item.label}>
+                <span className="nav-dropdown-row">
+                  <Link href={item.href} data-cursor onClick={close}>
+                    {item.label}
+                  </Link>
+                  {/* Desktop reveals the submenu on :hover (CSS), which doesn't
+                      exist on touch - without this, tapping the label above
+                      just navigated straight to /services and every child
+                      link (including the only nav path to Ad Management)
+                      was completely unreachable on mobile. This toggles a
+                      state-driven .open class that works via tap/click on
+                      any device, alongside the existing hover behavior. */}
+                  <button
+                    type="button"
+                    className="nav-dropdown-caret"
+                    aria-label={`${item.label} submenu`}
+                    aria-expanded={openDropdown === item.label}
+                    onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)}
+                  >
+                    ▾
+                  </button>
+                </span>
                 <div className="dropdown-content">
                   {item.children.map((child) => (
                     <Link key={child.label} href={child.href} data-cursor onClick={close}>

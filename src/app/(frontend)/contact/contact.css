@@ -69,9 +69,16 @@
 .step .sn{font-family:var(--font-display); font-size:15px; color:var(--teal-bright); margin-bottom:18px;}
 .step h3{color:#fff; font-size:20px; margin-bottom:12px;} .step p{color:var(--on-dark); font-size:14.5px; line-height:1.65; margin: 0;}
 
-/* booking calendar */
-.cal-wrap{position:relative; z-index:2; background:rgba(255,255,255,0.03); border:1px solid var(--soft); border-radius:20px; overflow:hidden; min-height:680px;}
-.cal-wrap iframe{width:100%; min-height:680px; border:0; display:block;}
+/* booking calendar
+   min-height/fixed width intentionally dropped: CalendarEmbedBlock
+   (ContactBlocks.tsx) sizes .cal-wrap and its iframe entirely via inline
+   styles now (the visual zoom-out fix). min-height always wins over an
+   inline height when they conflict, regardless of specificity - this
+   stale rule (from before the calendar embed moved to that shared
+   component) was silently forcing the wrapper 170px+ taller than
+   intended, on this page specifically. */
+.cal-wrap{position:relative; z-index:2; background:rgba(255,255,255,0.03); border:1px solid var(--soft); border-radius:20px;}
+.cal-wrap iframe{border:0; display:block;}
 .cal-fallback{padding:60px 30px; text-align:center;}
 .cal-fallback p{color:var(--on-dark); margin-bottom:24px;}
 

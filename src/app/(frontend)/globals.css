@@ -412,13 +412,20 @@
   @media (prefers-reduced-motion:reduce){ [data-reveal],.stagger>*{opacity:1!important; transform:none!important;} .hero-bg img{transform:none;} }
   /* Dropdown */
   .nav-dropdown { position: relative; display: inline-block; }
-  .dropdown-content { 
+  .nav-dropdown-row { display: inline-flex; align-items: center; gap: 4px; }
+  .nav-dropdown-caret {
+    background: none; border: none; padding: 4px; margin: 0; cursor: pointer;
+    color: inherit; font-size: 11px; line-height: 1; transition: transform 0.25s ease;
+  }
+  .nav-dropdown.open .nav-dropdown-caret { transform: rotate(180deg); }
+  .dropdown-content {
     visibility: hidden; opacity: 0; position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
-    background: rgba(6,42,36,0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); 
+    background: rgba(6,42,36,0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);
     border-radius: 8px; padding: 12px 0; min-width: 180px; transition: all 0.3s ease; z-index: 1001;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3); display: flex; flex-direction: column; text-align: center;
   }
-  .nav-dropdown:hover .dropdown-content { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); }
+  .nav-dropdown:hover .dropdown-content,
+  .nav-dropdown.open .dropdown-content { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); }
   .dropdown-content a { padding: 10px 20px !important; color: rgba(255,255,255,0.82) !important; font-size: 13.5px !important; transition: background 0.2s, color 0.2s; white-space: nowrap; border: none !important; }
   .dropdown-content a:hover { background: rgba(95,208,191,0.15) !important; color: #fff !important; }
   .dropdown-content a::after { display: none !important; }
@@ -453,7 +460,17 @@
   /* --- Mobile Breakpoints --- */
   @media (max-width: 900px) {
     .mobile-toggle { display: block; }
-    
+
+    /* The logo's height is set inline from the CMS's configured desktop
+       size (110px) - Navbar.tsx/NavbarClient.tsx - which always wins over
+       this stylesheet's own .logo img{height:30px} rule regardless of
+       specificity, since it's inline. !important is the only way to
+       override an inline style, and is the right tool for exactly this:
+       forcing a sane, compact logo size on mobile regardless of whatever
+       height an editor sets for desktop, so it doesn't crowd the
+       hamburger toggle in an already-compact mobile nav bar. */
+    .logo img { height: 36px !important; }
+
     .nav-links {
       position: fixed;
       top: 0;
@@ -469,11 +486,36 @@
       transition: right 0.4s ease;
       z-index: 1000;
       box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+      overflow-y: auto;
     }
     .nav-links.open { right: 0; }
-    
+
+    /* Submenu becomes an inline accordion inside the slide-out panel
+       instead of an absolutely-positioned hover popup - the popup's own
+       centering (left:50%/translateX(-50%)) has nothing sensible to
+       center against inside a narrow fixed-width mobile panel, and
+       hover doesn't exist on touch anyway (see the caret button added
+       in NavbarClient.tsx). */
+    .nav-dropdown { display: block; width: 100%; }
+    .nav-dropdown-row { display: flex; width: 100%; justify-content: center; }
+    .dropdown-content {
+      position: static;
+      visibility: visible;
+      opacity: 1;
+      transform: none;
+      display: none;
+      background: transparent;
+      backdrop-filter: none;
+      border: none;
+      box-shadow: none;
+      padding: 4px 0 0;
+      min-width: 0;
+    }
+    .nav-dropdown.open .dropdown-content { display: flex; }
+    .dropdown-content a { font-size: 13px !important; padding: 8px 0 !important; opacity: 0.85; }
+
     .nav-inner { padding: 0 20px; }
-    
+
     /* Layout reflows & Universal Centering */
     .four-kinds-grid { grid-template-columns: 1fr; }
     .wct-stats { flex-direction: column; align-items: center !important; gap: 32px; }
