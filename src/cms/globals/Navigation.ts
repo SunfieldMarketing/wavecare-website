@@ -1,6 +1,7 @@
 import type { GlobalConfig } from 'payload';
 import { linkField } from '../fields/link';
 import { adminOrEditor } from '../access';
+import { revalidateGlobalAfterChange } from '../hooks/revalidate';
 
 export const Navigation: GlobalConfig = {
   slug: 'navigation',
@@ -11,6 +12,7 @@ export const Navigation: GlobalConfig = {
   },
   versions: { drafts: false, max: 20 },
   access: { read: () => true, update: adminOrEditor },
+  hooks: { afterChange: [revalidateGlobalAfterChange] },
   fields: [
     { name: 'logo', type: 'upload', relationTo: 'media', label: 'Header logo' },
     {

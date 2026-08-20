@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload';
 import { allBlocks } from '../blocks';
 import { adminOrEditor, publishedOrAuthenticated } from '../access';
+import { revalidateAfterChange, revalidateAfterDelete } from '../hooks/revalidate';
 
 export const CaseStudies: CollectionConfig = {
   slug: 'case-studies',
@@ -28,6 +29,10 @@ export const CaseStudies: CollectionConfig = {
     create: adminOrEditor,
     update: adminOrEditor,
     delete: adminOrEditor,
+  },
+  hooks: {
+    afterChange: [revalidateAfterChange],
+    afterDelete: [revalidateAfterDelete],
   },
   fields: [
     { name: 'client', type: 'text', required: true, label: 'Client name' },

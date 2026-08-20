@@ -1,5 +1,6 @@
 import type { GlobalConfig } from 'payload';
 import { adminOnly, adminOrEditor } from '../access';
+import { revalidateGlobalAfterChange } from '../hooks/revalidate';
 
 /**
  * Design tokens.
@@ -17,6 +18,7 @@ export const Theme: GlobalConfig = {
   },
   versions: { drafts: false, max: 20 },
   access: { read: () => true, update: adminOrEditor },
+  hooks: { afterChange: [revalidateGlobalAfterChange] },
   fields: [
     {
       type: 'tabs',

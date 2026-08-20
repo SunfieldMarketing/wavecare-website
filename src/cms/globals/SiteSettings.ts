@@ -1,5 +1,6 @@
 import type { GlobalConfig } from 'payload';
 import { adminOnly, adminOrEditor } from '../access';
+import { revalidateGlobalAfterChange } from '../hooks/revalidate';
 
 export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
@@ -10,6 +11,7 @@ export const SiteSettings: GlobalConfig = {
   },
   versions: { drafts: false, max: 20 },
   access: { read: () => true, update: adminOrEditor },
+  hooks: { afterChange: [revalidateGlobalAfterChange] },
   fields: [
     {
       type: 'tabs',

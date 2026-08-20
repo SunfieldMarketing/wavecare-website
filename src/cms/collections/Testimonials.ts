@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload';
 import { adminOrEditor, publishedOrAuthenticated } from '../access';
+import { revalidateAfterChange, revalidateAfterDelete } from '../hooks/revalidate';
 
 export const Testimonials: CollectionConfig = {
   slug: 'testimonials',
@@ -16,6 +17,10 @@ export const Testimonials: CollectionConfig = {
     create: adminOrEditor,
     update: adminOrEditor,
     delete: adminOrEditor,
+  },
+  hooks: {
+    afterChange: [revalidateAfterChange],
+    afterDelete: [revalidateAfterDelete],
   },
   fields: [
     {

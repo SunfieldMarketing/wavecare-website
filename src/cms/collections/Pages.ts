@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload';
 import { allBlocks } from '../blocks';
 import { adminOrEditor, publishedOrAuthenticated } from '../access';
+import { revalidateAfterChange, revalidateAfterDelete } from '../hooks/revalidate';
 
 /**
  * Pages — the block-based page builder.
@@ -39,6 +40,12 @@ export const Pages: CollectionConfig = {
     create: adminOrEditor,
     update: adminOrEditor,
     delete: adminOrEditor,
+  },
+  hooks: {
+    // Pages are statically generated - see src/cms/hooks/revalidate.ts for
+    // why a save here doesn't reach the public site on its own.
+    afterChange: [revalidateAfterChange],
+    afterDelete: [revalidateAfterDelete],
   },
   fields: [
     {
