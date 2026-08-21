@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
-import { payloadClient } from '@/lib/cms';
 
 /**
  * Manual escape hatch for exactly the class of bug hit on 2026-08-21: data
@@ -13,6 +12,14 @@ import { payloadClient } from '@/lib/cms';
  * automatically on every normal edit; this route exists for the rare case
  * something was changed outside that path and the live site needs to be
  * told to catch up without waiting on a full redeploy.
+ *
+ * (This route briefly carried a `?debug=1` mode that reported whether the
+ * S3_* env vars were present in the live runtime - that's how the actual
+ * root cause of the 2026-08-21 media outage was found: the vars were never
+ * saved to Vercel's Production scope, so payload.config.ts's S3 block never
+ * activated. Removed now that it's confirmed fixed; the env-var-presence
+ * check pattern is worth remembering for any future "works locally, not in
+ * production" investigation - it should be step one, not a last resort.)
  *
  * GET /api/revalidate?secret=<REVALIDATE_SECRET>
  */
@@ -28,25 +35,6 @@ export async function GET(request: Request) {
 
   if (secret !== expected) {
     return NextResponse.json({ revalidated: false, error: 'Invalid secret' }, { status: 401 });
-  }
-
-  if (new URL(request.url).searchParams.get('debug') === '1') {
-    const payload = await payloadClient();
-    const media = await payload.find({
-      collection: 'media',
-      where: { filename: { equals: 'logo2.png' } },
-      limit: 1,
-      depth: 0,
-      overrideAccess: true,
-    });
-    return NextResponse.json({
-      hasS3Bucket: !!process.env.S3_BUCKET,
-      s3BucketValue: process.env.S3_BUCKET ? `${process.env.S3_BUCKET.slice(0, 3)}...` : null,
-      hasS3Region: !!process.env.S3_REGION,
-      s3RegionValue: process.env.S3_REGION || null,
-      logo2Doc: media.docs[0] || null,
-      now: Date.now(),
-    });
   }
 
   const path = new URL(request.url).searchParams.get('path');
