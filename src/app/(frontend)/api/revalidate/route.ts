@@ -15,6 +15,12 @@ import { revalidatePath } from 'next/cache';
  *
  * GET /api/revalidate?secret=<REVALIDATE_SECRET>
  */
+const KNOWN_PATHS = [
+  '/', '/about', '/services', '/contact', '/case-studies', '/digital-marketing',
+  '/photoservices', '/videoservices', '/webdesign', '/commercial', '/design-print',
+  '/testimonials', '/privacy-policy', '/terms-of-service',
+];
+
 export async function GET(request: Request) {
   const secret = new URL(request.url).searchParams.get('secret');
   const expected = process.env.REVALIDATE_SECRET || 'wavecare-revalidate-2026';
@@ -23,6 +29,15 @@ export async function GET(request: Request) {
     return NextResponse.json({ revalidated: false, error: 'Invalid secret' }, { status: 401 });
   }
 
+  const path = new URL(request.url).searchParams.get('path');
+  // revalidatePath('/', 'layout') alone was called and reported success but
+  // had no observable effect on any of the specific pages that needed it -
+  // revalidating every known static path individually instead, in case the
+  // root/layout form doesn't walk every nested static route the way its
+  // docs suggest it should.
+  const targets = path ? [path] : KNOWN_PATHS;
+  for (const p of targets) revalidatePath(p);
   revalidatePath('/', 'layout');
-  return NextResponse.json({ revalidated: true, now: Date.now() });
+
+  return NextResponse.json({ revalidated: true, targets, now: Date.now() });
 }
