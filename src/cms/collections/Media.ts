@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload';
 import { adminOrEditor } from '../access';
+import { revalidateAfterChange, revalidateAfterDelete } from '../hooks/revalidate';
 
 /**
  * Media library.
@@ -21,6 +22,14 @@ export const Media: CollectionConfig = {
     create: adminOrEditor,
     update: adminOrEditor,
     delete: adminOrEditor,
+  },
+  hooks: {
+    // Media doc URLs (S3 direct links) are baked into static pages at
+    // build/revalidation time - without this, replacing a file through
+    // admin (same doc, new upload) would silently keep serving the old
+    // image everywhere until the next full deploy.
+    afterChange: [revalidateAfterChange],
+    afterDelete: [revalidateAfterDelete],
   },
   upload: {
     staticDir: 'public/media',
