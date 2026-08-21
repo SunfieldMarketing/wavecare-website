@@ -16,15 +16,25 @@ const nextConfig: NextConfig = {
     '/*': ['node_modules/sharp/**/*', 'node_modules/@img/**/*'],
   },
   images: {
-    // S3 media storage (see payload.config.ts) serves doc URLs straight
-    // from the bucket (disablePayloadAccessControl), so next/image needs
-    // that host allow-listed or it refuses to optimize them. Harmless to
-    // keep even before S3_BUCKET is set - Blob-served media never hits
-    // this path since those URLs are same-origin (/payload-api/media/...).
+    // Media stays same-origin (payload.config.ts doesn't set
+    // disablePayloadAccessControl, so S3 is proxied through Payload's own
+    // /payload-api/media/file/:filename route, same URL shape it always
+    // had on Blob) - kept here in case direct-from-bucket URLs are ever
+    // turned on later.
     remotePatterns: [
       {
         protocol: 'https',
         hostname: '*.s3.*.amazonaws.com',
+      },
+    ],
+    // Next 16 requires local (same-origin) image URLs with a query string
+    // to be explicitly allow-listed, to prevent cache-poisoning via
+    // arbitrary params. The S3 adapter appends exactly one - ?prefix=... -
+    // to identify which bucket folder to proxy from.
+    localPatterns: [
+      {
+        pathname: '/payload-api/media/file/**',
+        search: '?prefix=wavecare',
       },
     ],
   },

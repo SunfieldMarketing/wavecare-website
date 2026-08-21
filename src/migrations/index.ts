@@ -14,6 +14,7 @@ import * as migration_20260804_230145_logo_dark_tint from './20260804_230145_log
 import * as migration_20260804_231605_drop_logo_dark_tint from './20260804_231605_drop_logo_dark_tint';
 import * as migration_20260805_001901_logo_strip_variant from './20260805_001901_logo_strip_variant';
 import * as migration_20260811_073238_digital_marketing_blocks from './20260811_073238_digital_marketing_blocks';
+import * as migration_20260820_234243_add_media_prefix_field from './20260820_234243_add_media_prefix_field';
 
 export const migrations = [
   {
@@ -94,6 +95,11 @@ export const migrations = [
   {
     up: migration_20260811_073238_digital_marketing_blocks.up,
     down: migration_20260811_073238_digital_marketing_blocks.down,
-    name: '20260811_073238_digital_marketing_blocks'
+    name: '20260811_073238_digital_marketing_blocks',
+  },
+  {
+    up: migration_20260820_234243_add_media_prefix_field.up,
+    down: migration_20260820_234243_add_media_prefix_field.down,
+    name: '20260820_234243_add_media_prefix_field'
   },
 ];
