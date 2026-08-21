@@ -1,14 +1,6 @@
-// `dotenv/config`'s bare import only loads a file literally named `.env` -
-// this project keeps everything in `.env.local`, so that pattern silently
-// loaded nothing (DATABASE_URI etc. only ever worked here if the shell
-// already had it exported some other way). Must run before importing
-// payload.config, which reads process.env at module-evaluation time.
-import { config as loadEnv } from 'dotenv';
-import path from 'path';
-loadEnv({ path: path.resolve(process.cwd(), '.env.local') });
-
 import { getPayload } from 'payload';
 import config from '../src/payload.config';
+import 'dotenv/config';
 
 async function replacePhones() {
   const payload = await getPayload({ config });

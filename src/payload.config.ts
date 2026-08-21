@@ -8,7 +8,6 @@ import { seoPlugin } from '@payloadcms/plugin-seo';
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
-import { s3Storage } from '@payloadcms/storage-s3';
 import sharp from 'sharp';
 
 import { Users } from './cms/collections/Users';
@@ -181,62 +180,25 @@ export default buildConfig({
      *
      * Vercel's filesystem is ephemeral — anything written to public/media is
      * lost on the next deploy or cold start, so CMS uploads would silently
-     * disappear without an external store taking over.
+     * disappear. When BLOB_READ_WRITE_TOKEN is present the plugin takes over
+     * and sets disableLocalStorage automatically.
      *
-     * S3 (Cloudflare R2 or actual AWS S3, both speak the same API) is
-     * preferred when configured: Vercel Blob's free-tier quota ran out in
-     * production (confirmed 8/20 - every media doc's file started 204ing,
-     * not just newly-uploaded ones; see src/proxy.ts for the interim fix
-     * that shipped while this was pending). S3_BUCKET is the switch - set
-     * it and its adapter takes over; leave it unset and Blob (if configured)
-     * still works exactly as before, so this is a drop-in, no-migration-
-     * required swap either direction.
+     * clientUploads sends files straight from the browser to Blob, which also
+     * sidesteps Vercel's 4.5 MB server-upload cap — several existing photos are
+     * larger than that.
      *
-     * disablePayloadAccessControl serves media directly from the bucket's
-     * own public URL instead of proxying through /payload-api/media/file/*
-     * - that route is what was silently returning empty responses once
-     * Blob's quota ran out, so bypassing it removes that failure mode
-     * entirely rather than just working around it.
-     *
-     * Locally, neither token is normally set, so this whole block is a
-     * no-op and uploads keep going to public/media.
+     * Locally the token is unset, so this is a no-op and uploads keep going to
+     * public/media.
      */
-    ...(process.env.S3_BUCKET
+    ...(process.env.BLOB_READ_WRITE_TOKEN
       ? [
-          s3Storage({
-            collections: {
-              media: {
-                prefix: 'wavecare',
-                // NOT disablePayloadAccessControl: true - that serves doc
-                // URLs straight from S3's own domain, which needs its own
-                // URL-computation path working correctly (couldn't get it
-                // to reliably resolve). Leaving this off means media still
-                // goes through /payload-api/media/file/:filename exactly
-                // like it did on Blob - the adapter's staticHandler proxies
-                // that request to S3 behind the scenes - so every existing
-                // <Image> reference on the site keeps working unchanged,
-                // no next.config.ts remotePatterns dependency either.
-              },
-            },
-            bucket: process.env.S3_BUCKET,
-            config: {
-              region: process.env.S3_REGION,
-              credentials: {
-                accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
-                secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
-              },
-            },
+          vercelBlobStorage({
+            enabled: true,
+            collections: { media: true },
+            token: process.env.BLOB_READ_WRITE_TOKEN,
+            clientUploads: true,
           }),
         ]
-      : process.env.BLOB_READ_WRITE_TOKEN
-        ? [
-            vercelBlobStorage({
-              enabled: true,
-              collections: { media: true },
-              token: process.env.BLOB_READ_WRITE_TOKEN,
-              clientUploads: true,
-            }),
-          ]
-        : []),
+      : []),
   ],
 });
