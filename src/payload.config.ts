@@ -206,6 +206,22 @@ export default buildConfig({
               media: {
                 prefix: 'wavecare',
                 disablePayloadAccessControl: true,
+                // Belt-and-suspenders on top of disablePayloadAccessControl:
+                // some live production requests were observed computing
+                // doc.url as the old /payload-api/media/file/:filename
+                // proxy path instead of an S3 URL, inconsistently - some
+                // routes/pages correct, others not, no config difference
+                // found, never fully root-caused (possibly a Vercel
+                // function-bundle staleness issue, possibly something in
+                // the plugin's own internal adapter-closure state). An
+                // explicit generateFileURL is a pure function with no
+                // dependency on that internal state - it always wins over
+                // the plugin's own generateURL (see getAfterReadHook in
+                // node_modules/@payloadcms/plugin-cloud-storage), so this
+                // guarantees a correct URL regardless of what's causing
+                // the inconsistency.
+                generateFileURL: ({ filename, prefix }) =>
+                  `https://s3.${process.env.S3_REGION}.amazonaws.com/${process.env.S3_BUCKET}/${prefix || 'wavecare'}/${encodeURIComponent(filename)}`,
               },
             },
             bucket: process.env.S3_BUCKET,
