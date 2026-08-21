@@ -3,6 +3,21 @@ import { getPayload } from 'payload';
 import config from '@payload-config';
 import { draftMode } from 'next/headers';
 
+// NOTE (2026-08-21): several media docs were updated directly via raw SQL/
+// the AWS SDK (bypassing Payload's Local API and its afterChange hooks -
+// necessary to work around a Payload collision-avoidance bug, see git log)
+// during the S3 migration. Local production-build tests against the same
+// DB picked up the changes correctly every time, but Vercel kept serving
+// stale HTML with the old /payload-api/media/file/... URLs on several
+// routes for hours across three redeploys - Vercel's own remote build
+// cache reuses a route's previous static output when it doesn't detect a
+// code-level dependency change, and a raw DB write isn't one. Touching
+// this file (imported by every page that fetches CMS content) forces
+// Vercel to treat every dependent route as changed and fully regenerate
+// it. If media/content ever looks stale again after a data-only change
+// (no code edited), this is almost certainly why - bump this file, or
+// trigger a "Redeploy without Build Cache" from the Vercel dashboard.
+
 /** Cached Payload instance for server components. */
 export async function payloadClient() {
   return getPayload({ config });
