@@ -395,10 +395,10 @@
   .f-col a{font-size:15px; color:var(--on-dark); transition:color .25s;} .f-col a:hover{color:var(--teal-bright);}
   .f-col a.f-book{color:var(--teal-bright); font-weight:500;}
   /* Highlighted footer CTAs (Footer.tsx splits them out of the plain link
-     list) get their own centered row with breathing room above, so the
-     centering reads as a deliberate button rather than a stray line that
-     doesn't line up with the left-aligned links above it. */
-  .f-cta-row{text-align:center; margin-top:18px;}
+     list) get their own row with breathing room above - left-aligned to
+     match the plain links directly above it in the same column (centering
+     it instead reads as misaligned, not deliberate). */
+  .f-cta-row{text-align:left; margin-top:18px;}
   .f-bottom{padding-top:30px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:14px; color:var(--muted);}
 
   /* reveal — IntersectionObserver driven, fires both directions, fails visible */
