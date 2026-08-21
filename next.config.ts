@@ -21,10 +21,18 @@ const nextConfig: NextConfig = {
     // that host allow-listed or it refuses to optimize them. Harmless to
     // keep even before S3_BUCKET is set - Blob-served media never hits
     // this path since those URLs are same-origin (/payload-api/media/...).
+    //
+    // Path-style, not virtual-hosted-style: payload.config.ts's S3
+    // endpoint is bare `s3.<region>.amazonaws.com` (bucket comes after as
+    // a path segment, per how this storage adapter's generateURL always
+    // builds `${endpoint}/${bucket}/${key}`) - a `*.s3.*.amazonaws.com`
+    // pattern requires a subdomain segment that never exists here and
+    // silently never matched (caught locally against a production build,
+    // "url parameter is not allowed", before this reached Vercel).
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '*.s3.*.amazonaws.com',
+        hostname: 's3.*.amazonaws.com',
       },
     ],
   },

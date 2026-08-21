@@ -8,6 +8,7 @@ import { seoPlugin } from '@payloadcms/plugin-seo';
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
+import { s3Storage } from '@payloadcms/storage-s3';
 import sharp from 'sharp';
 
 import { Users } from './cms/collections/Users';
@@ -180,25 +181,60 @@ export default buildConfig({
      *
      * Vercel's filesystem is ephemeral — anything written to public/media is
      * lost on the next deploy or cold start, so CMS uploads would silently
-     * disappear. When BLOB_READ_WRITE_TOKEN is present the plugin takes over
-     * and sets disableLocalStorage automatically.
+     * disappear without an external store taking over.
      *
-     * clientUploads sends files straight from the browser to Blob, which also
-     * sidesteps Vercel's 4.5 MB server-upload cap — several existing photos are
-     * larger than that.
-     *
-     * Locally the token is unset, so this is a no-op and uploads keep going to
-     * public/media.
+     * S3 is preferred when S3_BUCKET is set (Vercel Blob's free-tier quota
+     * ran out in production - see git history around 2026-08-20/21 for the
+     * full incident). disablePayloadAccessControl: true serves doc URLs
+     * straight from the bucket's own domain instead of proxying through
+     * /payload-api/media/file/:filename - a prior attempt WITHOUT this
+     * option (relying on the proxy route + a ?prefix=... query param)
+     * worked correctly in `next dev` but threw "Cannot find field for path
+     * at prefix" on every request once actually deployed to Vercel - a
+     * genuine dev-vs-production-build discrepancy in how the query-param
+     * lookup resolves the field, never fully root-caused. Serving directly
+     * from S3 sidesteps that whole mechanism: no app-server round trip for
+     * bytes at all, so there's nothing left to diverge between dev and
+     * prod. Verify any future change to this against an actual
+     * `next build` + `next start`, not just `next dev` - that gap is
+     * exactly what let the prior regression reach production undetected.
      */
-    ...(process.env.BLOB_READ_WRITE_TOKEN
+    ...(process.env.S3_BUCKET
       ? [
-          vercelBlobStorage({
-            enabled: true,
-            collections: { media: true },
-            token: process.env.BLOB_READ_WRITE_TOKEN,
-            clientUploads: true,
+          s3Storage({
+            collections: {
+              media: {
+                prefix: 'wavecare',
+                disablePayloadAccessControl: true,
+              },
+            },
+            bucket: process.env.S3_BUCKET,
+            config: {
+              region: process.env.S3_REGION,
+              credentials: {
+                accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
+                secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
+              },
+              // The AWS SDK resolves this internally for actual API calls
+              // without it being set, but Payload's generateURL() (used for
+              // disablePayloadAccessControl's public doc.url) just does
+              // `${endpoint}/${bucket}/${fileKey}` - with no endpoint
+              // configured that rendered as the literal string "undefined"
+              // in every image URL (caught locally against a production
+              // build before this ever reached Vercel).
+              endpoint: `https://s3.${process.env.S3_REGION}.amazonaws.com`,
+            },
           }),
         ]
-      : []),
+      : process.env.BLOB_READ_WRITE_TOKEN
+        ? [
+            vercelBlobStorage({
+              enabled: true,
+              collections: { media: true },
+              token: process.env.BLOB_READ_WRITE_TOKEN,
+              clientUploads: true,
+            }),
+          ]
+        : []),
   ],
 });
