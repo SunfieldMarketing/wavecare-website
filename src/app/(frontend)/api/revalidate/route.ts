@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
+import { payloadClient } from '@/lib/cms';
 
 /**
  * Manual escape hatch for exactly the class of bug hit on 2026-08-21: data
@@ -27,6 +28,25 @@ export async function GET(request: Request) {
 
   if (secret !== expected) {
     return NextResponse.json({ revalidated: false, error: 'Invalid secret' }, { status: 401 });
+  }
+
+  if (new URL(request.url).searchParams.get('debug') === '1') {
+    const payload = await payloadClient();
+    const media = await payload.find({
+      collection: 'media',
+      where: { filename: { equals: 'logo2.png' } },
+      limit: 1,
+      depth: 0,
+      overrideAccess: true,
+    });
+    return NextResponse.json({
+      hasS3Bucket: !!process.env.S3_BUCKET,
+      s3BucketValue: process.env.S3_BUCKET ? `${process.env.S3_BUCKET.slice(0, 3)}...` : null,
+      hasS3Region: !!process.env.S3_REGION,
+      s3RegionValue: process.env.S3_REGION || null,
+      logo2Doc: media.docs[0] || null,
+      now: Date.now(),
+    });
   }
 
   const path = new URL(request.url).searchParams.get('path');
