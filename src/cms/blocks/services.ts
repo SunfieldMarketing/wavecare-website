@@ -103,12 +103,26 @@ export const SplitRow: Block = {
       ],
     },
     {
-      name: 'videoUrl',
-      type: 'text',
-      label: 'Video file URL',
+      name: 'video',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Video file',
       admin: {
         condition: (_, s) => s?.mediaType === 'video',
-        description: 'e.g. /videos/Website video .mp4 — plays muted and loops when scrolled into view.',
+        description: 'Plays muted and loops when scrolled into view.',
+      },
+    },
+    {
+      // Legacy raw-path fallback, kept only so any doc still holding the old
+      // value renders unchanged until repointed at `video` above. New/edited
+      // content should use the upload field instead - see Media.ts's comment
+      // for why this existed in the first place (2026-08-25 migration).
+      name: 'videoUrl',
+      type: 'text',
+      label: 'Video file URL (legacy — use "Video file" above instead)',
+      admin: {
+        condition: (_, s) => s?.mediaType === 'video',
+        description: 'Deprecated. Only read when no Video file is set above.',
       },
     },
     {

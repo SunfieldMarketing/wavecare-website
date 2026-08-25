@@ -5,10 +5,15 @@ import { revalidateAfterChange, revalidateAfterDelete } from '../hooks/revalidat
 /**
  * Media library.
  *
- * New uploads land in /public/media. The existing /public/images and
- * /public/videos folders are deliberately left untouched — blocks that already
- * point at those paths keep working, and they can be registered into this
- * library later without moving a single file.
+ * New uploads land in /public/media. The remaining /public/videos files that
+ * live pages still reference by raw path (SplitRow on /services, SplitMedia,
+ * SignatureProduct on /design-print — see each block's `video` field) were
+ * registered into this library on 2026-08-25, matching the plan this
+ * collection's own comment used to describe: mimeTypes widened from
+ * `image/*` to also accept video, then those 4 files were uploaded through
+ * to S3 directly (scripts/sync-media-to-s3.ts's pattern) and the live Pages
+ * docs repointed at the new Media docs. `imageSizes` below only apply to
+ * image uploads — Payload skips deriving them for a non-image mimetype.
  */
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -33,7 +38,7 @@ export const Media: CollectionConfig = {
   },
   upload: {
     staticDir: 'public/media',
-    mimeTypes: ['image/*'],
+    mimeTypes: ['image/*', 'video/*'],
     focalPoint: true,
     imageSizes: [
       { name: 'thumbnail', width: 400, height: 300, position: 'centre' },

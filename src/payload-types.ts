@@ -327,115 +327,6 @@ export interface Page {
             blockType: 'socialProofBanner';
           }
         | {
-            mediaSide?: ('right' | 'left') | null;
-            mediaType?: ('image' | 'video' | 'vimeo') | null;
-            image?: (number | null) | Media;
-            /**
-             * e.g. /videos/Website video .mp4
-             */
-            videoUrl?: string | null;
-            vimeoId?: string | null;
-            heading?: {
-              eyebrow?: string | null;
-              /**
-               * Wrap words in *asterisks* to highlight them in the accent colour.
-               */
-              title?: string | null;
-              subtitle?: string | null;
-              align?: ('left' | 'center') | null;
-            };
-            body?: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
-            bullets?:
-              | {
-                  text: string;
-                  id?: string | null;
-                }[]
-              | null;
-            buttons?:
-              | {
-                  link?: {
-                    label?: string | null;
-                    type?: ('internal' | 'external' | 'anchor') | null;
-                    page?: (number | null) | Page;
-                    /**
-                     * Include https://
-                     */
-                    url?: string | null;
-                    /**
-                     * Section id without the #, e.g. "gallery"
-                     */
-                    anchor?: string | null;
-                    style?: ('primary' | 'light' | 'ghost' | 'text') | null;
-                    newTab?: boolean | null;
-                  };
-                  id?: string | null;
-                }[]
-              | null;
-            /**
-             * Background, text colour, spacing and width for this section.
-             */
-            appearance?: {
-              background?:
-                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
-              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
-              /**
-               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
-               */
-              customBackground?: string | null;
-              customTextColor?: string | null;
-              backgroundImage?: (number | null) | Media;
-              backgroundVideo?: {
-                source?: ('vimeo' | 'file') | null;
-                /**
-                 * Just the number, e.g. 1187767005
-                 */
-                vimeoId?: string | null;
-                /**
-                 * e.g. /videos/Website video .mp4
-                 */
-                url?: string | null;
-              };
-              overlay?: {
-                enabled?: boolean | null;
-                opacity?: number | null;
-              };
-              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
-              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
-              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
-              /**
-               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
-               */
-              anchorId?: string | null;
-              /**
-               * Large soft blurred colour blob behind the content, used throughout /about. Purely decorative.
-               */
-              glow?: {
-                enabled?: boolean | null;
-                color?: ('primary' | 'accent') | null;
-                size?: number | null;
-                opacity?: number | null;
-                position?: ('top-left' | 'top-right' | 'bottom-right' | 'center') | null;
-              };
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'splitMedia';
-          }
-        | {
             heading?: {
               eyebrow?: string | null;
               /**
@@ -986,74 +877,6 @@ export interface Page {
               subtitle?: string | null;
               align?: ('left' | 'center') | null;
             };
-            source?: ('vimeo' | 'file') | null;
-            /**
-             * Just the number from the Vimeo URL, e.g. 906115435
-             */
-            vimeoId?: string | null;
-            url?: string | null;
-            poster?: (number | null) | Media;
-            aspect?: ('16/9' | '9/16' | '1/1') | null;
-            /**
-             * Background, text colour, spacing and width for this section.
-             */
-            appearance?: {
-              background?:
-                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
-              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
-              /**
-               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
-               */
-              customBackground?: string | null;
-              customTextColor?: string | null;
-              backgroundImage?: (number | null) | Media;
-              backgroundVideo?: {
-                source?: ('vimeo' | 'file') | null;
-                /**
-                 * Just the number, e.g. 1187767005
-                 */
-                vimeoId?: string | null;
-                /**
-                 * e.g. /videos/Website video .mp4
-                 */
-                url?: string | null;
-              };
-              overlay?: {
-                enabled?: boolean | null;
-                opacity?: number | null;
-              };
-              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
-              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
-              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
-              /**
-               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
-               */
-              anchorId?: string | null;
-              /**
-               * Large soft blurred colour blob behind the content, used throughout /about. Purely decorative.
-               */
-              glow?: {
-                enabled?: boolean | null;
-                color?: ('primary' | 'accent') | null;
-                size?: number | null;
-                opacity?: number | null;
-                position?: ('top-left' | 'top-right' | 'bottom-right' | 'center') | null;
-              };
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'videoEmbed';
-          }
-        | {
-            heading?: {
-              eyebrow?: string | null;
-              /**
-               * Wrap words in *asterisks* to highlight them in the accent colour.
-               */
-              title?: string | null;
-              subtitle?: string | null;
-              align?: ('left' | 'center') | null;
-            };
             enableFilters?: boolean | null;
             /**
              * The "All" button is automatic. Add one row per additional filter.
@@ -1221,75 +1044,6 @@ export interface Page {
             blockType: 'featuredVideoWork';
           }
         | {
-            mode?: ('logos' | 'text') | null;
-            logos?:
-              | {
-                  image: number | Media;
-                  name?: string | null;
-                  id?: string | null;
-                }[]
-              | null;
-            items?:
-              | {
-                  text: string;
-                  id?: string | null;
-                }[]
-              | null;
-            /**
-             * Pixels per frame. Higher is faster. Respects reduced-motion.
-             */
-            speed?: number | null;
-            /**
-             * Background, text colour, spacing and width for this section.
-             */
-            appearance?: {
-              background?:
-                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
-              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
-              /**
-               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
-               */
-              customBackground?: string | null;
-              customTextColor?: string | null;
-              backgroundImage?: (number | null) | Media;
-              backgroundVideo?: {
-                source?: ('vimeo' | 'file') | null;
-                /**
-                 * Just the number, e.g. 1187767005
-                 */
-                vimeoId?: string | null;
-                /**
-                 * e.g. /videos/Website video .mp4
-                 */
-                url?: string | null;
-              };
-              overlay?: {
-                enabled?: boolean | null;
-                opacity?: number | null;
-              };
-              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
-              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
-              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
-              /**
-               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
-               */
-              anchorId?: string | null;
-              /**
-               * Large soft blurred colour blob behind the content, used throughout /about. Purely decorative.
-               */
-              glow?: {
-                enabled?: boolean | null;
-                color?: ('primary' | 'accent') | null;
-                size?: number | null;
-                opacity?: number | null;
-                position?: ('top-left' | 'top-right' | 'bottom-right' | 'center') | null;
-              };
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'logoMarquee';
-          }
-        | {
             heading?: {
               eyebrow?: string | null;
               /**
@@ -1385,151 +1139,6 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'caseStudyCards';
-          }
-        | {
-            heading?: {
-              eyebrow?: string | null;
-              /**
-               * Wrap words in *asterisks* to highlight them in the accent colour.
-               */
-              title?: string | null;
-              subtitle?: string | null;
-              align?: ('left' | 'center') | null;
-            };
-            mode?: ('auto' | 'manual') | null;
-            limit?: number | null;
-            caseStudies?: (number | CaseStudy)[] | null;
-            buttons?:
-              | {
-                  link?: {
-                    label?: string | null;
-                    type?: ('internal' | 'external' | 'anchor') | null;
-                    page?: (number | null) | Page;
-                    /**
-                     * Include https://
-                     */
-                    url?: string | null;
-                    /**
-                     * Section id without the #, e.g. "gallery"
-                     */
-                    anchor?: string | null;
-                    style?: ('primary' | 'light' | 'ghost' | 'text') | null;
-                    newTab?: boolean | null;
-                  };
-                  id?: string | null;
-                }[]
-              | null;
-            /**
-             * Background, text colour, spacing and width for this section.
-             */
-            appearance?: {
-              background?:
-                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
-              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
-              /**
-               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
-               */
-              customBackground?: string | null;
-              customTextColor?: string | null;
-              backgroundImage?: (number | null) | Media;
-              backgroundVideo?: {
-                source?: ('vimeo' | 'file') | null;
-                /**
-                 * Just the number, e.g. 1187767005
-                 */
-                vimeoId?: string | null;
-                /**
-                 * e.g. /videos/Website video .mp4
-                 */
-                url?: string | null;
-              };
-              overlay?: {
-                enabled?: boolean | null;
-                opacity?: number | null;
-              };
-              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
-              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
-              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
-              /**
-               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
-               */
-              anchorId?: string | null;
-              /**
-               * Large soft blurred colour blob behind the content, used throughout /about. Purely decorative.
-               */
-              glow?: {
-                enabled?: boolean | null;
-                color?: ('primary' | 'accent') | null;
-                size?: number | null;
-                opacity?: number | null;
-                position?: ('top-left' | 'top-right' | 'bottom-right' | 'center') | null;
-              };
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'caseStudyGrid';
-          }
-        | {
-            heading?: {
-              eyebrow?: string | null;
-              /**
-               * Wrap words in *asterisks* to highlight them in the accent colour.
-               */
-              title?: string | null;
-              subtitle?: string | null;
-              align?: ('left' | 'center') | null;
-            };
-            mode?: ('auto' | 'manual') | null;
-            testimonials?: (number | Testimonial)[] | null;
-            /**
-             * Background, text colour, spacing and width for this section.
-             */
-            appearance?: {
-              background?:
-                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
-              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
-              /**
-               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
-               */
-              customBackground?: string | null;
-              customTextColor?: string | null;
-              backgroundImage?: (number | null) | Media;
-              backgroundVideo?: {
-                source?: ('vimeo' | 'file') | null;
-                /**
-                 * Just the number, e.g. 1187767005
-                 */
-                vimeoId?: string | null;
-                /**
-                 * e.g. /videos/Website video .mp4
-                 */
-                url?: string | null;
-              };
-              overlay?: {
-                enabled?: boolean | null;
-                opacity?: number | null;
-              };
-              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
-              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
-              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
-              /**
-               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
-               */
-              anchorId?: string | null;
-              /**
-               * Large soft blurred colour blob behind the content, used throughout /about. Purely decorative.
-               */
-              glow?: {
-                enabled?: boolean | null;
-                color?: ('primary' | 'accent') | null;
-                size?: number | null;
-                opacity?: number | null;
-                position?: ('top-left' | 'top-right' | 'bottom-right' | 'center') | null;
-              };
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'testimonialGrid';
           }
         | {
             heading?: {
@@ -1775,93 +1384,6 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'legalDocument';
-          }
-        | {
-            heading?: {
-              eyebrow?: string | null;
-              /**
-               * Wrap words in *asterisks* to highlight them in the accent colour.
-               */
-              title?: string | null;
-              subtitle?: string | null;
-              align?: ('left' | 'center') | null;
-            };
-            form: number | Form;
-            sidebar?: {
-              enabled?: boolean | null;
-              title?: string | null;
-              body?: {
-                root: {
-                  type: string;
-                  children: {
-                    type: any;
-                    version: number;
-                    [k: string]: unknown;
-                  }[];
-                  direction: ('ltr' | 'rtl') | null;
-                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                  indent: number;
-                  version: number;
-                };
-                [k: string]: unknown;
-              } | null;
-              details?:
-                | {
-                    label: string;
-                    value: string;
-                    id?: string | null;
-                  }[]
-                | null;
-            };
-            /**
-             * Background, text colour, spacing and width for this section.
-             */
-            appearance?: {
-              background?:
-                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
-              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
-              /**
-               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
-               */
-              customBackground?: string | null;
-              customTextColor?: string | null;
-              backgroundImage?: (number | null) | Media;
-              backgroundVideo?: {
-                source?: ('vimeo' | 'file') | null;
-                /**
-                 * Just the number, e.g. 1187767005
-                 */
-                vimeoId?: string | null;
-                /**
-                 * e.g. /videos/Website video .mp4
-                 */
-                url?: string | null;
-              };
-              overlay?: {
-                enabled?: boolean | null;
-                opacity?: number | null;
-              };
-              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
-              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
-              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
-              /**
-               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
-               */
-              anchorId?: string | null;
-              /**
-               * Large soft blurred colour blob behind the content, used throughout /about. Purely decorative.
-               */
-              glow?: {
-                enabled?: boolean | null;
-                color?: ('primary' | 'accent') | null;
-                size?: number | null;
-                opacity?: number | null;
-                position?: ('top-left' | 'top-right' | 'bottom-right' | 'center') | null;
-              };
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'contactForm';
           }
         | {
             eyebrow?: string | null;
@@ -2392,7 +1914,11 @@ export interface Page {
               | null;
             mediaType?: ('video' | 'image') | null;
             /**
-             * e.g. /videos/Website video .mp4 — plays muted and loops when scrolled into view.
+             * Plays muted and loops when scrolled into view.
+             */
+            video?: (number | null) | Media;
+            /**
+             * Deprecated. Only read when no Video file is set above.
              */
             videoUrl?: string | null;
             image?: (number | null) | Media;
@@ -2654,10 +2180,11 @@ export interface Page {
                 newTab?: boolean | null;
               };
             };
+            video?: (number | null) | Media;
             /**
-             * e.g. /videos/1 Wavecare Photo Ad (HQ).mp4
+             * Deprecated. Only read when no Video file is set above.
              */
-            videoUrl: string;
+            videoUrl?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'signatureProduct';
@@ -3804,6 +3331,40 @@ export interface Media {
   };
 }
 /**
+ * Written quotes and video testimonials, reusable on any page.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: number;
+  type?: ('quote' | 'video') | null;
+  quote?: string | null;
+  vimeoId?: string | null;
+  author: string;
+  role?: string | null;
+  /**
+   * e.g. "Assisted Living Community · 84 beds · Tampa, FL"
+   */
+  organisation?: string | null;
+  /**
+   * Short result shown under the quote, e.g. "Better-fit inquiries in under 30 days".
+   */
+  outcome?: string | null;
+  /**
+   * Shown in the avatar circle when there is no photo.
+   */
+  initials?: string | null;
+  avatar?: (number | null) | Media;
+  /**
+   * Optional star rating, 1 to 5.
+   */
+  rating?: number | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
  * Client success stories. Each one gets its own page at /case-studies/<slug>.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -4021,115 +3582,6 @@ export interface CaseStudy {
             id?: string | null;
             blockName?: string | null;
             blockType: 'socialProofBanner';
-          }
-        | {
-            mediaSide?: ('right' | 'left') | null;
-            mediaType?: ('image' | 'video' | 'vimeo') | null;
-            image?: (number | null) | Media;
-            /**
-             * e.g. /videos/Website video .mp4
-             */
-            videoUrl?: string | null;
-            vimeoId?: string | null;
-            heading?: {
-              eyebrow?: string | null;
-              /**
-               * Wrap words in *asterisks* to highlight them in the accent colour.
-               */
-              title?: string | null;
-              subtitle?: string | null;
-              align?: ('left' | 'center') | null;
-            };
-            body?: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
-            bullets?:
-              | {
-                  text: string;
-                  id?: string | null;
-                }[]
-              | null;
-            buttons?:
-              | {
-                  link?: {
-                    label?: string | null;
-                    type?: ('internal' | 'external' | 'anchor') | null;
-                    page?: (number | null) | Page;
-                    /**
-                     * Include https://
-                     */
-                    url?: string | null;
-                    /**
-                     * Section id without the #, e.g. "gallery"
-                     */
-                    anchor?: string | null;
-                    style?: ('primary' | 'light' | 'ghost' | 'text') | null;
-                    newTab?: boolean | null;
-                  };
-                  id?: string | null;
-                }[]
-              | null;
-            /**
-             * Background, text colour, spacing and width for this section.
-             */
-            appearance?: {
-              background?:
-                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
-              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
-              /**
-               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
-               */
-              customBackground?: string | null;
-              customTextColor?: string | null;
-              backgroundImage?: (number | null) | Media;
-              backgroundVideo?: {
-                source?: ('vimeo' | 'file') | null;
-                /**
-                 * Just the number, e.g. 1187767005
-                 */
-                vimeoId?: string | null;
-                /**
-                 * e.g. /videos/Website video .mp4
-                 */
-                url?: string | null;
-              };
-              overlay?: {
-                enabled?: boolean | null;
-                opacity?: number | null;
-              };
-              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
-              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
-              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
-              /**
-               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
-               */
-              anchorId?: string | null;
-              /**
-               * Large soft blurred colour blob behind the content, used throughout /about. Purely decorative.
-               */
-              glow?: {
-                enabled?: boolean | null;
-                color?: ('primary' | 'accent') | null;
-                size?: number | null;
-                opacity?: number | null;
-                position?: ('top-left' | 'top-right' | 'bottom-right' | 'center') | null;
-              };
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'splitMedia';
           }
         | {
             heading?: {
@@ -4682,74 +4134,6 @@ export interface CaseStudy {
               subtitle?: string | null;
               align?: ('left' | 'center') | null;
             };
-            source?: ('vimeo' | 'file') | null;
-            /**
-             * Just the number from the Vimeo URL, e.g. 906115435
-             */
-            vimeoId?: string | null;
-            url?: string | null;
-            poster?: (number | null) | Media;
-            aspect?: ('16/9' | '9/16' | '1/1') | null;
-            /**
-             * Background, text colour, spacing and width for this section.
-             */
-            appearance?: {
-              background?:
-                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
-              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
-              /**
-               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
-               */
-              customBackground?: string | null;
-              customTextColor?: string | null;
-              backgroundImage?: (number | null) | Media;
-              backgroundVideo?: {
-                source?: ('vimeo' | 'file') | null;
-                /**
-                 * Just the number, e.g. 1187767005
-                 */
-                vimeoId?: string | null;
-                /**
-                 * e.g. /videos/Website video .mp4
-                 */
-                url?: string | null;
-              };
-              overlay?: {
-                enabled?: boolean | null;
-                opacity?: number | null;
-              };
-              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
-              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
-              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
-              /**
-               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
-               */
-              anchorId?: string | null;
-              /**
-               * Large soft blurred colour blob behind the content, used throughout /about. Purely decorative.
-               */
-              glow?: {
-                enabled?: boolean | null;
-                color?: ('primary' | 'accent') | null;
-                size?: number | null;
-                opacity?: number | null;
-                position?: ('top-left' | 'top-right' | 'bottom-right' | 'center') | null;
-              };
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'videoEmbed';
-          }
-        | {
-            heading?: {
-              eyebrow?: string | null;
-              /**
-               * Wrap words in *asterisks* to highlight them in the accent colour.
-               */
-              title?: string | null;
-              subtitle?: string | null;
-              align?: ('left' | 'center') | null;
-            };
             enableFilters?: boolean | null;
             /**
              * The "All" button is automatic. Add one row per additional filter.
@@ -4917,75 +4301,6 @@ export interface CaseStudy {
             blockType: 'featuredVideoWork';
           }
         | {
-            mode?: ('logos' | 'text') | null;
-            logos?:
-              | {
-                  image: number | Media;
-                  name?: string | null;
-                  id?: string | null;
-                }[]
-              | null;
-            items?:
-              | {
-                  text: string;
-                  id?: string | null;
-                }[]
-              | null;
-            /**
-             * Pixels per frame. Higher is faster. Respects reduced-motion.
-             */
-            speed?: number | null;
-            /**
-             * Background, text colour, spacing and width for this section.
-             */
-            appearance?: {
-              background?:
-                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
-              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
-              /**
-               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
-               */
-              customBackground?: string | null;
-              customTextColor?: string | null;
-              backgroundImage?: (number | null) | Media;
-              backgroundVideo?: {
-                source?: ('vimeo' | 'file') | null;
-                /**
-                 * Just the number, e.g. 1187767005
-                 */
-                vimeoId?: string | null;
-                /**
-                 * e.g. /videos/Website video .mp4
-                 */
-                url?: string | null;
-              };
-              overlay?: {
-                enabled?: boolean | null;
-                opacity?: number | null;
-              };
-              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
-              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
-              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
-              /**
-               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
-               */
-              anchorId?: string | null;
-              /**
-               * Large soft blurred colour blob behind the content, used throughout /about. Purely decorative.
-               */
-              glow?: {
-                enabled?: boolean | null;
-                color?: ('primary' | 'accent') | null;
-                size?: number | null;
-                opacity?: number | null;
-                position?: ('top-left' | 'top-right' | 'bottom-right' | 'center') | null;
-              };
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'logoMarquee';
-          }
-        | {
             heading?: {
               eyebrow?: string | null;
               /**
@@ -5081,151 +4396,6 @@ export interface CaseStudy {
             id?: string | null;
             blockName?: string | null;
             blockType: 'caseStudyCards';
-          }
-        | {
-            heading?: {
-              eyebrow?: string | null;
-              /**
-               * Wrap words in *asterisks* to highlight them in the accent colour.
-               */
-              title?: string | null;
-              subtitle?: string | null;
-              align?: ('left' | 'center') | null;
-            };
-            mode?: ('auto' | 'manual') | null;
-            limit?: number | null;
-            caseStudies?: (number | CaseStudy)[] | null;
-            buttons?:
-              | {
-                  link?: {
-                    label?: string | null;
-                    type?: ('internal' | 'external' | 'anchor') | null;
-                    page?: (number | null) | Page;
-                    /**
-                     * Include https://
-                     */
-                    url?: string | null;
-                    /**
-                     * Section id without the #, e.g. "gallery"
-                     */
-                    anchor?: string | null;
-                    style?: ('primary' | 'light' | 'ghost' | 'text') | null;
-                    newTab?: boolean | null;
-                  };
-                  id?: string | null;
-                }[]
-              | null;
-            /**
-             * Background, text colour, spacing and width for this section.
-             */
-            appearance?: {
-              background?:
-                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
-              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
-              /**
-               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
-               */
-              customBackground?: string | null;
-              customTextColor?: string | null;
-              backgroundImage?: (number | null) | Media;
-              backgroundVideo?: {
-                source?: ('vimeo' | 'file') | null;
-                /**
-                 * Just the number, e.g. 1187767005
-                 */
-                vimeoId?: string | null;
-                /**
-                 * e.g. /videos/Website video .mp4
-                 */
-                url?: string | null;
-              };
-              overlay?: {
-                enabled?: boolean | null;
-                opacity?: number | null;
-              };
-              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
-              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
-              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
-              /**
-               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
-               */
-              anchorId?: string | null;
-              /**
-               * Large soft blurred colour blob behind the content, used throughout /about. Purely decorative.
-               */
-              glow?: {
-                enabled?: boolean | null;
-                color?: ('primary' | 'accent') | null;
-                size?: number | null;
-                opacity?: number | null;
-                position?: ('top-left' | 'top-right' | 'bottom-right' | 'center') | null;
-              };
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'caseStudyGrid';
-          }
-        | {
-            heading?: {
-              eyebrow?: string | null;
-              /**
-               * Wrap words in *asterisks* to highlight them in the accent colour.
-               */
-              title?: string | null;
-              subtitle?: string | null;
-              align?: ('left' | 'center') | null;
-            };
-            mode?: ('auto' | 'manual') | null;
-            testimonials?: (number | Testimonial)[] | null;
-            /**
-             * Background, text colour, spacing and width for this section.
-             */
-            appearance?: {
-              background?:
-                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
-              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
-              /**
-               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
-               */
-              customBackground?: string | null;
-              customTextColor?: string | null;
-              backgroundImage?: (number | null) | Media;
-              backgroundVideo?: {
-                source?: ('vimeo' | 'file') | null;
-                /**
-                 * Just the number, e.g. 1187767005
-                 */
-                vimeoId?: string | null;
-                /**
-                 * e.g. /videos/Website video .mp4
-                 */
-                url?: string | null;
-              };
-              overlay?: {
-                enabled?: boolean | null;
-                opacity?: number | null;
-              };
-              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
-              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
-              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
-              /**
-               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
-               */
-              anchorId?: string | null;
-              /**
-               * Large soft blurred colour blob behind the content, used throughout /about. Purely decorative.
-               */
-              glow?: {
-                enabled?: boolean | null;
-                color?: ('primary' | 'accent') | null;
-                size?: number | null;
-                opacity?: number | null;
-                position?: ('top-left' | 'top-right' | 'bottom-right' | 'center') | null;
-              };
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'testimonialGrid';
           }
         | {
             heading?: {
@@ -5471,93 +4641,6 @@ export interface CaseStudy {
             id?: string | null;
             blockName?: string | null;
             blockType: 'legalDocument';
-          }
-        | {
-            heading?: {
-              eyebrow?: string | null;
-              /**
-               * Wrap words in *asterisks* to highlight them in the accent colour.
-               */
-              title?: string | null;
-              subtitle?: string | null;
-              align?: ('left' | 'center') | null;
-            };
-            form: number | Form;
-            sidebar?: {
-              enabled?: boolean | null;
-              title?: string | null;
-              body?: {
-                root: {
-                  type: string;
-                  children: {
-                    type: any;
-                    version: number;
-                    [k: string]: unknown;
-                  }[];
-                  direction: ('ltr' | 'rtl') | null;
-                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                  indent: number;
-                  version: number;
-                };
-                [k: string]: unknown;
-              } | null;
-              details?:
-                | {
-                    label: string;
-                    value: string;
-                    id?: string | null;
-                  }[]
-                | null;
-            };
-            /**
-             * Background, text colour, spacing and width for this section.
-             */
-            appearance?: {
-              background?:
-                ('deep' | 'ink' | 'primary' | 'light' | 'white' | 'transparent' | 'custom' | 'image' | 'video') | null;
-              textColor?: ('auto' | 'light' | 'dark' | 'custom') | null;
-              /**
-               * Any CSS colour or gradient, e.g. #0A4339 or linear-gradient(...)
-               */
-              customBackground?: string | null;
-              customTextColor?: string | null;
-              backgroundImage?: (number | null) | Media;
-              backgroundVideo?: {
-                source?: ('vimeo' | 'file') | null;
-                /**
-                 * Just the number, e.g. 1187767005
-                 */
-                vimeoId?: string | null;
-                /**
-                 * e.g. /videos/Website video .mp4
-                 */
-                url?: string | null;
-              };
-              overlay?: {
-                enabled?: boolean | null;
-                opacity?: number | null;
-              };
-              paddingTop?: ('none' | 'sm' | 'default' | 'lg') | null;
-              paddingBottom?: ('none' | 'sm' | 'default' | 'lg') | null;
-              width?: ('default' | 'wide' | 'narrow' | 'full') | null;
-              /**
-               * Lets buttons jump here, e.g. "gallery" makes this section reachable at #gallery.
-               */
-              anchorId?: string | null;
-              /**
-               * Large soft blurred colour blob behind the content, used throughout /about. Purely decorative.
-               */
-              glow?: {
-                enabled?: boolean | null;
-                color?: ('primary' | 'accent') | null;
-                size?: number | null;
-                opacity?: number | null;
-                position?: ('top-left' | 'top-right' | 'bottom-right' | 'center') | null;
-              };
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'contactForm';
           }
         | {
             eyebrow?: string | null;
@@ -6088,7 +5171,11 @@ export interface CaseStudy {
               | null;
             mediaType?: ('video' | 'image') | null;
             /**
-             * e.g. /videos/Website video .mp4 — plays muted and loops when scrolled into view.
+             * Plays muted and loops when scrolled into view.
+             */
+            video?: (number | null) | Media;
+            /**
+             * Deprecated. Only read when no Video file is set above.
              */
             videoUrl?: string | null;
             image?: (number | null) | Media;
@@ -6350,10 +5437,11 @@ export interface CaseStudy {
                 newTab?: boolean | null;
               };
             };
+            video?: (number | null) | Media;
             /**
-             * e.g. /videos/1 Wavecare Photo Ad (HQ).mp4
+             * Deprecated. Only read when no Video file is set above.
              */
-            videoUrl: string;
+            videoUrl?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'signatureProduct';
@@ -7428,38 +6516,37 @@ export interface CaseStudy {
   _status?: ('draft' | 'published') | null;
 }
 /**
- * Written quotes and video testimonials, reusable on any page.
+ * People who can sign in and edit the website.
  *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "testimonials".
+ * via the `definition` "users".
  */
-export interface Testimonial {
+export interface User {
   id: number;
-  type?: ('quote' | 'video') | null;
-  quote?: string | null;
-  vimeoId?: string | null;
-  author: string;
-  role?: string | null;
+  name: string;
   /**
-   * e.g. "Assisted Living Community · 84 beds · Tampa, FL"
+   * Only administrators can change roles.
    */
-  organisation?: string | null;
-  /**
-   * Short result shown under the quote, e.g. "Better-fit inquiries in under 30 days".
-   */
-  outcome?: string | null;
-  /**
-   * Shown in the avatar circle when there is no photo.
-   */
-  initials?: string | null;
-  avatar?: (number | null) | Media;
-  /**
-   * Optional star rating, 1 to 5.
-   */
-  rating?: number | null;
+  role: 'admin' | 'editor';
   updatedAt: string;
   createdAt: string;
-  _status?: ('draft' | 'published') | null;
+  email?: string | null;
+  username: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+  collection: 'users';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -7625,39 +6712,6 @@ export interface Form {
     | null;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * People who can sign in and edit the website.
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
- */
-export interface User {
-  id: number;
-  name: string;
-  /**
-   * Only administrators can change roles.
-   */
-  role: 'admin' | 'editor';
-  updatedAt: string;
-  createdAt: string;
-  email?: string | null;
-  username: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
-  collection: 'users';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -8018,83 +7072,6 @@ export interface PagesSelect<T extends boolean = true> {
               letterSpacing?: T;
               maxWidth?: T;
               padding?: T;
-              id?: T;
-              blockName?: T;
-            };
-        splitMedia?:
-          | T
-          | {
-              mediaSide?: T;
-              mediaType?: T;
-              image?: T;
-              videoUrl?: T;
-              vimeoId?: T;
-              heading?:
-                | T
-                | {
-                    eyebrow?: T;
-                    title?: T;
-                    subtitle?: T;
-                    align?: T;
-                  };
-              body?: T;
-              bullets?:
-                | T
-                | {
-                    text?: T;
-                    id?: T;
-                  };
-              buttons?:
-                | T
-                | {
-                    link?:
-                      | T
-                      | {
-                          label?: T;
-                          type?: T;
-                          page?: T;
-                          url?: T;
-                          anchor?: T;
-                          style?: T;
-                          newTab?: T;
-                        };
-                    id?: T;
-                  };
-              appearance?:
-                | T
-                | {
-                    background?: T;
-                    textColor?: T;
-                    customBackground?: T;
-                    customTextColor?: T;
-                    backgroundImage?: T;
-                    backgroundVideo?:
-                      | T
-                      | {
-                          source?: T;
-                          vimeoId?: T;
-                          url?: T;
-                        };
-                    overlay?:
-                      | T
-                      | {
-                          enabled?: T;
-                          opacity?: T;
-                        };
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                    width?: T;
-                    anchorId?: T;
-                    glow?:
-                      | T
-                      | {
-                          enabled?: T;
-                          color?: T;
-                          size?: T;
-                          opacity?: T;
-                          position?: T;
-                        };
-                  };
               id?: T;
               blockName?: T;
             };
@@ -8514,60 +7491,6 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        videoEmbed?:
-          | T
-          | {
-              heading?:
-                | T
-                | {
-                    eyebrow?: T;
-                    title?: T;
-                    subtitle?: T;
-                    align?: T;
-                  };
-              source?: T;
-              vimeoId?: T;
-              url?: T;
-              poster?: T;
-              aspect?: T;
-              appearance?:
-                | T
-                | {
-                    background?: T;
-                    textColor?: T;
-                    customBackground?: T;
-                    customTextColor?: T;
-                    backgroundImage?: T;
-                    backgroundVideo?:
-                      | T
-                      | {
-                          source?: T;
-                          vimeoId?: T;
-                          url?: T;
-                        };
-                    overlay?:
-                      | T
-                      | {
-                          enabled?: T;
-                          opacity?: T;
-                        };
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                    width?: T;
-                    anchorId?: T;
-                    glow?:
-                      | T
-                      | {
-                          enabled?: T;
-                          color?: T;
-                          size?: T;
-                          opacity?: T;
-                          position?: T;
-                        };
-                  };
-              id?: T;
-              blockName?: T;
-            };
         videoGrid?:
           | T
           | {
@@ -8703,62 +7626,6 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        logoMarquee?:
-          | T
-          | {
-              mode?: T;
-              logos?:
-                | T
-                | {
-                    image?: T;
-                    name?: T;
-                    id?: T;
-                  };
-              items?:
-                | T
-                | {
-                    text?: T;
-                    id?: T;
-                  };
-              speed?: T;
-              appearance?:
-                | T
-                | {
-                    background?: T;
-                    textColor?: T;
-                    customBackground?: T;
-                    customTextColor?: T;
-                    backgroundImage?: T;
-                    backgroundVideo?:
-                      | T
-                      | {
-                          source?: T;
-                          vimeoId?: T;
-                          url?: T;
-                        };
-                    overlay?:
-                      | T
-                      | {
-                          enabled?: T;
-                          opacity?: T;
-                        };
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                    width?: T;
-                    anchorId?: T;
-                    glow?:
-                      | T
-                      | {
-                          enabled?: T;
-                          color?: T;
-                          size?: T;
-                          opacity?: T;
-                          position?: T;
-                        };
-                  };
-              id?: T;
-              blockName?: T;
-            };
         caseStudyCards?:
           | T
           | {
@@ -8802,125 +7669,6 @@ export interface PagesSelect<T extends boolean = true> {
                         };
                     id?: T;
                   };
-              appearance?:
-                | T
-                | {
-                    background?: T;
-                    textColor?: T;
-                    customBackground?: T;
-                    customTextColor?: T;
-                    backgroundImage?: T;
-                    backgroundVideo?:
-                      | T
-                      | {
-                          source?: T;
-                          vimeoId?: T;
-                          url?: T;
-                        };
-                    overlay?:
-                      | T
-                      | {
-                          enabled?: T;
-                          opacity?: T;
-                        };
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                    width?: T;
-                    anchorId?: T;
-                    glow?:
-                      | T
-                      | {
-                          enabled?: T;
-                          color?: T;
-                          size?: T;
-                          opacity?: T;
-                          position?: T;
-                        };
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        caseStudyGrid?:
-          | T
-          | {
-              heading?:
-                | T
-                | {
-                    eyebrow?: T;
-                    title?: T;
-                    subtitle?: T;
-                    align?: T;
-                  };
-              mode?: T;
-              limit?: T;
-              caseStudies?: T;
-              buttons?:
-                | T
-                | {
-                    link?:
-                      | T
-                      | {
-                          label?: T;
-                          type?: T;
-                          page?: T;
-                          url?: T;
-                          anchor?: T;
-                          style?: T;
-                          newTab?: T;
-                        };
-                    id?: T;
-                  };
-              appearance?:
-                | T
-                | {
-                    background?: T;
-                    textColor?: T;
-                    customBackground?: T;
-                    customTextColor?: T;
-                    backgroundImage?: T;
-                    backgroundVideo?:
-                      | T
-                      | {
-                          source?: T;
-                          vimeoId?: T;
-                          url?: T;
-                        };
-                    overlay?:
-                      | T
-                      | {
-                          enabled?: T;
-                          opacity?: T;
-                        };
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                    width?: T;
-                    anchorId?: T;
-                    glow?:
-                      | T
-                      | {
-                          enabled?: T;
-                          color?: T;
-                          size?: T;
-                          opacity?: T;
-                          position?: T;
-                        };
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        testimonialGrid?:
-          | T
-          | {
-              heading?:
-                | T
-                | {
-                    eyebrow?: T;
-                    title?: T;
-                    subtitle?: T;
-                    align?: T;
-                  };
-              mode?: T;
-              testimonials?: T;
               appearance?:
                 | T
                 | {
@@ -9084,70 +7832,6 @@ export interface PagesSelect<T extends boolean = true> {
                     enabled?: T;
                     label?: T;
                     url?: T;
-                  };
-              appearance?:
-                | T
-                | {
-                    background?: T;
-                    textColor?: T;
-                    customBackground?: T;
-                    customTextColor?: T;
-                    backgroundImage?: T;
-                    backgroundVideo?:
-                      | T
-                      | {
-                          source?: T;
-                          vimeoId?: T;
-                          url?: T;
-                        };
-                    overlay?:
-                      | T
-                      | {
-                          enabled?: T;
-                          opacity?: T;
-                        };
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                    width?: T;
-                    anchorId?: T;
-                    glow?:
-                      | T
-                      | {
-                          enabled?: T;
-                          color?: T;
-                          size?: T;
-                          opacity?: T;
-                          position?: T;
-                        };
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        contactForm?:
-          | T
-          | {
-              heading?:
-                | T
-                | {
-                    eyebrow?: T;
-                    title?: T;
-                    subtitle?: T;
-                    align?: T;
-                  };
-              form?: T;
-              sidebar?:
-                | T
-                | {
-                    enabled?: T;
-                    title?: T;
-                    body?: T;
-                    details?:
-                      | T
-                      | {
-                          label?: T;
-                          value?: T;
-                          id?: T;
-                        };
                   };
               appearance?:
                 | T
@@ -9603,6 +8287,7 @@ export interface PagesSelect<T extends boolean = true> {
                     id?: T;
                   };
               mediaType?: T;
+              video?: T;
               videoUrl?: T;
               image?: T;
               id?: T;
@@ -9834,6 +8519,7 @@ export interface PagesSelect<T extends boolean = true> {
                           newTab?: T;
                         };
                   };
+              video?: T;
               videoUrl?: T;
               id?: T;
               blockName?: T;
@@ -10891,83 +9577,6 @@ export interface CaseStudiesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        splitMedia?:
-          | T
-          | {
-              mediaSide?: T;
-              mediaType?: T;
-              image?: T;
-              videoUrl?: T;
-              vimeoId?: T;
-              heading?:
-                | T
-                | {
-                    eyebrow?: T;
-                    title?: T;
-                    subtitle?: T;
-                    align?: T;
-                  };
-              body?: T;
-              bullets?:
-                | T
-                | {
-                    text?: T;
-                    id?: T;
-                  };
-              buttons?:
-                | T
-                | {
-                    link?:
-                      | T
-                      | {
-                          label?: T;
-                          type?: T;
-                          page?: T;
-                          url?: T;
-                          anchor?: T;
-                          style?: T;
-                          newTab?: T;
-                        };
-                    id?: T;
-                  };
-              appearance?:
-                | T
-                | {
-                    background?: T;
-                    textColor?: T;
-                    customBackground?: T;
-                    customTextColor?: T;
-                    backgroundImage?: T;
-                    backgroundVideo?:
-                      | T
-                      | {
-                          source?: T;
-                          vimeoId?: T;
-                          url?: T;
-                        };
-                    overlay?:
-                      | T
-                      | {
-                          enabled?: T;
-                          opacity?: T;
-                        };
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                    width?: T;
-                    anchorId?: T;
-                    glow?:
-                      | T
-                      | {
-                          enabled?: T;
-                          color?: T;
-                          size?: T;
-                          opacity?: T;
-                          position?: T;
-                        };
-                  };
-              id?: T;
-              blockName?: T;
-            };
         cardGrid?:
           | T
           | {
@@ -11384,60 +9993,6 @@ export interface CaseStudiesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        videoEmbed?:
-          | T
-          | {
-              heading?:
-                | T
-                | {
-                    eyebrow?: T;
-                    title?: T;
-                    subtitle?: T;
-                    align?: T;
-                  };
-              source?: T;
-              vimeoId?: T;
-              url?: T;
-              poster?: T;
-              aspect?: T;
-              appearance?:
-                | T
-                | {
-                    background?: T;
-                    textColor?: T;
-                    customBackground?: T;
-                    customTextColor?: T;
-                    backgroundImage?: T;
-                    backgroundVideo?:
-                      | T
-                      | {
-                          source?: T;
-                          vimeoId?: T;
-                          url?: T;
-                        };
-                    overlay?:
-                      | T
-                      | {
-                          enabled?: T;
-                          opacity?: T;
-                        };
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                    width?: T;
-                    anchorId?: T;
-                    glow?:
-                      | T
-                      | {
-                          enabled?: T;
-                          color?: T;
-                          size?: T;
-                          opacity?: T;
-                          position?: T;
-                        };
-                  };
-              id?: T;
-              blockName?: T;
-            };
         videoGrid?:
           | T
           | {
@@ -11573,62 +10128,6 @@ export interface CaseStudiesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        logoMarquee?:
-          | T
-          | {
-              mode?: T;
-              logos?:
-                | T
-                | {
-                    image?: T;
-                    name?: T;
-                    id?: T;
-                  };
-              items?:
-                | T
-                | {
-                    text?: T;
-                    id?: T;
-                  };
-              speed?: T;
-              appearance?:
-                | T
-                | {
-                    background?: T;
-                    textColor?: T;
-                    customBackground?: T;
-                    customTextColor?: T;
-                    backgroundImage?: T;
-                    backgroundVideo?:
-                      | T
-                      | {
-                          source?: T;
-                          vimeoId?: T;
-                          url?: T;
-                        };
-                    overlay?:
-                      | T
-                      | {
-                          enabled?: T;
-                          opacity?: T;
-                        };
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                    width?: T;
-                    anchorId?: T;
-                    glow?:
-                      | T
-                      | {
-                          enabled?: T;
-                          color?: T;
-                          size?: T;
-                          opacity?: T;
-                          position?: T;
-                        };
-                  };
-              id?: T;
-              blockName?: T;
-            };
         caseStudyCards?:
           | T
           | {
@@ -11672,125 +10171,6 @@ export interface CaseStudiesSelect<T extends boolean = true> {
                         };
                     id?: T;
                   };
-              appearance?:
-                | T
-                | {
-                    background?: T;
-                    textColor?: T;
-                    customBackground?: T;
-                    customTextColor?: T;
-                    backgroundImage?: T;
-                    backgroundVideo?:
-                      | T
-                      | {
-                          source?: T;
-                          vimeoId?: T;
-                          url?: T;
-                        };
-                    overlay?:
-                      | T
-                      | {
-                          enabled?: T;
-                          opacity?: T;
-                        };
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                    width?: T;
-                    anchorId?: T;
-                    glow?:
-                      | T
-                      | {
-                          enabled?: T;
-                          color?: T;
-                          size?: T;
-                          opacity?: T;
-                          position?: T;
-                        };
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        caseStudyGrid?:
-          | T
-          | {
-              heading?:
-                | T
-                | {
-                    eyebrow?: T;
-                    title?: T;
-                    subtitle?: T;
-                    align?: T;
-                  };
-              mode?: T;
-              limit?: T;
-              caseStudies?: T;
-              buttons?:
-                | T
-                | {
-                    link?:
-                      | T
-                      | {
-                          label?: T;
-                          type?: T;
-                          page?: T;
-                          url?: T;
-                          anchor?: T;
-                          style?: T;
-                          newTab?: T;
-                        };
-                    id?: T;
-                  };
-              appearance?:
-                | T
-                | {
-                    background?: T;
-                    textColor?: T;
-                    customBackground?: T;
-                    customTextColor?: T;
-                    backgroundImage?: T;
-                    backgroundVideo?:
-                      | T
-                      | {
-                          source?: T;
-                          vimeoId?: T;
-                          url?: T;
-                        };
-                    overlay?:
-                      | T
-                      | {
-                          enabled?: T;
-                          opacity?: T;
-                        };
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                    width?: T;
-                    anchorId?: T;
-                    glow?:
-                      | T
-                      | {
-                          enabled?: T;
-                          color?: T;
-                          size?: T;
-                          opacity?: T;
-                          position?: T;
-                        };
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        testimonialGrid?:
-          | T
-          | {
-              heading?:
-                | T
-                | {
-                    eyebrow?: T;
-                    title?: T;
-                    subtitle?: T;
-                    align?: T;
-                  };
-              mode?: T;
-              testimonials?: T;
               appearance?:
                 | T
                 | {
@@ -11954,70 +10334,6 @@ export interface CaseStudiesSelect<T extends boolean = true> {
                     enabled?: T;
                     label?: T;
                     url?: T;
-                  };
-              appearance?:
-                | T
-                | {
-                    background?: T;
-                    textColor?: T;
-                    customBackground?: T;
-                    customTextColor?: T;
-                    backgroundImage?: T;
-                    backgroundVideo?:
-                      | T
-                      | {
-                          source?: T;
-                          vimeoId?: T;
-                          url?: T;
-                        };
-                    overlay?:
-                      | T
-                      | {
-                          enabled?: T;
-                          opacity?: T;
-                        };
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                    width?: T;
-                    anchorId?: T;
-                    glow?:
-                      | T
-                      | {
-                          enabled?: T;
-                          color?: T;
-                          size?: T;
-                          opacity?: T;
-                          position?: T;
-                        };
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        contactForm?:
-          | T
-          | {
-              heading?:
-                | T
-                | {
-                    eyebrow?: T;
-                    title?: T;
-                    subtitle?: T;
-                    align?: T;
-                  };
-              form?: T;
-              sidebar?:
-                | T
-                | {
-                    enabled?: T;
-                    title?: T;
-                    body?: T;
-                    details?:
-                      | T
-                      | {
-                          label?: T;
-                          value?: T;
-                          id?: T;
-                        };
                   };
               appearance?:
                 | T
@@ -12473,6 +10789,7 @@ export interface CaseStudiesSelect<T extends boolean = true> {
                     id?: T;
                   };
               mediaType?: T;
+              video?: T;
               videoUrl?: T;
               image?: T;
               id?: T;
@@ -12704,6 +11021,7 @@ export interface CaseStudiesSelect<T extends boolean = true> {
                           newTab?: T;
                         };
                   };
+              video?: T;
               videoUrl?: T;
               id?: T;
               blockName?: T;

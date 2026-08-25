@@ -147,11 +147,19 @@ export const SignatureProduct: Block = {
     { name: 'body', type: 'textarea', label: 'Description' },
     { name: 'button', type: 'group', label: 'Button', fields: [linkField()] },
     {
+      name: 'video',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Video file',
+    },
+    {
+      // Legacy raw-path fallback — see services.ts's identical field for why.
+      // No longer `required` now that `video` is the primary path; a doc
+      // can have one, the other, or (during the 2026-08-25 migration) both.
       name: 'videoUrl',
       type: 'text',
-      required: true,
-      label: 'Video file URL',
-      admin: { description: 'e.g. /videos/1 Wavecare Photo Ad (HQ).mp4' },
+      label: 'Video file URL (legacy — use "Video file" above instead)',
+      admin: { description: 'Deprecated. Only read when no Video file is set above.' },
     },
   ],
 };

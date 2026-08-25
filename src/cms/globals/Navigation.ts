@@ -59,6 +59,13 @@ export const Footer: GlobalConfig = {
   admin: { group: 'Settings' },
   versions: { drafts: false, max: 20 },
   access: { read: () => true, update: adminOrEditor },
+  // Found 2026-08-25: this was the one collection/global missing its
+  // revalidation hook (Navigation, right above, has always had it) --
+  // same class of gap this repo already hit once for Media (see commit
+  // 79ad78d: "Media collection missing revalidation hook"). Without it, a
+  // footer edit saves fine but never reaches the live site until some
+  // other, unrelated save happens to revalidate the whole app anyway.
+  hooks: { afterChange: [revalidateGlobalAfterChange] },
   fields: [
     { name: 'logo', type: 'upload', relationTo: 'media', label: 'Footer logo' },
     { name: 'blurb', type: 'textarea', label: 'Short description' },

@@ -134,29 +134,37 @@ export {
 /**
  * Every block an editor can drop onto a page.
  * Order here is the order they appear in the "Add block" menu.
+ *
+ * Six early/generic blocks (SplitMedia, LogoMarquee, VideoEmbed,
+ * CaseStudyGrid, TestimonialGrid, ContactFormBlock — all from this file's
+ * original conversion.ts/media.ts/layout.ts scaffolding) were superseded by
+ * page-specific ones as the block library grew (SplitRow, LogoStrip,
+ * CaseStudyCards, TestimonialCards/VideoTestimonials, the contact page's own
+ * flow) but never removed from this list, so RenderBlocks.tsx has no case
+ * for any of them — confirmed by reading its switch statement and by
+ * checking every live Pages doc in production, none use any of the six.
+ * Left selectable, they were a trap: an editor picking one from "Add block"
+ * would save it, see nothing wrong in admin, and it would silently render as
+ * nothing on the live page. Excluded here (2026-08-25) rather than deleted
+ * outright — their schemas/exports still exist above if ever needed again,
+ * this only removes them from what an editor can currently add.
  */
 export const allBlocks = [
   Hero,
   NoticeBar,
   SocialProofBanner,
-  SplitMedia,
   CardGrid,
   Stats,
   Process,
   TabsShowcase,
   Gallery,
   BeforeAfter,
-  VideoEmbed,
   VideoGrid,
   FeaturedVideoWork,
-  LogoMarquee,
   CaseStudyCards,
-  CaseStudyGrid,
-  TestimonialGrid,
   Accordion,
   RichTextBlock,
   LegalDocument,
-  ContactFormBlock,
   FinalCTA,
   // Landing-page kit — renders the wc-* / wct-* design systems
   ...landingBlocks,

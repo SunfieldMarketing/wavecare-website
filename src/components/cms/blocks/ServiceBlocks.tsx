@@ -73,10 +73,18 @@ export function SplitRowBlock({ block }: { block: any }) {
             height={700}
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
-        ) : block.videoUrl ? (
+        ) : block.video?.url || block.videoUrl ? (
           // Autoplay is driven by the page's IntersectionObserver, matching the
           // hand-written markup — the element ships without an autoplay attribute.
-          <video src={block.videoUrl} muted loop playsInline style={{ pointerEvents: 'none' }} />
+          // Prefers the S3-backed `video` upload; `videoUrl` is only the
+          // legacy raw-path fallback (see the block schema's own comment).
+          <video
+            src={block.video?.url || block.videoUrl}
+            muted
+            loop
+            playsInline
+            style={{ pointerEvents: 'none' }}
+          />
         ) : null}
       </div>
     </div>

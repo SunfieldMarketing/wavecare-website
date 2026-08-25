@@ -155,12 +155,20 @@ export const SplitMedia: Block = {
       admin: { condition: (_, s) => s?.mediaType === 'image' },
     },
     {
+      name: 'video',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Video file',
+      admin: { condition: (_, s) => s?.mediaType === 'video' },
+    },
+    {
+      // Legacy raw-path fallback — see services.ts's identical field for why.
       name: 'videoUrl',
       type: 'text',
-      label: 'Video file URL',
+      label: 'Video file URL (legacy — use "Video file" above instead)',
       admin: {
         condition: (_, s) => s?.mediaType === 'video',
-        description: 'e.g. /videos/Website video .mp4',
+        description: 'Deprecated. Only read when no Video file is set above.',
       },
     },
     {
