@@ -14,9 +14,17 @@ export const CaseStudies: CollectionConfig = {
     livePreview: {
       // Same fix as Pages.ts's buildPreviewURL: without NEXT_PUBLIC_SERVER_URL
       // set in production, this always fell back to localhost, which the
-      // editor's own browser correctly refuses to connect to.
-      url: ({ data }) =>
-        `${process.env.NEXT_PUBLIC_SERVER_URL || (process.env.NODE_ENV === 'production' ? 'https://wavecare.io' : 'http://localhost:3000')}/case-studies/${data?.slug ?? ''}?preview=true`,
+      // editor's own browser correctly refuses to connect to. Also routed
+      // through /api/preview (see that route) so the draftMode() cookie
+      // actually gets enabled - the old `?preview=true` on the real page was
+      // never read by anything.
+      url: ({ data }) => {
+        const base =
+          process.env.NEXT_PUBLIC_SERVER_URL ||
+          (process.env.NODE_ENV === 'production' ? 'https://wavecare.io' : 'http://localhost:3000');
+        const path = `/case-studies/${data?.slug ?? ''}`;
+        return `${base}/api/preview?path=${encodeURIComponent(path)}`;
+      },
       breakpoints: [
         { name: 'mobile', label: 'Mobile', width: 390, height: 844 },
         { name: 'desktop', label: 'Desktop', width: 1440, height: 900 },

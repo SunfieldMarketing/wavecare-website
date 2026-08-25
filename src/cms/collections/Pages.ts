@@ -128,5 +128,10 @@ function buildPreviewURL(slug: string): string {
     process.env.NEXT_PUBLIC_SERVER_URL ||
     (process.env.NODE_ENV === 'production' ? 'https://wavecare.io' : 'http://localhost:3000');
   const path = !slug || slug === 'home' ? '/' : `/${slug}`;
-  return `${base}${path}?preview=true`;
+  // Routed through /api/preview, which actually enables the draftMode()
+  // cookie before redirecting to `path` - a bare `?preview=true` on the real
+  // page (the old behavior) was never read by anything. See that route's own
+  // comment for why a query param alone can't do this for layout-level
+  // content (Nav/Footer/Site Settings).
+  return `${base}/api/preview?path=${encodeURIComponent(path)}`;
 }

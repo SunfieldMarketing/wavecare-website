@@ -127,6 +127,39 @@ export default buildConfig({
 
   secret: process.env.PAYLOAD_SECRET || 'CHANGE_ME_BEFORE_DEPLOY',
 
+  /**
+   * Explicit origin allow-list rather than relying on NEXT_PUBLIC_SERVER_URL
+   * alone. A single env var can only ever match one exact origin, and this
+   * app is legitimately reachable on several: the bare domain, www, the
+   * .vercel.app project fallback, the stable git-branch alias, and whatever
+   * this specific deployment's own unique preview URL is (Vercel injects
+   * that per-build as VERCEL_URL — useful when checking a deployment
+   * directly by its own URL rather than through the wavecare.io alias, e.g.
+   * while diagnosing whether a fix actually shipped). This is the exact gap
+   * documented for Slate Cinema in CMS-PARITY-HANDOFF.md 1.8: admin saves
+   * failed with a generic "not allowed" 403 (Payload's CSRF origin check)
+   * for weeks there until the allow-list was widened from a single env var
+   * to an explicit list like this one.
+   */
+  cors: [
+    'https://wavecare.io',
+    'https://www.wavecare.io',
+    'https://wavecare-gold.vercel.app',
+    'https://wavecare-sunfieldmarketings-projects.vercel.app',
+    'https://wavecare-git-master-sunfieldmarketings-projects.vercel.app',
+    ...(process.env.VERCEL_URL ? [`https://${process.env.VERCEL_URL}`] : []),
+    ...(process.env.NODE_ENV !== 'production' ? ['http://localhost:3000'] : []),
+  ],
+  csrf: [
+    'https://wavecare.io',
+    'https://www.wavecare.io',
+    'https://wavecare-gold.vercel.app',
+    'https://wavecare-sunfieldmarketings-projects.vercel.app',
+    'https://wavecare-git-master-sunfieldmarketings-projects.vercel.app',
+    ...(process.env.VERCEL_URL ? [`https://${process.env.VERCEL_URL}`] : []),
+    ...(process.env.NODE_ENV !== 'production' ? ['http://localhost:3000'] : []),
+  ],
+
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
