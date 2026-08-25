@@ -1,60 +1,97 @@
 import type { Metadata } from 'next';
+import { getGlobal } from '@/lib/cms';
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://wavecare.io'),
-  title: 'Marketing for Senior Living & Skilled Nursing | Wavecare',
-  description: 'Websites, photography, video tours, and branding for senior living, assisted living, and skilled nursing providers nationwide. Book a free audit.',
-  keywords: ['healthcare marketing', 'senior care marketing', 'medical marketing agency', 'healthcare web design', 'healthcare branding', 'medical video production'],
-  authors: [{ name: 'Wavecare Marketing' }],
-  creator: 'Wavecare Marketing',
-  publisher: 'Wavecare Marketing',
-  icons: {
-    icon: [
-      { url: '/favicon.png', type: 'image/png' },
-    ],
-    apple: [
-      { url: '/favicon.png', type: 'image/png' },
-    ],
-    shortcut: '/favicon.png',
-  },
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    title: 'Wavecare Marketing | Healthcare Marketing Agency',
-    description: 'We build beautiful, conversion-first marketing assets for healthcare facilities.',
-    url: 'https://wavecare.io',
-    siteName: 'Wavecare Marketing',
-    images: [
-      {
-        url: '/wavecare-marketing-logo.png',
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Wavecare Marketing',
-    description: 'Healthcare marketing that helps facilities look as good as the care they provide.',
-    images: ['/wavecare-marketing-logo.png'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+/**
+ * Root metadata + JSON-LD, sourced from the Site Settings global rather than
+ * hardcoded here.
+ *
+ * Found 2026-08-25: Site Settings already had siteName/tagline/description/
+ * defaultTitle/titleTemplate/defaultDescription/defaultOgImage/siteUrl/
+ * knowsAbout fields - the exact shape this file's metadata and structured
+ * data needed - but nothing ever read them here; every value below was a
+ * separate hardcoded literal, so an editor changing Site Settings in admin
+ * had zero effect on the actual <title>, description, OG image, or
+ * Organization schema every page ships. The hardcoded strings below are now
+ * only the fallback for whichever Site Settings field is still empty -
+ * behavior is unchanged today (every field this pulls from is currently
+ * unset), but the CMS field now actually does something once filled in.
+ *
+ * Tracking IDs (GA4/Google Ads/Meta Pixel) deliberately stay on env vars,
+ * not Site Settings' matching `tracking` fields - see MIGRATION-PLAN.md's
+ * "Keep integrations out of the CMS" note; a content edit should never be
+ * able to break analytics/conversion tracking.
+ */
+async function getSiteSettings() {
+  return (await getGlobal('site-settings').catch(() => null)) as any;
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const s = await getSiteSettings();
+
+  const siteUrl = s?.siteUrl || 'https://wavecare.io';
+  const siteName = s?.siteName || 'Wavecare Marketing';
+  const title = s?.defaultTitle || 'Marketing for Senior Living & Skilled Nursing | Wavecare';
+  const description =
+    s?.defaultDescription ||
+    'Websites, photography, video tours, and branding for senior living, assisted living, and skilled nursing providers nationwide. Book a free audit.';
+  const ogImage = s?.defaultOgImage?.url || '/wavecare-marketing-logo.png';
+
+  return {
+    metadataBase: new URL(siteUrl),
+    title,
+    description,
+    keywords: ['healthcare marketing', 'senior care marketing', 'medical marketing agency', 'healthcare web design', 'healthcare branding', 'medical video production'],
+    authors: [{ name: siteName }],
+    creator: siteName,
+    publisher: siteName,
+    icons: {
+      icon: [
+        { url: '/favicon.png', type: 'image/png' },
+      ],
+      apple: [
+        { url: '/favicon.png', type: 'image/png' },
+      ],
+      shortcut: '/favicon.png',
+    },
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
+    },
+    openGraph: {
+      title: s?.tagline ? `${siteName} | ${s.tagline}` : `${siteName} | Healthcare Marketing Agency`,
+      description: s?.tagline || 'We build beautiful, conversion-first marketing assets for healthcare facilities.',
+      url: siteUrl,
+      siteName,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: siteName,
+      description: 'Healthcare marketing that helps facilities look as good as the care they provide.',
+      images: [ogImage],
+    },
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
-  },
-};
+  };
+}
 
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -68,7 +105,24 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
 import './globals.css';
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const s = await getSiteSettings();
+  const siteUrl = s?.siteUrl || 'https://wavecare.io';
+  const siteName = s?.siteName || 'Wavecare Marketing';
+  const orgDescription =
+    s?.description ||
+    'Wavecare Marketing is a healthcare-focused marketing agency specializing in branding, photography, video production, design, print, and conversion-first web design for senior care facilities and medical practices.';
+  const tagline = s?.tagline || 'Built for healthcare. Built for trust.';
+  const orgLogo = s?.defaultOgImage?.url || `${siteUrl}/wavecare-marketing-logo.png`;
+  const knowsAbout: string[] =
+    s?.knowsAbout?.length
+      ? s.knowsAbout.map((k: any) => k.term).filter(Boolean)
+      : [
+          'senior living', 'assisted living', 'memory care', 'skilled nursing',
+          'independent living', 'CCRC', 'rehabilitation', 'long-term care',
+          'hospice', 'home health', 'home care',
+        ];
+
   return (
     <html lang="en">
       <head>
@@ -127,29 +181,17 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "Wavecare Marketing",
-              "url": "https://wavecare.io",
+              "name": siteName,
+              "url": siteUrl,
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://wavecare.io/wavecare-marketing-logo.png",
+                "url": orgLogo,
                 "width": 300,
                 "height": 400
               },
-              "description": "Wavecare Marketing is a healthcare-focused marketing agency specializing in branding, photography, video production, design, print, and conversion-first web design for senior care facilities and medical practices.",
-              "slogan": "Built for healthcare. Built for trust.",
-              "knowsAbout": [
-                "senior living",
-                "assisted living",
-                "memory care",
-                "skilled nursing",
-                "independent living",
-                "CCRC",
-                "rehabilitation",
-                "long-term care",
-                "hospice",
-                "home health",
-                "home care"
-              ],
+              "description": orgDescription,
+              "slogan": tagline,
+              "knowsAbout": knowsAbout,
               "makesOffer": [
                 {
                   "@type": "Offer",
@@ -188,7 +230,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 {
                   "@type": "ContactPoint",
                   "contactType": "sales",
-                  "url": "https://wavecare.io/contact",
+                  "url": `${siteUrl}/contact`,
                   "availableLanguage": "English"
                 }
               ]
@@ -201,14 +243,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "url": "https://wavecare.io",
-              "name": "Wavecare Marketing",
-              "description": "Healthcare marketing agency for senior care and medical practices.",
+              "url": siteUrl,
+              "name": siteName,
+              "description": orgDescription,
               "potentialAction": {
                 "@type": "SearchAction",
                 "target": {
                   "@type": "EntryPoint",
-                  "urlTemplate": "https://wavecare.io/?q={search_term_string}"
+                  "urlTemplate": `${siteUrl}/?q={search_term_string}`
                 },
                 "query-input": "required name=search_term_string"
               }
