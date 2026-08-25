@@ -83,11 +83,25 @@ async function assertContentExists(slug: string): Promise<void> {
 
 export async function getCaseStudyBySlug(slug: string) {
   const payload = await payloadClient();
+
+  // Fixed 2026-08-25: this used to call payload.find() with neither `draft`
+  // nor `overrideAccess` set. Payload's Local API defaults overrideAccess to
+  // true for collection reads when it's omitted, which bypasses this
+  // collection's own `publishedOrAuthenticated` access function entirely —
+  // a case study saved as a draft (not yet published) was visible on the
+  // live public site immediately, the same class of bug documented for
+  // Slate Cinema in CMS-PARITY-HANDOFF.md. Matches getPageBySlug's
+  // already-correct pattern above: do NOT wrap draftMode() in try/catch,
+  // Next.js signals dynamic-rendering bailouts by throwing.
+  const { isEnabled: isDraft } = await draftMode();
+
   const result = await payload.find({
     collection: 'case-studies',
     where: { slug: { equals: slug } },
     limit: 1,
     depth: 2,
+    draft: isDraft,
+    overrideAccess: isDraft,
   });
   return result.docs[0] ?? null;
 }
@@ -146,7 +160,20 @@ export async function getAllPageSlugs(): Promise<
 
 export async function getGlobal(slug: 'navigation' | 'footer' | 'theme' | 'site-settings') {
   const payload = await payloadClient();
-  return payload.findGlobal({ slug, depth: 2 });
+
+  // Fixed 2026-08-25: this used to call findGlobal() with neither `draft`
+  // nor `overrideAccess` set, so it could never be told to return a draft
+  // version — an editor previewing an in-progress change to Navigation,
+  // Footer, Theme, or Site Settings always saw the last PUBLISHED state in
+  // the live-preview iframe, never the edit they were making. Not a leak
+  // (the opposite problem), but a real editor-facing bug — same class of
+  // gap documented for Slate Cinema in CMS-PARITY-HANDOFF.md. Reads
+  // draftMode() itself, matching getPageBySlug/getCaseStudyBySlug's
+  // pattern, so every existing call site picks up the fix with no changes
+  // needed at the call sites themselves.
+  const { isEnabled: isDraft } = await draftMode();
+
+  return payload.findGlobal({ slug, depth: 2, draft: isDraft, overrideAccess: isDraft });
 }
 
 /**
