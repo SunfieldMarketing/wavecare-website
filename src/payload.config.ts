@@ -102,6 +102,9 @@ export default buildConfig({
         Icon: '/components/admin/Logo#Icon',
       },
       beforeLogin: ['/components/admin/LoginRobotBackground'],
+      // Click a section in Live Preview -> jump to and expand its block in
+      // the Blocks field. See ClickToEditListener's own comment.
+      providers: ['/components/admin/ClickToEditListener#ClickToEditListener'],
     },
     livePreview: {
       breakpoints: [

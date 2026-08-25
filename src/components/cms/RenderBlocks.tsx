@@ -79,6 +79,8 @@ import {
 } from './blocks/DigitalMarketingBlocks';
 import { containerClassName } from './appearance';
 import CMSLink from './CMSLink';
+import PreviewBlockBoundary from './PreviewBlockBoundary';
+import { draftMode } from 'next/headers';
 import './cms-blocks.css';
 
 /**
@@ -87,9 +89,19 @@ import './cms-blocks.css';
  * This is a server component: the page's HTML (and therefore its content) is
  * rendered on the server and is fully visible to search engines. Only the
  * genuinely interactive blocks opt into 'use client'.
+ *
+ * Async since 2026-08-25 to read draftMode() - every block gets wrapped in
+ * PreviewBlockBoundary so clicking a section in the admin's Live Preview
+ * iframe jumps to that block's fields (see that component + ClickToEditListener
+ * for the other half). isPreview is false for every real visitor, at which
+ * point PreviewBlockBoundary is a complete no-op (renders children directly,
+ * no wrapper element at all) - zero behavior or DOM change outside preview.
+ * Do NOT wrap draftMode() in try/catch, same reasoning as src/lib/cms.ts.
  */
-export default function RenderBlocks({ blocks }: { blocks?: any[] | null }) {
+export default async function RenderBlocks({ blocks }: { blocks?: any[] | null }) {
   if (!blocks?.length) return null;
+
+  const { isEnabled: isPreview } = await draftMode();
 
   return (
     <>
@@ -97,6 +109,7 @@ export default function RenderBlocks({ blocks }: { blocks?: any[] | null }) {
       {blocks.map((block, i) => {
         const key = `${block.blockType}-${block.id ?? i}`;
 
+        const content = (() => {
         switch (block.blockType) {
           case 'hero':
             return <HeroBlock key={key} block={block} />;
@@ -308,6 +321,13 @@ export default function RenderBlocks({ blocks }: { blocks?: any[] | null }) {
             }
             return null;
         }
+        })();
+
+        return (
+          <PreviewBlockBoundary key={key} index={i} fieldPath="layout" isPreview={isPreview}>
+            {content}
+          </PreviewBlockBoundary>
+        );
       })}
     </>
   );
