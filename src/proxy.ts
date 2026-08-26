@@ -89,10 +89,25 @@ function normalize(path: string): string {
 // scan against a handful of prefixes.
 const SKIP_PREFIXES = ['/api', '/admin', '/payload-api'];
 
+// Found 2026-08-26, while chasing a live /robots.txt 404: Next's own docs
+// (node_modules/next/dist/docs/.../file-conventions/01-metadata/index.md)
+// say plainly - "If using along with proxy.ts, configure the matcher to
+// exclude the metadata files." This file's matcher never did. Confirmed via
+// runtime logs that /robots.txt was already 404ing on the PRIOR deployment,
+// well before today's redirects work touched this file at all - not a
+// regression from this feature, a pre-existing gap this file's matcher left
+// open since the day Proxy was reintroduced. sitemap.xml happened to keep
+// working regardless (never root-caused why one metadata file tolerates
+// passing through Proxy and another doesn't - simplest correct fix is to
+// follow the documented guidance for all of them, not just the one that
+// broke first). icon.png/apple-icon.png compile to a build-hashed filename
+// (e.g. /icon-4usi79.png) so those are matched by pattern, not exact path.
+const METADATA_FILES = /^\/(robots\.txt|sitemap\.xml|favicon\.ico|manifest\.(json|webmanifest)|(apple-)?icon(-[a-z0-9]+)?\.(png|ico|svg)|(opengraph|twitter)-image(-[a-z0-9]+)?\.(png|jpg|jpeg))$/i;
+
 export default async function proxy(request: NextRequest) {
   const pathname = normalize(request.nextUrl.pathname);
 
-  if (SKIP_PREFIXES.some((p) => pathname === p || pathname.startsWith(`${p}/`))) {
+  if (SKIP_PREFIXES.some((p) => pathname === p || pathname.startsWith(`${p}/`)) || METADATA_FILES.test(pathname)) {
     return NextResponse.next();
   }
 
