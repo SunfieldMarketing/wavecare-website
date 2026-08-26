@@ -25,6 +25,10 @@ async function getSiteSettings() {
   return (await getGlobal('site-settings').catch(() => null)) as any;
 }
 
+async function getTheme() {
+  return (await getGlobal('theme').catch(() => null)) as any;
+}
+
 export async function generateMetadata(): Promise<Metadata> {
   const s = await getSiteSettings();
 
@@ -100,13 +104,14 @@ import ThemeStyles from '@/components/ThemeStyles';
 import CustomCursor from '@/components/CustomCursor';
 import NavScrollChrome from '@/components/NavScrollChrome';
 import RefreshRouteOnSave from '@/components/cms/RefreshRouteOnSave';
+import CookieBanner from '@/components/CookieBanner';
 import { Analytics } from '@vercel/analytics/react';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
 import './globals.css';
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const s = await getSiteSettings();
+  const [s, theme] = await Promise.all([getSiteSettings(), getTheme()]);
   const siteUrl = s?.siteUrl || 'https://wavecare.io';
   const siteName = s?.siteName || 'Wavecare Marketing';
   const orgDescription =
@@ -265,7 +270,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           <div className="cring" id="cring"></div>
 
           <ThemeStyles />
-          <ScrollGuard />
+          <ScrollGuard enabled={theme?.enableSmoothScroll} />
           <CustomCursor />
           <NavScrollChrome />
           <RefreshRouteOnSave />
@@ -354,6 +359,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           )}
 
           <Analytics />
+          <CookieBanner settings={s?.cookieBanner} />
       </body>
     </html>
   );
