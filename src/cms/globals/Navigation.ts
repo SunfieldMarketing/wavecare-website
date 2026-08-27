@@ -1,6 +1,6 @@
 import type { GlobalConfig } from 'payload';
 import { linkField } from '../fields/link';
-import { adminOrEditor } from '../access';
+import { adminOrEditor, publishedOrAuthenticated } from '../access';
 import { revalidateGlobalAfterChange } from '../hooks/revalidate';
 
 export const Navigation: GlobalConfig = {
@@ -10,8 +10,21 @@ export const Navigation: GlobalConfig = {
     group: 'Settings',
     description: 'The header menu, including dropdowns.',
   },
-  versions: { drafts: false, max: 20 },
-  access: { read: () => true, update: adminOrEditor },
+  // Found 2026-08-27: Navigation/Footer/Theme/Site Settings had no
+  // draft/publish distinction at all (drafts: false) - every save went
+  // live immediately, with nothing for Live Preview to show "in progress".
+  // Matches Slate Cinema's own model (see CMS-PARITY-HANDOFF.md 7.3, which
+  // flagged this explicitly as "a decision for whoever owns this content,
+  // not something to assume" - decided now: bring these four to parity).
+  versions: { drafts: true, max: 20 },
+  // Was `read: () => true` - unconditionally public, with no published/
+  // draft distinction possible even after enabling versions above. Same
+  // fix Slate Cinema needed for its own globals: an anonymous visitor only
+  // ever sees the published version; a logged-in editor sees their own
+  // draft too, which is what makes Live Preview show an in-progress edit
+  // instead of silently falling back to published (see CaseStudies.ts's
+  // access for the identical pattern already proven on this project).
+  access: { read: publishedOrAuthenticated, update: adminOrEditor },
   hooks: { afterChange: [revalidateGlobalAfterChange] },
   fields: [
     { name: 'logo', type: 'upload', relationTo: 'media', label: 'Header logo' },
@@ -57,8 +70,10 @@ export const Footer: GlobalConfig = {
   slug: 'footer',
   label: 'Footer',
   admin: { group: 'Settings' },
-  versions: { drafts: false, max: 20 },
-  access: { read: () => true, update: adminOrEditor },
+  // See Navigation's own comment above (same file) for why this changed
+  // from drafts: false and a bare `read: () => true`.
+  versions: { drafts: true, max: 20 },
+  access: { read: publishedOrAuthenticated, update: adminOrEditor },
   // Found 2026-08-25: this was the one collection/global missing its
   // revalidation hook (Navigation, right above, has always had it) --
   // same class of gap this repo already hit once for Media (see commit

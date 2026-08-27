@@ -16,6 +16,7 @@ import * as migration_20260805_001901_logo_strip_variant from './20260805_001901
 import * as migration_20260811_073238_digital_marketing_blocks from './20260811_073238_digital_marketing_blocks';
 import * as migration_20260820_234243_add_media_prefix_field from './20260820_234243_add_media_prefix_field';
 import * as migration_20260825_182727_add_video_upload_fields from './20260825_182727_add_video_upload_fields';
+import * as migration_20260827_073000_enable_drafts_shared_globals from './20260827_073000_enable_drafts_shared_globals';
 
 export const migrations = [
   {
@@ -106,6 +107,11 @@ export const migrations = [
   {
     up: migration_20260825_182727_add_video_upload_fields.up,
     down: migration_20260825_182727_add_video_upload_fields.down,
-    name: '20260825_182727_add_video_upload_fields'
+    name: '20260825_182727_add_video_upload_fields',
+  },
+  {
+    up: migration_20260827_073000_enable_drafts_shared_globals.up,
+    down: migration_20260827_073000_enable_drafts_shared_globals.down,
+    name: '20260827_073000_enable_drafts_shared_globals',
   },
 ];

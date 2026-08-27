@@ -1,5 +1,5 @@
 import type { GlobalConfig } from 'payload';
-import { adminOnly, adminOrEditor } from '../access';
+import { adminOnly, adminOrEditor, publishedOrAuthenticated } from '../access';
 import { revalidateGlobalAfterChange } from '../hooks/revalidate';
 
 export const SiteSettings: GlobalConfig = {
@@ -9,8 +9,10 @@ export const SiteSettings: GlobalConfig = {
     group: 'Settings',
     description: 'Company details, default SEO, and tracking codes.',
   },
-  versions: { drafts: false, max: 20 },
-  access: { read: () => true, update: adminOrEditor },
+  // See cms/globals/Navigation.ts's Navigation export for the full writeup -
+  // same change, same reason, applied to all four shared globals together.
+  versions: { drafts: true, max: 20 },
+  access: { read: publishedOrAuthenticated, update: adminOrEditor },
   hooks: { afterChange: [revalidateGlobalAfterChange] },
   fields: [
     {

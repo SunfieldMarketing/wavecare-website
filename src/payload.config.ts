@@ -85,6 +85,39 @@ function databaseAdapter() {
   });
 }
 
+/**
+ * Live Preview target for Navigation, Footer, Theme, and Site Settings.
+ *
+ * Found 2026-08-27, cross-checked against Slate Cinema's own
+ * payload.config.ts (see CMS-PARITY-HANDOFF.md 7.3, which flagged this
+ * gap explicitly rather than assuming it away): these four globals had no
+ * `admin.livePreview` config anywhere, and - the part that actually
+ * matters, confirmed by reading @payloadcms/ui/dist/utilities/
+ * handleLivePreview.js directly the same way Slate Cinema's own comment
+ * describes - setting `admin.livePreview` at the root only supplies
+ * shared defaults (breakpoints, this url function). It does NOT turn Live
+ * Preview on for anything by itself. Payload's own isLivePreviewEnabled()
+ * only returns true for a global/collection whose slug appears in the
+ * `globals`/`collections` arrays below (Pages and CaseStudies already
+ * satisfy this a different way - each sets `admin.livePreview` directly on
+ * itself - which is why they're not repeated in the arrays below).
+ *
+ * All four globals render on every single page (nav, footer, theme
+ * variables, and title/meta defaults all apply sitewide), so unlike
+ * Pages/CaseStudies there's no single "this document's own page" to
+ * preview against - home is the representative target for all of them,
+ * same reasoning Slate Cinema's own livePreviewURL uses for its
+ * equivalent shared globals (Navigation/Footer/SiteSettings there too).
+ */
+function globalsLivePreviewURL(): string {
+  const base =
+    process.env.NEXT_PUBLIC_SERVER_URL ||
+    (process.env.NODE_ENV === 'production' ? 'https://wavecare.io' : 'http://localhost:3000');
+  // Routed through /api/preview so this actually enables the draftMode()
+  // cookie before landing on the homepage - see that route's own comment.
+  return `${base}/api/preview?path=${encodeURIComponent('/')}`;
+}
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -112,6 +145,12 @@ export default buildConfig({
         { name: 'tablet', label: 'Tablet', width: 768, height: 1024 },
         { name: 'desktop', label: 'Desktop', width: 1440, height: 900 },
       ],
+      url: globalsLivePreviewURL,
+      // Pages/CaseStudies aren't listed here - each already sets its own
+      // admin.livePreview.url directly (see Pages.ts/CaseStudies.ts),
+      // which independently satisfies isLivePreviewEnabled() for them.
+      // This array is what's actually missing for the four shared globals.
+      globals: [Navigation.slug, Footer.slug, Theme.slug, SiteSettings.slug],
     },
   },
 
