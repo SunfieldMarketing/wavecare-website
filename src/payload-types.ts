@@ -12337,6 +12337,7 @@ export interface Navigation {
       newTab?: boolean | null;
     };
   };
+  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -12416,6 +12417,7 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -12453,6 +12455,7 @@ export interface Theme {
   enableSmoothScroll?: boolean | null;
   enableCustomCursor?: boolean | null;
   enableGrain?: boolean | null;
+  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -12510,6 +12513,7 @@ export interface SiteSetting {
     acceptLabel?: string | null;
     declineLabel?: string | null;
   };
+  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -12570,6 +12574,7 @@ export interface NavigationSelect<T extends boolean = true> {
               newTab?: T;
             };
       };
+  _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -12632,6 +12637,7 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -12664,6 +12670,7 @@ export interface ThemeSelect<T extends boolean = true> {
   enableSmoothScroll?: T;
   enableCustomCursor?: T;
   enableGrain?: T;
+  _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -12713,6 +12720,7 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         acceptLabel?: T;
         declineLabel?: T;
       };
+  _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

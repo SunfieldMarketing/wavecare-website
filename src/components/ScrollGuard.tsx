@@ -1,7 +1,13 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
+
+// Layout effects run synchronously after the DOM commits but BEFORE the
+// browser paints; plain effects run AFTER paint. The Lenis-instance/scroll-
+// reset effect below needs the former - see its own comment for why. Falls
+// back to a plain effect during SSR, where layout effects just warn.
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
 /**
  * Three jobs.
@@ -114,7 +120,17 @@ export default function ScrollGuard({ enabled }: { enabled?: boolean } = {}) {
   }, []);
 
   // ── 2. Own the one Lenis instance, per navigation ───────────────────────
-  useEffect(() => {
+  // A plain `useEffect` here fires AFTER the browser paints the new route's
+  // content - which is committed at whatever scroll offset the PREVIOUS page
+  // was left at. On a page similar in length to the last one, that offset
+  // can land inside the new page's own final CTA/footer, so the very first
+  // frame the visitor sees is the bottom of the new page, then a visible
+  // jump to the top a beat later when this effect's `apply()` finally runs.
+  // `useIsomorphicLayoutEffect` runs synchronously before that paint, so the
+  // reset happens before anything is shown - eliminating the flash. (Only
+  // matters for the reset itself; the 50/150/350/700ms retries below still
+  // run on their own timers as a safety net for late font/image reflows.)
+  useIsomorphicLayoutEffect(() => {
     // enabled === false is an explicit editor opt-out (Theme ->
     // enableSmoothScroll). Undefined (Site Settings unreachable) defaults to
     // on, matching the field's own defaultValue: true.
