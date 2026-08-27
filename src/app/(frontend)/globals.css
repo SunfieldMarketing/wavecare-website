@@ -8,11 +8,23 @@
     --pad:clamp(80px,9vw,140px); --container:1320px;
   }
   *,*::before,*::after{box-sizing:border-box;}
-  html{scroll-behavior:auto;} /* Lenis handles smooth scroll — native scroll-behavior interferes */
+  html{scroll-behavior:auto; overflow-anchor:none;} /* Lenis handles smooth scroll — native scroll-behavior interferes */
   body{margin:0; background:var(--ink); color:var(--white); font-family:var(--font-body); max-width: 100vw;
     line-height:1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; overflow-x:hidden;
     /* GPU compositing layer for the entire page */
     -webkit-overflow-scrolling:touch;
+    /* Found 2026-08-26: reports of a page landing scrolled to the bottom
+       after client-side navigation, not reproducible through scripted
+       clicks but consistently reported by a real user across repeated
+       real navigations. Chrome/Firefox's CSS Scroll Anchoring
+       automatically shifts scroll position to compensate for content that
+       changes size above the viewport (e.g. late-loading web fonts or
+       images reflowing) - if that fires shortly after ScrollGuard's
+       reset-to-0 on navigation, it can silently drag the page back down.
+       Disabling it site-wide removes that whole class of unexplained
+       post-navigation scroll drift; nothing on this site depends on the
+       "preserve my place while content shifts" behavior it exists for. */
+    overflow-anchor:none;
   }
   img{max-width:100%; display:block;}
   a{color:inherit; text-decoration:none;}

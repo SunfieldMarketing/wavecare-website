@@ -133,6 +133,7 @@ export default function ScrollGuard({ enabled }: { enabled?: boolean } = {}) {
     let anchorCleanup: (() => void) | null = null;
     let pollId: number | null = null;
     let pollStop: number | null = null;
+    const resetTimeouts: number[] = [];
 
     const create = () => {
       if (cancelled || !w.Lenis) return;
@@ -203,17 +204,60 @@ export default function ScrollGuard({ enabled }: { enabled?: boolean } = {}) {
       // fight the browser's own scroll-restoration on refresh); on a real
       // navigation, honour a URL hash (e.g. Book a Demo -> /contact#calendar)
       // if present, otherwise force both native scroll and Lenis's own
-      // tracked position to 0 - immediate, not animated, matching how a
-      // normal page-to-page navigation has always felt.
+      // tracked position to 0.
+      //
+      // Found 2026-08-26: a single reset right here wasn't enough - reported
+      // (repeatedly, on real navigation, not reproducible through scripted
+      // clicks) as "works, then lands at the bottom" - the signature of
+      // something running AFTER this point and moving scroll again, not of
+      // this reset failing outright. Re-asserts the target on several short
+      // delays through the page's settling window (late web-font swaps,
+      // images resolving and reflowing, Next's own post-navigation
+      // handling) instead of trusting one synchronous call to be the final
+      // word. Each call is cheap and a no-op if scroll is already correct.
+      //
+      // Re-queries the hash target FRESH on every call rather than reusing
+      // one captured element - a first version captured it once and reused
+      // that reference for all four delayed calls, which broke Book a Demo:
+      // if the calendar section's DOM node gets replaced by a re-render
+      // anywhere in this window, the stale (now-detached) reference's
+      // getBoundingClientRect() reads as {top:0,...}, so a LATER call was
+      // overwriting the correct calendar scroll with 0. Caught by testing
+      // this exact fix before shipping it, not left for a second live regression.
       if (isNav) {
         const hash = window.location.hash;
-        const target = hash ? document.querySelector(hash) : null;
-        if (target) {
-          lenis.scrollTo(target, { offset: -20, immediate: true });
-        } else {
-          window.scrollTo(0, 0);
-          lenis.scrollTo(0, { immediate: true });
-        }
+        const apply = () => {
+          if (cancelled) return;
+          const target = hash ? document.querySelector(hash) : null;
+          if (target) {
+            // Computed from live, native values (not Lenis's own element-
+            // relative math) so this stays correct regardless of whether
+            // Lenis's internal position tracking is in sync.
+            const absoluteTop = target.getBoundingClientRect().top + window.scrollY - 20;
+            const computed = Math.max(0, Math.round(absoluteTop));
+            // Diagnosed via temporary instrumentation 2026-08-26: without
+            // this, a correctly-computed target got silently clamped down
+            // to whatever the page's height was AT THE MOMENT this Lenis
+            // instance was constructed (its cached `limit`) - which, this
+            // early in navigation, is the height BEFORE the calendar
+            // section's booking widget has mounted and made the page
+            // taller. resize() forces a remeasure of the current (by-then
+            // correct) document height before scrolling, so the clamp
+            // uses an up-to-date limit instead of a stale one. Confirmed
+            // via repeated testing: without this call, roughly half of
+            // attempts landed at the stale limit instead of the calendar.
+            lenis.resize();
+            lenis.scrollTo(computed, { immediate: true });
+          } else {
+            window.scrollTo(0, 0);
+            lenis.scrollTo(0, { immediate: true });
+          }
+        };
+        apply();
+        [50, 150, 350, 700].forEach((delay) => {
+          const id = window.setTimeout(apply, delay);
+          resetTimeouts.push(id);
+        });
       }
     };
 
@@ -245,6 +289,7 @@ export default function ScrollGuard({ enabled }: { enabled?: boolean } = {}) {
       cancelled = true;
       if (pollId !== null) window.clearInterval(pollId);
       if (pollStop !== null) window.clearTimeout(pollStop);
+      resetTimeouts.forEach((id) => window.clearTimeout(id));
       try {
         if (tick && w.gsap) w.gsap.ticker.remove(tick);
         anchorCleanup?.();
