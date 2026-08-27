@@ -205,59 +205,90 @@ export default function ScrollGuard({ enabled }: { enabled?: boolean } = {}) {
       // navigation, honour a URL hash (e.g. Book a Demo -> /contact#calendar)
       // if present, otherwise force both native scroll and Lenis's own
       // tracked position to 0.
-      //
-      // Found 2026-08-26: a single reset right here wasn't enough - reported
-      // (repeatedly, on real navigation, not reproducible through scripted
-      // clicks) as "works, then lands at the bottom" - the signature of
-      // something running AFTER this point and moving scroll again, not of
-      // this reset failing outright. Re-asserts the target on several short
-      // delays through the page's settling window (late web-font swaps,
-      // images resolving and reflowing, Next's own post-navigation
-      // handling) instead of trusting one synchronous call to be the final
-      // word. Each call is cheap and a no-op if scroll is already correct.
-      //
-      // Re-queries the hash target FRESH on every call rather than reusing
-      // one captured element - a first version captured it once and reused
-      // that reference for all four delayed calls, which broke Book a Demo:
-      // if the calendar section's DOM node gets replaced by a re-render
-      // anywhere in this window, the stale (now-detached) reference's
-      // getBoundingClientRect() reads as {top:0,...}, so a LATER call was
-      // overwriting the correct calendar scroll with 0. Caught by testing
-      // this exact fix before shipping it, not left for a second live regression.
       if (isNav) {
         const hash = window.location.hash;
-        const apply = () => {
-          if (cancelled) return;
-          const target = hash ? document.querySelector(hash) : null;
-          if (target) {
+
+        if (hash) {
+          // Found 2026-08-26, across several iterations: a fixed set of
+          // retry delays (50/150/350/700ms, tried first) worked "most of
+          // the time" and glitched otherwise - because the real thing this
+          // is racing against, the calendar section's GoHighLevel booking
+          // widget actually mounting, has NO fixed timing. It depends on
+          // that third-party script's own load time, which varies with
+          // network speed, cache state and device performance - a delay
+          // schedule can only ever be a guess at that, right for some
+          // conditions and wrong for others. A MutationObserver reacts to
+          // the DOM actually changing instead of guessing when it might -
+          // scrollToTarget below re-runs (harmlessly, if already correct)
+          // on every relevant mutation for a few seconds after navigation,
+          // so it catches the widget whenever it genuinely finishes
+          // mounting, not just at guessed checkpoints.
+          const scrollToTarget = () => {
+            if (cancelled) return false;
+            const target = document.querySelector(hash);
+            if (!target) return false;
             // Computed from live, native values (not Lenis's own element-
             // relative math) so this stays correct regardless of whether
-            // Lenis's internal position tracking is in sync.
+            // Lenis's internal position tracking is in sync - see the
+            // resize() note just below for why that matters here.
             const absoluteTop = target.getBoundingClientRect().top + window.scrollY - 20;
             const computed = Math.max(0, Math.round(absoluteTop));
-            // Diagnosed via temporary instrumentation 2026-08-26: without
-            // this, a correctly-computed target got silently clamped down
-            // to whatever the page's height was AT THE MOMENT this Lenis
-            // instance was constructed (its cached `limit`) - which, this
-            // early in navigation, is the height BEFORE the calendar
-            // section's booking widget has mounted and made the page
-            // taller. resize() forces a remeasure of the current (by-then
-            // correct) document height before scrolling, so the clamp
-            // uses an up-to-date limit instead of a stale one. Confirmed
-            // via repeated testing: without this call, roughly half of
-            // attempts landed at the stale limit instead of the calendar.
+            // Without this, a correctly-computed target got silently
+            // clamped down to whatever the page's height was AT THE
+            // MOMENT this Lenis instance was constructed (its cached
+            // `limit`) - the height BEFORE the booking widget made the
+            // page taller. resize() forces a remeasure of the current,
+            // by-then-correct document height before scrolling, so the
+            // clamp uses an up-to-date limit instead of a stale one.
             lenis.resize();
             lenis.scrollTo(computed, { immediate: true });
-          } else {
+            return true;
+          };
+
+          scrollToTarget();
+          const observer = new MutationObserver(() => {
+            scrollToTarget();
+          });
+          observer.observe(document.body, { childList: true, subtree: true });
+
+          // Widgets that finish mounting as an outer container and then
+          // load their own content into an iframe (common for embedded
+          // booking calendars) can still grow/resize after that initial
+          // mutation settles - a few plain re-checks alongside the
+          // observer catch that without needing to know what changed.
+          [200, 500, 1000, 2000, 3500].forEach((delay) => {
+            const id = window.setTimeout(scrollToTarget, delay);
+            resetTimeouts.push(id);
+          });
+
+          const stopObserving = window.setTimeout(() => observer.disconnect(), 4000);
+          resetTimeouts.push(stopObserving);
+          anchorCleanup = anchorCleanup
+            ? (() => {
+                const prev = anchorCleanup!;
+                return () => {
+                  prev();
+                  observer.disconnect();
+                };
+              })()
+            : () => observer.disconnect();
+        } else {
+          // No hash: nothing async to wait for, so the original short
+          // retry schedule (covers late web-font swaps and images
+          // resolving/reflowing shortly after load) is sufficient here -
+          // confirmed reliable across every test this session, unlike the
+          // hash-target case above.
+          const apply = () => {
+            if (cancelled) return;
             window.scrollTo(0, 0);
             lenis.scrollTo(0, { immediate: true });
-          }
-        };
-        apply();
-        [50, 150, 350, 700].forEach((delay) => {
-          const id = window.setTimeout(apply, delay);
-          resetTimeouts.push(id);
-        });
+          };
+          apply();
+          [50, 150, 350, 700].forEach((delay) => {
+            const id = window.setTimeout(apply, delay);
+            resetTimeouts.push(id);
+          });
+        }
       }
     };
 
