@@ -11,19 +11,17 @@ const nextConfig: NextConfig = {
   // specifically "to prevent losing the browser scroll position" - but it's
   // the opposite of what this site wants: a marketing site should always
   // open at the top, not resume wherever a visitor scrolled to last time.
-  // It also explains a real bug report: clicking the plain "Contact" nav
-  // link would sometimes reuse the exact cached instance last shown for
-  // Book a Demo's `/contact#calendar`, hash and mid-page scroll included,
-  // depending on whether the cache was still warm - hence "sometimes".
-  // Setting both to 0 disables the reuse entirely, so every navigation
-  // (including a revisit) is always a genuinely fresh render, matching this
-  // site's intended "every page starts at the top" behavior. ScrollGuard's
-  // own reset (see its own comment) stays in place as a second layer, in
-  // case Lenis's own scroll tracking needs correcting independent of this.
+  // Turned out NOT to be the actual mechanism behind the worst symptom (a
+  // stale hash bleeding from Book a Demo onto a later plain Contact click -
+  // fixed instead in ScrollGuard itself, see its own comment), but shortens
+  // the window for the same class of staleness regardless. `static` has a
+  // hard floor of 30 (Next rejects anything lower - confirmed via a real
+  // deploy: it logged "Number must be greater than or equal to 30" and
+  // silently ignored a `0` here), so this is the lowest it can actually go.
   experimental: {
     staleTimes: {
       dynamic: 0,
-      static: 0,
+      static: 30,
     },
   },
   // sharp's actual native binary (libvips) lives in the platform-specific
