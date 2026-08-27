@@ -59,9 +59,12 @@ const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffec
  *    same-tab client-side nav is wherever the PREVIOUS page was scrolled
  *    to. `isFirstRun` below skips this on initial mount/hard reload (so it
  *    doesn't fight the browser's own scroll-restoration on refresh) and
- *    only forces the reset on a genuine route change - and checks for a
- *    URL hash first, so `/contact#calendar` (the header's "Book a Demo"
- *    button) still lands on the calendar instead of being forced to 0.
+ *    only forces the reset on a genuine route change - and checks whether
+ *    the click that caused it targeted a hash first, so `/contact#calendar`
+ *    (the header's "Book a Demo" button) still lands on the calendar
+ *    instead of being forced to 0. That check goes through a click listener
+ *    (job 0, below) rather than reading `window.location.hash` directly -
+ *    see its own comment for the bug that requires it.
  *
  * 3. CONTENT IS NEVER LEFT INVISIBLE
  *    The pages hide content up front and reveal it with animation — e.g.
@@ -75,6 +78,34 @@ const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffec
 export default function ScrollGuard({ enabled }: { enabled?: boolean } = {}) {
   const pathname = usePathname();
   const isFirstRun = useRef(true);
+  const pendingHashRef = useRef<string | null>(null);
+
+  // ── 0. Capture what was actually clicked, before Next's router can lie ──
+  // Found 2026-08-27: `window.location.hash` is NOT trustworthy inside the
+  // navigation effect below. Reproduced reliably: click Book a Demo
+  // (-> /contact#calendar), go to any other page, then click the plain
+  // "Contact" nav link (href="/contact", no hash, confirmed via the DOM) -
+  // the address bar ends up back at "/contact#calendar" and the page lands
+  // on the calendar section anyway. Next's client router appears to
+  // resurrect a hash it had previously associated with that pathname
+  // (from restoring/reusing that route's earlier client-side state) even
+  // though the link that was actually clicked never specified one - this
+  // is what made the bug report ("sometimes lands on the calendar") a race
+  // rather than a permanent break. A capture-phase click listener records
+  // the CLICKED anchor's own href hash the instant the click happens, i.e.
+  // before Next's own handler has run at all, so the effect below can use
+  // ground truth instead of an address bar Next may still go on to rewrite.
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      const a = (e.target as HTMLElement | null)?.closest?.('a[href]') as HTMLAnchorElement | null;
+      if (!a) return;
+      const href = a.getAttribute('href') || '';
+      const i = href.indexOf('#');
+      pendingHashRef.current = i >= 0 ? href.slice(i) : '';
+    };
+    document.addEventListener('click', onClick, true);
+    return () => document.removeEventListener('click', onClick, true);
+  }, []);
 
   // ── 1. Lenis singleton wrapper (installed once) ─────────────────────────
   useEffect(() => {
@@ -222,7 +253,13 @@ export default function ScrollGuard({ enabled }: { enabled?: boolean } = {}) {
       // if present, otherwise force both native scroll and Lenis's own
       // tracked position to 0.
       if (isNav) {
-        const hash = window.location.hash;
+        // Ground truth is whatever the click listener above captured for
+        // THIS navigation, not the address bar (see that effect's comment).
+        // Falls back to the real location.hash for navigations with no
+        // preceding click at all - the browser's own back/forward buttons -
+        // where restoring a hash is the correct, expected behaviour.
+        const hash = pendingHashRef.current !== null ? pendingHashRef.current : window.location.hash;
+        pendingHashRef.current = null;
 
         if (hash) {
           // Found 2026-08-26, across several iterations: a fixed set of
@@ -296,6 +333,14 @@ export default function ScrollGuard({ enabled }: { enabled?: boolean } = {}) {
           // hash-target case above.
           const apply = () => {
             if (cancelled) return;
+            // Strip a hash Next's router may have resurrected on its own
+            // (see the capture-listener comment above) - otherwise the
+            // address bar shows "/contact#calendar" while the page itself
+            // is correctly sitting at the top, which is its own confusing
+            // bug (reload, or copy the URL, and it jumps to the calendar).
+            if (window.location.hash) {
+              history.replaceState(history.state, '', window.location.pathname + window.location.search);
+            }
             window.scrollTo(0, 0);
             lenis.scrollTo(0, { immediate: true });
           };
