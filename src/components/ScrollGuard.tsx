@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 
 /**
@@ -43,6 +43,20 @@ import { usePathname } from 'next/navigation';
  *    cleanly on every route change so client-side navigation can never stack
  *    a second instance on top of it.
  *
+ *    Found immediately after shipping the above (same day): with Lenis
+ *    dead, the browser/Next.js App Router's own default "scroll to top on
+ *    navigation" just worked untouched - clicking Contact in the navbar
+ *    always landed on the hero. With Lenis alive, a brand-new instance is
+ *    created on every pathname change, but nothing told it (or the native
+ *    scroll position) to actually go to 0 first - it just adopts whatever
+ *    scroll position happened to be on screen at creation time, which on a
+ *    same-tab client-side nav is wherever the PREVIOUS page was scrolled
+ *    to. `isFirstRun` below skips this on initial mount/hard reload (so it
+ *    doesn't fight the browser's own scroll-restoration on refresh) and
+ *    only forces the reset on a genuine route change - and checks for a
+ *    URL hash first, so `/contact#calendar` (the header's "Book a Demo"
+ *    button) still lands on the calendar instead of being forced to 0.
+ *
  * 3. CONTENT IS NEVER LEFT INVISIBLE
  *    The pages hide content up front and reveal it with animation — e.g.
  *    `gsap.set('[data-hero]', { opacity: 0 })` on the homepage, and CSS that
@@ -54,6 +68,7 @@ import { usePathname } from 'next/navigation';
  */
 export default function ScrollGuard({ enabled }: { enabled?: boolean } = {}) {
   const pathname = usePathname();
+  const isFirstRun = useRef(true);
 
   // ── 1. Lenis singleton wrapper (installed once) ─────────────────────────
   useEffect(() => {
@@ -105,6 +120,11 @@ export default function ScrollGuard({ enabled }: { enabled?: boolean } = {}) {
     // on, matching the field's own defaultValue: true.
     if (enabled === false) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // Capture-then-flip once per effect run, synchronously - `create()` can
+    // fire later (via the poll below), so this can't be read from inside it.
+    const isNav = !isFirstRun.current;
+    isFirstRun.current = false;
 
     const w = window as any;
     let cancelled = false;
@@ -175,6 +195,26 @@ export default function ScrollGuard({ enabled }: { enabled?: boolean } = {}) {
             };
           })()
         : removeAnchors;
+
+      // A brand-new Lenis instance otherwise just adopts whatever scroll
+      // position is on screen when it's created - on a client-side route
+      // change that's wherever the PREVIOUS page happened to be scrolled to,
+      // not the top of the new one. Skip on first mount/hard reload (don't
+      // fight the browser's own scroll-restoration on refresh); on a real
+      // navigation, honour a URL hash (e.g. Book a Demo -> /contact#calendar)
+      // if present, otherwise force both native scroll and Lenis's own
+      // tracked position to 0 - immediate, not animated, matching how a
+      // normal page-to-page navigation has always felt.
+      if (isNav) {
+        const hash = window.location.hash;
+        const target = hash ? document.querySelector(hash) : null;
+        if (target) {
+          lenis.scrollTo(target, { offset: -20, immediate: true });
+        } else {
+          window.scrollTo(0, 0);
+          lenis.scrollTo(0, { immediate: true });
+        }
+      }
     };
 
     if (w.Lenis) {
