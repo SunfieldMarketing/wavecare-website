@@ -37,10 +37,28 @@ const nextConfig: NextConfig = {
     '/*': ['node_modules/sharp/**/*', 'node_modules/@img/**/*'],
   },
   images: {
+    // Found 2026-09-11: Vercel's runtime logs showed every /_next/image
+    // request failing with "Cannot find module
+    // './.next/server/pages/_next/image.js'" - MODULE_NOT_FOUND, sitewide,
+    // on every single optimized image. Confirmed locally too: a real
+    // production build's own .next/server/pages/ only ever contains
+    // 404.html/500.html - this app is App Router only, nothing ever
+    // produces a pages/_next/image.js output for Next to load - so this
+    // isn't something this project's own code broke, it's Vercel's builder
+    // for this Next.js version routing image-optimization requests to a
+    // "pages" file that this version's build never generates in the first
+    // place. This is what Levi flagged as "none of the images are coming
+    // through" on Services (and reproduces on every page, not just that
+    // one). `unoptimized: true` routes every <Image> straight to its own
+    // `src` instead of through the broken /_next/image endpoint - real,
+    // if slightly larger, image bytes instead of none at all. Revert once
+    // the underlying Vercel/Next.js issue is confirmed fixed upstream.
+    unoptimized: true,
     // S3 media storage (see payload.config.ts) serves doc URLs straight
     // from the bucket (disablePayloadAccessControl), so next/image needs
     // that host allow-listed or it refuses to optimize them. Harmless to
-    // keep even before S3_BUCKET is set - Blob-served media never hits
+    // keep even with unoptimized:true above (costs nothing, and matters
+    // again the moment that's reverted) - Blob-served media never hits
     // this path since those URLs are same-origin (/payload-api/media/...).
     //
     // Path-style, not virtual-hosted-style: payload.config.ts's S3
