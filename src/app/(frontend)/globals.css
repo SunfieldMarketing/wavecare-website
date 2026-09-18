@@ -238,18 +238,6 @@
   .svc-arrows button:hover{background:var(--teal-accent); border-color:var(--teal-accent); color:var(--ink);}
   .svc-arrows button:disabled{opacity:0.3; cursor:default;}
   @media (max-width:680px){ .svc-arrows{display:none;} }
-  /* Mobile: no sideways carousel - stack every service vertically as
-     full-width cards (same idea as the About page's list) so nothing has to
-     be dragged to be seen. ServiceCarouselInner still runs its drag/wheel
-     handlers, but with one column there is nothing to scroll (its clamp math
-     sees track width == viewport width -> max scroll 0), and !important on
-     the transform guards against a stray sideways swipe nudging it anyway. */
-  @media (max-width:680px){
-    .svc-viewport{overflow:visible; cursor:auto; -webkit-mask-image:none; mask-image:none;}
-    .svc-track{flex-direction:column; gap:20px; transform:none !important; transition:none !important;}
-    .svc-card{flex:0 0 auto; width:100%;}
-    .svc-hint{display:none;}
-  }
   .svc-viewport{overflow:hidden; cursor:grab; -webkit-mask-image:linear-gradient(90deg,transparent,#000 2%,#000 98%,transparent);}
   .svc-viewport.dragging{cursor:grabbing;}
   .svc-track{display:flex; gap:24px; padding:0 clamp(22px,4vw,56px); will-change:transform;}
@@ -272,6 +260,23 @@
   .svc-toggle{margin-top:16px; display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:var(--teal-bright); cursor:pointer; background:none; border:none; padding:0; font-family:var(--font-body);}
   .svc-toggle .chev{transition:transform .4s;} .svc-card.open .svc-toggle .chev{transform:rotate(180deg);}
   .svc-hint{margin-top:26px; padding:0 clamp(22px,4vw,56px); font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); position:relative; z-index:2;}
+  /* Mobile: no sideways carousel - stack every service vertically as
+     full-width cards, each showing its name, description, bullets and
+     "Learn More" up front (same idea as the About page's "What We Do"), so
+     nothing has to be dragged or tapped open. Must stay BELOW the base
+     .svc-* rules above: same specificity, so source order decides.
+     ServiceCarouselInner still runs its drag/wheel handlers, but with one
+     column there is nothing to scroll (its clamp sees track width ==
+     viewport width -> max scroll 0), and !important on the transform guards
+     against a stray sideways swipe nudging it anyway. */
+  @media (max-width:680px){
+    .svc-viewport{overflow:visible; cursor:auto; -webkit-mask-image:none; mask-image:none;}
+    .svc-track{flex-direction:column; gap:20px; transform:none !important; transition:none !important;}
+    .svc-card{flex:0 0 auto; width:100%;}
+    .svc-detail{max-height:none; overflow:visible;}
+    .svc-toggle{display:none;}
+    .svc-hint{display:none;}
+  }
 
   /* ===== sections ===== */
   .sec-head{max-width:780px; margin-bottom:72px;}
@@ -536,6 +541,11 @@
       min-width: 0;
     }
     .nav-dropdown.open .dropdown-content { display: flex; }
+    /* The mobile menu lists the services permanently expanded (requested
+       2026-09-18) so each one is a single tap away - no caret to open first,
+       so the caret is hidden and the list is always displayed. */
+    .dropdown-content { display: flex; }
+    .nav-dropdown-caret { display: none; }
     /* Found 2026-09-18 (Levi, Slack): the desktop rule
        ".nav-dropdown.open .dropdown-content { transform: translateX(-50%) ... }"
        (3 classes) out-specifies the plain ".dropdown-content { transform: none }"
