@@ -238,6 +238,18 @@
   .svc-arrows button:hover{background:var(--teal-accent); border-color:var(--teal-accent); color:var(--ink);}
   .svc-arrows button:disabled{opacity:0.3; cursor:default;}
   @media (max-width:680px){ .svc-arrows{display:none;} }
+  /* Mobile: no sideways carousel - stack every service vertically as
+     full-width cards (same idea as the About page's list) so nothing has to
+     be dragged to be seen. ServiceCarouselInner still runs its drag/wheel
+     handlers, but with one column there is nothing to scroll (its clamp math
+     sees track width == viewport width -> max scroll 0), and !important on
+     the transform guards against a stray sideways swipe nudging it anyway. */
+  @media (max-width:680px){
+    .svc-viewport{overflow:visible; cursor:auto; -webkit-mask-image:none; mask-image:none;}
+    .svc-track{flex-direction:column; gap:20px; transform:none !important; transition:none !important;}
+    .svc-card{flex:0 0 auto; width:100%;}
+    .svc-hint{display:none;}
+  }
   .svc-viewport{overflow:hidden; cursor:grab; -webkit-mask-image:linear-gradient(90deg,transparent,#000 2%,#000 98%,transparent);}
   .svc-viewport.dragging{cursor:grabbing;}
   .svc-track{display:flex; gap:24px; padding:0 clamp(22px,4vw,56px); will-change:transform;}
