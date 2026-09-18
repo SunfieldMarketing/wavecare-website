@@ -60,7 +60,7 @@ export function RevealBeforeAfterBlock({ block }: { block: any }) {
   return (
     <Section appearance={appearance}>
       <div className={containerClassName(appearance)}>
-        <div className="phero-in" style={{ gridTemplateColumns: '1fr 1fr' }}>
+        <div className="phero-in phero-in--even">
           <div data-reveal>
             {eyebrow && <span className="label">{eyebrow}</span>}
             {title && <h2>{parseHighlight(title)}</h2>}

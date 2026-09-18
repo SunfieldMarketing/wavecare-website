@@ -115,7 +115,7 @@ export function TabsShowcaseInner({
   const [active, setActive] = useState(0);
 
   return (
-    <div className="phero-in" style={{ gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center' }}>
+    <div className="phero-in phero-in--even" style={{ alignItems: 'center' }}>
       <div className="ctx-tabs" data-reveal style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         {tabs.map((tab, i) => (
           <div

@@ -200,7 +200,7 @@
         rgba(6,42,36,0.80) 100%);
     }
     .phero .container{padding-top:120px; padding-bottom:60px;}
-    .phero-in{grid-template-columns:1fr; gap:30px;}
+    .phero-in,.phero-in--even{grid-template-columns:1fr; gap:30px;}
     .phero-wall{display:none;}
 
     /* Contact hero */
@@ -524,6 +524,14 @@
       min-width: 0;
     }
     .nav-dropdown.open .dropdown-content { display: flex; }
+    /* Found 2026-09-18 (Levi, Slack): the desktop rule
+       ".nav-dropdown.open .dropdown-content { transform: translateX(-50%) ... }"
+       (3 classes) out-specifies the plain ".dropdown-content { transform: none }"
+       above (1 class), so the open accordion stayed shifted half its own width
+       sideways on mobile and got clipped off the panel edge. Same selectors,
+       same specificity, restated here so the reset actually wins. */
+    .nav-dropdown:hover .dropdown-content,
+    .nav-dropdown.open .dropdown-content { transform: none; align-items: center; }
     .dropdown-content a { font-size: 13px !important; padding: 8px 0 !important; opacity: 0.85; }
 
     .nav-inner { padding: 0 20px; }

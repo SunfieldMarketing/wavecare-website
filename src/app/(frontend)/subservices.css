@@ -7,7 +7,11 @@
 .phero-bg::after{content:""; position:absolute; inset:0; background:linear-gradient(120deg, rgba(6,42,36,0.96) 0%, rgba(6,42,36,0.88) 45%, rgba(6,42,36,0.74) 100%);}
 .phero .container{position:relative; z-index:2;}
 .phero-in{display:grid; grid-template-columns:1fr .9fr; gap:60px; align-items:center;}
-@media(max-width:920px){.phero-in{grid-template-columns:1fr; gap:40px;}}
+/* Equal-halves variant (WebDesignBlocks' reveal before/after). Was an inline
+   style, which outranks the stacking media query below and left two 145px
+   columns on phones - keep it a class so the mobile rules can override it. */
+.phero-in--even{grid-template-columns:1fr 1fr;}
+@media(max-width:920px){.phero-in,.phero-in--even{grid-template-columns:1fr; gap:40px;}}
 
 
 .phero h1{font-size:clamp(40px,5vw,72px); color:#fff; margin:4px 0 22px; line-height:1.05;}
@@ -773,4 +777,19 @@
   background: #666;
   border-radius: 0 0 6px 6px;
   z-index: 2;
+}
+/* Found 2026-09-18 (Levi, Slack): /webdesign's hero laptop mockup was a hard
+   480px wide (its base bar is another 60px wider still), with no mobile
+   rule at all - on a ~375px phone it stretched the hero's container to
+   ~524px, pushing the whole hero off-centre and clipping it at the right
+   edge. Keep the laptop plus its base bar (+60px) and the "responsive" tag
+   (-16px) inside the container's own width instead. */
+@media (max-width: 600px) {
+  .hero-device-wrap { max-width: 100%; }
+  .hero-device.laptop {
+    width: calc(100% - 64px);
+    max-width: 480px;
+    height: auto;
+    min-height: 240px;
+  }
 }
